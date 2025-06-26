@@ -1,0 +1,94 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Setting
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+set mbox_type=Maildir
+set folder=~/mail/
+set tilde=yes
+set tmp_dir=~/temp/neomutt/
+set spool_file=~/mail/inbox
+set mark_old=no
+set move=no
+set delete=yes
+set pager_stop=yes
+set use_threads=yes
+set use_ipv6=yes
+set mail_check=60
+set mail_check_recent=yes
+set mail_check_stats=yes
+set mail_check_stats_interval=120
+set arrow_cursor
+set edit_headers
+set editor="vim"
+set pager_index_lines=5
+set read_inc=25
+set shell="/bin/bash"
+set sort_aux=last-date-received
+set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\""
+set mailcap_path="~/.config/neomutt/mailcap"
+set sidebar_visible=yes
+set sidebar_width=30
+set sidebar_delim_chars='/.'
+set sidebar_divider_char='| '
+set sidebar_format='%B(%N|%S)'
+set sidebar_sort_method=unread
+# set sidebar_new_mail_only=yes
+set beep=yes
+set beep_new=yes
+set check_new=yes
+set collapse_unread=yes
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Key bindings
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# siderbar
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager \C] sidebar-first
+bind index,pager <Esc>] sidebar-last
+
+# index
+bind index g first-entry
+bind index G last-entry
+bind index zt current-top
+bind index zz current-middle
+bind index zb current-bottom
+bind index,pager \Cj next-new-then-unread
+macro index \Ca "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"  # mark all as read
+
+# pager
+bind pager [ half-up
+bind pager ] half-down
+bind pager H top
+bind pager L bottom
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mailbox
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+mailboxes `echo ~/mail/*`
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Header
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ignore *
+unignore Subject Date
+unhdr_order *
+hdr_order Subject Date
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Autoview
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+auto_view text/html
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Color
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source color.muttrc
+
+
+# vim: set ts=4 sw=4 sts=4 ft=neomuttrc et: #
+

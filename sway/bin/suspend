@@ -1,0 +1,17 @@
+#! env bash
+
+
+function system_sleep {
+    curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/sleep'
+}
+
+
+while pgrep -f downmovie || pgrep -f pacman || pgrep -f paru || pgrep -f makepkg || pgrep -f vps || pgrep -f ffmpeg || pgrep -f axel; do
+    sleep 720s
+done
+
+system_sleep
+systemctl sleep
+
+
+# vim: set ts=4 sw=4 sts=4 ft=bash et: #

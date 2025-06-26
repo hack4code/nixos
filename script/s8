@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%
+
+
+# vim: ts=2 sw=2 sts=2 ft=bash et:
+

@@ -1,0 +1,13 @@
+
+# channel
+nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixos-25.05 nixos
+
+# home manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
+
+# pkgs
+nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable nixpkgs
+
+
+# configuration.nix
+nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];

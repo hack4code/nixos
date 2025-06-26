@@ -1,0 +1,13 @@
+#! env bash
+
+
+function shutdown_system {
+    curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/shutdown'
+}
+
+
+# shutdown_system
+systemctl poweroff
+
+
+# vim: set ts=4 sw=4 sts=4 ft=bash et: #

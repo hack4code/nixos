@@ -1,0 +1,35 @@
+#! /usr/bin/env bash
+
+
+WGIP="10.0.0.1"
+IF=$(sudo wg show interfaces | head --lines 1)
+CURRENT_PORT=$(sudo wg show $IF | awk -F : '$1 ~ /\s*endpoint/ {print $NF}' | sed 's/\s\n//g')
+NEW_PORT=$((CURRENT_PORT - 1))
+ALLOW_PORT=$((NEW_PORT - 1))
+FIREWALL_ID=$(linode-cli firewalls list --json | jq -r '.[].id' | head --lines 1)
+PORTS=$(linode-cli firewalls rules-list "$FIREWALL_ID" --json | jq -r '.[].inbound.[] | select(.label=="wireguard") | .ports' | sort -n -r)
+
+if ! echo "$PORTS" | grep -q "$NEW_PORT"; then
+  linode-cli firewalls rules-update --inbound "`linode-cli firewalls rules-list "$FIREWALL_ID" --json | jq '.[].inbound' | jq "(.[] | select(.label==\\\"wireguard\\\" and .ports!=\\\"${CURRENT_PORT}\\\") | .ports) |= \\\"$NEW_PORT\\\""`" "$FIREWALL_ID"
+fi
+
+echo "change server port from $CURRENT_PORT to $NEW_PORT"
+ssh -T linode "sed -i '/ListenPort/s/${CURRENT_PORT}/${NEW_PORT}/' /etc/wireguard/wg0.conf"
+ssh -T linode "nohup rc-service wg-quick.wg0 restart &>/dev/null </dev/null &"
+
+echo "change client port from $CURRENT_PORT to $NEW_PORT"
+sudo sed -i "/Endpoint/s/${CURRENT_PORT}$/${NEW_PORT}/" /etc/wireguard/wg0.conf
+echo "restart wireguard service"
+sudo systemctl restart wg-quick@wg0.service
+
+while ! ping -q -c 1 $WGIP; do
+  sleep 8s
+done
+
+if ! echo "$PORTS" | grep -q "$ALLOW_PORT";  then
+  linode-cli firewalls rules-update --inbound "`linode-cli firewalls rules-list "$FIREWALL_ID" --json | jq '.[].inbound' | jq "(.[] | select(.label==\\\"wireguard\\\" and .ports!=\\\"${NEW_PORT}\\\") | .ports) |= \\\"$ALLOW_PORT\\\""`" "$FIREWALL_ID"
+fi
+
+
+# vim: ts=2 sw=2 sts=2 ft=bash et:
+
