@@ -56,6 +56,8 @@ in
                 tab_powerline_style angled
                 tab_title_template "{index}"
 
+                window_padding_width 4 8
+
                 symbol_map 	 U+4E00-U+9FFF Noto Sans Mono CJK SC
                 symbol_map 	 U+3400-U+4DBF Noto Sans Mono CJK TC
                 symbol_map 	 U+3000-U+30FF Noto Sans Mono CJK JP

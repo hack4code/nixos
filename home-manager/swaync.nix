@@ -61,12 +61,6 @@ in
                     border-radius: 12px;
                 }
 
-                .control-center .notification-row:focus,
-                .control-center .notification-row:hover {
-                    opacity: 1;
-                    background: transparent;
-                }
-
                 .notification-row:focus .notification,
                 .notification-row:hover .notification {
                     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5);
@@ -88,7 +82,7 @@ in
                     background: transparent;
                     padding: 6px;
                     border-radius: 8px;
-                    font-size: 18px;
+                    font-size: 12px;
                     font-family: "Roboto,MiSans";
                 }
 
@@ -99,21 +93,21 @@ in
                 }
 
                 .summary {
-                    font-size: 24px;
+                    font-size: 14px;
                     font-weight: bold;
                     background: transparent;
                     font-family: "Roboto, MiSans";
                 }
 
                 .time {
-                    font-size: 24px;
+                    font-size: 14px;
                     font-weight: bold;
                     background: transparent;
                     margin-right: 18px;
                 }
 
                 .body {
-                    font-size: 20px;
+                    font-size: 12px;
                     font-weight: normal;
                     background: transparent;
                     font-family: "Roboto,MiSans";
@@ -134,11 +128,8 @@ in
                     opacity: 0.5;
                 }
 
-                .floating-notifications {
-                }
-
                 .floating-notifications .notification {
-                    font-size: 20px;
+                    font-size: 12px;
                     font-family: "Roboto,MiSans";
                     background: transparent;
                 }

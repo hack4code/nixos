@@ -55,7 +55,7 @@ else
         fi
     else
         if [[ -z "$(ssh -T $VPS ls -A $HEMO/${TARGET}/)" ]]; then
-            $SSH -T $VPS "mount -t nfs -o vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto 10.0.0.2:/mnt/nfs/${TARGET} $HEMO/${TARGET}"
+            $SSH -T $VPS "mount -t nfs -o vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto 10.0.0.2:/export/${TARGET} $HEMO/${TARGET}"
         fi
     fi
 fi

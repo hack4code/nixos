@@ -6,9 +6,21 @@ let
 
     downmovie = pkgs.writeShellApplication {
         name = "downmovie.sh";
-        runtimeInputs = with pkgs; [ rsync openssh coreutils procps libnotify ];
+        runtimeInputs = with pkgs; [
+            rsync
+            openssh
+            coreutils
+            procps
+            gnugrep
+            gnused
+            libnotify
+        ];
         text = ''
             #!env bash
+
+
+            TSS2_FAPICONF=$(grep -F FAPICONF /etc/set-environment | cut -d = -f 2 | sed 's/"//g')
+            export TSS2_FAPICONF
 
 
             SSH=$(command -v ssh)
@@ -96,10 +108,6 @@ in
         systemd.user.services.downmovie = {
             Unit = {
                 Description = "Download Movie From Linode";
-            };
-
-            Install = {
-                WantedBy = [ "default.target" ];
             };
 
             Service = {

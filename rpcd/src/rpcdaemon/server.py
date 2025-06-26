@@ -7,6 +7,7 @@ from subprocess import CalledProcessError
 import uvicorn
 
 from .daemon import Daemon
+from .app import app
 from .firefox import catch_firefox_signal
 from .logger import (
     logger,
@@ -26,7 +27,7 @@ __all__ = [
 def server(*args, **kwargs) -> None:
     host, port = args
     config = uvicorn.Config(
-        "app:app",
+        app,
         host=host,
         port=port,
         access_log=False,

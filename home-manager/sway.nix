@@ -5,10 +5,14 @@ let
     version = config.nixosVersion;
 
     cursor = "Adwaita";
-    lenovo = "Chimei Innolux Corporation 0x1301 Unknown";
-    samsung = "Samsung Electric Company LS24A600U H4ZRB00248";
-    bglenovo = "$HOME/.config/sway/wallpaper/a-view-of-mount-fuji-across-lake-suwa-by-hokusai.png";
-    bgsamsung = "$HOME/.config/sway/wallpaper/japanese-sea.png";
+
+    monitorThinkpad = config.monitorThinkpad;
+    monitorSamsung = config.monitorSamsung;
+
+    bgThinkpad = config.bgThinkpad;
+    bgSamsung = config.bgSamsung;
+
+    swayBin = "/home/${config.userName}/.config/sway/bin";
 in
 {
     home-manager.users.${userName} = { lib, ... }: {
@@ -116,7 +120,7 @@ in
                 };
 
                 output = {
-                    "${lenovo}" = {
+                    "${monitorThinkpad}" = {
                         position = "0,0";
                         mode = "2160x1350@59.744Hz";
                         scale = "1.5";
@@ -124,7 +128,7 @@ in
                         subpixel = "rgb";
                     };
 
-                    "${samsung}" = {
+                    "${monitorSamsung}" = {
                         position = "1440,0";
                         mode = "2560x1440@59.951Hz";
                         scale = "1.5";
@@ -136,7 +140,7 @@ in
                 keybindings =
                 let
                     modifier = "Mod4";
-                    swaycmd = "/home/${userName}/.config/sway/bin/swaycmd";
+                    swaycmd = "${swayBin}/swaycmd";
                 in
                 {
                     "${modifier}+left" = "focus left";
@@ -197,7 +201,7 @@ in
 
                 seat = {
                     "seat0" = {
-                         xcursor_theme = "${cursor} 20";
+                        xcursor_theme = "${cursor} 20";
                         hide_cursor = "when-typing enable";
                     };
                 };
@@ -211,37 +215,62 @@ in
             '';
 
             extraConfig = ''
-                workspace 0  output "${lenovo}"
-                workspace 11 output "${lenovo}"
-                workspace 1  output "${samsung}"
-                workspace 2  output "${samsung}"
-                workspace 3  output "${samsung}"
-                workspace 4  output "${samsung}"
-                workspace 5  output "${samsung}"
-                workspace 9  output "${samsung}"
-                workspace 10 output "${samsung}"
+                workspace 0  output "${monitorThinkpad}"
+                workspace 11 output "${monitorThinkpad}"
+                workspace 1  output "${monitorSamsung}"
+                workspace 2  output "${monitorSamsung}"
+                workspace 3  output "${monitorSamsung}"
+                workspace 4  output "${monitorSamsung}"
+                workspace 5  output "${monitorSamsung}"
+                workspace 9  output "${monitorSamsung}"
+                workspace 10 output "${monitorSamsung}"
 
                 bindsym XF86MonBrightnessDown exec light -U 10
                 bindsym XF86MonBrightnessUp exec light -A 10
-                bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
-                bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+                bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +10%'
+                bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -10%'
                 bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
                 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
-                exec gsettings set org.gnome.desktop.interface cursor-size 32
-                exec gsettings set org.gnome.desktop.interface cursor-theme ${cursor}
+                # exec --no-startup-id gsettings set org.gnome.desktop.interface cursor-size 32
+                # exec --no-startup-id gsettings set org.gnome.desktop.interface cursor-theme ${cursor}
 
-                exec --no-startup-id swaybg -o "${samsung}" -i "${bgsamsung}" -m fit
-                exec --no-startup-id swaybg -o eDP-1 -i "${bglenovo}" -m strectch
+                exec --no-startup-id swaybg -o "${monitorSamsung}" -i "${bgSamsung}" -m fit
+                exec --no-startup-id swaybg -o "eDP-1" -i "${bgThinkpad}" -m fit
 
                 exec --no-startup-id fcitx5 -d --replace
-                exec --no-startup-id swaync
                 exec --no-startup-id wl-paste -t text --watch clipman store --no-persist
 
-                exec --no-startup-id rpcd
+                exec --no-startup-id swaync
+                exec --no-startup-id swayidle \
+                    timeout 300 "${swayBin}/lock" resume "${swayBin}/resume-lock" \
+                    timeout 3600 "${swayBin}/suspend" resume "${swayBin}/resume-suspend" \
+                    after-resume "${swayBin}/resume-sleep"
+
+                exec_always --no-startup-id rpcd
+
+
+                # vim: set ts=4 sw=4 ft=swayconfig et: #
+            '';
+        };
+
+        home.file.".config/user-dirs.dirs" = {
+            text = ''
+                XDG_CONFIG_HOME="$HOME/.config"
+                XDG_CACHE_HOME="$HOME/.cache"
+                XDG_DATA_HOME="$HOME/.local/share"
+                XDG_STATE_HOME="$HOME/.local/state"
+                XDG_DOCUMENTS_DIR="$HOME/document"
+                XDG_DOWNLOAD_DIR="$HOME/download"
+                XDG_MUSIC_DIR="$HOME/music"
+                XDG_VIDEOS_DIR="$HOME/movie"
+                XDG_PICTURES_DIR="$HOME/picture"
+                XDG_DESKTOP_DIR="$HOME/temp"
+                XDG_PUBLICSHARE_DIR="$HOME/temp"
+                XDG_TEMPLATES_DIR="$HOME/temp"
             '';
         };
 
@@ -273,6 +302,11 @@ in
                 test -d document || mkdir document
                 test -d download || mkdir download
                 test -d source || mkdir source
+                test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
+
+                ${pkgs.git}/bin/git config --global user.name "code4hack"
+                ${pkgs.git}/bin/git config --global user.email "code4hack+github@gmail.com"
+                ${pkgs.git}/bin/git config --global init.defaultBrance main
             '';
         };
 

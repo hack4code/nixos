@@ -3,6 +3,8 @@
 let
     userName = config.userName;
     version = config.nixosVersion;
+    monitorSamsung = config.monitorSamsung;
+    monitorThinkpad = config.monitorThinkpad;
 in
 {
     home-manager.users.${userName} = {
@@ -12,6 +14,7 @@ in
             settings = {
                 mainBar = {
                     layer= "top";
+                    output = [ "!${monitorThinkpad}" "${monitorSamsung}" ];
                     position= "top";
                     mode= "dock";
                     exclusive= true;

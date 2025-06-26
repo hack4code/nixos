@@ -21,7 +21,25 @@ in
             extraConfig = ''
                 sticker_file "/home/${userName}/.local/share/mpd/sticker.sql"
                 state_file "/home/${userName}/.local/state/mpd/state"
+                log_file "/home/${userName}/.local/share/mpd/log"
                 log_level "info"
+
+                auto_update "yes"
+                auto_update_depth "0"
+
+                audio_output {
+                    type "pipewire"
+                    name "pipewire"
+                    remote "pipewire-0"
+                    dsd "yes"
+                }
+
+                audio_output {
+                    type "fifo"
+                    name "visualizer"
+                    path "/tmp/mpd.fifo"
+                    format "44100:16:2"
+                }
             '';
         };
 

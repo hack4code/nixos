@@ -13,11 +13,17 @@ let
             openssh
             coreutils
             procps
+            gnugrep
+            gnused
             libnotify
         ];
 
         text = ''
             #!env bash
+
+
+            TSS2_FAPICONF=$(grep -F FAPICONF /etc/set-environment | cut -d = -f 2 | sed 's/"//g')
+            export TSS2_FAPICONF
 
 
             SSH=$(command -v ssh)
@@ -27,7 +33,7 @@ let
 
             VPS="linode"
 
-            NFS_SPIDER="10.0.0.2:/mnt/nfs/spider"
+            NFS_SPIDER="10.0.0.2:/export/spider"
             MOUNT_OPT="vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto"
             ICON="$HOME/picture/icon/network.png"
 
@@ -43,7 +49,11 @@ let
 
 
             function notify {
-                $NOTIFY --icon="$ICON" "syncdrive" "$1"
+                if [[ -f "$ICON" ]]; then
+                    $NOTIFY --icon="$ICON" "syncdrive" "$1"
+                else
+                    $NOTIFY "syncdrive" "$1"
+                fi
             }
 
 
@@ -127,10 +137,6 @@ in
         systemd.user.services.syncdrive = {
             Unit = {
                 Description = "Backup Files To Google Drive";
-            };
-
-            Install = {
-                WantedBy = [ "default.target" ];
             };
 
             Service = {

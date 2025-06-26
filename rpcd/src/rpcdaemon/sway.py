@@ -110,8 +110,7 @@ command_linode = (
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@linode "
-    "zsh -c 'htop -M --readonly'"
-    # "zsh -c 'ssh -t linode htop -M --readonly'"
+    "zsh -c 'ssh -t linode htop -M --readonly'"
 )
 
 
@@ -174,6 +173,9 @@ command_floating_kitty = (
 
 ncmpcpp_width = "50ppt"
 ncmpcpp_height = "60ppt"
+
+
+I3 = i3ipc.Connection()
 
 
 class SwayIpcError(Exception):
@@ -700,9 +702,6 @@ def setup_workspaces() -> None:
 
 
 def init_workspaces():
-    global I3
-
-    I3 = i3ipc.Connection()
     if (find_container_by_app_id("htop") or
             find_container_by_app_id("ncmpcpp") or
             find_container_by_app_id("mutt")):

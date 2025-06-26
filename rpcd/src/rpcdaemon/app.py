@@ -55,6 +55,11 @@ from .mpv import (
 from .logger import logger
 
 
+__all__ = [
+    "app"
+]
+
+
 class Message(BaseModel):
     message: str
 
@@ -73,6 +78,7 @@ class Transmission(BaseModel):
 
 class Fullscreen(BaseModel):
     app_id: str
+
 
 
 app = FastAPI(title="rpcd", description="rpc daemon")

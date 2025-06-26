@@ -1,4 +1,6 @@
 {
+    systemd.network.wait-online.enable = true;
+
     networking = {
         hostName = "KISS";
         enableIPv6 = true;
@@ -8,10 +10,21 @@
           enable = false;
         };
 
+        wireless.dbusControlled = true;
+
         networkmanager = {
             enable = true;
             dns = "none";
             wifi.backend = "iwd";
+
+            connectionConfig = {
+                autoconnect = true;
+                autoconnect-priority = 999;
+                interface-name = "wlan0";
+                type = "802-11-wireless";
+                wait-device-timeout = 32;
+                id = "wireless";
+            };
 
             settings = {
                 main = {

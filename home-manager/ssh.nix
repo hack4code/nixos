@@ -23,6 +23,7 @@ in
                     serverAliveCountMax = 3;
                     serverAliveInterval = 16;
                     extraOptions = {
+                        LogLevel = "QUIET";
                         StrictHostKeyChecking = "no";
                         EnableEscapeCommandline = "yes";
                         UserKnownHostsFile = "/dev/null";

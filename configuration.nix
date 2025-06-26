@@ -1,18 +1,18 @@
 { config, pkgs, lib, ... }:
 
-# let
-#     home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-# in
  {
     imports = [
         /* home manager */
-        # ( import "${home-manager}/nixos" )
         <home-manager/nixos>
+        /* tpm2 */
+        ./module/tpm2-tss-fapi.nix
         /* config */
-        ./nixos/user.nix
-        ./nixos/os.nix
-        ./nixos/wireguard.nix
-        ./nixos/bitwarden.nix
+        ./config/user.nix
+        ./config/os.nix
+        ./config/wireguard.nix
+        ./config/bitwarden.nix
+        ./config/dnscrypt-proxy.nix
+        ./config/output.nix
         /* system */
         ./nixos/systemd-boot.nix
         ./nixos/hardware.nix
@@ -23,6 +23,7 @@
         ./nixos/container.nix
         ./nixos/input.nix
         ./nixos/sudo.nix
+        ./nixos/nixos.nix
         /* systemd */
         ./nixos/services.nix
         ./nixos/pipewire.nix
@@ -31,30 +32,30 @@
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
         /* sway */
-        ./nixos/sway.nix
-        ./nixos/swaylock.nix
-        ./nixos/swaync.nix
-        ./nixos/waybar.nix
-        ./nixos/ssh.nix
-        ./nixos/btop.nix
-        ./nixos/htop.nix
-        ./nixos/xdg-desktop-portal.nix
-        ./nixos/zsh.nix
-        ./nixos/neomutt.nix
-        ./nixos/ranger.nix
-        ./nixos/kitty.nix
-        ./nixos/mpd.nix
-        ./nixos/ncmpcpp.nix
-        ./nixos/wofi.nix
-        ./nixos/mpv.nix
-        ./nixos/zathura.nix
-        ./nixos/firefox.nix
-        ./nixos/vim.nix
-        ./nixos/downmovie.nix
-        ./nixos/syncdrive.nix
-        ./nixos/script.nix
-        ./nixos/fcitx5.nix
-        ./nixos/rime.nix
+        ./home-manager/sway.nix
+        ./home-manager/swaylock.nix
+        ./home-manager/swaync.nix
+        ./home-manager/waybar.nix
+        ./home-manager/ssh.nix
+        ./home-manager/btop.nix
+        ./home-manager/htop.nix
+        ./home-manager/xdg-desktop-portal.nix
+        ./home-manager/zsh.nix
+        ./home-manager/neomutt.nix
+        ./home-manager/ranger.nix
+        ./home-manager/kitty.nix
+        ./home-manager/mpd.nix
+        ./home-manager/ncmpcpp.nix
+        ./home-manager/wofi.nix
+        ./home-manager/mpv.nix
+        ./home-manager/zathura.nix
+        ./home-manager/firefox.nix
+        ./home-manager/vim.nix
+        ./home-manager/downmovie.nix
+        ./home-manager/syncdrive.nix
+        ./home-manager/script.nix
+        ./home-manager/fcitx5.nix
+        ./home-manager/rime.nix
     ];
 
     /* nix */
@@ -66,6 +67,8 @@
 
     /* home manager */
     home-manager.backupFileExtension = "backup";
+    home-manager.useUserPackages = true;
+    home-manager.useGlobalPkgs = true;
 
     /* system */
     system.stateVersion = "${config.nixosVersion}";
@@ -87,10 +90,13 @@
     /* security */
     security.rtkit.enable = true;
     security.polkit.enable = true;
+
     /* tpm2 */
     security.tpm2.enable = true;
     security.tpm2.pkcs11.enable = true;
+    security.tpm2.abrmd.enable = true;
     security.tpm2.tctiEnvironment.enable = true;
+    security.tpm2.tctiEnvironment.interface = "tabrmd";
 
     /* user */
     users.users.${config.userName} =
@@ -125,7 +131,6 @@
             ranger
             neomutt
             zathura
-            ncmpcpp
             htop
             btop
             mpv
@@ -181,11 +186,9 @@
         trippy
         tcpdump
         dig
+        rclone
         /* tpm2 */
         tpm2-tools
-        tpm2-tss
-        tpm2-pkcs11
-        tpm2-abrmd
         /* firmware */
         sof-firmware
         /* console font */

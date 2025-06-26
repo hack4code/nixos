@@ -179,12 +179,8 @@ in
                         local COLORS=(green red blue yellow cyan magenta)
                         local N=$(($RANDOM % ''${#COLORS[@]} + 1))
                         local M=$(($RANDOM % ''${#COLORS[@]} + 1))
-                        if (($(($RANDOM % 2)) == 1)); then
-                            unimatrix -a -f -o -s 96 -c "''${COLORS[$N]}" -l aAgGnrR
-                        else
-                            terminal-rain --rain-color "''${COLORS[$N]}" --lightning-color "''${COLORS[$M]}"
-                        fi
 
+                        unimatrix -a -f -o -s 96 -c "''${COLORS[$N]}" -l aAgGnrR
                         curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     }
 

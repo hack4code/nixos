@@ -33,9 +33,9 @@ in
 
     services.nfs.server.enable = true;
     services.nfs.server.exports = ''
-        /export/docker 10.0.0.1(rw,nohide,insecure,no_subtree_check)
-        /export/spider 10.0.0.1(rw,nohide,insecure,no_subtree_check)
-        /export/wireguard 10.0.0.1(rw,nohide,insecure,no_subtree_check)
+        /export/docker 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
+        /export/spider 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
+        /export/wireguard 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
     '';
 }
 

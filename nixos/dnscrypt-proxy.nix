@@ -1,11 +1,17 @@
+{ config, pkgs, ... }:
+
+let
+    dnsServerName = config.dnsServerName;
+    dnsStamp = config.dnsStamp;
+in
 {
     services = {
         dnscrypt-proxy2 = {
             enable = true;
             settings = {
                 listen_addresses = [ "[::1]:53" "127.0.0.1:53" ];
-                # server_names = [ "linode" ];
-                static.linode.stamp = "sdns://AQcAAAAAAAAAFDE3Mi4yMzYuMjE5LjI1Mzo2NjY2IIXgg3kWnVLB-lsua8Ker3nNRsHLepRxeKVRF8NZjvjAHzIuZG5zY3J5cHQtY2VydC5kbnNjcnlwdC5saW5vZGU";
+                server_names = [ "${dnsServerName}" ];
+                static.linode.stamp = "${dnsStamp}";
 
                 netprobe_address = "8.8.8.8:53";
                 bootstrap_resolvers = [ "8.8.8.8:53" ];
