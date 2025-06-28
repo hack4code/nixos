@@ -596,10 +596,11 @@ in
         };
 
         home.packages = with pkgs; [
-            mpc
-            jupyter
-            bitwarden-cli
             adwaita-icon-theme
+            bitwarden-cli
+            cmatrix
+            jupyter
+            mpc
             ( callPackage ../rpcd/rpcd.nix {} )
         ];
 

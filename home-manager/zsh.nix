@@ -178,9 +178,8 @@ in
                     function matrix {
                         local COLORS=(green red blue yellow cyan magenta)
                         local N=$(($RANDOM % ''${#COLORS[@]} + 1))
-                        local M=$(($RANDOM % ''${#COLORS[@]} + 1))
 
-                        unimatrix -a -f -o -s 96 -c "''${COLORS[$N]}" -l aAgGnrR
+                        cmatrix -a -u -x -f -s -C "''${COLORS[$N]}"
                         curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     }
 
