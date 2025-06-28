@@ -99,7 +99,7 @@ command_btop = (
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@btop "
-    "zsh -c '/usr/bin/btop'"
+    "zsh -c btop"
 )
 
 
