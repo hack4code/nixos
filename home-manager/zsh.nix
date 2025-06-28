@@ -84,7 +84,7 @@ in
                 QT_IM_MODULE = "fcitx";
 
                 /* sway */
-                # WLR_RENDERER = "ulkan";
+                # WLR_RENDERER = "vulkan";
                 SDL_VIDEODRIVER = "wayland";
                 QT_QPA_PLATFORM = "wayland";
 

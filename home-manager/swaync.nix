@@ -82,7 +82,7 @@ in
                     background: transparent;
                     padding: 6px;
                     border-radius: 8px;
-                    font-size: 12px;
+                    font-size: 16px;
                     font-family: "Roboto,MiSans";
                 }
 
@@ -93,21 +93,21 @@ in
                 }
 
                 .summary {
-                    font-size: 14px;
+                    font-size: 24px;
                     font-weight: bold;
                     background: transparent;
-                    font-family: "Roboto, MiSans";
+                    font-family: "Roboto,MiSans";
                 }
 
                 .time {
-                    font-size: 14px;
+                    font-size: 24px;
                     font-weight: bold;
                     background: transparent;
                     margin-right: 18px;
                 }
 
                 .body {
-                    font-size: 12px;
+                    font-size: 16px;
                     font-weight: normal;
                     background: transparent;
                     font-family: "Roboto,MiSans";
@@ -129,7 +129,7 @@ in
                 }
 
                 .floating-notifications .notification {
-                    font-size: 12px;
+                    font-size: 16px;
                     font-family: "Roboto,MiSans";
                     background: transparent;
                 }
