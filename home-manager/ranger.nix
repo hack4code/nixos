@@ -51,7 +51,7 @@ in
                 { condition = "ext mkv, has mpv, X, flag f"; command = "mpv -- \"$@\""; }
                 { condition = "ext pdf, has zathura, X, flag f"; command = "zathura -- \"$@\""; }
                 { condition = "ext epub, has zathura, X, flag f"; command = "zathura -- \"$@\""; }
-                { condition = "mime ^image, has swayimg, x, flag f"; command = "swayimg -- \"$@\""; }
+                { condition = "mime ^image, has swayimg, X, flag f"; command = "swayimg -- \"$@\""; }
             ];
         };
 
