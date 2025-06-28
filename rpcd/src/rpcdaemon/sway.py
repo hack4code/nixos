@@ -671,8 +671,11 @@ def launch_floating_kitty() -> None:
 
 def toggle_btop() -> None:
     workspace_focus = find_workspace_focused()
-    if (container_btop := find_container_by_app_id("btop", "11")) is None:
+    if (container_btop := find_container_by_app_id("btop","11")) is None:
         I3.command(f"workspace 11;{command_btop}")
+        if (container_btop := find_container_after_start("btop",
+                                                         "11")) is not None:
+                container_btop.command("fullscreen enable")
     else:
         os.kill(container_btop.pid, signal.SIGTERM)
         focus_workspace(0)
