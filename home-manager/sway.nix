@@ -27,6 +27,71 @@ let
             #!env bash
 
 
+            function connect_sony() {
+                local SONY='20:64:DE:85:A4:E3'
+                local T=0
+                while [[ "$(echo "info $SONY" | bluetoothctl | awk '/Connected/{print $2}')" != yes ]]; do
+                    echo "connect $SONY" | bluetoothctl
+                    sleep 3s
+                    T=$((T + 1))
+                    if ((T > 60)); then
+                        return 1
+                    fi
+                done
+            }
+
+
+            function set_default_sink {
+                local INTEL_SOUND_CARD="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
+                pactl set-default-sink "$INTEL_SOUND_CARD"
+            }
+
+
+            function resume_sound {
+                connect_sony
+                if [[ -f ~/bin/setvolume ]]; then
+                    sleep 1s
+                    setvolume
+                fi
+            }
+
+
+            function stop_matrix {
+                pkill -f unimatrix
+                pkill -f terminal-rain
+            }
+
+
+            function lock {
+                stop_matrix
+                swaylock -f
+            }
+
+
+            function resume_ncmpcpp {
+                curl -s -o /dev/null -X GET "http://127.0.0.1:8080/ncmpcpp/resume"
+            }
+
+
+            function resume_system {
+                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/resume'
+            }
+
+
+            function resume_kremap {
+                sudo systemctl restart kremap.service
+            }
+
+
+            function stop_suspend {
+                # shellcheck disable=SC2009
+                PID=$(ps aux | grep -v swayidle | grep -E '[s]wayctl suspend' | awk '{print $2}')
+                if [[ -n "$PID" ]]; then
+                    kill -9 "$PID"
+                fi
+            }
+
+
             function reboot {
                 systemctl reboot
             }
@@ -34,6 +99,18 @@ let
 
             function shutdown {
                 systemctl poweroff
+            }
+
+
+            function check_before_sleep {
+                while pgrep -f downmovie || pgrep -f pacman || pgrep -f paru || pgrep -f makepkg || pgrep -f vps || pgrep -f ffmpeg || pgrep -f axel; do
+                    sleep 720s
+                done
+            }
+
+
+            function system_sleep {
+                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/sleep'
             }
 
 
@@ -82,6 +159,36 @@ let
 
                 shutdown)
                     shutdown
+                    ;;
+
+                lock)
+                    lock
+                    ;;
+
+                resume)
+                    case "$2" in
+                        lock)
+                            resume_ncmpcpp
+                            ;;
+
+                        sleep)
+                            resume_system
+                            resume_sound
+                            ;;
+
+                        suspend)
+                            stop_suspend
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+                suspend)
+                    check_before_sleep
+                    system_sleep
+                    systemctl sleep
                     ;;
 
                 mpd)
@@ -178,6 +285,7 @@ let
             # vim: set ts=4 sw=4 sts=4 ft=bash et: #
         '';
     };
+    swaycmd = "${swayctl}/bin/swayctl";
 in
 {
     home-manager.users.${userName} = { lib, ... }: {
@@ -305,7 +413,6 @@ in
                 keybindings =
                 let
                     modifier = "Mod4";
-                    swaycmd = "${swayctl}/bin/swayctl";
                 in
                 {
                     "${modifier}+left" = "focus left";
@@ -411,9 +518,9 @@ in
 
                 exec --no-startup-id swaync
                 exec --no-startup-id swayidle \
-                    timeout 300 "${swayctl}/lock" resume "${swayctl}/resume-lock" \
-                    timeout 3600 "${swayctl}/suspend" resume "${swayctl}/resume-suspend" \
-                    after-resume "${swayctl}/resume-sleep"
+                    timeout 300 "${swaycmd} lock" resume "${swaycmd} resume lock" \
+                    timeout 3600 "${swaycmd} suspend" resume "${swaycmd} resume suspend" \
+                    after-resume "${swaycmd} resume sleep"
 
                 exec_always --no-startup-id rpcd
 
