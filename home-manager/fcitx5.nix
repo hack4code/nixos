@@ -31,19 +31,49 @@ in
 
                 globalOptions = {
                     Behavior = {
-                        ActiveByDefault = "False";
+                        ActiveByDefault = false;
                         resetStateWhenFocusIn = "No";
                         ShareInputState = "No";
-                        PreeditEnabledByDefault = "False";
-                        ShowInputMethodInformation = "False";
-                        showInputMethodInformationWhenFocusIn = "False";
-                        CompactInputMethodInformation = "False";
-                        ShowFirstInputMethodInformation = "False";
-                        PreloadInputMethod = "True";
-                        AllowInputMethodForPassword = "False";
-                        ShowPreeditForPassword = "False";
+                        PreeditEnabledByDefault = false;
+                        ShowInputMethodInformation = false;
+                        showInputMethodInformationWhenFocusIn = false;
+                        CompactInputMethodInformation = false;
+                        ShowFirstInputMethodInformation = false;
+                        PreloadInputMethod = true;
+                        AllowInputMethodForPassword = false;
+                        ShowPreeditForPassword = false;
                         DefaultPageSize = 5;
                         AutoSavePeriod = 30;
+                    };
+                };
+
+                addons = {
+                    classicui.globalSection = {
+                        "Vertical Candidate List" = "True";
+                        Theme = "Nord-Dark";
+                        UseAccentColor = "False";
+                        WheelForPaging = "False";
+                        Font = "\"MiSans 12\"";
+                        MenuFont = "\"MiSans 10\"";
+                        TrayFont = "\"MiSans 10\"";
+                        TrayOutlineColor = "#282828";
+                        TrayTextColor = "#ebdbb2";
+                        PreferTextIcon = "True";
+                        ShowLayoutNameInIcon = "True";
+                        UseInputMethodLanguageToDisplayText = "True";
+                        PerScreenDPI = "False";
+                        ForceWaylandDPI = 0;
+                    };
+
+                    rime.globalSection = {
+                        PreeditMode = "\"Do not show\"";
+                        InputState = "No";
+                        PreeditCursorPositionAtBeginning = "True";
+                        SwitchInputMethodBehavior = "\"Commit commit preview\"";
+                    };
+
+                    clipboard.globalSection = {
+                        "Number of entries" = 8;
                     };
                 };
             };
