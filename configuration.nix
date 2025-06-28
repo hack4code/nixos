@@ -131,12 +131,6 @@
             ranger
             neomutt
             zathura
-            htop
-            btop
-            mpv
-            mpc
-            jupyter
-            bitwarden-cli
         ];
     };
 
@@ -179,14 +173,12 @@
         curl
         wget
         axel
-        rsync
         nftables
         ethtool
         iproute2
         trippy
         tcpdump
         dig
-        rclone
         /* tpm2 */
         tpm2-tools
         /* firmware */
