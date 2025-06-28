@@ -16,11 +16,15 @@ let
         name = "swayctl";
 
         runtimeInputs = with pkgs; [
+            bluez-tools
             coreutils
-            procps
-            gnugrep
             curl
             ffmpeg
+            gnugrep
+            procps
+            pulseaudio
+            swaylock
+            systemd
         ];
 
         text = ''
@@ -47,18 +51,29 @@ let
             }
 
 
-            function resume_sound {
-                connect_sony
-                if [[ -f ~/bin/setvolume ]]; then
-                    sleep 1s
-                    setvolume
+            function set_volume {
+                local SINK
+                local H
+
+                SINK=$(pactl get-default-sink)
+                H=$(date +'%k')
+
+                if ((H >= 5)) && ((H < 18)); then
+                    pactl set-sink-volume "$SINK" 80%
+                else
+                    pactl set-sink-volume "$SINK" 60%
                 fi
             }
 
 
+            function resume_sound {
+                connect_sony
+                setvolume
+            }
+
+
             function stop_matrix {
-                pkill -f unimatrix
-                pkill -f terminal-rain
+                pkill -f cmatrix
             }
 
 
@@ -75,11 +90,6 @@ let
 
             function resume_system {
                 curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/resume'
-            }
-
-
-            function resume_kremap {
-                sudo systemctl restart kremap.service
             }
 
 
@@ -119,6 +129,7 @@ let
 
                 local CAMER_DEST="$HOME/movie/.camer/"
                 local MICROPHONE="alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source"
+
                 T=$(date +'%F-%H-%M')
 
                 if ! [[ -d "$CAMER_DEST" ]]; then
