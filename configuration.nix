@@ -185,6 +185,8 @@
         sof-firmware
         /* console font */
         kbd
+        /* */
+        qrencode
     ];
 }
 
