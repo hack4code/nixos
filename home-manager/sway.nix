@@ -12,7 +12,172 @@ let
     bgThinkpad = config.bgThinkpad;
     bgSamsung = config.bgSamsung;
 
-    swayBin = "/home/${config.userName}/.config/sway/bin";
+    swayctl = pkgs.writeShellApplication {
+        name = "swayctl";
+
+        runtimeInputs = with pkgs; [
+            coreutils
+            procps
+            gnugrep
+            curl
+            ffmpeg
+        ];
+
+        text = ''
+            #!env bash
+
+
+            function reboot {
+                systemctl reboot
+            }
+
+
+            function shutdown {
+                systemctl poweroff
+            }
+
+
+            function start_camer {
+                local T
+
+                local CAMER_DEST="$HOME/movie/.camer/"
+                local MICROPHONE="alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source"
+                T=$(date +'%F-%H-%M')
+
+                if ! [[ -d "$CAMER_DEST" ]]; then
+                    mkdir -p "$CAMER_DEST"
+                fi
+                ffmpeg -f pulse -i "$MICROPHONE" -f video4linux2 -s 1280x720 -i /dev/video0 "$CAMER_DEST/$T.mkv"
+            }
+
+
+            function set_mpd {
+                curl -s -o /dev/null -X GET "http://127.0.0.1:8080/mpd/$1"
+            }
+
+
+            function set_ncmpcpp {
+                curl -s -o /dev/null -X GET "http://127.0.0.1:8080/ncmpcpp/$1"
+            }
+
+
+            function toggle_fullscreen {
+                curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"app_id\": \"$1\"}" "http://127.0.0.1:8080/system/fullscreen/toggle"
+            }
+
+
+            function launch_kitty {
+                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/launch/floatingkitty'
+            }
+
+            function toggle_btop {
+                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/toggle/btop'
+            }
+
+
+            case "$1" in
+                reboot)
+                    reboot
+                    ;;
+
+                shutdown)
+                    shutdown
+                    ;;
+
+                mpd)
+                    case "$2" in
+                        reload)
+                            set_mpd "$2"
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+                ncmpcpp)
+                    case "$2" in
+                        toggle|visualizer|togglefullscreen|time|lyrics|lyricsup|lyricsdown)
+                            set_ncmpcpp "$2"
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+                htop)
+                    case "$2" in
+                        togglefullscreen)
+                            toggle_fullscreen "htop"
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+                btop)
+                    case "$2" in
+                        toggle)
+                            toggle_btop
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+                linode)
+                    case "$2" in
+                        togglefullscreen)
+                            toggle_fullscreen "linode"
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+                kitty)
+                    launch_kitty
+                    ;;
+
+                camer)
+                    # shellcheck disable=SC2009
+                    PID=$(ps -elf | grep -E '[f]fmpeg -f pulse' | awk '{print $4}')
+                    case "$2" in
+                        on)
+                            if [[ -z "$PID" ]]; then
+                                start_camer
+                            fi
+                            ;;
+
+                        off)
+                            if [[ -n "$PID" ]]; then
+                                kill "$PID"
+                            fi
+                            ;;
+
+                        toggle)
+                            if [[ -z "$PID" ]]; then
+                                start_camer
+                            else
+                                kill "$PID"
+                            fi
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
+            esac
+
+
+            # vim: set ts=4 sw=4 sts=4 ft=bash et: #
+        '';
+    };
 in
 {
     home-manager.users.${userName} = { lib, ... }: {
@@ -140,7 +305,7 @@ in
                 keybindings =
                 let
                     modifier = "Mod4";
-                    swaycmd = "${swayBin}/swaycmd";
+                    swaycmd = "${swayctl}/bin/swayctl";
                 in
                 {
                     "${modifier}+left" = "focus left";
@@ -187,8 +352,8 @@ in
                     "${modifier}+alt+e" = "reload";
                     "${modifier}+alt+f" = "exec swaylock -f";
                     "${modifier}+alt+q" = "exec sway exit";
-                    "${modifier}+alt+r" = "exec reboot";
-                    "${modifier}+alt+s" = "exec shutdown";
+                    "${modifier}+alt+r" = "exec ${swaycmd} reboot";
+                    "${modifier}+alt+s" = "exec ${swaycmd} shutdown";
                     "${modifier}+alt+t" = "exec grim -o DP-3 ~/picture/screen/screenshot.png";
                     "${modifier}+alt+j" = "exec ${swaycmd} ncmpcpp lyricsdown";
                     "${modifier}+alt+k" = "exec ${swaycmd} ncmpcpp lyricsup";
@@ -246,9 +411,9 @@ in
 
                 exec --no-startup-id swaync
                 exec --no-startup-id swayidle \
-                    timeout 300 "${swayBin}/lock" resume "${swayBin}/resume-lock" \
-                    timeout 3600 "${swayBin}/suspend" resume "${swayBin}/resume-suspend" \
-                    after-resume "${swayBin}/resume-sleep"
+                    timeout 300 "${swayctl}/lock" resume "${swayctl}/resume-lock" \
+                    timeout 3600 "${swayctl}/suspend" resume "${swayctl}/resume-suspend" \
+                    after-resume "${swayctl}/resume-sleep"
 
                 exec_always --no-startup-id rpcd
 

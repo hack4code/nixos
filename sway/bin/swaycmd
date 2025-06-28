@@ -1,4 +1,4 @@
-#! env bash
+#!env bash
 
 
 function start_camer {
