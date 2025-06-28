@@ -93,14 +93,14 @@ in
                 }
 
                 .summary {
-                    font-size: 24px;
+                    font-size: 20px;
                     font-weight: bold;
                     background: transparent;
                     font-family: "Roboto,MiSans";
                 }
 
                 .time {
-                    font-size: 24px;
+                    font-size: 20px;
                     font-weight: bold;
                     background: transparent;
                     margin-right: 18px;
