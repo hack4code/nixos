@@ -603,6 +603,7 @@ in
                 ${pkgs.git}/bin/git config --global user.name "code4hack"
                 ${pkgs.git}/bin/git config --global user.email "code4hack+github@gmail.com"
                 ${pkgs.git}/bin/git config --global init.defaultBrance main
+                ${pkgs.git}/bin/git config --global pull.rebase true
             '';
         };
 
