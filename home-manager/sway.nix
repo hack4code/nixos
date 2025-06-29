@@ -4,13 +4,13 @@ let
     userName = config.userName;
     version = config.nixosVersion;
 
-    cursor = "Adwaita";
-
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
 
     bgThinkpad = config.bgThinkpad;
     bgSamsung = config.bgSamsung;
+
+    cursorName = "graphite-dark";
 
     swayctl = pkgs.writeShellApplication {
         name = "swayctl";
@@ -482,11 +482,9 @@ in
                     "${modifier}+alt+right" = "resize shrink width 10";
                 };
 
-                seat = {
-                    "seat0" = {
-                        xcursor_theme = "${cursor} 20";
-                        hide_cursor = "when-typing enable";
-                    };
+                seat.seat0 = {
+                    xcursor_theme = "${cursorName} 20";
+                    hide_cursor = "when-typing enable";
                 };
 
                 bars = [ { command = "waybar"; } ];
@@ -530,9 +528,6 @@ in
                 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
-
-                # exec --no-startup-id gsettings set org.gnome.desktop.interface cursor-size 32
-                # exec --no-startup-id gsettings set org.gnome.desktop.interface cursor-theme ${cursor}
 
                 exec --no-startup-id swaybg -o "${monitorSamsung}" -i "${bgSamsung}" -m fit
                 exec --no-startup-id swaybg -o "eDP-1" -i "${bgThinkpad}" -m fit
@@ -608,7 +603,6 @@ in
         };
 
         home.packages = with pkgs; [
-            adwaita-icon-theme
             bitwarden-cli
             cmatrix
             jupyter
@@ -617,13 +611,11 @@ in
         ];
 
         home.pointerCursor = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-            size = 32;
-            x11 = {
-                enable = true;
-                defaultCursor = "Adwaita";
-            };
+            enable = true;
+            package = pkgs.graphite-cursors;
+            name = "${cursorName}";
+            size = 18;
+            gtk.enable = true;
         };
 
         home.stateVersion = "${version}";
