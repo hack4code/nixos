@@ -29,9 +29,7 @@ in
 
                 audio_output {
                     type "pipewire"
-                    name "pipewire"
-                    remote "pipewire-0"
-                    dsd "yes"
+                    name "Mpd Pipewire Output"
                 }
 
                 audio_output {
