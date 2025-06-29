@@ -202,6 +202,17 @@ let
                     systemctl sleep
                     ;;
 
+                connect)
+                    case "$2" in
+                        sony)
+                            connect_sony
+                            ;;
+
+                        *)
+                            ;;
+                    esac
+                    ;;
+
                 mpd)
                     case "$2" in
                         reload)
@@ -540,6 +551,8 @@ in
                     timeout 300 "${swaycmd} lock" resume "${swaycmd} resume lock" \
                     timeout 3600 "${swaycmd} suspend" resume "${swaycmd} resume suspend" \
                     after-resume "${swaycmd} resume sleep"
+
+                exec --no-startup-id ${swaycmd} connect sony
 
                 exec_always --no-startup-id rpcd
 
