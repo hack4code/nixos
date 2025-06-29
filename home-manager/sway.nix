@@ -23,7 +23,6 @@ let
             gnugrep
             procps
             pulseaudio
-            swaylock
             systemd
         ];
 
@@ -79,7 +78,6 @@ let
 
             function lock {
                 stop_matrix
-                swaylock -f
             }
 
 
@@ -548,7 +546,7 @@ in
 
                 exec --no-startup-id swaync
                 exec --no-startup-id swayidle \
-                    timeout 300 "${swaycmd} lock" resume "${swaycmd} resume lock" \
+                    timeout 300 "${swaycmd} lock; swaylock -f" resume "${swaycmd} resume lock" \
                     timeout 3600 "${swaycmd} suspend" resume "${swaycmd} resume suspend" \
                     after-resume "${swaycmd} resume sleep"
 
