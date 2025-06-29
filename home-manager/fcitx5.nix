@@ -50,8 +50,8 @@ in
 
                 addons = {
                     classicui.globalSection = {
+                        Theme = "Material-Color-black";
                         "Vertical Candidate List" = "True";
-                        Theme = "Nord-Dark";
                         UseAccentColor = "False";
                         WheelForPaging = "False";
                         Font = "\"MiSans 12\"";
