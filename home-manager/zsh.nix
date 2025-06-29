@@ -234,8 +234,10 @@ in
                             return
                         fi
 
-                        local INTEL_SOUND_CARD="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
-                        wpctl set-default "$INTEL_SOUND_CARD"
+                        local ID
+                        ID=$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}')
+                        wpctl set-default "$ID"
+
                         exec "$SWAY"
                     }
                 '';
