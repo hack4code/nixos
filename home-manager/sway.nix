@@ -30,15 +30,16 @@ let
             #!env bash
 
 
-            function connect_sony() {
-                local SONY='20:64:DE:85:A4:E3'
+            function connect_sony {
                 local T=0
+                local SONY='20:64:DE:85:A4:E3'
+
                 while [[ "$(echo "info $SONY" | bluetoothctl | awk '/Connected/{print $2}')" != yes ]]; do
                     echo "connect $SONY" | bluetoothctl
                     sleep 3s
                     T=$((T + 1))
                     if ((T > 60)); then
-                        return 1
+                        return
                     fi
                 done
             }
@@ -50,12 +51,12 @@ let
             }
 
 
-            function set_volume {
-                local SINK
+            function set_sound_volume {
                 local H
+                local SINK
 
-                SINK=$(pactl get-default-sink)
                 H=$(date +'%k')
+                SINK=$(pactl get-default-sink)
 
                 if ((H >= 5)) && ((H < 18)); then
                     pactl set-sink-volume "$SINK" 80%
@@ -65,19 +66,14 @@ let
             }
 
 
-            function resume_sound {
+            function setup_sound {
                 connect_sony
-                setvolume
-            }
-
-
-            function stop_matrix {
-                pkill -f cmatrix
+                set_sound_volume
             }
 
 
             function lock {
-                stop_matrix
+                pkill cmatrix
             }
 
 
@@ -111,7 +107,7 @@ let
 
 
             function check_before_sleep {
-                while pgrep -f downmovie || pgrep -f pacman || pgrep -f paru || pgrep -f makepkg || pgrep -f vps || pgrep -f ffmpeg || pgrep -f axel; do
+                while pgrep downmovie || pgrep -f pacman || pgrep -f paru || pgrep -f makepkg || pgrep -f vps || pgrep -f ffmpeg || pgrep -f axel; do
                     sleep 720s
                 done
             }
@@ -126,13 +122,13 @@ let
                 local T
 
                 local CAMER_DEST="$HOME/movie/.camer/"
-                local MICROPHONE="alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source"
-
-                T=$(date +'%F-%H-%M')
 
                 if ! [[ -d "$CAMER_DEST" ]]; then
                     mkdir -p "$CAMER_DEST"
                 fi
+
+                T=$(date +'%F-%H-%M')
+                local MICROPHONE="alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source"
                 ffmpeg -f pulse -i "$MICROPHONE" -f video4linux2 -s 1280x720 -i /dev/video0 "$CAMER_DEST/$T.mkv"
             }
 
@@ -182,7 +178,7 @@ let
 
                         sleep)
                             resume_system
-                            resume_sound
+                            setup_sound
                             ;;
 
                         suspend)
@@ -200,10 +196,10 @@ let
                     systemctl sleep
                     ;;
 
-                connect)
+                setup)
                     case "$2" in
-                        sony)
-                            connect_sony
+                        sound)
+                            setup_sound
                             ;;
 
                         *)
@@ -214,7 +210,7 @@ let
                 mpd)
                     case "$2" in
                         reload)
-                            set_mpd "$2"
+                            set_mpd reload
                             ;;
 
                         *)
@@ -550,7 +546,7 @@ in
                     timeout 3600 "${swaycmd} suspend" resume "${swaycmd} resume suspend" \
                     after-resume "${swaycmd} resume sleep"
 
-                exec --no-startup-id ${swaycmd} connect sony
+                exec --no-startup-id ${swaycmd} setup sound
 
                 exec_always --no-startup-id rpcd
 
@@ -627,6 +623,32 @@ in
             name = "${cursorName}";
             size = 18;
             gtk.enable = true;
+        };
+
+        systemd.user.timers.sndvolume = {
+            Unit = {
+                Description = "Timer For Sound Volume";
+            };
+
+            Install = {
+                WantedBy = [ "timers.target" ];
+            };
+
+            Timer = {
+                OnCalendar = "*-*-* *:00:00";
+            };
+        };
+
+        systemd.user.services.sndvolume = {
+            Unit = {
+                Description = "Set Sound Volume On Time";
+            };
+
+            Service = {
+                Type = "simple";
+                StandardOutput = "journal";
+                ExecStart = "${swaycmd} setup sound";
+            };
         };
 
         home.stateVersion = "${version}";
