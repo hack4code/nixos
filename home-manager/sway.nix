@@ -546,7 +546,7 @@ in
                     timeout 3600 "${swaycmd} suspend" resume "${swaycmd} resume suspend" \
                     after-resume "${swaycmd} resume sleep"
 
-                exec --no-startup-id ${swaycmd} setup sound
+                exec_always --no-startup-id ${swaycmd} setup sound
 
                 exec_always --no-startup-id rpcd
 
