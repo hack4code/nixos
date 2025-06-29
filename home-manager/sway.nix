@@ -10,7 +10,7 @@ let
     bgThinkpad = config.bgThinkpad;
     bgSamsung = config.bgSamsung;
 
-    cursorName = "graphite-dark";
+    cursorName = "graphite-dark-nord";
 
     swayctl = pkgs.writeShellApplication {
         name = "swayctl";
