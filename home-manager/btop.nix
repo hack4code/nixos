@@ -17,7 +17,7 @@ in
                 vim_keys = true;
                 rounded_corners = true;
                 graph_symbol = "braille";
-                show_boxes = "cpu net mem proc";
+                show_boxes = "cpu net proc";
                 update_ms = 3000;
                 proc_sorting = "cpu direct";
                 proc_reversed = false;
