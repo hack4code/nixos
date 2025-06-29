@@ -21,10 +21,7 @@ class TransmissionError(Exception):
 
 
 def download_movie_from_vps() -> None:
-    exe = Path.home() / "bin" / "downmovie"
-    if not exe.exists():
-        raise OSError(2, "downmovie not exists")
-    subprocess.run([str(exe.absolute())], capture_output=True, check=True)
+    subprocess.run(["downmovie.sh"], capture_output=True, check=True)
 
 
 def add_torrent_to_transmission(magnet: str,
