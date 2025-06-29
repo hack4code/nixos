@@ -1,6 +1,15 @@
 {
     services = {
-        avahi.enable = true;
+        avahi = {
+            enable = true;
+            nssmdns4 = true;
+            nssmdns6 = true;
+            publish = {
+                enable = true;
+                userServices = true;
+            };
+        };
+
         acpid.enable = true;
         fwupd.enable = true;
     };
