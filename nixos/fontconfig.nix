@@ -30,6 +30,8 @@
             font-awesome
             /* console */
             terminus_font
+            /* twitter */
+            twemoji-color-font
         ];
 
 
