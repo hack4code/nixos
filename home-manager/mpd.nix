@@ -12,7 +12,7 @@ in
             network = {
                 listenAddress = "127.0.0.1";
                 port = 6600;
-                startWhenNeeded = false;
+                startWhenNeeded = true;
             };
 
             musicDirectory = /home/${userName}/music/song;
