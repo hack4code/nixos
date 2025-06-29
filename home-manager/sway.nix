@@ -530,7 +530,7 @@ in
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
                 exec --no-startup-id swaybg -o "${monitorSamsung}" -i "${bgSamsung}" -m fit
-                exec --no-startup-id swaybg -o "eDP-1" -i "${bgThinkpad}" -m fit
+                exec --no-startup-id swaybg -o "eDP-1" -i "${bgThinkpad}" -m fill
 
                 exec --no-startup-id fcitx5 -d --replace
                 exec --no-startup-id wl-paste -t text --watch clipman store --no-persist
