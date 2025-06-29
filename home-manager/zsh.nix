@@ -208,23 +208,35 @@ in
                     }
 
 
-                    function vid {
+                    function vpsid {
                         linode-cli linodes list --json | jq -r '.[].id' | head --lines 1
                     }
 
 
-                    function vdf {
+                    function vpsdf {
                         ssh -T linode "df -h -l -t ext4 --output=source,size,used,avail,pcent"
                     }
 
 
-                    function vls {
+                    function vpsls {
                         ssh -T linode 'cd ~/download/complete/; du --human-readable --all --max-depth 1' | sed 's:\./::' | awk '{ if (! (($2==".") && (NR<=2))) print $0; }'
                     }
 
 
                     function magnet {
                         sed -nE 's/.*(magnet:.+)\]$/\1\n/p'
+                    }
+
+
+                    SWAY=$(command -v sway)
+                    function sway {
+                        if [[ "$TERM" == "xterm-kitty" ]]; then
+                            return
+                        fi
+
+                        local INTEL_SOUND_CARD="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
+                        wpctl set-default "$INTEL_SOUND_CARD"
+                        exec "$SWAY"
                     }
                 '';
             };
