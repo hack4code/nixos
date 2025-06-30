@@ -41,7 +41,7 @@ in
                 sub-shadow-offset = 1;
                 sub-ass-override = "no";
                 sub-hinting = "native";
-                sub-line-spacing = 5;
+                sub-line-spacing = 3;
                 sub-font-provider = "fontconfig";
                 sub-fix-timing = "yes";
                 osd-back-color = "0/0/0/0";
