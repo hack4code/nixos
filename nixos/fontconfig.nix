@@ -32,6 +32,8 @@
             terminus_font
             /* twitter */
             twemoji-color-font
+            /* iosevka */
+            iosevka
         ];
 
 
