@@ -149,7 +149,7 @@ in
                     bindkey -M menuselect 'j' vi-down-line-or-history
 
                     bindkey -s '^[x' "cd ~ && cls\n"
-                    bindkey -s '^[m' "matrix\n"
+                    bindkey -s '^[l' "matrix\n"
                     bindkey -s '^[u' "sysupdate\n"
                     bindkey -s '^[t' "date '+%F %H:%M %A'\n"
                     bindkey -s '^[s' "sway\n"
@@ -179,7 +179,7 @@ in
                         local COLORS=(green red blue yellow cyan magenta)
                         local N=$(($RANDOM % ''${#COLORS[@]} + 1))
 
-                        cmatrix -a -u -x -f -s -C "''${COLORS[$N]}"
+                        cmatrix -a -C "''${COLORS[$N]}"
                         curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     }
 
