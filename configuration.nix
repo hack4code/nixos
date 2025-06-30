@@ -133,6 +133,7 @@
             kitty
             weechat
             ranger
+            w3m
             neomutt
             zathura
         ];
