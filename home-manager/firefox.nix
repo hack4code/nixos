@@ -438,13 +438,13 @@ in
 
                         /* popup menu */
                         #mainPopupSet menupopup, #appMenu-popup {
-                            font-family: "Roboto Flex";
+                            font-family: "Roboto Mono";
                             font-size: 12px;
                         }
 
                         /* address bar */
                         .urlbar-input-box {
-                            font-family: "Roboto Flex";
+                            font-family: "Roboto Flex" !important;
                         }
 
                         /* buttons */
