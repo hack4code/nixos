@@ -43,8 +43,9 @@
                     type = "wifi";
                     interface-name = "wlan0";
                     permissions = "";
-                    wait-activation-delay = 180;
-                    wait-device-timeout = 180;
+                    autoconnect = true;
+                    wait-device-timeout = 120000;
+                    wait-activation-delay = 120000;
                 };
 
                 wifi = {
