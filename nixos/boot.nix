@@ -44,6 +44,10 @@ in
                 "tpm_crb"
                 /* efi */
                 "efivarfs"
+                /* wireless */
+                "rfkill"
+                "cfg80211"
+                "iwlwifi"
             ];
         };
 
