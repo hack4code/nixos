@@ -62,7 +62,10 @@
     nix.settings = {
         max-jobs = 7;
         cores = 7;
-        substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+        substituters = [
+            "https://mirrors.ustc.edu.cn/nix-channels/store"
+            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+        ];
     };
 
     /* home manager */
