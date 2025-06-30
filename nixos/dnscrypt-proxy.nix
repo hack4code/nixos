@@ -13,7 +13,8 @@ in
                 server_names = [ "${dnsServerName}" ];
                 static.linode.stamp = "${dnsStamp}";
 
-                netprobe_address = "8.8.8.8:53";
+                netprobe_timeout = -1;
+                netprobe_address = "10.0.0.1:22";
                 bootstrap_resolvers = [ "8.8.8.8:53" ];
                 require_dnssec = true;
                 use_syslog = true;
