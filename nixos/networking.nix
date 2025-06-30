@@ -1,29 +1,20 @@
 {
-    systemd.network.wait-online.enable = true;
-
     networking = {
         hostName = "KISS";
         enableIPv6 = true;
         nameservers = [ "127.0.0.1" "::1" ];
-
-        firewall = {
-          enable = false;
-        };
-
+        firewall.enable = false;
         wireless.dbusControlled = true;
 
         networkmanager = {
             enable = true;
+
             dns = "none";
             wifi.backend = "iwd";
+            wifi.powersave = true;
 
             connectionConfig = {
-                autoconnect = true;
-                autoconnect-priority = 999;
-                interface-name = "wlan0";
-                type = "802-11-wireless";
-                wait-device-timeout = 32;
-                id = "wireless";
+                "wifi.cloned-mac-address" = "preserve";
             };
 
             settings = {
@@ -42,6 +33,38 @@
                     level = "INFO";
                     domains = "ALL";
                     backend = "journal";
+                };
+            };
+
+            ensureProfiles.profiles."TP-LINK_1225" = {
+                connection = {
+                    id = "TP-LINK_1225";
+                    uuid = "b4447384-06e8-4ef3-8689-f68589f1537c";
+                    type = "wifi";
+                    interface-name = "wlan0";
+                    permissions = "";
+                    wait-activation-delay = 180;
+                    wait-device-timeout = 180;
+                };
+
+                wifi = {
+                    mode = "infrastructure";
+                    ssid = "TP-LINK_1225";
+                };
+
+                wifi-security = {
+                    auth-alg = "open";
+                    key-mgmt = "wpa-psk";
+                    psk = "12345678";
+                };
+
+                ipv4 = {
+                    method = "auto";
+                };
+
+                ipv6 = {
+                    addr-gen-mode = "default";
+                    method = "auto";
                 };
             };
         };
