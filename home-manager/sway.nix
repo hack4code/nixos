@@ -107,8 +107,8 @@ let
 
 
             function check_before_sleep {
-                while pgrep downmovie || pgrep -f pacman || pgrep -f paru || pgrep -f makepkg || pgrep -f vps || pgrep -f ffmpeg || pgrep -f axel; do
-                    sleep 720s
+                while pgrep downmovie.sh || pgrep syncdrive.sh || pgrep vps || pgrep ffmpeg || pgrep axel || pgrep nixos-rebuild; do
+                    sleep 300s
                 done
             }
 
