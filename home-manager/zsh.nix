@@ -233,9 +233,8 @@ in
                             return
                         fi
 
-                        local ID
-                        ID=$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')
-                        wpctl set-default "$ID"
+                        SID=$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')
+                        wpctl set-default "$SID"
 
                         exec "$SWAY"
                     }
