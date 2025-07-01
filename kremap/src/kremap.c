@@ -618,12 +618,10 @@ run_thread_remap() {
         exit(1);
     }
 
-/*
     if (set_thread_priority(g_thread_remap, SCHED_FIFO, 99) == false)
         sd_journal_print(
                 LOG_WARNING,
                 "can't set priority for thread_key_remap\n");
-*/
 }
 
 
