@@ -5,8 +5,8 @@
         /* home manager */
         <home-manager/nixos>
         /* tpm2 */
-        ./module/tpm2-tss-fapi.nix
-        ./module/podman.nix
+        ./patch/tpm2-tss-fapi.nix
+        ./patch/podman.nix
         /* config */
         ./config/user.nix
         ./config/os.nix
