@@ -87,6 +87,11 @@ let
             }
 
 
+            function resume_kremap {
+                sudo systemctl restart kremap.service
+            }
+
+
             function stop_suspend {
                 # shellcheck disable=SC2009
                 PID=$(ps aux | grep -v swayidle | grep -E '[s]wayctl suspend' | awk '{print $2}')
@@ -177,6 +182,7 @@ let
                             ;;
 
                         sleep)
+                            resume_kremap
                             resume_system
                             setup_sound
                             ;;
