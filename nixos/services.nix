@@ -11,6 +11,7 @@
         };
 
         upower.enable = true;
+        power-profiles-daemon.enable = true;
         acpid.enable = true;
         fwupd.enable = true;
     };
