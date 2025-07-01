@@ -15,6 +15,7 @@
         ./config/dnscrypt-proxy.nix
         ./config/output.nix
         ./config/wifi.nix
+        ./config/ntp.nix
         /* system */
         ./nixos/systemd-boot.nix
         ./nixos/hardware.nix
@@ -66,7 +67,7 @@
         cores = 7;
         substituters = [
             "https://mirrors.ustc.edu.cn/nix-channels/store"
-            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+            # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         ];
     };
 

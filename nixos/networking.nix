@@ -6,6 +6,7 @@ let
     wifiUUID = config.wifiUUID;
     wifiInterface = config.wifiInterface;
     wifiPassWord = config.wifiPassWord;
+    ntpServers = config.ntpServers;
 in
 {
     networking = {
@@ -86,6 +87,8 @@ in
                 };
             };
         };
+
+        timeServers = ntpServers;
     };
 }
 
