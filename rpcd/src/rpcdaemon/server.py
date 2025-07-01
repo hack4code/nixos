@@ -93,6 +93,8 @@ class Server(Daemon):
                 p.kill()
             p.join()
 
+        if not self.processes:
+            return
         kill(self.processes[0], signal.SIGINT)
         for process in self.processes[1:]:
             kill(process, signal.SIGTERM)
