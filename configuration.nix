@@ -14,6 +14,7 @@
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
         ./config/output.nix
+        ./config/wifi.nix
         /* system */
         ./nixos/systemd-boot.nix
         ./nixos/hardware.nix

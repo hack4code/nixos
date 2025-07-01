@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-    interface = config.interface;
+    interface = config.wifiInterface;
     wgInterface = config.wgInterface;
     wgListenPort = config.wgListenPort;
     wgIp4Address = config.wgIp4Address;

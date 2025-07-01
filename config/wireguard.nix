@@ -2,7 +2,6 @@
 
 {
     options = with lib; with types; {
-        interface = mkOption { type = str; };
         wgInterface = mkOption { type = str; };
         wgListenPort = mkOption { type = port; };
         wgServerPort = mkOption { type = port; };
@@ -21,7 +20,6 @@
     };
 
     config = {
-        interface = "wlan0";
         wgInterface = "wg0";
         wgListenPort = 8888;
         wgIp4Address = "10.0.0.2/32";

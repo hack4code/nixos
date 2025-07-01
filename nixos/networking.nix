@@ -1,3 +1,11 @@
+{ config, pkgs, ... }:
+
+let
+    wifiSSID = config.wifiSSID;
+    wifiUUID = config.wifiUUID;
+    wifiInterface = config.wifiInterface;
+    wifiPassWord = config.wifiPassWord;
+in
 {
     networking = {
         hostName = "KISS";
@@ -24,7 +32,6 @@
                 };
 
                 connectivity = {
-                    enable = false;
                     uri = "http://connectivity-check.ubuntu.com";
                     interval = 720;
                 };
@@ -36,27 +43,29 @@
                 };
             };
 
-            ensureProfiles.profiles."TP-LINK_1225" = {
+            ensureProfiles.profiles."${wifiSSID}" = {
                 connection = {
-                    id = "TP-LINK_1225";
-                    uuid = "b4447384-06e8-4ef3-8689-f68589f1537c";
+                    id = wifiSSID;
+                    uuid = wifiUUID;
+                    interface-name = wifiInterface;
+
                     type = "wifi";
-                    interface-name = "wlan0";
-                    permissions = "";
                     autoconnect = true;
+
+                    permissions = "";
                     wait-device-timeout = 120000;
                     wait-activation-delay = 120000;
                 };
 
                 wifi = {
                     mode = "infrastructure";
-                    ssid = "TP-LINK_1225";
+                    ssid = wifiSSID;
                 };
 
                 wifi-security = {
                     auth-alg = "open";
                     key-mgmt = "wpa-psk";
-                    psk = "12345678";
+                    psk = wifiPassWord;
                 };
 
                 ipv4 = {
