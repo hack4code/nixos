@@ -61,7 +61,7 @@ in
                         TrayTextColor = "#ebdbb2";
                         PreferTextIcon = "True";
                         ShowLayoutNameInIcon = "True";
-                        UseInputMethodLanguageToDisplayText = "True";
+                        UseInputMethodLanguageToDisplayText = "False";
                         PerScreenDPI = "False";
                         ForceWaylandDPI = 0;
                     };
