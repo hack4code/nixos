@@ -137,6 +137,7 @@
             w3m
             neomutt
             zathura
+            wl-kbptr
         ];
     };
 
