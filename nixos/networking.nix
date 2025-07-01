@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+    hostName = config.hostName;
     wifiSSID = config.wifiSSID;
     wifiUUID = config.wifiUUID;
     wifiInterface = config.wifiInterface;
@@ -8,11 +9,11 @@ let
 in
 {
     networking = {
-        hostName = "KISS";
+        hostName = hostName;
         enableIPv6 = true;
         nameservers = [ "127.0.0.1" "::1" ];
         firewall.enable = false;
-        wireless.dbusControlled = true;
+        # wireless.dbusControlled = true;
 
         networkmanager = {
             enable = true;
