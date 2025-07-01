@@ -149,8 +149,7 @@ in
                     bindkey -M menuselect 'j' vi-down-line-or-history
 
                     bindkey -s '^[x' "cd ~ && cls\n"
-                    bindkey -s '^[l' "matrix\n"
-                    bindkey -s '^[u' "sysupdate\n"
+                    bindkey -s '^[u' "matrix\n"
                     bindkey -s '^[t' "date '+%F %H:%M %A'\n"
                     bindkey -s '^[s' "sway\n"
                     bindkey -s '^[j' "journalctl -b -f\n"
