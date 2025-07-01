@@ -10,15 +10,22 @@ in
 {
     networking = {
         hostName = hostName;
+
         enableIPv6 = true;
+
+        useDHCP = false;
+        dhcpcd.enable = false;
         nameservers = [ "127.0.0.1" "::1" ];
+
         firewall.enable = false;
+
         # wireless.dbusControlled = true;
 
         networkmanager = {
             enable = true;
 
             dns = "none";
+
             wifi.backend = "iwd";
             wifi.powersave = true;
 
