@@ -16,7 +16,7 @@ let
             libnotify
         ];
         text = ''
-            #!env bash
+            #!/usr/bin/env bash
 
 
             TSS2_FAPICONF=$(grep -F FAPICONF /etc/set-environment | cut -d = -f 2 | sed 's/"//g')
