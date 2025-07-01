@@ -10,6 +10,7 @@
             };
         };
 
+        upower.enable = true;
         acpid.enable = true;
         fwupd.enable = true;
     };
