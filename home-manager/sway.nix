@@ -16,10 +16,11 @@ let
         name = "swayctl";
 
         runtimeInputs = with pkgs; [
-            bluez-tools
+            bluez
             coreutils
             curl
             ffmpeg
+            gawk
             gnugrep
             procps
             pulseaudio
@@ -27,7 +28,7 @@ let
         ];
 
         text = ''
-            #!env bash
+            #!/usr/bin/env bash
 
 
             function connect_sony {
