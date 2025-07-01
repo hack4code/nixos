@@ -132,6 +132,7 @@
             swayidle
             slurp
             wl-clipboard
+            clipman
             kitty
             weechat
             ranger

@@ -507,7 +507,6 @@ in
             extraConfigEarly = ''
                 title_align center
                 titlebar_border_thickness 1
-
             '';
 
             extraConfig = ''
