@@ -455,6 +455,7 @@ in
                     "${modifier}+i" = "exec firefox -P KISS --private-window";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
+                    "${modifier}+m" = "exec wl-kbptr -o modes=floating','click -o mode_floating.source=detect";
 
                     "${modifier}+o" = "exec wofi";
                     "${modifier}+q" = "kill";
@@ -487,6 +488,7 @@ in
                     "${modifier}+alt+t" = "exec grim -o DP-3 ~/picture/screen/screenshot.png";
                     "${modifier}+alt+j" = "exec ${swaycmd} ncmpcpp lyricsdown";
                     "${modifier}+alt+k" = "exec ${swaycmd} ncmpcpp lyricsup";
+                    "${modifier}+alt+m" = "mode Mouse";
 
                     "${modifier}+alt+left" = "resize grow width 10";
                     "${modifier}+alt+down" = "resize shrink height 10";
@@ -505,6 +507,7 @@ in
             extraConfigEarly = ''
                 title_align center
                 titlebar_border_thickness 1
+
             '';
 
             extraConfig = ''
@@ -517,6 +520,30 @@ in
                 workspace 5  output "${monitorSamsung}"
                 workspace 9  output "${monitorSamsung}"
                 workspace 10 output "${monitorSamsung}"
+
+                mode "Mouse" {
+                    bindsym Shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
+
+                    # Mouse move
+                    bindsym h seat seat0 cursor move -15 0
+                    bindsym j seat seat0 cursor move 0 15
+                    bindsym k seat seat0 cursor move 0 -15
+                    bindsym l seat seat0 cursor move 15 0
+
+                    # Left button
+                    bindsym s seat seat0 cursor press button1
+                    bindsym --release s seat seat0 cursor release button1
+
+                    # Middle button
+                    bindsym d seat seat0 cursor press button2
+                    bindsym --release d seat seat0 cursor release button2
+
+                    # Right button
+                    bindsym f seat seat0 cursor press button3
+                    bindsym --release f seat seat0 cursor release button3
+
+                    bindsym Escape mode default
+                }
 
                 bindsym XF86MonBrightnessDown exec light -U 10
                 bindsym XF86MonBrightnessUp exec light -A 10
