@@ -69,6 +69,7 @@
             "https://mirrors.ustc.edu.cn/nix-channels/store"
             # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         ];
+        experimental-features = [ "nix-command" "flakes" ];
     };
 
     /* home manager */
