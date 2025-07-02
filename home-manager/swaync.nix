@@ -132,6 +132,7 @@ in
                     font-size: 15px;
                     font-family: "Roboto,MiSans";
                     background: transparent;
+                    margin: 0;
                 }
 
                 .blank-window {
