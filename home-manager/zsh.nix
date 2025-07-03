@@ -233,9 +233,10 @@ in
                             return
                         fi
 
-                        SID=$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')
-                        wpctl set-default "$SID"
-
+                        while [[ -z "$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')" ]]; do
+                            sleep 1s
+                        done
+                        wpctl set-default "$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')"
                         exec "$SWAY"
                     }
                 '';
