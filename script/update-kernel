@@ -14,7 +14,7 @@ fi
 
 
 sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" ~/source/nixos/config/os.nix
-sed -i -E "/kernelSha256/s//\".+\"/\"$SHA256\"/" ~/source/nixos/config/os.nix
+sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" ~/source/nixos/config/os.nix
 
 
 # vim: ts=4 sw=4 sts=4 ft=bash et:
