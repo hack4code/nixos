@@ -2,14 +2,15 @@
 
 let
     version = config.kernelVersion;
+    sha256 = config.kernelSha256;
 in
 {
     boot = {
         kernelPackages = pkgs.linuxPackages_custom {
-            version = "${version}";
+            version = version;
             src = pkgs.fetchurl {
                 url = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz";
-                sha256 = "12b50c89925438d9cd7385a0cafc9c433e6562ac5df00a21889fce9f548d65b0";
+                sha256 = sha256;
             };
             configfile = ../kernel/config;
         };
