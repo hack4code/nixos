@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -184,7 +184,7 @@ in
 
 
                     function gruvbox {
-                        source ~/bin/gruvbox_256palette.sh
+                        source ${pkgs.vimPlugins.gruvbox}/gruvbox_256palette.sh
                     }
 
 
