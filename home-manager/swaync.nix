@@ -128,11 +128,15 @@ in
                     opacity: 0.5;
                 }
 
+                .floating-notifications {
+                    margin: 0;
+                    padding: 2px;
+                }
+
                 .floating-notifications .notification {
                     font-size: 15px;
                     font-family: "Roboto,MiSans";
                     background: transparent;
-                    margin: 0;
                 }
 
                 .blank-window {
