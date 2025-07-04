@@ -30,9 +30,9 @@ in
                     ];
                     modules-center= [ ];
                     modules-right= [
-                        "custom/notification"
                         "network"
                         "pulseaudio"
+                        # "custom/notification"
                         "idle_inhibitor"
                         "clock"
                         "tray"
