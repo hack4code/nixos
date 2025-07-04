@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
     userName = config.userName;
@@ -8,12 +8,17 @@ in
     home-manager.users.${userName} = {
         programs.firefox = {
             enable = true;
-            enableGnomeExtensions = false;
-            languagePacks = [ "en" "zh-cn" ];
+
+            languagePacks = [
+                "en"
+                "zh-cn"
+            ];
+
             policies = {
                 BlockAboutConfig = false;
-                DefaultDownloadDirectory = "\${home}/Downloads";
+                DefaultDownloadDirectory = "$HOME/download";
             };
+
             profiles = {
                 KISS = {
                     isDefault = true;
@@ -21,24 +26,49 @@ in
                     search = {
                         default = "google";
                         force = true;
+                        engines = {
+                            "Nix Packages" = {
+                                urls = [{
+                                    template = "https://search.nixos.org/packages";
+                                    params = [
+                                        { name = "type"; value = "packages"; }
+                                        { name = "query"; value = "{searchTerms}"; }
+                                    ];
+                                }];
+                                icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                                definedAliases = [ "@np" ];
+                            };
+
+                            "google".metaData.alias = "@g";
+                        };
                     };
+
+                    # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+                    #     bitwarden
+                    #     ublock-origin
+                    #     vimium
+                    # ];
+
                     containers = {
                         self = {
                             color = "purple";
                             icon = "fingerprint";
                             id = 1;
                         };
+
                         study = {
                             color = "turquoise";
                             icon = "pet";
                             id = 2;
                         };
+
                         tor = {
                             color = "yellow";
                             icon = "fence";
                             id = 3;
                         };
                     };
+
                     /* user.js */
                     extraConfig = ''
                         /* chrome */
@@ -333,6 +363,7 @@ in
 
                         /* vim: set ts=4 sw=4 ft=javascript et: */
                     '';
+
                     /* userChrome.css */
                     userChrome = ''
                         @media not -moz-pref("sidebar.verticalTabs") {
@@ -521,6 +552,7 @@ in
                             display: none;
                         }
                     '';
+
                     /* userContent.css */
                     userContent = ''
                         :root {
