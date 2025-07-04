@@ -92,6 +92,7 @@ in
             };
         };
 
+        home.enableNixpkgsReleaseCheck = false;
         home.stateVersion  = "${version}";
     };
 }

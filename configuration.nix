@@ -77,6 +77,7 @@
     home-manager.useUserPackages = true;
     home-manager.useGlobalPkgs = true;
 
+
     /* system */
     system.stateVersion = "${config.nixosVersion}";
     system.autoUpgrade.enable = true;
