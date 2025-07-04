@@ -14,15 +14,29 @@ in
             settings = {
                 mainBar = {
                     layer= "top";
-                    output = [ "!${monitorThinkpad}" "${monitorSamsung}" ];
                     position= "top";
                     mode= "dock";
                     exclusive= true;
                     ipc= true;
-                    modules-left= [ "sway/workspaces" ];
-                    modules-center= [ ];
-                    modules-right= [ "network" "pulseaudio" "custom/notification" "idle_inhibitor" "clock" "tray" ];
                     margin= "24px 24px 0px 24px";
+
+                    output = [
+                        "!${monitorThinkpad}"
+                        "${monitorSamsung}"
+                    ];
+
+                    modules-left= [
+                        "sway/workspaces"
+                    ];
+                    modules-center= [ ];
+                    modules-right= [
+                        "custom/notification"
+                        "network"
+                        "pulseaudio"
+                        "idle_inhibitor"
+                        "clock"
+                        "tray"
+                    ];
 
                     "sway/workspaces" = {
                         disable-scroll= true;
@@ -87,7 +101,6 @@ in
                     };
 
                     "custom/notification" = {
-                        tooltip = true;
                         format = "{icon}";
                         format-icons = {
                             notification = "<span foreground='#d65d01'></span>";
@@ -100,6 +113,7 @@ in
                         exec = "swaync-client -swb";
                         on-click = "swaync-client -t -sw";
                         escape = true;
+                        tooltip = true;
                     };
 
                     "tray"  = {
