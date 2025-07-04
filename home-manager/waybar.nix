@@ -87,6 +87,7 @@ in
                     };
 
                     "custom/notification" = {
+                        tooltip = true;
                         format = "{icon}";
                         format-icons = {
                             notification = "<span foreground='#d65d01'></span>";
@@ -98,9 +99,7 @@ in
                         exec-if = "which swaync-client";
                         exec = "swaync-client -swb";
                         on-click = "swaync-client -t -sw";
-                        on-click-right = "swaync-client -d -sw";
                         escape = true;
-                        tooltip = false;
                     };
 
                     "tray"  = {
