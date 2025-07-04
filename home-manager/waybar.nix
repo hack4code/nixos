@@ -32,7 +32,7 @@ in
                     modules-right= [
                         "network"
                         "pulseaudio"
-                        # "custom/notification"
+                        "custom/notification"
                         "idle_inhibitor"
                         "clock"
                         "tray"
