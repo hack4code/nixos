@@ -1,0 +1,43 @@
+# buflist
+/set weechat.bar.buflist.size 24
+/set buflist.format.buffer "${format_number}${indent}${format_nick_prefix}${if:${current_buffer}?${color:lightgreen}:${color_hotlist}}${name}"
+/set buflist.format.buffer_current "${color:green,default}${format_buffer}"
+
+
+# autosort
+/set irc.look.server_buffer independent
+/set buflist.format.indent "${color:237}${if:${buffer.nextbuffer.localvariables.type}=~^(channel|private)$?├─:└─}"
+
+
+# trigger
+/trigger add urlcolor modifier weechatprint "${tgnotify}" "\=\=[a-zA-Z0-9]+://[^ ]+==${color:blue}${re:0}${color:reset}=="
+/trigger add msgdisconnect modifier "weechatprint" "${tgmessagenocolor} =~ ^irc: disconnected from server$" "/(.*)/${color:red}^-_-^${color:reset}" ""
+/trigger add urlcolor modifier "weechatprint" "${tgtags} !~ ircquit" ";[a-z]+://\S+;${color:32}${re:0}${color:reset};" ""
+
+
+# server
+/server add oftc irc.oftc.net/6697 -autoconnect
+/server add libera irc.libera.chat/6697 -autoconnect
+/server add freenode chat.freenode.net/6697 -autoconnect
+
+
+# channel
+/set irc.server.libera.autojoin "#ranger,#fcitx,#sway,#mpv,#wikipedia-zh-politics,#firefox,#tuna,#tuna-random,#archlinux,#nixos,"
+/set irc.server.oftc.autojoin "#linode,#mm,#tor,#home-manager,"
+
+
+# script
+/script install autosort.py
+/script install go.py
+/bar hide nicklist
+
+# key
+/key bind ctrl-q /quit
+/key bind ctrl-j /go
+
+#
+/set weechat.color.separator black
+/set weechat.bar.title.color_bg default
+/set weechat.bar.title.size 2
+/set weechat.bar.title.separator on
+/set logger.look.backlog 0
