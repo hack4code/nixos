@@ -198,6 +198,8 @@
         kbd
         /* */
         qrencode
+        /* nixos */
+        hydra-check
     ];
 }
 
