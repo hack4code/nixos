@@ -11,6 +11,7 @@ in
             recursive = true;
         };
 
+        home.enableNixpkgsReleaseCheck = false;
         home.stateVersion  = "${version}";
     };
 }
