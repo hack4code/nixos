@@ -13,23 +13,23 @@ in
             systemd.enable = false;
             settings = {
                 mainBar = {
-                    layer= "top";
-                    position= "top";
-                    mode= "dock";
-                    exclusive= true;
-                    ipc= true;
-                    margin= "24px 24px 0px 24px";
+                    layer = "top";
+                    position = "top";
+                    mode = "dock";
+                    exclusive = true;
+                    ipc = true;
+                    margin = "24px 24px 0px 24px";
 
                     output = [
                         "!${monitorThinkpad}"
                         "${monitorSamsung}"
                     ];
 
-                    modules-left= [
+                    modules-left = [
                         "sway/workspaces"
                     ];
-                    modules-center= [ ];
-                    modules-right= [
+                    modules-center = [ ];
+                    modules-right = [
                         "network"
                         "pulseaudio"
                         "custom/notification"
@@ -39,10 +39,10 @@ in
                     ];
 
                     "sway/workspaces" = {
-                        disable-scroll= true;
-                        disable-click= false;
-                        format= "{icon}";
-                        format-icons= {
+                        disable-scroll = true;
+                        disable-click = false;
+                        format = "{icon}";
+                        format-icons = {
                             "0" = "㉧";
                             "1" = "⚀";
                             "2" = "⚁";
@@ -69,7 +69,7 @@ in
                     "network" = {
                         format = "{ifname}";
                         format-wifi ="{essid}";
-                        format-disconnected = "⚠ Disconnected";
+                        format-disconnected = "⚠ disconnected";
                         tooltip-format = "{ifname} via {gwaddr}";
                     };
 
@@ -101,23 +101,28 @@ in
                     };
 
                     "custom/notification" = {
+                        tooltip = false;
                         format = "{icon}";
                         format-icons = {
                             notification = "<span foreground='#d65d01'></span>";
                             none = "";
+                            dnd-notification = "";
+                            dnd-none = "";
                             inhibited-notification = "<span foreground='red'></span>";
                             inhibited-none = "";
+                            dnd-inhibited-notification = "";
+                            dnd-inhibited-none = "";
                         };
                         return-type = "json";
                         exec-if = "which swaync-client";
                         exec = "swaync-client -swb";
                         on-click = "swaync-client -t -sw";
+                        on-click-right = "swaync-client -d -sw";
                         escape = true;
-                        tooltip = true;
                     };
 
                     "tray"  = {
-                        icon-size = 18;
+                        icon-size = 20;
                         spacing = 10;
                     };
                 };
@@ -125,21 +130,21 @@ in
 
             style =
                 ''
-                @define-color fg1       #ebdbb2;
-                @define-color fg2       #d5c4a1;
-                @define-color fg4       #a89984;
-                @define-color bg0       #282828;
-                @define-color bg0_h     #1d2021;
-                @define-color bg0_s     #32302f;
-                @define-color orange    #d65d0e;
-                @define-color red       #cc241d;
-                @define-color grey      #928374;
+                    @define-color fg1       #ebdbb2;
+                    @define-color fg2       #d5c4a1;
+                    @define-color fg4       #a89984;
+                    @define-color bg0       #282828;
+                    @define-color bg0_h     #1d2021;
+                    @define-color bg0_s     #32302f;
+                    @define-color orange    #d65d0e;
+                    @define-color red       #cc241d;
+                    @define-color grey      #928374;
 
-                window#waybar {
+                    window#waybar {
                     border: 1px solid @grey;
                     border-radius: 0px;
                     background: @bg0;
-                }
+                    }
 
                 #tray,
                 #idle_inhibitor,
@@ -156,15 +161,15 @@ in
                     letter-spacing: 0;
                     color: @fg1;
                     margin: 2px 8px;
-                }
+                    }
 
                 #tray {
                     padding: 0 24px;
-                }
+                    }
 
                 #workspaces {
                     margin-left: 24px;
-                }
+                    }
 
                 #workspaces button {
                     font-size: 16px;
@@ -174,23 +179,23 @@ in
                     padding: 0px 4px;
                     margin: 6px 4px;
                     background: transparent;
-                }
+                    }
 
                 #workspaces button.focused {
                     color: @bg0_h;
                     background-color: @fg1;
-                }
+                    }
 
                 #network.disconnected {
                     color: @red;
-                }
+                    }
 
-                @keyframes blink {
+                    @keyframes blink {
                     to {
                         color: @red;
                         background-color: @bg0_h;
                     }
-                }
+                    }
 
                 #battery.warning:not(.charging),
                 #battery.critical:not(.charging) {
@@ -199,12 +204,12 @@ in
                     animation-timing-function: linear;
                     animation-iteration-count: infinite;
                     animation-direction: alternate;
-                }
-            '';
-        };
+                    }
+                '';
+            };
 
-        home.stateVersion  = "${version}";
-    };
+            home.stateVersion  = "${version}";
+        };
 }
 
 
