@@ -50,22 +50,22 @@ monitor_full_name = {
 
 
 kitty_config_top = (
-    "--override font_family='SourceCodeVF Regular' "
-    "--override bold_font='SourceCodeVF Medium' "
+    "--override font_family='Source Code Pro Regular' "
+    "--override bold_font='Source Code Pro Medium' "
     "--override modify_font='cell_height +8px'"
 )
 
 
 kitty_config_mutt = (
-    "--override font_family='SourceCodeVF Regular' "
-    "--override bold_font='SourceCodeVF Medium' "
+    "--override font_family='Source Code Pro Regular' "
+    "--override bold_font='Source Code Pro Medium' "
     "--override modify_font='cell_height +8px'"
 )
 
 
 kitty_config_ranger = (
-    "--override font_family='Roboto' "
-    "--override bold_font='Roboto Medium' "
+    "--override font_family='Roboto Flex Regular' "
+    "--override bold_font='Roboto Flex Medium' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override symbol_map='U+3400-U+4DBF MiSans TC VF' "
     "--override modify_font='cell_height +14px'"
@@ -73,8 +73,8 @@ kitty_config_ranger = (
 
 
 kitty_config_weechat = (
-    "--override font_family='SF Pro Display' "
-    "--override bold_font='SF Pro Display Medium' "
+    "--override font_family='Noto Sans Regular' "
+    "--override bold_font='Noto Sans Medium' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override symbol_map='U+3400-U+4DBF MiSans TC VF' "
     "--override modify_font='cell_height +10px'"
