@@ -30,7 +30,7 @@ in
                 demuxer-max-back-bytes = "128M";
                 cache-pause = "no";
                 sub-auto = "all";
-                sub-font = "Roboto,MiSans";
+                sub-font = "Roboto Flex,MiSans";
                 sub-font-size = 36;
                 sub-border-size = 1;
                 sub-border-color = "0/0/0/0.5";
@@ -63,7 +63,7 @@ in
                 watch-later-directory = "~/.local/share/mpv/watch_later";
                 screenshot-directory = "~/picture/mpv";
                 log-file = "/dev/null";
-                /* term-status-msg = "\"\${time-pos} \${duration}\""; */
+                term-status-msg = "\"\${time-pos} \${duration}\"";
             };
 
             scriptOpts = {
