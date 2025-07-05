@@ -59,6 +59,7 @@
         ./home-manager/script.nix
         ./home-manager/fcitx5.nix
         ./home-manager/rime.nix
+        ./home-manager/uv.nix
     ];
 
     /* nix */
