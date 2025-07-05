@@ -10,7 +10,10 @@ in
             "/home"
         ];
         device = "/home/${userName}/source/wireguard";
-        options = [ "bind" ];
+        options = [
+            "bind"
+            "nfsvers=4.2"
+        ];
     };
 
     fileSystems."/export/docker" = {
@@ -19,7 +22,10 @@ in
             "/home"
         ];
         device = "/home/${userName}/source/docker";
-        options = [ "bind" ];
+        options = [
+            "bind"
+            "nfsvers=4.2"
+        ];
     };
 
     fileSystems."/export/spider" = {
@@ -28,15 +34,22 @@ in
             "/home"
         ];
         device = "/home/${userName}/source/spider";
-        options = [ "bind" ];
+        options = [
+            "bind"
+            "nfsvers=4.2"
+        ];
     };
 
-    services.nfs.server.enable = true;
-    services.nfs.server.exports = ''
-        /export/docker 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
-        /export/spider 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
-        /export/wireguard 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
-    '';
+    services.rpcbind.enable = true;
+    services.nfs.server = {
+        enable = true;
+        nproc = 1;
+        exports = ''
+            /export/docker 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
+            /export/spider 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
+            /export/wireguard 10.0.0.1(rw,no_root_squash,nohide,insecure,no_subtree_check)
+        '';
+    };
 }
 
 
