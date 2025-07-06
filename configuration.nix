@@ -201,6 +201,8 @@
         qrencode
         /* nixos */
         hydra-check
+        /* secure boot */
+        sbctl
     ];
 }
 
