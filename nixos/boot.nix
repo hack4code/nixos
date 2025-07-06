@@ -27,8 +27,8 @@ in
             "rootfstype=ext4"
             "rw"
             "efi=runtime"
-            "video=DP-3:1920x1080"
-            "video=eDP-1:2160x1350"
+            # "video=DP-3:1920x1080"
+            # "video=eDP-1:2160x1350"
         ];
 
         loader = {
