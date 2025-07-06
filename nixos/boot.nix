@@ -34,7 +34,7 @@ in
         loader = {
             efi.canTouchEfiVariables = true;
             timeout = 3;
-            # systemd-boot.consoleMode = "max";
+            systemd-boot.consoleMode = "max";
         };
 
         initrd = {
