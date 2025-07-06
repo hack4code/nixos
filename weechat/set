@@ -10,9 +10,7 @@
 
 
 # trigger
-/trigger add urlcolor modifier weechatprint "${tgnotify}" "\=\=[a-zA-Z0-9]+://[^ ]+==${color:blue}${re:0}${color:reset}=="
 /trigger add msgdisconnect modifier "weechatprint" "${tgmessagenocolor} =~ ^irc: disconnected from server$" "/(.*)/${color:red}^-_-^${color:reset}" ""
-/trigger add urlcolor modifier "weechatprint" "${tgtags} !~ ircquit" ";[a-z]+://\S+;${color:32}${re:0}${color:reset};" ""
 
 
 # server
