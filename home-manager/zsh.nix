@@ -239,6 +239,10 @@ in
                         wpctl set-default "$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')"
                         exec "$SWAY"
                     }
+
+
+                    #
+                    [[ $- == *i* ]] && cls
                 '';
             };
         };
