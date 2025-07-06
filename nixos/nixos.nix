@@ -10,7 +10,10 @@ in
             "/home"
         ];
         device = "/home/${userName}/source/nixos";
-        options = [ "bind" "ro" ];
+        options = [
+            "bind"
+            "ro"
+        ];
     };
 
 }
