@@ -41,6 +41,22 @@ in
     };
 
     services.rpcbind.enable = true;
+
+    services.nfs.idmapd.settings = {
+        General = {
+            Domain = "KISS.me";
+        };
+
+        Mapping = {
+            Nobody-User = "nobody";
+            Nobody-Group = "nogroup";
+        };
+
+        Translation = {
+            GSS-Methods = "static,nsswitch";
+        };
+    };
+
     services.nfs.server = {
         enable = true;
         nproc = 1;
