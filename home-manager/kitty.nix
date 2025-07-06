@@ -14,7 +14,7 @@ in
             };
 
             font = {
-                name = "Inetl One Mono Regular";
+                name = "Inetl One Mono";
                 size = 15.0;
             };
 
