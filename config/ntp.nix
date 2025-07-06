@@ -7,10 +7,10 @@
 
     config = {
         ntpServers = [
-            "0.us.pool.ntp.org"
-            "1.us.pool.ntp.org"
-            "2.us.pool.ntp.org"
-            "3.us.pool.ntp.org"
+            "0.de.pool.ntp.org"
+            "1.de.pool.ntp.org"
+            "2.de.pool.ntp.org"
+            "3.de.pool.ntp.org"
         ];
     };
 }
