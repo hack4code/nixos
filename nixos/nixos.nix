@@ -12,7 +12,7 @@ in
         device = "/home/${userName}/source/nixos";
         options = [
             "bind"
-            "ro"
+            "rw"
         ];
     };
 
