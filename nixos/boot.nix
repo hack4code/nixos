@@ -21,10 +21,20 @@ in
             "efi=runtime"
             "video=DP-3:1920x1080"
             "video=eDP-1:2160x1350"
-            ];
+        ];
+
+        loader = {
+            efi.canTouchEfiVariables = true;
+            timeout = 5;
+            systemd-boot = {
+                enable = true;
+                consoleMode = "max";
+            };
+        };
 
         initrd = {
             enable = true;
+            systemd.enable = true;
             includeDefaultModules = false;
             kernelModules = [
                 "autofs4"

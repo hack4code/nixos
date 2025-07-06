@@ -17,7 +17,6 @@
         ./config/wifi.nix
         ./config/ntp.nix
         /* system */
-        ./nixos/systemd-boot.nix
         ./nixos/hardware.nix
         ./nixos/boot.nix
         ./nixos/networking.nix
