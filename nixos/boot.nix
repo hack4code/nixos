@@ -5,7 +5,15 @@ let
     sha256 = config.kernelSha256;
 in
 {
+    console = {
+        enable = true;
+        earlySetup = false;
+        keyMap = "us";
+    };
+
     boot = {
+        consoleLogLevel = 5;
+
         kernelPackages = pkgs.linuxPackages_custom {
             version = version;
             src = pkgs.fetchurl {
@@ -25,16 +33,14 @@ in
 
         loader = {
             efi.canTouchEfiVariables = true;
-            timeout = 5;
-            # systemd-boot = {
-            #     enable = true;
-            #     consoleMode = "max";
-            # };
+            timeout = 3;
+            # systemd-boot.consoleMode = "max";
         };
 
         initrd = {
             enable = true;
             systemd.enable = true;
+            systemd.tpm2.enable = false;
             includeDefaultModules = false;
             kernelModules = [
                 "autofs4"
@@ -66,8 +72,11 @@ in
             "i2c_i801"
         ];
 
-        tmp.useTmpfs = true;
-        tmp.tmpfsSize = "60%";
+        tmp = {
+            useTmpfs = true;
+            tmpfsSize = "60%";
+            cleanOnBoot = true;
+        };
     };
 }
 
