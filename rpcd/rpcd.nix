@@ -4,6 +4,8 @@ pkgs.python3Packages.buildPythonApplication {
     pname = "rpcd";
     version = "1.0.0";
     src = ./src/.;
+    pyproject = true;
+    dontCheckRuntimeDeps = true;
 
     nativeBuildInputs = with pkgs; [
         python3Packages.setuptools
