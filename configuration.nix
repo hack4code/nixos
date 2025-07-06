@@ -7,6 +7,7 @@
         /* tpm2 */
         ./patch/tpm2-tss-fapi.nix
         ./patch/podman.nix
+        # ./patch/timesyncd.nix
         /* config */
         ./config/user.nix
         ./config/os.nix
