@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 
 if (($# != 1)); then
@@ -11,10 +11,16 @@ if [[ -z "$SHA256" ]]; then
     echo "no signature found" 2>&1
     exit
 fi
-
-
 sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" ~/source/nixos/config/os.nix
 sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" ~/source/nixos/config/os.nix
+
+
+cd $HOME/code/
+axel -n 4 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-$1.tar.xz"
+tar xf linux*.tar.xz
+rm linux*.tar.xz
+cd "linux-$1/"
+cp $HOME/source/nixos/kernel/config .config
 
 
 # vim: ts=4 sw=4 sts=4 ft=bash et:
