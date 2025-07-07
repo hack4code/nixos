@@ -5,12 +5,6 @@ let
     sha256 = config.kernelSha256;
 in
 {
-    console = {
-        enable = true;
-        earlySetup = false;
-        keyMap = "us";
-    };
-
     boot = {
         consoleLogLevel = 5;
 
@@ -27,8 +21,6 @@ in
             "rootfstype=ext4"
             "rw"
             "efi=runtime"
-            # "video=DP-3:1920x1080"
-            # "video=eDP-1:2160x1350"
         ];
 
         loader = {
