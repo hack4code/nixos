@@ -26,7 +26,6 @@
         ./nixos/container.nix
         ./nixos/input.nix
         ./nixos/sudo.nix
-        ./nixos/nixos.nix
         /* systemd */
         ./nixos/services.nix
         ./nixos/pipewire.nix
