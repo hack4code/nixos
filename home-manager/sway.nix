@@ -430,7 +430,7 @@ in
                         scale = "1.5";
                         scale_filter = "smart";
                         subpixel = "rgb";
-                        adaptive_sync = "on";
+                        # adaptive_sync = "on";
                         allow_tearing = "no";
                     };
                 };
