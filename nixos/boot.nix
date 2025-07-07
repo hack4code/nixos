@@ -47,10 +47,6 @@ in
                 "ext4"
                 /* erofs */
                 "erofs"
-                /* tpm */
-                "tpm_tis_core"
-                "tpm_tis"
-                "tpm_crb"
                 /* efi */
                 "efivarfs"
                 /* wireless */
