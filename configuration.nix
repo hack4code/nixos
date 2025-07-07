@@ -108,7 +108,8 @@
 
     /* user */
     users.users.${config.userName} =
-    let userName = config.userName;
+    let
+        userName = config.userName;
     in
     {
         isNormalUser = true;
