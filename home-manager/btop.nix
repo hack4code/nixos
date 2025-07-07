@@ -42,7 +42,7 @@ in
                 cpu_graph_lower = "Auto";
                 show_gpu_info = "On";
                 cpu_invert_lower = true;
-                cpu_single_graph = false;
+                cpu_single_graph = true;
                 cpu_bottom = false;
                 show_uptime = false;
                 check_temp = true;
