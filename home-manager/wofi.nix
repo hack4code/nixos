@@ -17,8 +17,8 @@ in
                 allow_images = "true";
                 term = "kitty";
                 hide_scroll = "true";
-                key_forward = "Ctrl-j";
-                key_backward = "Ctrl-k";
+                key_forward = "Ctrl-n";
+                key_backward = "Ctrl-p";
                 key_exit = "Ctrl-bracketleft";
             };
 
