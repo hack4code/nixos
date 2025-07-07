@@ -203,6 +203,8 @@
         hydra-check
         /* secure boot */
         sbctl
+        /* build tootls */
+        gnumake
     ];
 }
 
