@@ -28,8 +28,6 @@
             fira-code
             /* awesome */
             font-awesome
-            /* console */
-            terminus_font
             /* twitter */
             twemoji-color-font
             /* iosevka */
@@ -64,9 +62,13 @@
     i18n.defaultLocale = "en_US.UTF-8";
     console = {
         earlySetup = true;
-        font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
-        packages = with pkgs; [ terminus_font ];
         keyMap = "us";
+        font = "ter-v32n";
+        packages = with pkgs; [ terminus_font ];
+    };
+
+    environment.etc = {
+        "kbd/consolefonts/ter-v32n.psf.gz".source = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
     };
 }
 
