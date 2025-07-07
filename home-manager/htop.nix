@@ -1,14 +1,13 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
     userName = config.userName;
     version = config.nixosVersion;
 in
 {
-    home-manager.users.${userName} = {
+    home-manager.users.${userName} = { config, ...}: {
         programs.htop = {
             enable = true;
-
             settings = {
                 color_scheme = 6;
                 cpu_count_from_one = 1;
@@ -39,16 +38,25 @@ in
                 enable_mouse = 0;
                 delay = 30;
                 hide_function_bar = 2;
-                fields = [
-                    "PID"
-                    "PERCENT_CPU"
-                    "PERCENT_MEM"
-                    "M_RESIDENT"
-                    "M_SHARE"
-                    "M_VIRT"
-                    "COMM"
+                fields = with config.lib.htop.fields; [
+                    PID
+                    PERCENT_CPU
+                    PERCENT_MEM
+                    M_RESIDENT
+                    M_SHARE
+                    M_SIZE
+                    COMM
                 ];
-            };
+            } // (with config.lib.htop; leftMeters [
+                (bar "LeftCPUs")
+                (bar "Memory")
+                (text "Tasks")
+                (text "DiskIO")
+                (text "NetworkIO")
+            ]) // (with config.lib.htop; rightMeters [
+                (bar "RightCPUs")
+                (text "LoadAverage")
+            ]);
         };
 
         home.enableNixpkgsReleaseCheck = false;
