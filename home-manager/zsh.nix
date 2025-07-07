@@ -100,10 +100,10 @@ in
                 jb = "journalctl --boot";
                 gl = "git pull";
                 gp = "git push";
-                gf = "git push --force";
+                gpf = "git push --force";
                 gd = "git diff";
                 gc = "git commit";
-                ga = "git commit --all";
+                gca = "git commit --all";
                 gg = "git log";
                 gt = "git status";
                 dh = "duf --only-mp /home";
