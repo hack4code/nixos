@@ -57,7 +57,7 @@
                 };
 
                 General = {
-                    ControllerMode = "dual";
+                    ControllerMode = "bredr";
                     Experimental = true;
                     KernelExperimental = true;
                     FastConnectable = true;

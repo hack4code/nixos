@@ -1,11 +1,4 @@
-{ pkgs, ... }:
-
 {
-    services.pulseaudio.configFile = pkgs.writeText "default.pa" ''
-        load-module module-bluetooth-policy
-        load-module module-bluetooth-discover
-    '';
-
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -37,12 +30,6 @@
                     "hfp_hf"
                     "hfp_ag"
                 ];
-            };
-        };
-
-        wireplumber.extraConfig."11-bluetooth-policy" = {
-            "wireplumber.settings" = {
-                "bluetooth.autoswitch-to-headset-profile" = false;
             };
         };
     };
