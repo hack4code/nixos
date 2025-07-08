@@ -77,13 +77,10 @@
     home-manager.useUserPackages = true;
     home-manager.useGlobalPkgs = true;
 
-
     /* system */
     system.stateVersion = "${config.nixosVersion}";
-    system.autoUpgrade.enable = true;
-    system.autoUpgrade.allowReboot = true;
+    system.autoUpgrade.enable = false;
     system.etc.overlay.enable = true;
-
     programs.appimage.enable = true;
     programs.appimage.binfmt = true;
 
