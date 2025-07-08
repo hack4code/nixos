@@ -186,7 +186,7 @@
         nftables
         ethtool
         iproute2
-        trippy
+        mtr
         tcpdump
         dig
         rclone
