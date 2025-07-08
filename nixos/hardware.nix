@@ -13,7 +13,10 @@
     fileSystems."/boot" = {
         device = "/dev/disk/by-uuid/37CC-CC6E";
         fsType = "vfat";
-        options = [ "fmask=0077" "dmask=0077" ];
+        options = [
+            "fmask=0077"
+            "dmask=0077"
+        ];
     };
 
     fileSystems."/home" = {
@@ -22,7 +25,9 @@
     };
 
     swapDevices = [
-        { device = "/dev/disk/by-uuid/cc587f2b-c2bb-4bb0-bddf-5d7cce87f8b4"; }
+        {
+            device = "/dev/disk/by-uuid/cc587f2b-c2bb-4bb0-bddf-5d7cce87f8b4";
+        }
     ];
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -45,9 +50,17 @@
         bluetooth = {
             enable = true;
             powerOnBoot = true;
+            package = pkgs.bluez;
             settings = {
+                Policy = {
+                    AutoEnable = "true";
+                };
+
                 General = {
+                    ControllerMode = "dual";
                     Experimental = true;
+                    KernelExperimental = true;
+                    FastConnectable = true;
                 };
             };
         };
