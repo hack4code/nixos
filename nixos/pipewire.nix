@@ -5,6 +5,20 @@
         pulse.enable = true;
         jack.enable = true;
         socketActivation = true;
+
+        extraConfig.pipewire = {
+            "10-airplay" = {
+                "context.modules" = [
+                    {
+                        name = "libpipewire-module-raop-discover";
+                        args = {
+                            "raop.latency.ms" = 500;
+                        };
+                    }
+                ];
+            };
+        };
+
         wireplumber.extraConfig.bluetoothEnhancements = {
             "monitor.bluez.properties" = {
                 "bluez5.enable-sbc-xq" = true;
@@ -15,9 +29,13 @@
                     "hsp_ag"
                     "hfp_hf"
                     "hfp_ag"
-                    "bap_sink"
-                    "a2dp_sink"
                 ];
+            };
+        };
+
+        wireplumber.extraConfig."11-bluetooth-policy" = {
+            "wireplumber.settings" = {
+                "bluetooth.autoswitch-to-headset-profile" = false;
             };
         };
     };
