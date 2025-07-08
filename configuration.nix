@@ -70,6 +70,7 @@
             "https://mirrors.ustc.edu.cn/nix-channels/store"
         ];
         experimental-features = [ "nix-command" "flakes" ];
+        show-trace = true;
     };
 
     /* home manager */
