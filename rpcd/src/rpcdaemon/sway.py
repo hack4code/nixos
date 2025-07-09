@@ -64,19 +64,17 @@ kitty_config_mutt = (
 
 
 kitty_config_ranger = (
-    "--override font_family='Roboto Flex Regular' "
-    "--override bold_font='Roboto Flex Medium' "
-    "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
-    "--override symbol_map='U+3400-U+4DBF MiSans TC VF' "
+    "--override font_family='Noto Sans CJK SC' "
+    "--override bold_font='Noto Sans CJK SC Medium' "
+    "--override symbol_map='U+4E00-U+9FFF Noto Sans CJK SC' "
     "--override modify_font='cell_height +14px'"
 )
 
 
 kitty_config_weechat = (
-    "--override font_family='Noto Sans Regular' "
-    "--override bold_font='Noto Sans Medium' "
+    "--override font_family='MiSans VF' "
+    "--override bold_font='MiSans VF Medium' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
-    "--override symbol_map='U+3400-U+4DBF MiSans TC VF' "
     "--override modify_font='cell_height +10px'"
 )
 
@@ -671,7 +669,7 @@ def launch_floating_kitty() -> None:
 
 def toggle_btop() -> None:
     workspace_focus = find_workspace_focused()
-    if (container_btop := find_container_by_app_id("btop","11")) is None:
+    if (container_btop := find_container_by_app_id("btop", "11")) is None:
         I3.command(f"workspace 11;{command_btop}")
     else:
         os.kill(container_btop.pid, signal.SIGTERM)
