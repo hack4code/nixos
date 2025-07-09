@@ -80,7 +80,6 @@ class Fullscreen(BaseModel):
     app_id: str
 
 
-
 app = FastAPI(title="rpcd", description="rpc daemon")
 
 
