@@ -64,7 +64,7 @@
     /* nix */
     nix.settings = {
         max-jobs = 7;
-        cores = 7;
+        cores = 8;
         substituters = [
             "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
             "https://mirrors.ustc.edu.cn/nix-channels/store"
