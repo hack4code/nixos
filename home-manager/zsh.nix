@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     userName = config.userName;
@@ -112,6 +112,24 @@ in
                 reboot = "systemctl reboot";
             };
 
+            initContent = lib.mkOrder 1500 ''
+                # keymap
+                bindkey -s '^[x' "cd ~ && cls\n"
+                bindkey -s '^[m' "matrix\n"
+                bindkey -s '^[t' "date '+%F %H:%M %A'\n"
+                bindkey -s '^[s' "sway\n"
+                bindkey -s '^[j' "journalctl -b -f\n"
+                bindkey -s '^[e' "git switch e\n"
+                bindkey -s '^[a' "git switch main\n"
+
+                # man
+                less_termcap[md]="''${fg_bold[blue]}"
+                less_termcap[so]="''${fg_bold[red]}''${bg[darkgrey]}"
+
+                # color
+                [[ $- == *i* ]] && [[ "$TERM" == "xterm-kitty" ]] && cls
+            '';
+
             oh-my-zsh = {
                 enable = true;
 
@@ -148,13 +166,6 @@ in
                     bindkey -M menuselect 'l' vi-forward-char
                     bindkey -M menuselect 'j' vi-down-line-or-history
 
-                    bindkey -s '^[x' "cd ~ && cls\n"
-                    bindkey -s '^[u' "matrix\n"
-                    bindkey -s '^[t' "date '+%F %H:%M %A'\n"
-                    bindkey -s '^[s' "sway\n"
-                    bindkey -s '^[j' "journalctl -b -f\n"
-                    bindkey -s '^[e' "git switch e\n"
-                    bindkey -s '^[a' "git switch main\n"
 
 
                     function color {
@@ -239,10 +250,6 @@ in
                         wpctl set-default "$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')"
                         exec "$SWAY"
                     }
-
-
-                    #
-                    [[ $- == *i* ]] && [[ "$TERM" == "xterm-kitty" ]] && cls
                 '';
             };
         };
