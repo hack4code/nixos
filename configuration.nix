@@ -204,6 +204,7 @@
         sbctl
         /* build tootls */
         gnumake
+        pahole
         /* bluetooth */
         bluez
         bluez-tools
