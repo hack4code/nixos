@@ -11,22 +11,16 @@ in
 {
     networking = {
         hostName = hostName;
-
         enableIPv6 = true;
-
         useDHCP = false;
         dhcpcd.enable = false;
         nameservers = [ "127.0.0.1" "::1" ];
-
+        wireless.dbusControlled = true;
         firewall.enable = false;
-
-        # wireless.dbusControlled = true;
 
         networkmanager = {
             enable = true;
-
             dns = "none";
-
             wifi.backend = "iwd";
             wifi.powersave = true;
 
@@ -57,10 +51,8 @@ in
                     id = wifiSSID;
                     uuid = wifiUUID;
                     interface-name = wifiInterface;
-
                     type = "wifi";
                     autoconnect = true;
-
                     permissions = "";
                     wait-device-timeout = 120000;
                     wait-activation-delay = 120000;
