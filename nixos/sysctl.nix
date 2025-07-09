@@ -5,6 +5,7 @@
         "net.ipv4.ip_no_pmtu_disc" = "3";
         "net.ipv4.ip_forward" = "1";
         "net.ipv6.conf.all.forwarding" = "1";
+        "net.ipv6.conf.all.use_tempaddr" = "2";
 
         /* net */
         "net.core.rmem_default" = 62914560;

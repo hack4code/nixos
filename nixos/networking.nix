@@ -11,7 +11,6 @@ in
 {
     networking = {
         hostName = hostName;
-        enableIPv6 = true;
         useDHCP = false;
         dhcpcd.enable = false;
         nameservers = [ "127.0.0.1" "::1" ];
