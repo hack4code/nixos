@@ -65,8 +65,8 @@ in
                 let &t_SI = "\<Esc>[6 q"
                 let &t_SR = "\<Esc>[4 q"
                 let &t_EI = "\<Esc>[2 q"
-                :autocmd InsertEnter * set cursorline
-                :autocmd InsertLeave * set nocursorline
+                autocmd InsertEnter * set cursorline
+                autocmd InsertLeave * set nocursorline
 
                 """ colorscheme
                 let g:gruvbox_italic = 1
