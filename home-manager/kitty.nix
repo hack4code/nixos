@@ -27,7 +27,7 @@ in
                 "kitty_mod+j" = "previous_tab";
                 "kitty_mod+i" = "launch --stdin-source=@screen_scrollback --type=overlay vim -R -";
                 "super+c" = "copy_to_clipboard";
-                "super+v" =	"paste_from_clipboard";
+                "super+v" = "paste_from_clipboard";
             };
 
             settings = {
@@ -58,55 +58,69 @@ in
 
                 window_padding_width 4 8
 
-                symbol_map 	 U+4E00-U+9FFF Noto Sans Mono CJK SC
-                symbol_map 	 U+3400-U+4DBF Noto Sans Mono CJK TC
-                symbol_map 	 U+3000-U+30FF Noto Sans Mono CJK JP
-                symbol_map 	 U+AC00-U+D7FF Noto Sans Mono CJK KR
-                symbol_map 	 U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font Mono
-                symbol_map 	U+1F000-U+1F02F,U+1F0A0-U+1F0FF,U+1F100-U+1F64F,U+1F680-U+1F6FF,U+1F910-U+1F96B,U+1F980-U+1F9E0 Twemoji
+                symbol_map U+4E00-U+9FFF Noto Sans Mono CJK SC
+                symbol_map U+3400-U+4DBF Noto Sans Mono CJK TC
+                symbol_map U+3000-U+30FF Noto Sans Mono CJK JP
+                symbol_map U+AC00-U+D7FF Noto Sans Mono CJK KR
+                symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font Mono
+                symbol_map U+1F000-U+1F02F,U+1F0A0-U+1F0FF,U+1F100-U+1F64F,U+1F680-U+1F6FF,U+1F910-U+1F96B,U+1F980-U+1F9E0 Twemoji
 
                 # colortheme
                 cursor                  #928374
                 cursor_text_color       background
+
                 url_color               #83a598
-                url_style 	            curly
+                url_style               curly
+
                 visual_bell_color       #8ec07c
                 bell_border_color       #8ec07c
                 active_border_color     #d3869b
                 inactive_border_color   #665c54
-                foreground 		        #ebdbb2
-                background 		        #282828
-                selection_foreground    #928374
-                selection_background    #ebdbb2
+
                 active_tab_foreground   #fbf1c7
                 active_tab_background   #665c54
                 inactive_tab_foreground #a89984
                 inactive_tab_background #3c3836
                 active_tab_font_style   bold-italic
                 inactive_tab_font_style italic
+
+                foreground              #fbf1c7
+                background              #1d2021
+                background_opacity      1.0
+
+                selection_foreground    #928374
+                selection_background    #ebdbb2
+
                 #: black
                 color0                  #665c54
                 color8                  #7c6f64
+
                 #: red
-                color1 			        #cc241d
-                color9 			        #fb4934
+                color1                  #cc241d
+                color9                  #fb4934
+
                 #: green
-                color2  		        #98971a
-                color10 		        #b8bb26
+                color2                  #98971a
+                color10                 #b8bb26
+
                 #: yellow
-                color3  		        #d79921
-                color11 		        #fabd2f
+                color3                  #d79921
+                color11                 #fabd2f
+
                 #: blue
-                color4  		        #458588
-                color12 		        #83a598
+                color4                  #458588
+                color12                 #83a598
+
                 #: purple
-                color5  		        #b16286
-                color13 		        #d3869b
+                color5                  #b16286
+                color13                 #d3869b
+
                 #: aqua
-                color6  		        #689d6a
-                color14 		        #8ec07c
+                color6                  #689d6a
+                color14                 #8ec07c
+
                 #: white
-                color7  		        #a89984
+                color7                  #a89984
                 color15                 #bdae93
             '';
         };
