@@ -65,13 +65,19 @@
     nix.settings = {
         max-jobs = 7;
         cores = 8;
+        show-trace = true;
+
         substituters = [
             "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
             "https://mirrors.ustc.edu.cn/nix-channels/store"
         ];
-        experimental-features = [ "nix-command" "flakes" ];
-        show-trace = true;
+
+        experimental-features = [
+            "nix-command"
+            "flakes"
+        ];
     };
+
     /* nixpkgs */
     nixpkgs.config.allowUnfree = true;
 
@@ -206,7 +212,6 @@
         sbctl
         /* build tootls */
         gnumake
-        pahole
         /* bluetooth */
         bluez
         bluez-tools
