@@ -78,7 +78,7 @@ in
 
                 """ netrw
                 let g:netrw_dirhistmax = 0
-                "let g:netrw_home = $XDG_CACHE_HOME.'/vim'
+                let g:netrw_home = $XDG_CACHE_HOME.'/vim'
 
                 """ vim-ale
                 let g:airline#extensions#ale#enabled = 1
