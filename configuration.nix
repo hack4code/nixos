@@ -72,6 +72,8 @@
         experimental-features = [ "nix-command" "flakes" ];
         show-trace = true;
     };
+    /* nixpkgs */
+    nixpkgs.config.allowUnfree = true;
 
     /* home manager */
     home-manager.backupFileExtension = "backup";

@@ -7,7 +7,7 @@ let
 in
 {
     home-manager.users.${userName} = {
-        programs.zsh = {
+        programs.zsh = rec {
             enable = true;
 
             defaultKeymap = "emacs";
@@ -95,40 +95,45 @@ in
             shellAliases = {
                 ip = "ip -color";
                 wp = "wl-copy";
-                jc = "journalctl";
                 jf = "journalctl --follow";
                 jb = "journalctl --boot";
-                gl = "git pull";
+                gu = "git pull";
                 gp = "git push";
                 gpf = "git push --force";
                 gd = "git diff";
                 gc = "git commit";
                 gca = "git commit --all";
-                gg = "git log";
-                gt = "git status";
+                gl = "git log";
+                glp = "git log --patch";
+                gs = "git status";
+                gr = "git rebase";
+                grm = "git rebase main";
+                gw = "git switch";
+                gwm = "git switch main";
+                gwe = "git switch e";
                 dh = "duf --only-mp /home";
                 sed = "sed -E";
-                paste = "paste --delimiters \" \"";
+                paste = "paste --delimiters ' '";
                 reboot = "systemctl reboot";
+                t = "date '+%F %H:%M %A'";
             };
 
             initContent = lib.mkOrder 1500 ''
                 # keymap
-                bindkey -s '^[x' "cd ~ && cls\n"
+                bindkey -s '^[x' "cd ~ && clear\n"
                 bindkey -s '^[m' "matrix\n"
                 bindkey -s '^[t' "date '+%F %H:%M %A'\n"
                 bindkey -s '^[s' "sway\n"
-                bindkey -s '^[j' "journalctl -b -f\n"
-                bindkey -s '^[e' "git switch e\n"
-                bindkey -s '^[a' "git switch main\n"
 
                 # man
                 less_termcap[md]="''${fg_bold[blue]}"
                 less_termcap[so]="''${fg_bold[red]}''${bg[darkgrey]}"
-
-                # color
-                [[ $- == *i* ]] && [[ "$TERM" == "xterm-kitty" ]] && cls
             '';
+
+            zsh-abbr = {
+                enable = true;
+                abbreviations = shellAliases;
+            };
 
             oh-my-zsh = {
                 enable = true;
@@ -139,19 +144,29 @@ in
                     "systemd"
                     "kitty"
                     "podman"
-                    "ssh"
                     "eza"
                     "gh"
+                    "ssh"
                     "uv"
                     "colored-man-pages"
                 ];
 
                 extraConfig = ''
+                    # color
+                    function set_color {
+                        source ${pkgs.vimPlugins.gruvbox}/gruvbox_256palette.sh
+                    }
+
+
                     if [[ "$TERM" == "xterm-kitty" ]]; then
+                        if [[ $- == *i* ]]; then
+                            set_color
+                        fi
                         ZSH_THEME="bira"
                     else
                         ZSH_THEME="gentoo"
                     fi
+
 
                     HIST_STAMPS="yyyy-mm-dd"
 
@@ -162,10 +177,9 @@ in
                     zstyle ':completion:*' add-space false
                     zmodload zsh/complist
                     bindkey -M menuselect 'h' vi-backward-char
-                    bindkey -M menuselect 'k' vi-up-line-or-history
                     bindkey -M menuselect 'l' vi-forward-char
                     bindkey -M menuselect 'j' vi-down-line-or-history
-
+                    bindkey -M menuselect 'k' vi-up-line-or-history
 
 
                     function color {
@@ -185,36 +199,13 @@ in
                         curl -F "file=@$1" https://0x0.st
                     }
 
+
                     function matrix {
                         local COLORS=(green red blue yellow cyan magenta)
                         local N=$(($RANDOM % ''${#COLORS[@]} + 1))
 
                         cmatrix -a -C "''${COLORS[$N]}"
                         curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
-                    }
-
-
-                    function gruvbox {
-                        source ${pkgs.vimPlugins.gruvbox}/gruvbox_256palette.sh
-                    }
-
-
-                    function cls {
-                        clear
-                        gruvbox
-                        # if [[ "$TERM" == "xterm-kitty" ]]; then
-                        #     fastfetch
-                        # fi
-                    }
-
-
-                    function sysupdate {
-                        paru --skipreview --quiet -Syu
-                    }
-
-
-                    function sysclean {
-                        sudo pacman -Rns $(pacman -Qtdq)
                     }
 
 
