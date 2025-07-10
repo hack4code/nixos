@@ -108,6 +108,7 @@ in
                 gs = "git status";
                 gr = "git rebase";
                 grm = "git rebase main";
+                grc = "git rebase --continue";
                 gw = "git switch";
                 gwm = "git switch main";
                 gwe = "git switch e";
@@ -159,9 +160,6 @@ in
 
 
                     if [[ "$TERM" == "xterm-kitty" ]]; then
-                        if [[ $- == *i* ]]; then
-                            set_color
-                        fi
                         ZSH_THEME="bira"
                     else
                         ZSH_THEME="gentoo"
