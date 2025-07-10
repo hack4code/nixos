@@ -123,8 +123,8 @@ in
                 # keymap
                 bindkey -s '^[x' "cd ~ && clear\n"
                 bindkey -s '^[m' "matrix\n"
-                bindkey -s '^[t' "date '+%F %H:%M %A'\n"
                 bindkey -s '^[s' "sway\n"
+                bindkey -s '^[j' "journalctl --boot --follow"
 
                 # man
                 less_termcap[md]="''${fg_bold[blue]}"
@@ -153,18 +153,11 @@ in
                 ];
 
                 extraConfig = ''
-                    # color
-                    function set_color {
-                        source ${pkgs.vimPlugins.gruvbox}/gruvbox_256palette.sh
-                    }
-
-
-                    if [[ "$TERM" == "xterm-kitty" ]]; then
+                    if [[ $TERM == "xterm-kitty" ]]; then
                         ZSH_THEME="bira"
                     else
                         ZSH_THEME="gentoo"
                     fi
-
 
                     HIST_STAMPS="yyyy-mm-dd"
 
@@ -229,7 +222,7 @@ in
 
                     SWAY=$(command -v sway)
                     function sway {
-                        if [[ "$TERM" == "xterm-kitty" ]]; then
+                        if [[ $TERM == "xterm-kitty" ]]; then
                             return
                         fi
 
