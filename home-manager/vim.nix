@@ -23,20 +23,17 @@ in
 
             settings = {
                 background = "dark";
-
                 number = true;
                 relativenumber = false;
-
                 hidden = true;
-
                 history = 4096;
-
                 mouse = "n";
                 mousefocus = false;
                 mousehide = true;
             };
 
             extraConfig = ''
+                set termguicolors
                 set nocompatible
                 set magic
                 set hlsearch
@@ -72,15 +69,16 @@ in
                 :autocmd InsertLeave * set nocursorline
 
                 """ colorscheme
-                let g:gruvbox_italic=1
+                let g:gruvbox_italic = 1
+                let g:gruvbox_contrast_dark = 'hard'
                 colorscheme gruvbox
 
                 """ airline
-                let g:airline_theme="gruvbox"
+                let g:airline_theme = 'gruvbox'
 
                 """ netrw
-                let g:netrw_dirhistmax=0
-                let g:netrw_home=$XDG_CACHE_HOME.'/vim'
+                let g:netrw_dirhistmax = 0
+                "let g:netrw_home = $XDG_CACHE_HOME.'/vim'
 
                 """ vim-ale
                 let g:airline#extensions#ale#enabled = 1
@@ -106,7 +104,7 @@ in
                             \}
 
 
-                " vim: set ts=8 sw=8 sts=8 ft=vim et:
+                " vim: set ts=4 sw=4 sts=4 ft=vim et:
             '';
         };
 
