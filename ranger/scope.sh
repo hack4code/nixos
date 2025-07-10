@@ -133,10 +133,6 @@ handle_extension() {
             exit 1
             ;;
 
-        ass|srt)
-            exit 2
-            ;;
-
     esac
 }
 

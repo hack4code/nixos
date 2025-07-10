@@ -52,6 +52,10 @@ in
                 { condition = "ext pdf, has zathura, X, flag f"; command = "zathura -- \"$@\""; }
                 { condition = "ext epub, has zathura, X, flag f"; command = "zathura -- \"$@\""; }
                 { condition = "mime ^image, has swayimg, X, flag f"; command = "swayimg -- \"$@\""; }
+                { condition = "!mime ^text, label editor, ext ass|srt"; command = "\${VISUAL:-$EDITOR} -- \"$@\""; }
+                { condition = "!mime ^text, label pager, ext ass|srt"; command = "\"$PAGER\" -- \"$@\""; }
+                { condition = "mime ^text, label editor"; command = "\${VISUAL:-$EDITOR} -- \"$@\""; }
+                { condition = "mime ^text, label pager"; command = "\"$PAGER\" -- \"$@\""; }
             ];
         };
 
