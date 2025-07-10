@@ -11,25 +11,23 @@
     };
 
     outputs = { self, nixpkgs, lanzaboote, ...}: {
-        nixosConfigurations = {
-            KISS = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                modules = [
-                    ./configuration.nix
-                    lanzaboote.nixosModules.lanzaboote
-                    (
-                        { lib, ... }:
+        nixosConfigurations.KISS = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+                ./configuration.nix
+                lanzaboote.nixosModules.lanzaboote
+                (
+                    { lib, ... }:
 
-                        {
-                            boot.loader.systemd-boot.enable = lib.mkForce false;
-                            boot.lanzaboote = {
-                                enable = true;
-                                pkiBundle = "/var/lib/sbctl";
-                            };
-                        }
-                    )
-                ];
-            };
+                    {
+                        boot.loader.systemd-boot.enable = lib.mkForce false;
+                        boot.lanzaboote = {
+                            enable = true;
+                            pkiBundle = "/var/lib/sbctl";
+                        };
+                    }
+                )
+            ];
         };
     };
 }
