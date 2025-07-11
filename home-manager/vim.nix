@@ -97,11 +97,10 @@ in
                 let g:ale_echo_msg_format = '%s'
 
                 let g:ale_linters = {
-                            \   'python': ['flake8', 'pyrefly'] ,
-                            \   'javascript': ['eslint'],
-                            \   'c': ['cpplint'],
-                            \   'lua': ['luacheck'],
-                            \}
+                    \   'python': ['flake8', 'pyrefly'] ,
+                    \   'javascript': ['eslint'],
+                    \   'c': ['cpplint'],
+                    \}
 
 
                 " vim: set ts=4 sw=4 sts=4 ft=vim et:

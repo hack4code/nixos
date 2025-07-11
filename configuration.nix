@@ -231,6 +231,9 @@
             /* bluetooth */
             bluez
             bluez-tools
+            /* vim */
+            eslint
+            cpplint
         ];
     };
 }
