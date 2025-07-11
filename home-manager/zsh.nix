@@ -124,7 +124,7 @@ in
                 bindkey -s '^[x' "cd ~ && clear\n"
                 bindkey -s '^[m' "matrix\n"
                 bindkey -s '^[s' "sway\n"
-                bindkey -s '^[j' "journalctl --boot --follow"
+                bindkey -s '^[j' "journalctl --boot --follow\n"
 
                 # man
                 less_termcap[md]="''${fg_bold[blue]}"
