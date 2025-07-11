@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 
+OSNIX="$HOME/source/nixos/config/os.nix"
+
+
 if (($# != 1)); then
     exit
 fi
@@ -11,8 +14,8 @@ if [[ -z "$SHA256" ]]; then
     echo "no signature found" 2>&1
     exit
 fi
-sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" ~/source/nixos/config/os.nix
-sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" ~/source/nixos/config/os.nix
+sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$OSNIX"
+sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
 
 
 cd $HOME/code/
