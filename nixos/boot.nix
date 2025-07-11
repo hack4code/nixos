@@ -6,7 +6,7 @@ let
 in
 {
     boot = {
-        consoleLogLevel = 5;
+        consoleLogLevel = 3;
 
         kernelPackages = pkgs.linuxPackages_custom {
             version = version;
@@ -18,9 +18,11 @@ in
         };
 
         kernelParams = [
+            "loglevel=5"
             "rootfstype=ext4"
             "rw"
             "efi=runtime"
+            "idle=nomwait"
         ];
 
         loader = {
