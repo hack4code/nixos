@@ -20,6 +20,7 @@
         /* system */
         ./nixos/hardware.nix
         ./nixos/boot.nix
+        ./nixos/power.nix
         ./nixos/networking.nix
         ./nixos/sysctl.nix
         ./nixos/fontconfig.nix
@@ -63,56 +64,64 @@
 
     /* nix */
     nix.settings = {
-        max-jobs = 7;
         cores = 8;
+        max-jobs = 7;
         show-trace = true;
-
-        substituters = [
-            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-            "https://mirrors.ustc.edu.cn/nix-channels/store"
-        ];
 
         experimental-features = [
             "nix-command"
             "flakes"
         ];
+
+        substituters = [
+            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+            "https://mirrors.ustc.edu.cn/nix-channels/store"
+        ];
     };
 
     /* nixpkgs */
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs = {
+        hostPlatform = "x86_64-linux";
+        config = {
+            allowUnfree = true;
+        };
+    };
 
     /* home manager */
-    home-manager.backupFileExtension = "backup";
-    home-manager.useUserPackages = true;
-    home-manager.useGlobalPkgs = true;
+    home-manager = {
+        useUserPackages = true;
+        useGlobalPkgs = true;
+        backupFileExtension = "backup";
+    };
 
     /* system */
-    system.stateVersion = "${config.nixosVersion}";
-    system.autoUpgrade.enable = false;
-    system.etc.overlay.enable = true;
-    programs.appimage.enable = true;
-    programs.appimage.binfmt = true;
+    system = {
+        autoUpgrade.enable = false;
+        etc.overlay.enable = true;
+        stateVersion = "${config.nixosVersion}";
+    };
 
     /* timezone */
     time.timeZone = "Asia/Shanghai";
 
-    /* shell */
-    environment.shells = [ pkgs.zsh ];
-    environment.pathsToLink = [ "/share/zsh" ];
-    users.defaultUserShell = pkgs.zsh;
-
     /* security */
-    security.rtkit.enable = true;
-    security.polkit.enable = true;
+    security = {
+        rtkit.enable = true;
+        polkit.enable = true;
 
-    /* tpm2 */
-    security.tpm2.enable = true;
-    security.tpm2.pkcs11.enable = true;
-    security.tpm2.abrmd.enable = true;
-    security.tpm2.tctiEnvironment.enable = true;
-    security.tpm2.tctiEnvironment.interface = "tabrmd";
+        tpm2 = {
+            enable = true;
+            pkcs11.enable = true;
+            abrmd.enable = true;
+            tctiEnvironment = {
+                enable = true;
+                interface = "tabrmd";
+            };
+        };
+    };
 
     /* user */
+    users.defaultUserShell = pkgs.zsh;
     users.users.${config.userName} =
     let
         userName = config.userName;
@@ -127,95 +136,103 @@
         extraGroups = [ "wheel" "networkmanager" "avahi" "audio" "video" "podman" "tss" ];
     };
 
-    /* sway */
-    programs.sway = {
-        enable = true;
-        wrapperFeatures.gtk = true;
-        extraPackages = with pkgs; [
-            wofi
-            waybar
-            swaynotificationcenter
-            swaybg
-            swaylock
-            swayimg
-            swayidle
-            slurp
-            wl-clipboard
-            clipman
-            kitty
-            weechat
-            ranger
-            w3m
-            neomutt
-            zathura
-            wl-kbptr
-        ];
+    /* programs */
+    programs = {
+        appimage = {
+            enable = true;
+            binfmt = true;
+        };
+        zsh.enable = true;
+        light.enable = true;
+        sway = {
+            enable = true;
+            wrapperFeatures.gtk = true;
+            extraPackages = with pkgs; [
+                wofi
+                waybar
+                swaynotificationcenter
+                swaybg
+                swaylock
+                swayimg
+                swayidle
+                slurp
+                wl-clipboard
+                clipman
+                kitty
+                weechat
+                ranger
+                w3m
+                neomutt
+                zathura
+                wl-kbptr
+            ];
+        };
     };
 
-    /* package */
-    programs.zsh.enable = true;
-    programs.light.enable = true;
-
-    environment.systemPackages = with pkgs; [
-        /* systemd */
-        power-profiles-daemon
-        /* tool */
-        firefox
-        openssh
-        ffmpeg
-        fastfetch
-        p7zip
-        dosfstools
-        eza
-        fzf
-        libnotify
-        jq
-        procps
-        coreutils
-        bc
-        /* shell */
-        bash
-        /* editor */
-        vim
-        /* git */
-        gh
-        git
-        /* video */
-        libvpl
-        /* container */
-        podman-compose
-        /* python */
-        python3
-        uv
-        /* network */
-        curl
-        wget
-        axel
-        nftables
-        ethtool
-        iproute2
-        mtr
-        tcpdump
-        dig
-        rclone
-        /* tpm2 */
-        tpm2-tools
-        /* firmware */
-        sof-firmware
-        /* console font */
-        kbd
-        /* */
-        qrencode
-        /* nixos */
-        hydra-check
-        /* secure boot */
-        sbctl
-        /* build tootls */
-        gnumake
-        /* bluetooth */
-        bluez
-        bluez-tools
-    ];
+    environment = {
+        shells = [ pkgs.zsh ];
+        pathsToLink = [ "/share/zsh" ];
+        systemPackages = with pkgs; [
+            /* systemd */
+            power-profiles-daemon
+            /* tool */
+            firefox
+            openssh
+            ffmpeg
+            fastfetch
+            p7zip
+            dosfstools
+            eza
+            fzf
+            libnotify
+            jq
+            procps
+            coreutils
+            bc
+            /* shell */
+            bash
+            /* editor */
+            vim
+            /* git */
+            gh
+            git
+            /* video */
+            libvpl
+            /* container */
+            podman-compose
+            /* python */
+            python3
+            uv
+            /* network */
+            curl
+            wget
+            axel
+            nftables
+            ethtool
+            iproute2
+            mtr
+            tcpdump
+            dig
+            rclone
+            /* tpm2 */
+            tpm2-tools
+            /* firmware */
+            sof-firmware
+            /* console font */
+            kbd
+            /* */
+            qrencode
+            /* nixos */
+            hydra-check
+            /* secure boot */
+            sbctl
+            /* build tootls */
+            gnumake
+            /* bluetooth */
+            bluez
+            bluez-tools
+        ];
+    };
 }
 
 
