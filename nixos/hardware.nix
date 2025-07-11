@@ -35,7 +35,6 @@
     hardware = {
         /* cpu gpu */
         cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-        intel-gpu-tools.enable = true;
 
         /* graphics */
         graphics = {
@@ -45,6 +44,7 @@
                 libva
             ];
         };
+        intel-gpu-tools.enable = true;
 
         /* bluetooth */
         bluetooth = {
@@ -57,7 +57,7 @@
                 };
 
                 General = {
-                    ControllerMode = "bredr";
+                    ControllerMode = "dual";
                     Experimental = true;
                     KernelExperimental = true;
                     FastConnectable = true;
