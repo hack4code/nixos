@@ -84,7 +84,7 @@ in
                 active_tab_font_style   bold-italic
                 inactive_tab_font_style italic
 
-                foreground              #fbf1c7
+                foreground              #ebdbb2
                 background              #1d2021
                 background_opacity      1.0
 
