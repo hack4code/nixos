@@ -63,12 +63,8 @@
     console = {
         earlySetup = true;
         keyMap = "us";
-        font = "ter-v32n";
         packages = with pkgs; [ terminus_font ];
-    };
-
-    environment.etc = {
-        "kbd/consolefonts/ter-v32n.psf.gz".source = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
     };
 }
 
