@@ -15,7 +15,12 @@ in
         dhcpcd.enable = false;
         nameservers = [ "127.0.0.1" "::1" ];
         wireless.dbusControlled = true;
-        firewall.enable = false;
+        nftables.enable = true;
+        firewall = {
+            enable = true;
+            trustedInterfaces = [ "wg0" ];
+            allowedUDPPorts = [ 8888 ];
+        };
 
         networkmanager = {
             enable = true;
