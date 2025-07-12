@@ -104,7 +104,7 @@ in
                 gc = "git commit";
                 gca = "git commit --all";
                 gcam = "git commit --all --message";
-                gcaa = "it commit --all --amend";
+                gcaa = "git commit --all --amend";
                 gl = "git log";
                 glp = "git log --patch";
                 gs = "git status";
