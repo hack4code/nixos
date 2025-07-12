@@ -103,6 +103,8 @@ in
                 gd = "git diff";
                 gc = "git commit";
                 gca = "git commit --all";
+                gcam = "git commit --all --message";
+                gcaa = "it commit --all --amend";
                 gl = "git log";
                 glp = "git log --patch";
                 gs = "git status";
@@ -112,11 +114,10 @@ in
                 gw = "git switch";
                 gwm = "git switch main";
                 gwe = "git switch e";
-                dh = "duf --only-mp /home";
                 sed = "sed -E";
                 paste = "paste --delimiters ' '";
-                reboot = "systemctl reboot";
                 t = "date '+%F %H:%M %A'";
+                reboot = "systemctl reboot";
             };
 
             initContent = lib.mkOrder 1500 ''
