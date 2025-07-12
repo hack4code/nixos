@@ -60,7 +60,7 @@
         bluetooth = {
             enable = true;
             powerOnBoot = true;
-            package = pkgs.bluez;
+            package = pkgs.bluez-experimental;
             settings = {
                 Policy = {
                     AutoEnable = "true";
