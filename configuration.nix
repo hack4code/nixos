@@ -229,7 +229,6 @@
             /* build tootls */
             gnumake
             /* bluetooth */
-            bluez
             bluez-tools
             /* vim */
             eslint
