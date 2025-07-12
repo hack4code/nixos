@@ -3,6 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
         lanzaboote = {
             url = "github:nix-community/lanzaboote/v0.4.2";
@@ -10,11 +11,12 @@
         };
     };
 
-    outputs = { self, nixpkgs, lanzaboote, ...}: {
+    outputs = { self, nixpkgs, nixos-hardware, lanzaboote, ...}: {
         nixosConfigurations.KISS = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
                 ./configuration.nix
+                nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
                 lanzaboote.nixosModules.lanzaboote
                 (
                     { lib, ... }:
