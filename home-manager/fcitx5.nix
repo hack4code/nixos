@@ -54,9 +54,9 @@ in
                         "Vertical Candidate List" = "True";
                         UseAccentColor = "False";
                         WheelForPaging = "False";
-                        Font = "\"MiSans 12\"";
+                        Font = "\"MiSans Medium 12\"";
                         MenuFont = "\"MiSans 10\"";
-                        TrayFont = "\"MiSans 10\"";
+                        TrayFont = "\"MiSans Medium 13\"";
                         TrayOutlineColor = "#282828";
                         TrayTextColor = "#ebdbb2";
                         PreferTextIcon = "True";
