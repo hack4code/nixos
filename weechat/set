@@ -10,7 +10,7 @@
 
 
 # trigger
-/trigger add msgdisconnect modifier "weechatprint" "${tgmessagenocolor} =~ ^irc: disconnected from server$" "/(.*)/${color:red}^-_-^${color:reset}" ""
+/trigger add msg_disconnect modifier weechat_print "${tg_message_nocolor} =~ ^irc: disconnected from server$" "/(.*)/${color:red}^-_-^${color:reset}" ""
 
 
 # server
