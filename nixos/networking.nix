@@ -7,6 +7,8 @@ let
     wifiInterface = config.wifiInterface;
     wifiPassWord = config.wifiPassWord;
     ntpServers = config.ntpServers;
+    wgListenPort = config.wgListenPort;
+    wgInterface = config.wgInterface;
 in
 {
     networking = {
@@ -18,8 +20,8 @@ in
         nftables.enable = true;
         firewall = {
             enable = true;
-            trustedInterfaces = [ "wg0" ];
-            allowedUDPPorts = [ 8888 ];
+            trustedInterfaces = [ wgInterface ];
+            allowedUDPPorts = [ wgListenPort ];
         };
 
         networkmanager = {
