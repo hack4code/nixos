@@ -56,6 +56,11 @@ in
                 { condition = "!mime ^text, label pager, ext ass|srt"; command = "\"$PAGER\" -- \"$@\""; }
                 { condition = "mime ^text, label editor"; command = "\${VISUAL:-$EDITOR} -- \"$@\""; }
                 { condition = "mime ^text, label pager"; command = "\"$PAGER\" -- \"$@\""; }
+                { condition = "ext zip, has 7z"; command = "7z l \"$1\" | less"; }
+                { condition = "ext zip, has 7z"; command = "for file in \"$@\"; do 7z e \"$file\"; done"; }
+                { condition = "ext tar|gz|bz2|xz, has tar"; command = "tar vvtf \"$1\" | \"$PAGER\""; }
+                { condition = "ext tar|gz|bz2|xz, has tar"; command = "for file in \"$@\"; do tar vvxf \"$file\"; done"; }
+                { condition = "ext bz2, has bzip2"; command = "for file in \"$@\"; do bzip2 -dk \"$file\"; done"; }
             ];
         };
 
