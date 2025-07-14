@@ -19,6 +19,8 @@ in
                     exclusive = true;
                     ipc = true;
                     margin = "24px 24px 0px 24px";
+                    passthrough = false;
+                    # width = "calc(100% - 20px)";
 
                     output = [
                         "!${monitorThinkpad}"
@@ -41,6 +43,11 @@ in
                     "sway/workspaces" = {
                         disable-scroll = true;
                         disable-click = false;
+                        all-outputs = true;
+                        active-only = false;
+                        persistent = true;
+                        sort-by-number = true;
+                        on-click = "activate";
                         format = "{icon}";
                         format-icons = {
                             "0" = "㉧";
@@ -69,7 +76,7 @@ in
                     "network" = {
                         format = "{ifname}";
                         format-wifi ="{essid}";
-                        format-disconnected = "⚠ disconnected";
+                        format-disconnected = "⚠disconnected";
                         tooltip-format = "{ifname} via {gwaddr}";
                     };
 
@@ -88,7 +95,7 @@ in
                             "speaker" = "";
                             "hifi" = "";
                             "hdmi" = "";
-                            "default" = [ "" "" "" "" ];
+                            "default" = ["" "" ""];
                         };
                     };
 
@@ -122,8 +129,8 @@ in
                     };
 
                     "tray"  = {
-                        icon-size = 20;
                         spacing = 10;
+                        icon-size = 24;
                     };
                 };
             };
@@ -140,70 +147,90 @@ in
                     @define-color red       #cc241d;
                     @define-color grey      #928374;
 
+
+                    * {
+                        font-family: "Symbols Nerd Font", "Fira Mono";
+                        font-size: 16px;
+                    }
+
+
                     window#waybar {
-                    border: 1px solid @grey;
-                    border-radius: 0px;
-                    background: @bg0;
+                        background-color: rgba(43, 48, 59, 0.0);
+                        color: #ffffff;
+                        transition-property: background-color;
+                        transition-duration: 0.5s;
                     }
 
-                #tray,
-                #idle_inhibitor,
-                #custom-notification,
-                #clock,
-                #battery,
-                #cpu,
-                #memory,
-                #network,
-                #pulseaudio {
-                    font-family: "Symbols Nerd Font", "Fira Mono";
-                    font-size: 16px;
-                    font-weight: 500;
-                    letter-spacing: 0;
-                    color: @fg1;
-                    margin: 2px 8px;
+
+                    window#waybar.hidden {
+                        opacity: 0.2;
                     }
 
-                #tray {
-                    padding: 0 24px;
+
+                    #waybar.top > box.horizontal {
+                        margin-left: 8pt;
+                        margin-right: 8pt;
+                        margin-top: 6pt;
+                        background-color: rgba(0, 0, 0, 1);
+                        background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) padding-box, linear-gradient(45deg, rgba(204, 36, 29, 1.0), rgba(215, 153, 33, 1.0)) border-box;
+                        border-radius: 16px;
+                        border: 2px solid @grey;
+                        padding: 1pt 1pt;
                     }
 
-                #workspaces {
-                    margin-left: 24px;
+
+                    #tray,
+                    #idle_inhibitor,
+                    #custom-notification,
+                    #clock,
+                    #battery,
+                    #cpu,
+                    #memory,
+                    #network,
+                    #pulseaudio {
+                        color: @fg1;
+                        letter-spacing: 0;
+                        margin: 2px 8px;
+                        font-weight: 500;
                     }
 
-                #workspaces button {
-                    font-size: 16px;
-                    font-family: Twemoji Mozilla;
-                    font-weight: 300;
-                    color: @fg1;
-                    padding: 0px 4px;
-                    margin: 6px 4px;
-                    background: transparent;
+
+                    #tray {
+                        padding: 0 24px;
                     }
 
-                #workspaces button.focused {
-                    color: @bg0_h;
-                    background-color: @fg1;
+
+                    #workspaces {
+                        margin-left: 24px;
                     }
 
-                #network.disconnected {
-                    color: @red;
+
+                    #workspaces button {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: @fg1;
+                        padding: 0px 4px;
+                        margin: 6px 4px;
+                        background: transparent;
                     }
+
+
+                    #workspaces button.focused {
+                        color: @bg0_h;
+                        background-color: @fg1;
+                    }
+
+
+                    #network.disconnected {
+                        color: @red;
+                    }
+
 
                     @keyframes blink {
-                    to {
-                        color: @red;
-                        background-color: @bg0_h;
-                    }
-                    }
-
-                #battery.warning:not(.charging),
-                #battery.critical:not(.charging) {
-                    animation-name: blink;
-                    animation-duration: 4s;
-                    animation-timing-function: linear;
-                    animation-iteration-count: infinite;
-                    animation-direction: alternate;
+                        to {
+                            color: @red;
+                            background-color: @bg0_h;
+                        }
                     }
                 '';
             };
