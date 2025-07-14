@@ -11,9 +11,13 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, lanzaboote, ...}: {
+    outputs = { self, nixpkgs, nixos-hardware, lanzaboote, ...}:
+    let
+        system = "x86_64-linux";
+        pkgsUnstable = import nixpkgs { inherit system; };
+    in
+    {
         nixosConfigurations.KISS = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
             modules = [
                 ./configuration.nix
                 nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
@@ -29,6 +33,15 @@
                         };
                     }
                 )
+                # (
+                #     {lib, ... }:
+                #     {
+                #         services.fwupd = {
+                #             enable = true;
+                #             package = pkgsUnstable.fwupd;
+                #         };
+                #     }
+                # )
             ];
         };
     };
