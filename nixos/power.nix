@@ -1,10 +1,10 @@
 {
     powerManagement = {
         enable = true;
-        cpuFreqGovernor = "ondemand";
+        cpuFreqGovernor = "performance";
         resumeCommands = ''
-            rfkill block bluetooth
-            rfkill unblock bluetooth
+            rfkill block `rfkill --json | jq -r '.rfkilldevices.[] | select(.device=="hci0") | .id'`
+            rfkill unblock `rfkill --json | jq -r '.rfkilldevices.[] | select(.device=="hci0") | .id'`
         '';
     };
 }
