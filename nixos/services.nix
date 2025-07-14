@@ -14,6 +14,8 @@
         power-profiles-daemon.enable = true;
         acpid.enable = true;
         fwupd.enable = true;
+        /* iphone */
+        usbmuxd.enable = true;
     };
 }
 

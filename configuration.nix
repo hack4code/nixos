@@ -233,6 +233,9 @@
             /* vim */
             eslint
             cpplint
+            /* ifuse */
+            libimobiledevice
+            ifuse
         ];
     };
 }
