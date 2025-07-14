@@ -43,7 +43,7 @@ in
                     "sway/workspaces" = {
                         disable-scroll = true;
                         disable-click = false;
-                        all-outputs = true;
+                        all-outputs = false;
                         active-only = false;
                         persistent = true;
                         sort-by-number = true;
@@ -129,8 +129,8 @@ in
                     };
 
                     "tray"  = {
-                        spacing = 10;
-                        icon-size = 24;
+                        spacing = 8;
+                        icon-size = 22;
                     };
                 };
             };
