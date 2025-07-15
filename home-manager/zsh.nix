@@ -118,6 +118,7 @@ in
                 paste = "paste --delimiters ' '";
                 t = "date '+%F %H:%M %A'";
                 reboot = "systemctl reboot";
+                nlg = "nixos-rebuild list-generations";
             };
 
             initContent = lib.mkOrder 1500 ''
