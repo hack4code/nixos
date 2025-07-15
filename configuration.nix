@@ -214,6 +214,7 @@
             tcpdump
             dig
             rclone
+            nmap
             /* tpm2 */
             tpm2-tools
             /* firmware */
