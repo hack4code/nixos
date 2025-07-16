@@ -139,6 +139,10 @@
             enable = true;
             binfmt = true;
         };
+        neovim = {
+            enable = true;
+            defaultEditor = true;
+        };
         zsh.enable = true;
         light.enable = true;
         sway = {
@@ -188,8 +192,6 @@
             bc
             /* shell */
             bash
-            /* editor */
-            vim
             /* git */
             gh
             git
@@ -228,9 +230,6 @@
             gnumake
             /* bluetooth */
             bluez-tools
-            /* vim */
-            eslint
-            cpplint
             /* ifuse */
             libimobiledevice
             ifuse
