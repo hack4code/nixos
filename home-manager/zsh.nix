@@ -234,6 +234,21 @@ in
                         if (($# == 2)); then
                             sudo nix-env --delete-generations `seq "$1" "$2" | tr '\n' ' '` --profile /nix/var/nix/profiles/system
                         fi
+
+                        local N
+                        N=$(nixos-rebuild list-generations --json | jq 'length')
+                        if ((N < 3)); then
+                            return
+                        fi
+                        local BEGIN
+                        BEGIN=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n  | tail -n +2 | head -n 1)
+                        local END
+                        END=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n  | head -n -1 | tail -n 1)
+                        if ((BEGIN == END)); then
+                            sudo nix-env --delete-generations "$BEGIN" --profile /nix/var/nix/profiles/system
+                        else
+                            sudo nix-env --delete-generations $(seq --separator=' ' $BEGIN $END) --profile /nix/var/nix/profiles/system
+                        fi
                     }
 
 
