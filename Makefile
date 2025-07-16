@@ -1,5 +1,5 @@
 switch:
-	nixos-rebuild switch --flake . -L --impure --sudo
+	nixos-rebuild switch --flake . -L --impure --sudo --upgrade
 
 boot:
 	nixos-rebuild boot --flake . -L --impure --sudo
