@@ -14,7 +14,6 @@
     outputs = { self, nixpkgs, nixos-hardware, lanzaboote, ...}:
     let
         system = "x86_64-linux";
-        pkgsUnstable = import nixpkgs { inherit system; };
     in
     {
         nixosConfigurations.KISS = nixpkgs.lib.nixosSystem {
@@ -33,15 +32,6 @@
                         };
                     }
                 )
-                # (
-                #     {lib, ... }:
-                #     {
-                #         services.fwupd = {
-                #             enable = true;
-                #             package = pkgsUnstable.fwupd;
-                #         };
-                #     }
-                # )
             ];
         };
     };
