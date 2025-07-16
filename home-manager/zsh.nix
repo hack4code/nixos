@@ -118,7 +118,6 @@ in
                 paste = "paste --delimiters ' '";
                 t = "date '+%F %H:%M %A'";
                 reboot = "systemctl reboot";
-                nlg = "nixos-rebuild list-generations";
             };
 
             initContent = lib.mkOrder 1500 ''
@@ -219,6 +218,22 @@ in
 
                     function magnet {
                         sed -nE 's/.*(magnet:.+)\]$/\1\n/p'
+                    }
+
+
+                    function nlg {
+                        nixos-rebuild list-generations
+                    }
+
+
+                    function ndg {
+                        if (($# == 1)); then
+                            sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
+                        fi
+
+                        if (($# == 2)); then
+                            sudo nix-env --delete-generations `seq "$1" "$2" | tr '\n' ' '` --profile /nix/var/nix/profiles/system
+                        fi
                     }
 
 
