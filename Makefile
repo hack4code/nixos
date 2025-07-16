@@ -1,8 +1,8 @@
 switch:
-	nixos-rebuild switch --flake . -L --impure --sudo --upgrade
+	nixos-rebuild switch --impure --sudo --upgrade --print-build-logs --flake .
 
 boot:
-	nixos-rebuild boot --flake . -L --impure --sudo
+	nixos-rebuild boot --impure --sudo --print-build-logs --flake .
 
 update:
 	nix flake update
