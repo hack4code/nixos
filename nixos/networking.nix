@@ -61,7 +61,7 @@ in
                     autoconnect = true;
                     permissions = "";
                     wait-device-timeout = 120000;
-                    wait-activation-delay = 120000;
+                    wait-activation-delay = 1000;
                 };
 
                 wifi = {
