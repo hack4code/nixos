@@ -84,7 +84,7 @@ command_htop = (
     "--class htop "
     "--title htop "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket "
+    "--override allow_remote_control=socket-only "
     "--listen-on=unix:@htop "
     "zsh -c 'htop -M --readonly --drop-capabilities=strict'"
 )
@@ -95,7 +95,7 @@ command_btop = (
     "--class btop "
     "--title btop "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket "
+    "--override allow_remote_control=socket-only "
     "--listen-on=unix:@btop "
     "zsh -c btop"
 )
@@ -106,7 +106,7 @@ command_linode = (
     "--class linode "
     "--title linode "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket "
+    "--override allow_remote_control=socket-only "
     "--listen-on=unix:@linode "
     "zsh -c 'ssh -t linode htop -M --readonly'"
 )
@@ -117,7 +117,7 @@ command_ncmpcpp = (
     "--class ncmpcpp "
     "--title ncmpcpp "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket "
+    "--override allow_remote_control=socket-only "
     "--listen-on=unix:@ncmpcpp "
     "zsh -c 'ncmpcpp --quiet'"
 )
@@ -127,6 +127,7 @@ command_ranger = (
     "--class ranger "
     "--title ranger "
     f"{kitty_config_ranger} "
+    "--override allow_remote_control=no "
     "zsh -c 'ranger ~/movie/'"
 )
 
@@ -136,6 +137,7 @@ command_weechat = (
     "--class weechat "
     "--title weechat "
     f"{kitty_config_weechat} "
+    "--override allow_remote_control=no "
     "zsh -c weechat"
 )
 
@@ -145,6 +147,7 @@ command_mutt = (
     "--class mutt "
     "--title mutt "
     f"{kitty_config_mutt} "
+    "--override allow_remote_control=no "
     "zsh -c 'neomutt -f ~/mail/inbox'"
 )
 
@@ -155,8 +158,6 @@ command_kitty = (
     "--class shell "
     "--title shell "
     "--instance-group SHELL "
-    "--override allow_remote_control=socket "
-    "--listen-on=unix:@shell "
     "--session ~/.config/sway/kitty/kitty.session"
 )
 
@@ -165,6 +166,7 @@ command_floating_kitty = (
     "exec kitty "
     "--class floatkitty "
     "--title floatkitty "
+    "--override allow_remote_control=no "
     "zsh -i"
 )
 
@@ -549,7 +551,7 @@ def find_linode_tab_id() -> int | None:
         ["kitten",
          "@",
          "--to",
-         "unix:@shell",
+         "unix:@kitty",
          "ls"],
         text=True,
         stdin=subprocess.DEVNULL,
@@ -572,7 +574,7 @@ def close_linode_tab(id_tab: int) -> None:
         ["kitten",
          "@",
          "--to",
-         "unix:@shell",
+         "unix:@kitty",
          "close-tab",
          "--match",
          f"id:{id_tab}"],
@@ -585,7 +587,7 @@ def launch_linode_tab() -> None:
     command = (
         "kitten "
         "@ "
-        "--to unix:@shell "
+        "--to unix:@kitty"
         "launch "
         "--dont-take-focus "
         "--type tab "
