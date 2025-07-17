@@ -236,6 +236,7 @@
             ifuse
             /* nvim lsp */
             pyright
+            lua-language-server
         ];
     };
 }

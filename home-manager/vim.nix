@@ -76,7 +76,31 @@ in
                     plugin = nvim-lspconfig;
                     type = "lua";
                     config = ''
+                        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+                            vim.lsp.diagnostic.on_publish_diagnostics,
+                            {
+                              virtual_text = false,
+                              signs = true,
+                              update_in_insert = false,
+                              underline = true,
+                            }
+                        )
+
+                        vim.lsp.config['luals'] = {
+                            cmd = { 'lua-language-server' },
+                            filetypes = { 'lua' },
+                            root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
+                            settings = {
+                              Lua = {
+                                runtime = {
+                                  version = 'LuaJIT',
+                                }
+                              }
+                            }
+                        }
+
                         vim.lsp.enable('pyright')
+                        vim.lsp.enable('luals')
                     '';
                 }
                 kitty-scrollback-nvim
