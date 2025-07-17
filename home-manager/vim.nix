@@ -47,7 +47,8 @@ in
                     type = "lua";
                     config = ''
                         require('lualine').setup({
-                            options = { theme = 'gruvbox' }
+                            options = { theme = 'gruvbox' },
+                            extensions = { 'quickfix' },
                         })
                     '';
                 }
