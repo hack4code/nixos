@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -43,6 +43,14 @@ in
 
             extraConfig = ''
                 kitty_mod ctrl+shift
+
+                allow_remote_control socket-only
+                listen_on unix:@kitty
+                action_alias kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
+
+                map kitty_mod+h kitty_scrollback_nvim
+                map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+
                 modify_font cell_height +6px
                 modify_font baseline 3
 
