@@ -22,11 +22,11 @@ in
                             underline = true,
                             bold = true,
                             italic = {
-                                strings = true,
                                 emphasis = true,
                                 comments = true,
-                                operators = false,
                                 folds = true,
+                                strings = false,
+                                operators = false,
                             },
                             strikethrough = true,
                             invert_selection = false,
@@ -47,7 +47,26 @@ in
                     type = "lua";
                     config = ''
                         require('lualine').setup({
-                            options = { theme = 'gruvbox' }
+                            options = { theme = 'gruvbox' },
+                            sections = {
+                                lualine_a = {
+                                    {
+                                        'diagnostics',
+                                        sources = { 'nvim_diagnostic', 'coc' },
+                                        sections = { 'error', 'warn', 'info', 'hint' },
+                                        diagnostics_color = {
+                                            error = 'DiagnosticError',
+                                            warn  = 'DiagnosticWarn',
+                                            info  = 'DiagnosticInfo',
+                                            hint  = 'DiagnosticHint',
+                                        },
+                                        symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+                                        colored = true,
+                                        update_in_insert = false,
+                                        always_visible = false,
+                                    }
+                                }
+                            }
                         })
                     '';
                 }
