@@ -73,7 +73,9 @@
             "flakes"
         ];
 
-        substituters = lib.mkForce [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+        substituters = [
+            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+        ];
     };
 
     /* nixpkgs */
