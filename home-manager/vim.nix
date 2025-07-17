@@ -70,7 +70,22 @@ in
                         })
                     '';
                 }
-                telescope-nvim
+                {
+                    plugin = telescope-nvim;
+                    type = "lua";
+                    config = ''
+                        require('telescope').setup({
+                            pickers = {
+                                buffers = {
+                                    previewer = false,
+                                },
+                                find_files = {
+                                    previewer = false,
+                                },
+                            }
+                        })
+                    '';
+                }
                 kitty-scrollback-nvim
             ];
 
@@ -83,7 +98,6 @@ in
                 set incsearch
                 set encoding=utf-8
                 set fileformat=unix
-                set wildignore=*/tmp/*,*.so,*.swp,*.zip,*.rar,*.7z
                 set clipboard=unnamedplus
                 set wildmenu
                 set wildmode=full
@@ -93,8 +107,8 @@ in
                 syntax enable
 
                 nnoremap <silent> [s :noh<cr>
+                nnoremap <silent> [e :Telescope buffers<cr>
                 nnoremap <silent> [f :Telescope find_files<cr>
-                nnoremap <silent> [b :Telescope buffers<cr>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
