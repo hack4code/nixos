@@ -207,7 +207,6 @@
             /* network */
             curl
             wget
-            axel
             nftables
             ethtool
             iproute2
