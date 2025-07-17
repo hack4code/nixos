@@ -79,11 +79,23 @@ in
                                 buffers = {
                                     previewer = false,
                                 },
+
                                 find_files = {
+                                    previewer = false,
+                                },
+
+                                diagnostics = {
                                     previewer = false,
                                 },
                             }
                         })
+                    '';
+                }
+                {
+                    plugin = nvim-lspconfig;
+                    type = "lua";
+                    config = ''
+                        vim.lsp.enable('pyright')
                     '';
                 }
                 kitty-scrollback-nvim
@@ -102,6 +114,7 @@ in
                 set wildmenu
                 set wildmode=full
                 set wrap
+                set nobackup
 
                 filetype plugin indent on
                 syntax enable

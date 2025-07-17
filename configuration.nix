@@ -234,6 +234,8 @@
             /* ifuse */
             libimobiledevice
             ifuse
+            /* nvim lsp */
+            pyright
         ];
     };
 }
