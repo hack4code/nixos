@@ -57,17 +57,55 @@ in
                     type = "lua";
                     config = ''
                         require('telescope').setup({
+                            defaults = {
+                                layout_strategy = "flex",
+                                layout_config = {
+                                    vertical = {
+                                        height = 0.5,
+                                        width = 0.4,
+                                    },
+                                    horizontal = {
+                                        height = 0.5,
+                                        width = 0.4,
+                                    }
+                                }
+                            },
+
                             pickers = {
                                 buffers = {
                                     previewer = false,
+                                    initial_mode = "normal",
+                                    layout_config = {
+                                        vertical = {
+                                            height = 0.5,
+                                            width = 0.4,
+                                        },
+
+                                        horizontal = {
+                                            height = 0.5,
+                                            width = 0.4,
+                                        }
+                                    },
                                 },
 
                                 find_files = {
                                     previewer = false,
+                                    find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+                                    layout_config = {
+                                        vertical = {
+                                            height = 0.8,
+                                            width = 0.5,
+                                        },
+                                        horizontal = {
+                                            height = 0.8,
+                                            width = 0.5,
+                                        }
+                                    },
                                 },
 
                                 diagnostics = {
                                     previewer = false,
+                                    initial_mode = "normal",
                                 },
                             }
                         })
@@ -110,34 +148,20 @@ in
                         }
                         vim.lsp.enable('luals')
 
-                        vim.lsp.config('ruff', {
-                            init_options = {
-                                settings = {
-                                    fixAll = true,
-                                    organizeImports = true,
-                                    showSyntaxErrors = true,
-                                    logLevel = 'warn',
-                                    logFile = '~/.local/state/nvim/ruff.log',
+                        vim.lsp.config('pyright', {
+                            settings = {
+                                pyright = {
+                                    disableOrganizeImports = true,
+                                    openFilesOnly = true,
+                                },
 
-                                    lint = {
-                                        enable = true,
-                                        select = { 'E', 'F' },
-                                        extendSelect = { 'W' },
-                                        ignore = { },
-                                    },
-
-                                    configuration = {
-                                        lint = {
-                                            unfixable = { 'F401' },
-                                        },
-                                        format = {
-                                            [ 'quote-style' ] = 'single'
-                                       }
+                                python = {
+                                    analysis = {
+                                        typeCheckingMode = 'basic',
                                     }
                                 }
                             }
                         })
-                        vim.lsp.enable('ruff')
                         vim.lsp.enable('pyright')
                     '';
                 }
@@ -163,7 +187,8 @@ in
                 syntax enable
 
                 nnoremap <silent> [s :noh<cr>
-                nnoremap <silent> [e :Telescope buffers<cr>
+                nnoremap <silent> [b :Telescope buffers<cr>
+                nnoremap <silent> [e :Explore<cr>
                 nnoremap <silent> [f :Telescope find_files<cr>
                 nnoremap <silent> [d :Telescope diagnostics<cr>
                 nnoremap <silent> [o :lua vim.diagnostic.open_float()<cr>

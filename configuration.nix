@@ -234,11 +234,11 @@
             /* ifuse */
             libimobiledevice
             ifuse
-            /* nvim lsp */
-            ruff
+            /* nvim */
             lua-language-server
             clang-tools
             pyright
+            fd
         ];
     };
 }
