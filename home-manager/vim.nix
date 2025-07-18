@@ -77,31 +77,68 @@ in
                     plugin = nvim-lspconfig;
                     type = "lua";
                     config = ''
-                        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                            vim.lsp.diagnostic.on_publish_diagnostics,
-                            {
-                              virtual_text = false,
-                              signs = true,
-                              update_in_insert = false,
-                              underline = true,
-                            }
-                        )
+                        vim.lsp.config['clangd'] = {
+                            cmd = {
+                                'clangd',
+                                '--clang-tidy',
+                                '--background-index',
+                                '--offset-encoding=utf-8',
+                            },
+                            root_markers = {
+                                '.clangd',
+                                'compile_commands.json',
+                                '.git',
+                            },
+                            filetypes = { 'c', 'cpp' },
+                        }
+                        vim.lsp.enable('clangd')
 
                         vim.lsp.config['luals'] = {
                             cmd = { 'lua-language-server' },
                             filetypes = { 'lua' },
-                            root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
+                            root_markers = {
+                                { '.luarc.json', '.luarc.jsonc' },
+                                '.git'
+                            },
                             settings = {
-                              Lua = {
-                                runtime = {
-                                  version = 'LuaJIT',
+                                Lua = {
+                                    runtime = {
+                                        version = 'LuaJIT',
+                                    }
                                 }
-                              }
                             }
                         }
-
-                        vim.lsp.enable('pyright')
                         vim.lsp.enable('luals')
+
+                        vim.lsp.config('ruff', {
+                            init_options = {
+                                settings = {
+                                    fixAll = true,
+                                    organizeImports = true,
+                                    showSyntaxErrors = true,
+                                    logLevel = 'warn',
+                                    logFile = '~/.local/state/nvim/ruff.log',
+
+                                    lint = {
+                                        enable = true,
+                                        select = { 'E', 'F' },
+                                        extendSelect = { 'W' },
+                                        ignore = { },
+                                    },
+
+                                    configuration = {
+                                        lint = {
+                                            unfixable = { 'F401' },
+                                        },
+                                        format = {
+                                            [ 'quote-style' ] = 'single'
+                                       }
+                                    }
+                                }
+                            }
+                        })
+                        vim.lsp.enable('ruff')
+                        vim.lsp.enable('pyright')
                     '';
                 }
                 kitty-scrollback-nvim
