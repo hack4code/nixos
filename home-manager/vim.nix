@@ -148,16 +148,16 @@ in
                 set termguicolors
                 set background=dark
                 set number
-                set magic
                 set hlsearch
                 set incsearch
-                set encoding=utf-8
-                set fileformat=unix
-                set clipboard=unnamedplus
-                set wildmenu
                 set wildmode=full
+                set wildmenu
                 set wrap
                 set nobackup
+                set encoding=utf-8
+                set fileformat=unix
+                set statusline+=%*
+                set clipboard=unnamedplus
 
                 filetype plugin indent on
                 syntax enable
