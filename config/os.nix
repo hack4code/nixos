@@ -10,8 +10,8 @@
 
     config = {
         nixosVersion = "25.05";
-        kernelVersion = "6.15.6";
-        kernelSha256 = "2bb586c954277d070c8fdf6d7275faa93b4807d9bf3353b491d8149cca02b4fc";
+        kernelVersion = "6.15.7";
+        kernelSha256 = "3507dd105b0a0e1101bd43d294472fccf853429a259a5fa7c67467bba318f8e9";
         hostName = "KISS";
     };
 }
