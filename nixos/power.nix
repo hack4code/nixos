@@ -2,10 +2,10 @@
     powerManagement = {
         enable = true;
         cpuFreqGovernor = "performance";
-        resumeCommands = ''
-            rfkill block `rfkill --json | jq -r '.rfkilldevices.[] | select(.device=="hci0") | .id'`
-            rfkill unblock `rfkill --json | jq -r '.rfkilldevices.[] | select(.device=="hci0") | .id'`
-        '';
+        # resumeCommands = ''
+        #     rfkill block `rfkill --json | jq -r '.rfkilldevices.[] | select(.device=="hci0") | .id'`
+        #     rfkill unblock `rfkill --json | jq -r '.rfkilldevices.[] | select(.device=="hci0") | .id'`
+        # '';
     };
 }
 
