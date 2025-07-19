@@ -2,12 +2,9 @@
 
  {
     imports = [
-        /* home manager */
         <home-manager/nixos>
-        /* tpm2 */
         ./patch/tpm2-tss-fapi.nix
         ./patch/podman.nix
-        /* config */
         ./config/user.nix
         ./config/os.nix
         ./config/wireguard.nix
@@ -16,7 +13,6 @@
         ./config/output.nix
         ./config/wifi.nix
         ./config/ntp.nix
-        /* system */
         ./nixos/hardware.nix
         ./nixos/boot.nix
         ./nixos/power.nix
@@ -26,14 +22,12 @@
         ./nixos/container.nix
         ./nixos/input.nix
         ./nixos/sudo.nix
-        /* systemd */
         ./nixos/services.nix
         ./nixos/pipewire.nix
         ./nixos/kremap.nix
         ./nixos/wg-quick.nix
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
-        /* sway */
         ./home-manager/sway.nix
         ./home-manager/swaylock.nix
         ./home-manager/swaync.nix
@@ -61,7 +55,6 @@
         ./home-manager/uv.nix
     ];
 
-    /* nix */
     nix.settings = {
         cores = 8;
         max-jobs = 7;
@@ -77,7 +70,6 @@
         ];
     };
 
-    /* nixpkgs */
     nixpkgs = {
         hostPlatform = "x86_64-linux";
         config = {
@@ -85,24 +77,20 @@
         };
     };
 
-    /* home manager */
     home-manager = {
         useUserPackages = true;
         useGlobalPkgs = true;
         backupFileExtension = "backup";
     };
 
-    /* system */
     system = {
         autoUpgrade.enable = false;
         etc.overlay.enable = true;
         stateVersion = "${config.nixosVersion}";
     };
 
-    /* timezone */
     time.timeZone = "Asia/Shanghai";
 
-    /* security */
     security = {
         rtkit.enable = true;
         polkit.enable = true;
@@ -118,7 +106,6 @@
         };
     };
 
-    /* user */
     users.defaultUserShell = pkgs.zsh;
     users.users.${config.userName} =
     let
@@ -134,7 +121,6 @@
         extraGroups = [ "wheel" "networkmanager" "avahi" "audio" "video" "podman" "tss" ];
     };
 
-    /* programs */
     programs = {
         appimage = {
             enable = true;

@@ -40,13 +40,13 @@
         }
     ];
 
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
     hardware = {
-        /* cpu gpu */
-        cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+        cpu = {
+            intel = {
+                updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+            };
+        };
 
-        /* graphics */
         graphics = {
             enable = true;
             extraPackages = with pkgs; [
@@ -54,9 +54,11 @@
                 libva
             ];
         };
-        intel-gpu-tools.enable = true;
 
-        /* bluetooth */
+        intel-gpu-tools = {
+            enable = true;
+        };
+
         bluetooth = {
             enable = true;
             powerOnBoot = true;
@@ -65,12 +67,10 @@
                 Policy = {
                     AutoEnable = "true";
                 };
-
                 General = {
                     ControllerMode = "dual";
                     Experimental = true;
                     KernelExperimental = true;
-                    FastConnectable = true;
                 };
             };
         };
