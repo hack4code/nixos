@@ -23,8 +23,8 @@ let
             gawk
             gnugrep
             procps
-            pulseaudio
             systemd
+            wireplumber
         ];
 
         text = ''
@@ -32,8 +32,8 @@ let
                 local T=0
                 local SONY='20:64:DE:85:A4:E3'
 
-                while [[ "$(echo "info $SONY" | bluetoothctl | awk '/Connected/{print $2}')" != yes ]]; do
-                    echo "connect $SONY" | bluetoothctl
+                while [[ $(bluetoothctl info "$SONY" | awk -F : '/Connected/ {print $2}') != "yes" ]]; do
+                    bluetoothctl connect "$SONY" &>/dev/null
                     sleep 3s
                     T=$((T + 1))
                     if ((T > 60)); then
@@ -43,23 +43,14 @@ let
             }
 
 
-            function set_default_sink {
-                local INTEL_SOUND_CARD="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
-                pactl set-default-sink "$INTEL_SOUND_CARD"
-            }
-
-
             function set_sound_volume {
                 local H
-                local SINK
 
                 H=$(date +'%k')
-                SINK=$(pactl get-default-sink)
-
                 if ((H >= 5)) && ((H < 18)); then
-                    pactl set-sink-volume "$SINK" 80%
+                    wpctl set-volume @DEFAULT_SINK@ 80%
                 else
-                    pactl set-sink-volume "$SINK" 60%
+                    wpctl set-volume @DEFAULT_SINK@ 60%
                 fi
             }
 
@@ -201,7 +192,10 @@ let
                     ;;
 
                 sndtimer)
-                    (($(awk '{print int($1)}' /proc/uptime) > 300)) && setup_sound
+                    if (($(awk '{print int($1)}' /proc/uptime) < 600)); then
+                        return
+                    fi
+                    setup_sound
                     ;;
 
                 setup)
@@ -547,11 +541,11 @@ in
                     bindsym Escape mode default
                 }
 
-                bindsym XF86MonBrightnessDown exec light -U 10
-                bindsym XF86MonBrightnessUp exec light -A 10
-                bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +10%'
-                bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -10%'
-                bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+                bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel_backlight -U 10
+                bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel_backlight -A 10
+                bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 10%+
+                bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 10%-
+                bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle
 
                 for_window [window_type="dialog"] floating enable
                 for_window [window_role="dialog"] floating enable
