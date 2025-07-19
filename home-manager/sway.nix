@@ -28,9 +28,6 @@ let
         ];
 
         text = ''
-            #!/usr/bin/env bash
-
-
             function connect_sony {
                 local T=0
                 local SONY='20:64:DE:85:A4:E3'
@@ -201,6 +198,10 @@ let
                     check_before_sleep
                     system_sleep
                     systemctl sleep
+                    ;;
+
+                sndtimer)
+                    (($(awk '{print int($1)}' /proc/uptime) > 300)) && setup_sound
                     ;;
 
                 setup)
@@ -682,7 +683,7 @@ in
             Service = {
                 Type = "simple";
                 StandardOutput = "journal";
-                ExecStart = "${swaycmd} setup sound";
+                ExecStart = "${swaycmd} sndtimer";
             };
         };
 
