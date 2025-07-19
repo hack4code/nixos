@@ -106,6 +106,16 @@ in
                                 diagnostics = {
                                     previewer = false,
                                     initial_mode = "normal",
+                                    layout_config = {
+                                        vertical = {
+                                            height = 0.7,
+                                            width = 0.8,
+                                        },
+                                        horizontal = {
+                                            height = 0.7,
+                                            width = 0.8,
+                                        },
+                                    },
                                 },
                             }
                         })
@@ -158,9 +168,13 @@ in
                                 python = {
                                     analysis = {
                                         typeCheckingMode = 'basic',
-                                    }
-                                }
-                            }
+                                        diagnosticSeverityOverrides = {
+                                            reportMissingImports = false,
+                                            reportUnusedVariable = false,
+                                        },
+                                    },
+                                },
+                            },
                         })
                         vim.lsp.enable('pyright')
                     '';
