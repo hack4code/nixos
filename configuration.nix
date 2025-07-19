@@ -224,6 +224,8 @@
             clang-tools
             pyright
             fd
+            /* bluetooth */
+            pavucontrol
         ];
     };
 }
