@@ -84,7 +84,7 @@ command_htop = (
     "--class htop "
     "--title htop "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket-only "
+    "--override allow_remote_control=socket "
     "--listen-on=unix:@htop "
     "zsh -c 'htop -M --readonly --drop-capabilities=strict'"
 )
@@ -95,7 +95,7 @@ command_btop = (
     "--class btop "
     "--title btop "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket-only "
+    "--override allow_remote_control=socket "
     "--listen-on=unix:@btop "
     "zsh -c btop"
 )
@@ -106,7 +106,7 @@ command_linode = (
     "--class linode "
     "--title linode "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket-only "
+    "--override allow_remote_control=socket "
     "--listen-on=unix:@linode "
     "zsh -c 'ssh -t linode htop -M --readonly'"
 )
@@ -117,7 +117,7 @@ command_ncmpcpp = (
     "--class ncmpcpp "
     "--title ncmpcpp "
     f"{kitty_config_top} "
-    "--override allow_remote_control=socket-only "
+    "--override allow_remote_control=socket "
     "--listen-on=unix:@ncmpcpp "
     "zsh -c 'ncmpcpp --quiet'"
 )
@@ -154,10 +154,9 @@ command_mutt = (
 
 command_kitty = (
     "exec kitty "
-    "--single-instance "
     "--class shell "
     "--title shell "
-    "--instance-group SHELL "
+    "--listen-on=unix:@kitty "
     "--session ~/.config/sway/kitty/kitty.session"
 )
 
@@ -166,7 +165,6 @@ command_floating_kitty = (
     "exec kitty "
     "--class floatkitty "
     "--title floatkitty "
-    "--override allow_remote_control=no "
     "zsh -i"
 )
 
