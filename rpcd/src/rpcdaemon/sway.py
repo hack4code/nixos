@@ -585,7 +585,7 @@ def launch_linode_tab() -> None:
     command = (
         "kitten "
         "@ "
-        "--to unix:@kitty"
+        "--to unix:@kitty "
         "launch "
         "--dont-take-focus "
         "--type tab "
