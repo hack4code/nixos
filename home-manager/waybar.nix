@@ -20,7 +20,6 @@ in
                     ipc = true;
                     margin = "24px 24px 0px 24px";
                     passthrough = false;
-                    # width = "calc(100% - 20px)";
 
                     output = [
                         "!${monitorThinkpad}"
@@ -50,26 +49,27 @@ in
                         on-click = "activate";
                         format = "{icon}";
                         format-icons = {
-                            "0" = "㉧";
-                            "1" = "⚀";
-                            "2" = "⚁";
-                            "3" = "⚂";
-                            "4" = "⚃";
-                            "5" = "⚄";
-                            "6" = "⚅";
-                            "7" = "𓅿";
-                            "8" = "𓆦";
-                            "9" = "𓅐";
+                            "0" = "⓿";
+                            "1" = "①";
+                            "2" = "②";
+                            "3" = "③";
+                            "4" = "④";
+                            "5" = "⑤";
+                            "6" = "⑥";
+                            "7" = "⑦";
+                            "8" = "⑧";
+                            "9" = "⑨";
+                            "10" = "⑩";
+                            "11" = "⑪";
                         };
                     };
 
                     "clock" = {
                         interval = 60;
                         format = "{:%H:%M}";
-                        tooltip-format = "<small>{calendar}</small>";
+                        tooltip-format = "{calendar}";
                         calendar = {
                             mod = "month";
-                            today = "<b><u>{}</u></b>";
                         };
                     };
 
