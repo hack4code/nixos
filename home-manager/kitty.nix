@@ -44,7 +44,7 @@ in
             extraConfig = ''
                 kitty_mod ctrl+shift
 
-                allow_remote_control socket-only
+                allow_remote_control socket
                 listen_on unix:@kitty
                 action_alias kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
 
