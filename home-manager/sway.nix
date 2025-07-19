@@ -430,7 +430,7 @@ in
                         scale = "1.5";
                         scale_filter = "smart";
                         subpixel = "rgb";
-                        # adaptive_sync = "on";
+                        adaptive_sync = "on";
                         allow_tearing = "no";
                     };
                 };
@@ -445,15 +445,15 @@ in
                     "${modifier}+up" = "focus up";
                     "${modifier}+down" = "focus down";
 
-                    "${modifier}+return" = "exec --no-startup-id kitty --instance-group SHELL --single-instance";
+                    "${modifier}+return" = "exec kitty";
                     "${modifier}+semicolon" = "exec ${swaycmd} kitty";
                     "${modifier}+apostrophe" = "workspace number 11";
 
-                    "${modifier}+a" = "exec swaync-client -t -sw";
-                    "${modifier}+d" = "exec ${swaycmd} linode togglefullscreen";
-                    "${modifier}+e" = "exec ${swaycmd} ncmpcpp visualizer";
-                    "${modifier}+f" = "exec ${swaycmd} btop toggle";
-                    "${modifier}+g" = "exec ${swaycmd} htop togglefullscreen";
+                    "${modifier}+a" = "exec --no-startup-id swaync-client -t -sw";
+                    "${modifier}+d" = "exec --no-startup-id ${swaycmd} linode togglefullscreen";
+                    "${modifier}+e" = "exec --no-startup-id ${swaycmd} ncmpcpp visualizer";
+                    "${modifier}+f" = "exec --no-startup-id ${swaycmd} btop toggle";
+                    "${modifier}+g" = "exec --no-startup-id ${swaycmd} htop togglefullscreen";
                     "${modifier}+i" = "exec firefox -P KISS --private-window";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
@@ -461,13 +461,13 @@ in
 
                     "${modifier}+o" = "exec wofi";
                     "${modifier}+q" = "kill";
-                    "${modifier}+r" = "exec ${swaycmd} ncmpcpp togglefullscreen";
-                    "${modifier}+s" = "exec swaync-client -C";
-                    "${modifier}+t" = "exec ${swaycmd} ncmpcpp time";
-                    "${modifier}+u" = "exec ${swaycmd} mpd reload";
-                    "${modifier}+w" = "exec ${swaycmd} ncmpcpp toggle";
-                    "${modifier}+x" = "exec swaymsg 'seat - cursor set 1020 650'";
-                    "${modifier}+y" = "exec ${swaycmd} ncmpcpp lyrics";
+                    "${modifier}+r" = "exec --no-startup-id ${swaycmd} ncmpcpp togglefullscreen";
+                    "${modifier}+s" = "exec --no-startup-id swaync-client -C";
+                    "${modifier}+t" = "exec --no-startup-id ${swaycmd} ncmpcpp time";
+                    "${modifier}+u" = "exec --no-startup-id ${swaycmd} mpd reload";
+                    "${modifier}+w" = "exec --no-startup-id ${swaycmd} ncmpcpp toggle";
+                    "${modifier}+x" = "exec --no-startup-id swaymsg 'seat - cursor set 1020 650'";
+                    "${modifier}+y" = "exec --no-startup-id ${swaycmd} ncmpcpp lyrics";
                     "${modifier}+z" = "exec zathura";
 
                     "${modifier}+0" = "workspace number 0";
@@ -481,15 +481,15 @@ in
                     "${modifier}+8" = "workspace number 8";
                     "${modifier}+9" = "workspace number 9";
 
-                    "${modifier}+alt+a" = "exec ${swaycmd} camer toggle";
+                    "${modifier}+alt+a" = "exec --no-startup-id ${swaycmd} camer toggle";
                     "${modifier}+alt+e" = "reload";
                     "${modifier}+alt+f" = "exec swaylock -f";
                     "${modifier}+alt+q" = "exec sway exit";
-                    "${modifier}+alt+r" = "exec ${swaycmd} reboot";
-                    "${modifier}+alt+s" = "exec ${swaycmd} shutdown";
-                    "${modifier}+alt+t" = "exec grim -o DP-3 ~/picture/screen/screenshot.png";
-                    "${modifier}+alt+j" = "exec ${swaycmd} ncmpcpp lyricsdown";
-                    "${modifier}+alt+k" = "exec ${swaycmd} ncmpcpp lyricsup";
+                    "${modifier}+alt+r" = "exec --no-startup-id ${swaycmd} reboot";
+                    "${modifier}+alt+s" = "exec --no-startup-id ${swaycmd} shutdown";
+                    "${modifier}+alt+t" = "exec --no-startup-id grim -o DP-3 ~/picture/screen/screenshot.png";
+                    "${modifier}+alt+j" = "exec --no-startup-id ${swaycmd} ncmpcpp lyricsdown";
+                    "${modifier}+alt+k" = "exec --no-startup-id ${swaycmd} ncmpcpp lyricsup";
                     "${modifier}+alt+m" = "mode Mouse";
 
                     "${modifier}+alt+left" = "resize grow width 10";
@@ -513,7 +513,6 @@ in
 
             extraConfig = ''
                 workspace 0  output "${monitorThinkpad}"
-                workspace 11 output "${monitorThinkpad}"
                 workspace 1  output "${monitorSamsung}"
                 workspace 2  output "${monitorSamsung}"
                 workspace 3  output "${monitorSamsung}"
@@ -521,6 +520,7 @@ in
                 workspace 5  output "${monitorSamsung}"
                 workspace 9  output "${monitorSamsung}"
                 workspace 10 output "${monitorSamsung}"
+                workspace 11 output "${monitorThinkpad}"
 
                 mode "Mouse" {
                     bindsym Shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
