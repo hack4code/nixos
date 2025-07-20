@@ -71,6 +71,8 @@
                     ControllerMode = "dual";
                     Experimental = true;
                     KernelExperimental = true;
+                    DiscoverableTimeout = 0;
+                    MultiProfile = "multiple";
                 };
             };
         };

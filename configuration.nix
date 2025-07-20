@@ -226,6 +226,7 @@
             fd
             /* bluetooth */
             pavucontrol
+            pulseaudio
         ];
     };
 }
