@@ -57,6 +57,7 @@ let
 
             function setup_sound {
                 connect_sony
+                sleep 4s
                 set_sound_volume
             }
 
