@@ -136,16 +136,15 @@
             enable = true;
             wrapperFeatures.gtk = true;
             extraPackages = with pkgs; [
-                wofi
-                waybar
-                swaynotificationcenter
                 swaybg
                 swaylock
                 swayimg
                 swayidle
-                slurp
-                wl-clipboard
+                swaynotificationcenter
+                wofi
+                waybar
                 clipman
+                wl-clipboard
                 kitty
                 weechat
                 ranger
@@ -153,6 +152,7 @@
                 neomutt
                 zathura
                 wl-kbptr
+                slurp
             ];
         };
     };
