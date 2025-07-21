@@ -224,6 +224,7 @@
             clang-tools
             pyright
             fd
+            bash-language-server
             /* bluetooth */
             pavucontrol
             pulseaudio
