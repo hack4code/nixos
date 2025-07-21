@@ -1,24 +1,17 @@
 {
     services.pipewire = {
         enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-        socketActivation = true;
-
-        extraConfig.pipewire = {
-            "10-airplay" = {
-                "context.modules" = [
-                    {
-                        name = "libpipewire-module-raop-discover";
-                        args = {
-                            "raop.latency.ms" = 500;
-                        };
-                    }
-                ];
-            };
+        alsa = {
+            enable = true;
+            support32Bit = true;
         };
+        pulse = {
+            enable = true;
+        };
+        jack = {
+            enable = true;
+        };
+        socketActivation = true;
 
         wireplumber.extraConfig.bluetoothEnhancements = {
             "monitor.bluez.properties" = {
