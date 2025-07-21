@@ -125,6 +125,18 @@ in
                     plugin = nvim-lspconfig;
                     type = "lua";
                     config = ''
+                        vim.diagnostic.config({
+                            virtual_text = true,
+                            signs = {
+                                text = {
+                                    [vim.diagnostic.severity.ERROR] = "☠",
+                                    [vim.diagnostic.severity.WARN] = "☣",
+                                    [vim.diagnostic.severity.HINT] = "",
+                                    [vim.diagnostic.severity.INFO] = "",
+                                },
+                            },
+                        })
+
                         vim.lsp.config['clangd'] = {
                             cmd = {
                                 'clangd',
@@ -170,7 +182,6 @@ in
                                         typeCheckingMode = 'basic',
                                         diagnosticSeverityOverrides = {
                                             reportMissingImports = false,
-                                            reportUnusedVariable = false,
                                             reportUnusedParameter = false,
                                         },
                                     },
@@ -205,8 +216,7 @@ in
                 nnoremap <silent> [b :Telescope buffers<cr>
                 nnoremap <silent> [e :Explore<cr>
                 nnoremap <silent> [f :Telescope find_files<cr>
-                nnoremap <silent> [d :Telescope diagnostics<cr>
-                nnoremap <silent> [o :lua vim.diagnostic.open_float()<cr>
+                nnoremap <silent> [a :Telescope diagnostics<cr>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
