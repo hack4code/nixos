@@ -412,7 +412,7 @@ in
                 output = {
                     "${monitorThinkpad}" = {
                         position = "0,0";
-                        mode = "2160x1350@59.744Hz";
+                        mode = "2160x1350@60HZ";
                         scale = "1.5";
                         scale_filter = "smart";
                         subpixel = "rgb";
@@ -420,7 +420,7 @@ in
 
                     "${monitorSamsung}" = {
                         position = "1440,0";
-                        mode = "2560x1440@59.951Hz";
+                        mode = "2560x1440@75HZ";
                         scale = "1.5";
                         scale_filter = "smart";
                         subpixel = "rgb";
