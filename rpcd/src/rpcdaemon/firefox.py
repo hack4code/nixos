@@ -8,7 +8,6 @@ from .mpc import (
     pause_mpd,
     resume_mpd
 )
-from .logger import logger
 
 
 __all__ = [
@@ -47,7 +46,6 @@ def PropertiesChanged(interface_name: str,
                 if not url or not title:
                     return
                 if url not in urls_played:
-                    logger.info(f"playing [{title}]({url})")
                     urls_played.add(url)
                     pause_mpd()
 

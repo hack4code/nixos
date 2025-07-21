@@ -24,14 +24,10 @@ __all__ = [
 ]
 
 
-file_names = set()
-
 
 def setup_for_mpv_open(file_name: str, *, focus: bool = True) -> None:
     file_name = file_name.strip()
-    if file_name not in file_names:
-        logger.info(f"watching {file_name}")
-        file_names.add(file_name)
+    logger.info(f"watching {file_name}")
     move_mpv_to_workspace(focus=focus)
 
 
