@@ -20,7 +20,7 @@ sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
 
 cd $HOME/code/
 find . -type d -name 'linux-6.*' -delete
-curl --silent --remote-name "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-$1.tar.xz"
+curl --remote-name "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-$1.tar.xz"
 tar xf linux*.tar.xz
 rm linux*.tar.xz
 cd "linux-$1/"
