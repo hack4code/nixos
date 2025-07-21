@@ -171,6 +171,7 @@ in
                                         diagnosticSeverityOverrides = {
                                             reportMissingImports = false,
                                             reportUnusedVariable = false,
+                                            reportUnusedParameter = false,
                                         },
                                     },
                                 },
