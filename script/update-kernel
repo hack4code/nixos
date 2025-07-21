@@ -18,13 +18,13 @@ sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$OSNIX"
 sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
 
 
-cd $HOME/code/
+cd "$HOME/code/" || exit 1
 find . -type d -name 'linux-6.*' -delete
 curl --remote-name "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-$1.tar.xz"
 tar xf linux*.tar.xz
 rm linux*.tar.xz
-cd "linux-$1/"
-cp $HOME/source/nixos/kernel/config .config
+cd "linux-$1/" || exit 1
+cp "$HOME/source/nixos/kernel/config" .config
 
 
 # vim: ts=4 sw=4 sts=4 ft=bash et:
