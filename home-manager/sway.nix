@@ -30,11 +30,11 @@ let
         text = ''
             function connect_sony {
                 local T=0
-                local SONY='20:64:DE:85:A4:E3'
+                local SONY="20:64:DE:85:A4:E3"
 
-                while [[ $(bluetoothctl info "$SONY" | awk -F : '/Connected/ {print $2}') != "yes" ]]; do
+                while [[ $(bluetoothctl info "$SONY" | awk -F : '/Connected/ {print $2}' | tr -d ' \n') != "yes" ]]; do
                     bluetoothctl connect "$SONY" &>/dev/null
-                    sleep 3s
+                    sleep 2s
                     T=$((T + 1))
                     if ((T > 60)); then
                         return
@@ -57,7 +57,6 @@ let
 
             function setup_sound {
                 connect_sony
-                sleep 4s
                 set_sound_volume
             }
 
@@ -193,10 +192,9 @@ let
                     ;;
 
                 sndtimer)
-                    if (($(awk '{print int($1)}' /proc/uptime) < 600)); then
-                        return
+                    if (($(awk '{print int($1)}' /proc/uptime) > 600)); then
+                        set_sound_volume
                     fi
-                    setup_sound
                     ;;
 
                 setup)
