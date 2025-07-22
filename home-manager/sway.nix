@@ -586,6 +586,7 @@ in
 
         home.file.".config/user-dirs.dirs" = {
             executable = false;
+            force = true;
             text = ''
                 XDG_CONFIG_HOME="$HOME/.config"
                 XDG_CACHE_HOME="$HOME/.cache"
@@ -604,6 +605,7 @@ in
 
         home.file.".config/sway/kitty/kitty.session" = {
             executable = false;
+            force = true;
             text = ''
                 launch zsh -i -c 'kssh -t linode'
                 new_tab
@@ -615,6 +617,7 @@ in
         };
 
         home.file.".config/sway" = {
+            force = true;
             source = ../sway;
             recursive = true;
         };

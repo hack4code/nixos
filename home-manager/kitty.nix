@@ -135,6 +135,8 @@ in
         };
 
         home.file.".config/kitty/open-actions.conf" = {
+            executable = false;
+            force = true;
             text = ''
                 protocol http, https
                 mime     image/*

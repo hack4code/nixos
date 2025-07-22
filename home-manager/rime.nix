@@ -7,6 +7,8 @@ in
 {
     home-manager.users.${userName} = {
         home.file.".local/share/fcitx5/rime/default.custom.yaml" = {
+            executable = false;
+            force = true;
             text = ''
                 patch:
                     ascii_composer/good_old_caps_lock: true
@@ -20,6 +22,8 @@ in
         };
 
         home.file.".local/share/fcitx5/rime/luna_pinyin.custom.yaml" = {
+            executable = false;
+            force = true;
             text = ''
                 patch:
                     "key_binder/bindings":

@@ -7,6 +7,8 @@ in
 {
     home-manager.users.${userName} = {
         home.file.".config/uv/uv.toml" = {
+            executable = false;
+            force = true;
             text = ''
                 [[index]]
                 url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
