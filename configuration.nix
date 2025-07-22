@@ -204,6 +204,9 @@
             tpm2-tools
             /* firmware */
             sof-firmware
+            /* bluetooth */
+            pavucontrol
+            pulseaudio
             /* console font */
             kbd
             /* */
@@ -225,9 +228,8 @@
             pyright
             fd
             bash-language-server
-            /* bluetooth */
-            pavucontrol
-            pulseaudio
+            shellcheck
+            shfmt
         ];
     };
 }
