@@ -94,18 +94,6 @@ in
                     font-size: 15px;
                     background: @bg;
                 }
-
-                .low {
-                    background: transparent !important;
-                }
-
-                .normal {
-                    background: transparent !important;
-                }
-
-                .critical {
-                    background: transparent !important;
-                }
             '';
         };
 
