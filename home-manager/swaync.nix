@@ -7,7 +7,7 @@ in
 {
     home-manager.users.${userName} = {
         services.swaync = {
-            enable = false;
+            enable = true;
             settings = {
                 positionX = "right";
                 positionY = "top";
