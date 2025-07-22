@@ -222,7 +222,7 @@
             /* ifuse */
             libimobiledevice
             ifuse
-            /* nvim */
+            /* neovim */
             lua-language-server
             clang-tools
             pyright
@@ -230,6 +230,8 @@
             bash-language-server
             shellcheck
             shfmt
+            nixd
+            ripgrep
         ];
     };
 }

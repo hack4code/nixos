@@ -16,7 +16,7 @@ in
                     plugin = gruvbox-nvim;
                     type = "lua";
                     config = ''
-                        require("gruvbox").setup({
+                        require('gruvbox').setup({
                             terminal_colors = true,
                             undercurl = true,
                             underline = true,
@@ -26,20 +26,20 @@ in
                                 comments = true,
                                 folds = true,
                                 strings = false,
-                                operators = false,
+                                operators = true,
                             },
                             strikethrough = true,
                             invert_selection = false,
                             invert_signs = false,
                             invert_tabline = false,
                             inverse = true,
-                            contrast = "hard",
+                            contrast = 'hard',
                             palette_overrides = {},
                             overrides = {},
                             dim_inactive = false,
                             transparent_mode = false,
                         })
-                        vim.cmd("colorscheme gruvbox")
+                        vim.cmd('colorscheme gruvbox')
                     '';
                 }
                 {
@@ -47,8 +47,7 @@ in
                     type = "lua";
                     config = ''
                         require('lualine').setup({
-                            options = { theme = 'gruvbox' },
-                            extensions = { 'quickfix' },
+                            options = { theme = 'gruvbox' }
                         })
                     '';
                 }
@@ -58,7 +57,7 @@ in
                     config = ''
                         require('telescope').setup({
                             defaults = {
-                                layout_strategy = "flex",
+                                layout_strategy = 'flex',
                                 layout_config = {
                                     vertical = {
                                         height = 0.5,
@@ -74,7 +73,7 @@ in
                             pickers = {
                                 buffers = {
                                     previewer = false,
-                                    initial_mode = "normal",
+                                    initial_mode = 'normal',
                                     layout_config = {
                                         vertical = {
                                             height = 0.5,
@@ -89,8 +88,9 @@ in
                                 },
 
                                 find_files = {
+                                    theme = 'dropdown',
                                     previewer = false,
-                                    find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+                                    find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
                                     layout_config = {
                                         vertical = {
                                             height = 0.8,
@@ -105,7 +105,7 @@ in
 
                                 diagnostics = {
                                     previewer = false,
-                                    initial_mode = "normal",
+                                    initial_mode = 'normal',
                                     layout_config = {
                                         vertical = {
                                             height = 0.7,
@@ -117,8 +117,28 @@ in
                                         },
                                     },
                                 },
-                            }
+
+                                live_grep = {
+                                    previewer = true,
+                                    layout_config = {
+                                        vertical = {
+                                            height = 0.8,
+                                            width = 0.9,
+                                        },
+                                        horizontal = {
+                                            height = 0.8,
+                                            width = 0.9,
+                                        },
+                                    },
+                                },
+                            },
                         })
+
+                        local builtin = require('telescope.builtin')
+                        vim.keymap.set('n', ';f', builtin.find_files, { desc = 'Telescope find files' })
+                        vim.keymap.set('n', ';b', builtin.buffers, { desc = 'Telescope buffers' })
+                        vim.keymap.set('n', ';g', builtin.live_grep, { desc = 'Telescope live grep' })
+                        vim.keymap.set('n', ';a', builtin.diagnostics, { desc = 'Telescope diagnostics' })
                     '';
                 }
                 {
@@ -129,8 +149,8 @@ in
                             virtual_text = true,
                             signs = {
                                 text = {
-                                    [vim.diagnostic.severity.ERROR] = "☠",
-                                    [vim.diagnostic.severity.WARN] = "☣",
+                                    [vim.diagnostic.severity.ERROR] = '☠',
+                                    [vim.diagnostic.severity.WARN] = '⚠',
                                     [vim.diagnostic.severity.HINT] = "",
                                     [vim.diagnostic.severity.INFO] = "",
                                 },
@@ -195,40 +215,24 @@ in
                             filetypes = { 'bash', 'sh' }
                         }
                         vim.lsp.enable('bashls')
+
+                        vim.lsp.enable('nixd')
                     '';
                 }
                 kitty-scrollback-nvim
             ];
 
             extraConfig = ''
-                set termguicolors
-                set background=dark
                 set number
-                set hlsearch
-                set incsearch
-                set wildmode=full
-                set wildmenu
                 set wrap
                 set nobackup
-                set encoding=utf-8
-                set fileformat=unix
-                set statusline+=%*
-                set clipboard=unnamedplus
+                set mouse=
 
-                filetype plugin indent on
-                syntax enable
-
-                nnoremap <silent> [s :noh<cr>
-                nnoremap <silent> [b :Telescope buffers<cr>
-                nnoremap <silent> [e :Explore<cr>
-                nnoremap <silent> [f :Telescope find_files<cr>
-                nnoremap <silent> [a :Telescope diagnostics<cr>
+                nnoremap <silent> ;s :noh<cr>
+                nnoremap <silent> ;e :Explore<cr>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
-
-
-                " vim: set ts=4 sw=4 sts=4 ft=vim et:
             '';
         };
 
