@@ -11,12 +11,10 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, lanzaboote, ...}:
-    let
-        system = "x86_64-linux";
-    in
+    outputs = { nixpkgs, nixos-hardware, lanzaboote, ...}:
     {
         nixosConfigurations.KISS = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
             modules = [
                 ./configuration.nix
                 nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1

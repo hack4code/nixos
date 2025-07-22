@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    accountName = config.accountName;
     version = config.nixosVersion;
 in
 {

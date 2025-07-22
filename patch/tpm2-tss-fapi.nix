@@ -3,7 +3,6 @@
 with lib;
 let
     inherit (builtins) fromJSON readFile toFile toJSON unsafeDiscardStringContext;
-    inherit (lib.strings) removePrefix;
 
     cfg = config.security.tpm2;
     tctiCfg = cfg.tctiEnvironment;

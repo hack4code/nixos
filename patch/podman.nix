@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
 in
 {
     home-manager.users.${userName} = {
