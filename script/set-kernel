@@ -5,14 +5,14 @@ OSNIX="$HOME/source/nixos/config/os.nix"
 
 
 if (($# != 1)); then
-    exit
+    exit 1
 fi
 
 
 SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
 if [[ -z "$SHA256" ]]; then
     echo "no signature found" 2>&1
-    exit
+    exit 1
 fi
 sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$OSNIX"
 sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
