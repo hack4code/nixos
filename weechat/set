@@ -20,7 +20,7 @@
 
 
 # channel
-/set irc.server.libera.autojoin "#ranger,#fcitx,#sway,#mpv,#wikipedia-zh-politics,#firefox,#tuna,#tuna-random,#archlinux,#nixos,"
+/set irc.server.libera.autojoin "#ranger,#fcitx,#sway,#mpv,#wikipedia-zh-politics,#firefox,#tuna,#tuna-random,#archlinux,#nixos,#neovim,"
 /set irc.server.oftc.autojoin "#linode,#mm,#tor,#home-manager,"
 
 
