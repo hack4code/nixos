@@ -32,12 +32,12 @@ in
                 proc_colors = true;
                 proc_gradient = false;
                 proc_per_core = true;
-                proc_mem_bytes = true;
+                proc_mem_bytes = false;
                 proc_cpu_graphs = false;
                 proc_info_smaps = false;
                 proc_left = false;
                 proc_filter_kernel = false;
-                proc_aggregate = false;
+                proc_aggregate = true;
                 cpu_graph_upper = "Auto";
                 cpu_graph_lower = "Auto";
                 show_gpu_info = "On";
