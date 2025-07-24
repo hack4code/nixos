@@ -84,7 +84,7 @@ in
                 QT_IM_MODULE = "fcitx";
 
                 /* sway */
-                # WLR_RENDERER = "vulkan";
+                WLR_RENDERER = "vulkan";
                 SDL_VIDEODRIVER = "wayland";
                 QT_QPA_PLATFORM = "wayland";
 
@@ -218,6 +218,13 @@ in
 
                     function magnet {
                         sed -nE 's/.*(magnet:.+)\]$/\1\n/p'
+                    }
+
+
+                    function nug {
+                        cd $HOME/source/nixos/
+                        make switch
+                        cd -
                     }
 
 
