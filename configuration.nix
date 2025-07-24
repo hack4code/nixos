@@ -55,19 +55,21 @@
         ./home-manager/uv.nix
     ];
 
-    nix.settings = {
-        cores = 8;
-        max-jobs = 7;
-        show-trace = true;
+    nix = {
+        settings = {
+            cores = 8;
+            max-jobs = 7;
+            show-trace = true;
 
-        experimental-features = [
-            "nix-command"
-            "flakes"
-        ];
+            experimental-features = [
+                "nix-command"
+                "flakes"
+            ];
 
-        substituters = [
-            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        ];
+            substituters = [
+                "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+            ];
+        };
     };
 
     nixpkgs = {
@@ -84,21 +86,40 @@
     };
 
     system = {
-        autoUpgrade.enable = false;
-        etc.overlay.enable = true;
+        autoUpgrade = {
+            enable = false;
+        };
+
+        etc = {
+            overlay = {
+                enable = true;
+            };
+        };
+
         stateVersion = "${config.nixosVersion}";
     };
 
-    time.timeZone = "Asia/Shanghai";
+    time = {
+        timeZone = "Asia/Shanghai";
+    };
 
     security = {
-        rtkit.enable = true;
-        polkit.enable = true;
+        rtkit = {
+            enable = true;
+        };
+
+        polkit = {
+            enable = true;
+        };
 
         tpm2 = {
             enable = true;
-            pkcs11.enable = true;
-            abrmd.enable = true;
+            pkcs11 = {
+                enable = true;
+            };
+            abrmd = {
+                enable = true;
+            };
             tctiEnvironment = {
                 enable = true;
                 interface = "tabrmd";
@@ -106,19 +127,32 @@
         };
     };
 
-    users.defaultUserShell = pkgs.zsh;
-    users.users.${config.userName} =
+    users = 
     let
         userName = config.userName;
     in
     {
-        isNormalUser = true;
-        home = "/home/${userName}";
-        uid = 1000;
-        description = "Sky Walker";
-        initialPassword = "314159";
-        linger = true;
-        extraGroups = [ "wheel" "networkmanager" "avahi" "audio" "video" "podman" "tss" ];
+        defaultUserShell = pkgs.zsh;
+        users = {
+            ${userName} =
+            {
+                isNormalUser = true;
+                home = "/home/${userName}";
+                uid = 1000;
+                description = "Sky Walker";
+                initialPassword = "314159";
+                linger = true;
+                extraGroups = [
+                    "audio"
+                    "avahi"
+                    "podman"
+                    "tss"
+                    "networkmanager"
+                    "video"
+                    "wheel"
+                ];
+            };
+        };
     };
 
     programs = {
@@ -126,15 +160,25 @@
             enable = true;
             binfmt = true;
         };
+
         neovim = {
             enable = true;
             defaultEditor = true;
         };
-        zsh.enable = true;
-        light.enable = true;
+
+        zsh = {
+            enable = true;
+        };
+
+        light = {
+            enable = true;
+        };
+
         sway = {
             enable = true;
-            wrapperFeatures.gtk = true;
+            wrapperFeatures = {
+                gtk = true;
+            };
             extraPackages = with pkgs; [
                 swaybg
                 swaylock
@@ -158,8 +202,16 @@
     };
 
     environment = {
-        shells = [ pkgs.zsh ];
-        pathsToLink = [ "/share/zsh" ];
+        shells = [
+            pkgs.bashInteractive
+            pkgs.zsh
+        ];
+
+        pathsToLink = [
+            "/share/zsh"
+            "/share/bash"
+        ];
+
         systemPackages = with pkgs; [
             /* systemd */
             power-profiles-daemon
@@ -177,8 +229,6 @@
             procps
             coreutils
             bc
-            /* shell */
-            bash
             /* git */
             gh
             git
