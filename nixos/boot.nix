@@ -3,6 +3,7 @@
 let
     version = config.kernelVersion;
     sha256 = config.kernelSha256;
+    userName = config.userName;
 in
 {
     boot = {
@@ -11,8 +12,13 @@ in
         kernelPackages = pkgs.linuxPackages_custom {
             version = version;
             src = pkgs.fetchurl {
-                url = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz";
+                urls = [
+                    "file:///home/${userName}/code/linux-${version}.tar.xz"
+                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
+                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
+                ];
                 sha256 = sha256;
+                preferLocalBuild = true;
             };
             configfile = ../kernel/config;
         };
@@ -26,15 +32,23 @@ in
         ];
 
         loader = {
-            efi.canTouchEfiVariables = true;
+            efi = {
+                canTouchEfiVariables = true;
+            };
+            systemd-boot = {
+                consoleMode = "max";
+            };
             timeout = 3;
-            systemd-boot.consoleMode = "max";
         };
 
         initrd = {
             enable = true;
-            systemd.enable = true;
-            systemd.tpm2.enable = false;
+            systemd = {
+                enable = true;
+                tpm2 = {
+                    enable = false;
+                };
+            };
             includeDefaultModules = false;
             kernelModules = [
                 "autofs4"
