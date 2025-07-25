@@ -61,9 +61,14 @@
             max-jobs = 7;
             show-trace = true;
 
+            trusted-users = [
+                "root"
+                "@wheel"
+            ];
+
             experimental-features = [
-                "nix-command"
                 "flakes"
+                "nix-command"
             ];
 
             substituters = [
@@ -75,6 +80,7 @@
     nixpkgs = {
         hostPlatform = "x86_64-linux";
         config = {
+            enableParallelBuildingByDefault = true;
             allowUnfree = true;
         };
     };
@@ -203,8 +209,8 @@
 
     environment = {
         shells = [
-            pkgs.bashInteractive
             pkgs.zsh
+            pkgs.bashInteractive
         ];
 
         pathsToLink = [
