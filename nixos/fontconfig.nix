@@ -32,6 +32,8 @@
             twemoji-color-font
             /* iosevka */
             iosevka
+            /* jetbrains */
+            jetbrains-mono
         ];
 
 
