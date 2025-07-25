@@ -8,19 +8,21 @@ if (($# != 1)); then
     exit 1
 fi
 
-cd "$HOME/code/" || exit 1
-rm -rf linux-6.*
+KERNEL="linux-$1.tar.xz"
 
-if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-$1.tar.xz") == 200 )); then
-    curl --remote-name "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-$1.tar.xz"
+cd "$HOME/code/kernel/" || exit 1
+rm -rf linux-*
+
+if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
+    curl --remote-name "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
 else
-    if ! curl --remote-name "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-$1.tar.xz"; then
+    if ! curl --remote-name "https://cdn.kernel.org/pub/linux/kernel/v6.x/$KERNEL"; then
         echo "failed to download kernel archive file for version $1" 1>&2
         exit 1
     fi
 fi
 
-tar xf linux*.tar.xz
+tar xf "$KERNEL"
 
 SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
 if [[ -z "$SHA256" ]]; then
