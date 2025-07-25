@@ -229,6 +229,7 @@
             procps
             coreutils
             bc
+            duf
             /* git */
             gh
             git
