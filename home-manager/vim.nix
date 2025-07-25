@@ -22,11 +22,11 @@ in
                             underline = true,
                             bold = true,
                             italic = {
-                                emphasis = true,
+                                emphasis = false,
                                 comments = true,
                                 folds = true,
                                 strings = false,
-                                operators = true,
+                                operators = false,
                             },
                             strikethrough = true,
                             invert_selection = false,
