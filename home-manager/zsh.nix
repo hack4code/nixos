@@ -259,6 +259,22 @@ in
                     }
 
 
+                    function dnstemp {
+                        local PROXY
+                        local DIR="/tmp/dnscrypt-proxy"
+                        local CONFIG="$HOME/source/vps/dnscrypt-proxy.toml"
+
+                        PROXY="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
+                        [[ -x "$PROXY" ]] || return
+                        [[ -f "$CONFIG" ]] || return
+                        [[ -d "$DIR" ]] || mkdir -p "$DIR/"
+
+                        cp "$CONFIG" "$DIR/"
+                        sudo systemctl stop dnscrypt-proxy2.service
+                        sudo $PROXY -config $DIR/dnscrypt-proxy.toml -child &>/dev/null &
+                    }
+
+
                     SWAY=$(command -v sway)
                     function sway {
                         if [[ $TERM == "xterm-kitty" ]]; then
