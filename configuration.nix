@@ -73,6 +73,7 @@
 
             substituters = [
                 "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+                "https://mirrors.ustc.edu.cn/nix-channels/store"
             ];
         };
     };
@@ -80,8 +81,8 @@
     nixpkgs = {
         hostPlatform = "x86_64-linux";
         config = {
-            enableParallelBuildingByDefault = true;
             allowUnfree = true;
+            enableParallelBuildingByDefault = false;
         };
     };
 
