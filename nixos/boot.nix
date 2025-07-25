@@ -13,7 +13,7 @@ in
             version = version;
             src = pkgs.fetchurl {
                 urls = [
-                    "file:///home/${userName}/code/linux-${version}.tar.xz"
+                    "file:///home/${userName}/code/kernel/linux-${version}.tar.xz"
                     "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
                     "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
                 ];
