@@ -53,6 +53,7 @@
         ./home-manager/rime.nix
         ./home-manager/uv.nix
         ./home-manager/scripts.nix
+        ./home-manager/git.nix
     ];
 
     nix = {

@@ -635,11 +635,6 @@ in
                 test -d download || mkdir download
                 test -d source || mkdir source
                 test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
-
-                ${pkgs.git}/bin/git config --global user.name "code4hack"
-                ${pkgs.git}/bin/git config --global user.email "code4hack+github@gmail.com"
-                ${pkgs.git}/bin/git config --global init.defaultBrance main
-                ${pkgs.git}/bin/git config --global pull.rebase true
             '';
         };
 
