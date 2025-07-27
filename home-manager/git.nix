@@ -19,7 +19,7 @@ in
             };
             extraConfig = {
                 init = {
-                    defaultBrance = "main";
+                    defaultBranch = "main";
                 };
                 pull = {
                     rebase = true;
@@ -41,6 +41,7 @@ in
             ignores = [
                 "*~"
                 "*.swp"
+                "__pycache__"
             ];
         };
 
