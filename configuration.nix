@@ -138,6 +138,7 @@
     users = 
     let
         userName = config.userName;
+        userID = config.userID;
     in
     {
         defaultUserShell = pkgs.zsh;
@@ -146,7 +147,7 @@
             {
                 isNormalUser = true;
                 home = "/home/${userName}";
-                uid = 1000;
+                uid = userID;
                 description = "Sky Walker";
                 initialPassword = "314159";
                 linger = true;
