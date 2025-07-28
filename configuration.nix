@@ -292,6 +292,8 @@
             shfmt
             nixd
             ripgrep
+            /* nix */
+            nix-index
         ];
     };
 }
