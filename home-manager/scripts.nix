@@ -68,7 +68,7 @@ in
                         chmod a+r "$KERNEL"
                         tar xf "$KERNEL"
 
-                        SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                        SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
                         if [[ -z "$SHA256" ]]; then
                             echo "no signature found" 1>&2
                             exit 1
