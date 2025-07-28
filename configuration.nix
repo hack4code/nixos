@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
- {
+{
     imports = [
         <home-manager/nixos>
         ./patch/tpm2-tss-fapi.nix
@@ -143,8 +143,7 @@
     {
         defaultUserShell = pkgs.zsh;
         users = {
-            ${userName} =
-            {
+            ${userName} = {
                 isNormalUser = true;
                 home = "/home/${userName}";
                 uid = userID;
