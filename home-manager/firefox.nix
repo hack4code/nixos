@@ -49,25 +49,25 @@ in
                     #     vimium
                     # ];
 
-                    containers = {
-                        self = {
-                            color = "purple";
-                            icon = "fingerprint";
-                            id = 1;
-                        };
+                    # containers = {
+                    #     self = {
+                    #         color = "purple";
+                    #         icon = "fingerprint";
+                    #         id = 1;
+                    #     };
 
-                        study = {
-                            color = "turquoise";
-                            icon = "pet";
-                            id = 2;
-                        };
+                    #     study = {
+                    #         color = "turquoise";
+                    #         icon = "pet";
+                    #         id = 2;
+                    #     };
 
-                        tor = {
-                            color = "yellow";
-                            icon = "fence";
-                            id = 3;
-                        };
-                    };
+                    #     tor = {
+                    #         color = "yellow";
+                    #         icon = "fence";
+                    #         id = 3;
+                    #     };
+                    # };
 
                     /* user.js */
                     extraConfig = ''
