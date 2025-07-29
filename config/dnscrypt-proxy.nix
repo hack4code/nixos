@@ -7,7 +7,7 @@
     };
 
     config = {
-        dnsServerName = "linode";
+        dnsServerName = "";
         dnsStamp = "";
     };
 }

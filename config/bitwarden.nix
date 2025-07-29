@@ -6,7 +6,7 @@
     };
 
     config = {
-        bwSession = "kvlONagtEwA+h0iuxKP6FJtlyeJig2VNfP98GuBulFoXRzLTzd5wERhuWiu5iKkDvns+PBiKCcc0BHHtnpjzKg==";
+        bwSession = "";
     };
 }
 

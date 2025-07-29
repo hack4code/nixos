@@ -20,20 +20,20 @@
     };
 
     config = {
-        wgInterface = "wg0";
-        wgListenPort = 8888;
-        wgIp4Address = "10.0.0.2/32";
-        wgIp6Address = "2a01:7e03:e001:dd::2/128";
-        wgPrivateKey = "GLuwtODYFb6QGUnwTI5rE/BI8cuOiaNSzMo33xEx7HQ=";
-        wgServerPubkey = "V5zSwusWV79IiBa309hLwpc3sl0GruDMuMwafT+CNQQ=";
-        wgPresharedKey = "oCtVVRfCfAX7AKrsd2dAJAYVe117nAfymx/8EhHup+Q=";
-        wgServerIp4Address = "10.0.0.1";
-        wgServerIp6Address = "2a01:7e03:e001:dd::1";
-        wgServerPort = 9999;
+        wgInterface = "";
+        wgListenPort = 0;
+        wgIp4Address = "";
+        wgIp6Address = "";
+        wgPrivateKey = "";
+        wgServerPubkey = "";
+        wgPresharedKey = "";
+        wgServerIp4Address = "";
+        wgServerIp6Address = "";
+        wgServerPort = 0;
 
-        serverIp4Address = "172.236.252.216";
-        serverIp6Address = "2a01:7e03::2000:daff:fe68:e20e";
-        dnsPort = 6666;
+        serverIp4Address = "";
+        serverIp6Address = "";
+        dnsPort = 0;
     };
 }
 
