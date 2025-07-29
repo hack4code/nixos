@@ -2,6 +2,7 @@
     description = "Secure Boot Enabled NixOS Config";
 
     inputs = {
+        nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-25.05";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         lanzaboote = {
@@ -10,9 +11,9 @@
         };
     };
 
-    outputs = { nixpkgs, nixos-hardware, lanzaboote, ...}:
+    outputs = { nixpkgsStable, nixos-hardware, lanzaboote, ...}:
     {
-        nixosConfigurations.KISS = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.KISS = nixpkgsStable.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
                 ./configuration.nix

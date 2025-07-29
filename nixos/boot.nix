@@ -12,13 +12,14 @@ in
         kernelPackages = pkgs.linuxPackages_custom {
             version = version;
             src = pkgs.fetchurl {
-                urls = [
-                    "file:///home/${userName}/code/kernel/linux-${version}.tar.xz"
-                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
-                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
-                ];
+                url = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz";
+                # urls = [
+                #     "file:///home/${userName}/code/kernel/linux-${version}.tar.xz"
+                #     "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
+                #     "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
+                # ];
                 sha256 = sha256;
-                preferLocalBuild = true;
+                # preferLocalBuild = true;
             };
             configfile = ../kernel/config;
         };
