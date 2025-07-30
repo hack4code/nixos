@@ -10,12 +10,22 @@
             };
         };
 
-        upower.enable = true;
-        power-profiles-daemon.enable = true;
+        fwupd = {
+            enable = true;
+            uefiCapsuleSettings = {
+                DisableShimForSecureBoot = true;
+            };
+            daemonSettings = {
+                EspLocation = "/boot/EFI";
+            };
+        };
+
         acpid.enable = true;
-        fwupd.enable = true;
+        upower.enable = true;
         /* iphone */
         usbmuxd.enable = true;
+        power-profiles-daemon.enable = true;
+
     };
 }
 
