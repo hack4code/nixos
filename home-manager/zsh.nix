@@ -202,7 +202,7 @@ in
 
 
                     function vpsid {
-                        linode-cli linodes list --json | jq -r '.[].id' | head --lines 1
+                        linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1
                     }
 
 
@@ -213,6 +213,11 @@ in
 
                     function vpsls {
                         ssh -T linode 'cd ~/download/complete/; du --human-readable --all --max-depth 1' | sed 's:\./::' | awk '{ if (! (($2==".") && (NR<=2))) print $0; }'
+                    }
+
+
+                    function vpstr {
+                        linode-cli --suppress-warnings account transfer --json | jq -r '.[] | (.used | tostring) + "G/" + (.quota | tostring) + "G"'
                     }
 
 
@@ -259,7 +264,7 @@ in
                     }
 
 
-                    function setup-socks-proxy {
+                    function set-socks-proxy {
                         export http_proxy="socks5://127.0.0.1:1080"
                         export https_proxy="socks5://127.0.0.1:1080"
                     }
