@@ -1,5 +1,5 @@
 switch:
-	sudo nixos-rebuild switch --impure --upgrade --print-build-logs --flake .
+	nixos-rebuild switch --sudo --impure --upgrade --print-build-logs --flake .
 	systemctl --user disable swaync.service
 
 update:
