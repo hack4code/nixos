@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 {
     imports = [
-        <home-manager/nixos>
         ./patch/tpm2-tss-fapi.nix
         ./patch/podman.nix
         ./config/user.nix
@@ -63,7 +62,6 @@
             show-trace = true;
 
             trusted-users = [
-                "root"
                 "@wheel"
             ];
 
@@ -73,10 +71,8 @@
             ];
 
             substituters = [
-                "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+                "https://mirrors.ustc.edu.cn/nix-channels/store"
                 "https://nix-community.cachix.org"
-                # "https://mirrors.ustc.edu.cn/nix-channels/store"
-                # "https://mirror.sjtu.edu.cn/nix-channels/store"
                 "https://cache.nixos.org"
             ];
 
@@ -91,7 +87,7 @@
         config = {
             allowUnfree = true;
         };
-    };
+    }; 
 
     home-manager = {
         useUserPackages = true;
@@ -147,7 +143,7 @@
         userID = config.userID;
     in
     {
-        defaultUserShell = pkgs.zsh;
+        defaultUserShell = pkgs-stable.zsh;
         users = {
             ${userName} = {
                 isNormalUser = true;
@@ -193,7 +189,7 @@
             wrapperFeatures = {
                 gtk = true;
             };
-            extraPackages = with pkgs; [
+            extraPackages = with pkgs-stable; [
                 swaybg
                 swaylock
                 swayimg
@@ -217,8 +213,8 @@
 
     environment = {
         shells = [
-            pkgs.zsh
-            pkgs.bashInteractive
+            pkgs-stable.zsh
+            pkgs-stable.bashInteractive
         ];
 
         pathsToLink = [
@@ -226,7 +222,7 @@
             "/share/bash"
         ];
 
-        systemPackages = with pkgs; [
+        systemPackages = with pkgs-stable; [
             /* systemd */
             power-profiles-daemon
             /* tool */

@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -17,7 +17,7 @@ in
                         "org.freedesktop.impl.portal.Inhibit" = [ "none" ];
                     };
                 };
-                extraPortals = with pkgs; [
+                extraPortals = with pkgs-stable; [
                     xdg-desktop-portal-wlr
                     xdg-desktop-portal-gtk
                 ];

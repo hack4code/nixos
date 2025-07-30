@@ -1,12 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
-        home.packages = with pkgs; [
+        home.packages = with pkgs-stable; [
             (
                 writeShellApplication {
                     name = "s6.sh";

@@ -2,7 +2,7 @@
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
     monitorSamsung = config.monitorSamsung;
     monitorThinkpad = config.monitorThinkpad;
 in

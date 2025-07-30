@@ -1,12 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 
-    downmovie = pkgs.writeShellApplication {
+    downmovie = pkgs-stable.writeShellApplication {
         name = "downmovie.sh";
-        runtimeInputs = with pkgs; [
+        runtimeInputs = with pkgs-stable; [
             rsync
             openssh
             coreutils

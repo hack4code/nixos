@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
@@ -12,10 +12,10 @@ let
 
     cursorName = "graphite-dark-nord";
 
-    swayctl = pkgs.writeShellApplication {
+    swayctl = pkgs-stable.writeShellApplication {
         name = "swayctl";
 
-        runtimeInputs = with pkgs; [
+        runtimeInputs = with pkgs-stable; [
             bluez
             coreutils
             curl
@@ -638,7 +638,7 @@ in
             '';
         };
 
-        home.packages = with pkgs; [
+        home.packages = with pkgs-stable; [
             bitwarden-cli
             cmatrix
             jupyter
@@ -648,7 +648,7 @@ in
 
         home.pointerCursor = {
             enable = true;
-            package = pkgs.graphite-cursors;
+            package = pkgs-stable.graphite-cursors;
             name = "${cursorName}";
             size = 18;
             gtk.enable = true;

@@ -2,7 +2,7 @@
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
     interface = config.wifiInterface;
 in
 {

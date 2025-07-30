@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -10,7 +10,7 @@ in
         i18n.inputMethod.type = "fcitx5";
         i18n.inputMethod.fcitx5 = {
             waylandFrontend = true;
-            addons = with pkgs; [
+            addons = with pkgs-stable; [
                 fcitx5-chinese-addons
                 fcitx5-rime
                 fcitx5-gtk

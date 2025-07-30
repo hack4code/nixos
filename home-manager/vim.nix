@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -11,7 +11,7 @@ in
             viAlias = true;
             vimAlias = true;
 
-            plugins = with pkgs.vimPlugins; [
+            plugins = with pkgs-stable.vimPlugins; [
                 {
                     plugin = gruvbox-nvim;
                     type = "lua";

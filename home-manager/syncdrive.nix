@@ -1,13 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 
-    syncdrive = pkgs.writeShellApplication {
+    syncdrive = pkgs-stable.writeShellApplication {
         name = "syncdrive.sh";
 
-        runtimeInputs = with pkgs; [
+        runtimeInputs = with pkgs-stable; [
             rclone
             systemd
             openssh

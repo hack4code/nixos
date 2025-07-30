@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
-    version = config.nixosVersion;
+    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -35,7 +35,7 @@ in
                                         { name = "query"; value = "{searchTerms}"; }
                                     ];
                                 }];
-                                icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                                icon = "''${pkgs-stable.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                                 definedAliases = [ "@np" ];
                             };
 
@@ -43,7 +43,7 @@ in
                         };
                     };
 
-                    # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+                    # extensions = with inputs.firefox-addons.packages.${pkgs-stable.system}; [
                     #     bitwarden
                     #     ublock-origin
                     #     vimium
