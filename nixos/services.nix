@@ -15,9 +15,9 @@
             uefiCapsuleSettings = {
                 DisableShimForSecureBoot = true;
             };
-            daemonSettings = {
-                EspLocation = "/boot/EFI";
-            };
+            # daemonSettings = {
+            #     EspLocation = "/boot/EFI";
+            # };
         };
 
         acpid.enable = true;

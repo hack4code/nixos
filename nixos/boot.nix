@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 let
+    userName = config.userName;
     version = config.kernelVersion;
     sha256 = config.kernelSha256;
-    userName = config.userName;
 in
 {
     boot = {
@@ -12,14 +12,12 @@ in
         kernelPackages = pkgs.linuxPackages_custom {
             version = version;
             src = pkgs.fetchurl {
-                url = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz";
-                # urls = [
-                #     "file:///home/${userName}/code/kernel/linux-${version}.tar.xz"
-                #     "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
-                #     "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
-                # ];
+                urls = [
+                    "file:///home/${userName}/code/kernel/linux-${version}.tar.xz"
+                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
+                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
+                ];
                 sha256 = sha256;
-                # preferLocalBuild = true;
             };
             configfile = ../kernel/config;
         };
