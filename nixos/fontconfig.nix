@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs-stable, ... }:
 
 {
     fonts = {
-        packages = with pkgs; [
+        packages = with pkgs-stable; [
             /* noto */
             noto-fonts
             noto-fonts-cjk-sans
@@ -65,8 +65,8 @@
     console = {
         earlySetup = true;
         keyMap = "us";
-        packages = with pkgs; [ terminus_font ];
-        font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
+        packages = with pkgs-stable; [ terminus_font ];
+        font = "${pkgs-stable.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
     };
 }
 

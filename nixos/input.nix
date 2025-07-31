@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs-stable, ... }:
 
 {
     i18n.inputMethod.enable = true;
     i18n.inputMethod.type = "fcitx5";
     i18n.inputMethod.fcitx5 = {
-        addons = with pkgs; [
+        addons = with pkgs-stable; [
             fcitx5-chinese-addons
             fcitx5-rime
             fcitx5-nord
