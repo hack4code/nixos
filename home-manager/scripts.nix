@@ -44,13 +44,11 @@ in
                         gnused
                     ];
                     text = ''
-                        OSNIX="$HOME/source/nixos/config/os.nix"
-
-
                         if (($# != 1)); then
                             exit 1
                         fi
 
+                        OSNIX="$HOME/source/nixos/config/os.nix"
                         KERNEL="linux-$1.tar.xz"
 
                         cd "$HOME/code/kernel/" || exit 1
