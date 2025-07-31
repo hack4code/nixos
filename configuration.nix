@@ -1,5 +1,10 @@
 { config, pkgs-stable, ... }:
 
+let
+    userName = config.userName;
+    userID = config.userID;
+    nixosVersion = config.nixosVersion;
+in
 {
     imports = [
         ./patch/tpm2-tss-fapi.nix
@@ -107,7 +112,7 @@
             };
         };
 
-        stateVersion = "${config.nixosVersion}";
+        stateVersion = nixosVersion;
     };
 
     time = {
@@ -139,10 +144,6 @@
     };
 
     users = 
-    let
-        userName = config.userName;
-        userID = config.userID;
-    in
     {
         defaultUserShell = pkgs-stable.zsh;
         users = {
@@ -174,6 +175,7 @@
 
         neovim = {
             enable = true;
+            package = pkgs-stable.neovim-unwrapped;
             defaultEditor = true;
         };
 
@@ -187,6 +189,7 @@
 
         sway = {
             enable = true;
+            package = pkgs-stable.sway;
             wrapperFeatures = {
                 gtk = true;
             };
@@ -220,7 +223,6 @@
 
         pathsToLink = [
             "/share/zsh"
-            "/share/bash"
         ];
 
         systemPackages = with pkgs-stable; [
