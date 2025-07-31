@@ -173,18 +173,18 @@ in
             binfmt = true;
         };
 
-        neovim = {
-            enable = true;
-            package = pkgs-stable.neovim-unwrapped;
-            defaultEditor = true;
-        };
-
         zsh = {
             enable = true;
         };
 
         light = {
             enable = true;
+        };
+
+        neovim = {
+            enable = true;
+            package = pkgs-stable.neovim-unwrapped;
+            defaultEditor = true;
         };
 
         sway = {

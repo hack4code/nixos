@@ -26,7 +26,9 @@ in
 
             enableCompletion = true;
 
-            syntaxHighlighting.enable = true;
+            syntaxHighlighting = {
+                enable = true;
+            };
 
             autosuggestion = {
                 enable = true;
