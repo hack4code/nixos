@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    userPassWord = config.userPassWord;
     userID = config.userID;
     nixosVersion = config.nixosVersion;
 in
@@ -153,7 +154,7 @@ in
                 home = "/home/${userName}";
                 uid = userID;
                 description = "Sky Walker";
-                initialPassword = "314159";
+                initialPassword = userPassWord;
                 linger = true;
                 extraGroups = [
                     "audio"
