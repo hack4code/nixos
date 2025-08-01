@@ -10,7 +10,7 @@
     };
 
     config = {
-        nixosVersion = "25.05";
+        nixosVersion = "25.11";
         homeManagerVersion = "25.05";
         kernelVersion = "6.16";
         kernelSha256 = "1a4be2fe6b5246aa4ac8987a8a4af34c42a8dd7d08b46ab48516bcc1befbcd83";
