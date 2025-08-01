@@ -15,17 +15,23 @@
             uefiCapsuleSettings = {
                 DisableShimForSecureBoot = true;
             };
-            # daemonSettings = {
-            #     EspLocation = "/boot/EFI";
-            # };
         };
 
-        acpid.enable = true;
-        upower.enable = true;
-        /* iphone */
-        usbmuxd.enable = true;
-        power-profiles-daemon.enable = true;
+        acpid = {
+            enable = true;
+        };
 
+        upower = {
+            enable = true;
+        };
+
+        usbmuxd = {
+            enable = true;
+        };
+
+        power-profiles-daemon = {
+            enable = true;
+        };
     };
 }
 

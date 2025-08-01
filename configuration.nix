@@ -33,6 +33,8 @@ in
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
         ./home-manager/sway.nix
+        ./home-manager/swayctl.nix
+        ./home-manager/sndctl.nix
         ./home-manager/swaylock.nix
         ./home-manager/swaync.nix
         ./home-manager/waybar.nix

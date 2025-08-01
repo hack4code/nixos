@@ -6,314 +6,36 @@ let
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
-
     bgThinkpad = config.bgThinkpad;
     bgSamsung = config.bgSamsung;
 
     cursorName = "graphite-dark-nord";
-
-    swayctl = pkgs-stable.writeShellApplication {
-        name = "swayctl";
-
-        runtimeInputs = with pkgs-stable; [
-            bluez
-            coreutils
-            curl
-            ffmpeg
-            gawk
-            gnugrep
-            procps
-            systemd
-            wireplumber
-        ];
-
-        text = ''
-            function connect_sony {
-                local T=0
-                local SONY="20:64:DE:85:A4:E3"
-
-                while [[ $(bluetoothctl info "$SONY" | awk -F : '/Connected/ {print $2; exit}' | tr -d ' \n') != "yes" ]]; do
-                    bluetoothctl connect "$SONY" &>/dev/null
-                    sleep 2s
-                    T=$((T + 1))
-                    if ((T > 60)); then
-                        return
-                    fi
-                done
-            }
-
-
-            function set_sound_volume {
-                local H
-
-                H=$(date +'%k')
-                if ((H >= 5)) && ((H < 18)); then
-                    wpctl set-volume @DEFAULT_SINK@ 80%
-                else
-                    wpctl set-volume @DEFAULT_SINK@ 60%
-                fi
-            }
-
-
-            function setup_sound {
-                connect_sony
-                set_sound_volume
-            }
-
-
-            function lock {
-                pkill cmatrix
-            }
-
-
-            function resume_ncmpcpp {
-                curl -s -o /dev/null -X GET "http://127.0.0.1:8080/ncmpcpp/resume"
-            }
-
-
-            function resume_system {
-                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/resume'
-            }
-
-
-            function resume_kremap {
-                sudo systemctl restart kremap.service
-            }
-
-
-            function stop_suspend {
-                # shellcheck disable=SC2009
-                PID=$(ps aux | grep -v swayidle | grep -E '[s]wayctl suspend' | awk '{print $2}')
-                if [[ -n "$PID" ]]; then
-                    kill -9 "$PID"
-                fi
-            }
-
-
-            function reboot {
-                systemctl reboot
-            }
-
-
-            function shutdown {
-                systemctl poweroff
-            }
-
-
-            function check_before_sleep {
-                while pgrep downmovie || pgrep syncdrive || pgrep vps || pgrep ffmpeg || pgrep nixos-rebuild; do
-                    sleep 300s
-                done
-            }
-
-
-            function system_sleep {
-                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/sleep'
-            }
-
-
-            function start_camer {
-                local T
-
-                local CAMER_DEST="$HOME/movie/.camer/"
-
-                if ! [[ -d "$CAMER_DEST" ]]; then
-                    mkdir -p "$CAMER_DEST"
-                fi
-
-                T=$(date +'%F-%H-%M')
-                local MICROPHONE="alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source"
-                ffmpeg -f pulse -i "$MICROPHONE" -f video4linux2 -s 1280x720 -i /dev/video0 "$CAMER_DEST/$T.mkv"
-            }
-
-
-            function set_mpd {
-                curl -s -o /dev/null -X GET "http://127.0.0.1:8080/mpd/$1"
-            }
-
-
-            function set_ncmpcpp {
-                curl -s -o /dev/null -X GET "http://127.0.0.1:8080/ncmpcpp/$1"
-            }
-
-
-            function toggle_fullscreen {
-                curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"app_id\": \"$1\"}" "http://127.0.0.1:8080/system/fullscreen/toggle"
-            }
-
-
-            function launch_kitty {
-                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/launch/floatingkitty'
-            }
-
-            function toggle_btop {
-                curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/toggle/btop'
-            }
-
-
-            case "$1" in
-                reboot)
-                    reboot
-                    ;;
-
-                shutdown)
-                    shutdown
-                    ;;
-
-                lock)
-                    lock
-                    ;;
-
-                resume)
-                    case "$2" in
-                        lock)
-                            resume_ncmpcpp
-                            ;;
-
-                        sleep)
-                            resume_kremap
-                            resume_system
-                            setup_sound
-                            ;;
-
-                        suspend)
-                            stop_suspend
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                suspend)
-                    check_before_sleep
-                    system_sleep
-                    systemctl sleep
-                    ;;
-
-                sndtimer)
-                    if (($(awk '{print int($1)}' /proc/uptime) > 600)); then
-                        set_sound_volume
-                    fi
-                    ;;
-
-                setup)
-                    case "$2" in
-                        sound)
-                            setup_sound
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                mpd)
-                    case "$2" in
-                        reload)
-                            set_mpd reload
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                ncmpcpp)
-                    case "$2" in
-                        toggle|visualizer|togglefullscreen|time|lyrics|lyricsup|lyricsdown)
-                            set_ncmpcpp "$2"
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                htop)
-                    case "$2" in
-                        togglefullscreen)
-                            toggle_fullscreen "htop"
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                btop)
-                    case "$2" in
-                        toggle)
-                            toggle_btop
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                linode)
-                    case "$2" in
-                        togglefullscreen)
-                            toggle_fullscreen "linode"
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-                kitty)
-                    launch_kitty
-                    ;;
-
-                camer)
-                    # shellcheck disable=SC2009
-                    PID=$(ps -elf | grep -E '[f]fmpeg -f pulse' | awk '{print $4}')
-                    case "$2" in
-                        on)
-                            if [[ -z "$PID" ]]; then
-                                start_camer
-                            fi
-                            ;;
-
-                        off)
-                            if [[ -n "$PID" ]]; then
-                                kill "$PID"
-                            fi
-                            ;;
-
-                        toggle)
-                            if [[ -z "$PID" ]]; then
-                                start_camer
-                            else
-                                kill "$PID"
-                            fi
-                            ;;
-
-                        *)
-                            ;;
-                    esac
-                    ;;
-
-            esac
-
-
-            # vim: set ts=4 sw=4 sts=4 ft=bash et: #
-        '';
-    };
-    swaycmd = "${swayctl}/bin/swayctl";
 in
 {
-    home-manager.users.${userName} = { lib, ... }: {
-        services.gnome-keyring.enable = true;
+    home-manager.users.${userName} = { lib, ... }:
+    {
+        services = {
+            gnome-keyring = {
+                enable = true;
+            };
+        };
+
         wayland.windowManager.sway = {
             enable = true;
-            systemd.enable = false;
-            wrapperFeatures.gtk = true;
+
+            systemd = {
+                enable = false;
+            };
+
+            wrapperFeatures = {
+                gtk = true;
+            };
+
             config = {
                 fonts = {
-                    names = [ "Iosevka Term Semibold" ];
+                    names = [
+                        "Iosevka Term Semibold"
+                    ];
                     size = 13.0;
                 };
 
@@ -376,7 +98,8 @@ in
                     horizontal = 16;
                 };
 
-                input = let
+                input =
+                let
                     keyboard = "1:1:AT_Translated_Set_2_keyboard";
                     cherry = "1671:10:MX-LP_2.1-BT1_Keyboard";
                     touchpad = "1267:12624:ELAN0670:00_04F3:3150_Touchpad";
@@ -440,14 +163,14 @@ in
                     "${modifier}+down" = "focus down";
 
                     "${modifier}+return" = "exec kitty";
-                    "${modifier}+semicolon" = "exec ${swaycmd} kitty";
+                    "${modifier}+semicolon" = "exec swayctl kitty";
                     "${modifier}+apostrophe" = "workspace number 11";
 
                     "${modifier}+a" = "exec --no-startup-id swaync-client -t -sw";
-                    "${modifier}+d" = "exec --no-startup-id ${swaycmd} linode togglefullscreen";
-                    "${modifier}+e" = "exec --no-startup-id ${swaycmd} ncmpcpp visualizer";
-                    "${modifier}+f" = "exec --no-startup-id ${swaycmd} btop toggle";
-                    "${modifier}+g" = "exec --no-startup-id ${swaycmd} htop togglefullscreen";
+                    "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
+                    "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
+                    "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
+                    "${modifier}+g" = "exec --no-startup-id swayctl htop togglefullscreen";
                     "${modifier}+i" = "exec firefox -P KISS --private-window";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
@@ -455,13 +178,13 @@ in
 
                     "${modifier}+o" = "exec wofi";
                     "${modifier}+q" = "kill";
-                    "${modifier}+r" = "exec --no-startup-id ${swaycmd} ncmpcpp togglefullscreen";
+                    "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
                     "${modifier}+s" = "exec --no-startup-id swaync-client -C";
-                    "${modifier}+t" = "exec --no-startup-id ${swaycmd} ncmpcpp time";
-                    "${modifier}+u" = "exec --no-startup-id ${swaycmd} mpd reload";
-                    "${modifier}+w" = "exec --no-startup-id ${swaycmd} ncmpcpp toggle";
+                    "${modifier}+t" = "exec --no-startup-id swayctl ncmpcpp time";
+                    "${modifier}+u" = "exec --no-startup-id swayctl mpd reload";
+                    "${modifier}+w" = "exec --no-startup-id swayctl ncmpcpp toggle";
                     "${modifier}+x" = "exec --no-startup-id swaymsg 'seat - cursor set 1020 650'";
-                    "${modifier}+y" = "exec --no-startup-id ${swaycmd} ncmpcpp lyrics";
+                    "${modifier}+y" = "exec --no-startup-id swayctl ncmpcpp lyrics";
                     "${modifier}+z" = "exec zathura";
 
                     "${modifier}+0" = "workspace number 0";
@@ -475,15 +198,15 @@ in
                     "${modifier}+8" = "workspace number 8";
                     "${modifier}+9" = "workspace number 9";
 
-                    "${modifier}+alt+a" = "exec --no-startup-id ${swaycmd} camer toggle";
+                    "${modifier}+alt+a" = "exec --no-startup-id swayctl camer toggle";
                     "${modifier}+alt+e" = "reload";
                     "${modifier}+alt+f" = "exec swaylock -f";
                     "${modifier}+alt+q" = "exec sway exit";
-                    "${modifier}+alt+r" = "exec --no-startup-id ${swaycmd} reboot";
-                    "${modifier}+alt+s" = "exec --no-startup-id ${swaycmd} shutdown";
+                    "${modifier}+alt+r" = "exec --no-startup-id swayctl reboot";
+                    "${modifier}+alt+s" = "exec --no-startup-id swayctl shutdown";
                     "${modifier}+alt+t" = "exec --no-startup-id grim -o DP-3 ~/picture/screen/screenshot.png";
-                    "${modifier}+alt+j" = "exec --no-startup-id ${swaycmd} ncmpcpp lyricsdown";
-                    "${modifier}+alt+k" = "exec --no-startup-id ${swaycmd} ncmpcpp lyricsup";
+                    "${modifier}+alt+j" = "exec --no-startup-id swayctl ncmpcpp lyricsdown";
+                    "${modifier}+alt+k" = "exec --no-startup-id swayctl ncmpcpp lyricsup";
                     "${modifier}+alt+m" = "mode Mouse";
 
                     "${modifier}+alt+left" = "resize grow width 10";
@@ -492,12 +215,18 @@ in
                     "${modifier}+alt+right" = "resize shrink width 10";
                 };
 
-                seat.seat0 = {
-                    xcursor_theme = "${cursorName} 20";
-                    hide_cursor = "when-typing enable";
+                seat = {
+                    seat0 = {
+                        xcursor_theme = "${cursorName} 20";
+                        hide_cursor = "when-typing enable";
+                    };
                 };
 
-                bars = [ { command = "waybar"; } ];
+                bars = [
+                    {
+                        command = "waybar";
+                    }
+                ];
             };
 
             extraConfigEarly = ''
@@ -571,11 +300,11 @@ in
 
                 exec swaync
                 exec swayidle \
-                    timeout 300 "${swaycmd} lock; swaylock -f" resume "${swaycmd} resume lock" \
-                    timeout 3600 "${swaycmd} suspend" resume "${swaycmd} resume suspend" \
-                    after-resume "${swaycmd} resume sleep"
+                    timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
+                    timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
+                    after-resume "swayctl resume sleep"
 
-                exec_always --no-startup-id ${swaycmd} setup sound
+                exec_always --no-startup-id sndctl setup
 
                 exec_always --no-startup-id rpcd
 
@@ -638,45 +367,25 @@ in
             '';
         };
 
-        home.packages = with pkgs-stable; [
-            bitwarden-cli
-            cmatrix
-            jupyter
-            mpc
-            ( callPackage ../rpcd/rpcd.nix {} )
-        ];
+        home = {
+            packages = with pkgs-stable; [
+                bitwarden-cli
+                cmatrix
+                jupyter
+                mpc
+                (
+                    callPackage ../rpcd/rpcd.nix {}
+                )
+            ];
 
-        home.pointerCursor = {
-            enable = true;
-            package = pkgs-stable.graphite-cursors;
-            name = "${cursorName}";
-            size = 18;
-            gtk.enable = true;
-        };
-
-        systemd.user.timers.sndvolume = {
-            Unit = {
-                Description = "Timer For Sound Volume";
-            };
-
-            Install = {
-                WantedBy = [ "timers.target" ];
-            };
-
-            Timer = {
-                OnCalendar = "*-*-* *:00:00";
-            };
-        };
-
-        systemd.user.services.sndvolume = {
-            Unit = {
-                Description = "Set Sound Volume On Time";
-            };
-
-            Service = {
-                Type = "simple";
-                StandardOutput = "journal";
-                ExecStart = "${swaycmd} sndtimer";
+            pointerCursor = {
+                enable = true;
+                package = pkgs-stable.graphite-cursors;
+                name = "${cursorName}";
+                size = 18;
+                gtk = {
+                    enable = true;
+                };
             };
         };
 
