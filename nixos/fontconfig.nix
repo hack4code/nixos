@@ -39,10 +39,25 @@
 
         fontconfig = {
             defaultFonts = {
-                serif = [ "Noto Serif" "Source Han Serif" ];
-                sansSerif = [ "Noto Sans" "Source Han Sans" ];
-                monospace = [ "Roboto Mono" "Fira Mono" ];
-                emoji = [ "Noto Color Emoji" ];
+                serif = [
+                    "Noto Serif"
+                    "Source Han Serif"
+                ];
+
+                sansSerif = [
+                    "Noto Sans"
+                    "Source Han Sans"
+                ];
+
+                monospace = [
+                    "Intel One Mono"
+                    "JetBrains Mono"
+                ];
+
+                emoji = [
+                    "Noto Color Emoji"
+                    "Twitter Color Emoji"
+                ];
             };
 
             hinting = {
