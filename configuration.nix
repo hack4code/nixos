@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -147,7 +147,7 @@ in
 
     users = 
     {
-        defaultUserShell = pkgs-stable.zsh;
+        defaultUserShell = pkgs.zsh;
         users = {
             ${userName} = {
                 isNormalUser = true;
@@ -185,17 +185,17 @@ in
 
         neovim = {
             enable = true;
-            package = pkgs-stable.neovim-unwrapped;
+            package = pkgs.neovim-unwrapped;
             defaultEditor = true;
         };
 
         sway = {
             enable = true;
-            package = pkgs-stable.sway;
+            package = pkgs.sway;
             wrapperFeatures = {
                 gtk = true;
             };
-            extraPackages = with pkgs-stable; [
+            extraPackages = with pkgs; [
                 swaybg
                 swaylock
                 swayimg
@@ -219,15 +219,15 @@ in
 
     environment = {
         shells = [
-            pkgs-stable.zsh
-            pkgs-stable.bashInteractive
+            pkgs.zsh
+            pkgs.bashInteractive
         ];
 
         pathsToLink = [
             "/share/zsh"
         ];
 
-        systemPackages = with pkgs-stable; [
+        systemPackages = with pkgs; [
             /* systemd */
             power-profiles-daemon
             /* tool */

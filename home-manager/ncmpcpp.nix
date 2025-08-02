@@ -8,7 +8,6 @@ in
     home-manager.users.${userName} = {
         programs.ncmpcpp = {
             enable = true;
-
             package = pkgs-stable.ncmpcpp.override { visualizerSupport = true; };
 
             mpdMusicDir = "\"~/music/song\"";

@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -10,7 +10,7 @@ in
         i18n.inputMethod.type = "fcitx5";
         i18n.inputMethod.fcitx5 = {
             waylandFrontend = true;
-            addons = with pkgs-stable; [
+            addons = with pkgs; [
                 fcitx5-chinese-addons
                 fcitx5-rime
                 fcitx5-gtk

@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -11,7 +11,7 @@ in
             viAlias = true;
             vimAlias = true;
 
-            plugins = with pkgs-stable.vimPlugins; [
+            plugins = with pkgs.vimPlugins; [
                 {
                     plugin = gruvbox-nvim;
                     type = "lua";

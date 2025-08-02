@@ -1,12 +1,12 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
     version = config.homeManagerVersion;
 
-    downmovie = pkgs-stable.writeShellApplication {
+    downmovie = pkgs.writeShellApplication {
         name = "downmovie.sh";
-        runtimeInputs = with pkgs-stable; [
+        runtimeInputs = with pkgs; [
             rsync
             openssh
             coreutils

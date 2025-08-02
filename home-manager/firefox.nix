@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -35,7 +35,7 @@ in
                                         { name = "query"; value = "{searchTerms}"; }
                                     ];
                                 }];
-                                icon = "''${pkgs-stable.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                                icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                                 definedAliases = [ "@np" ];
                             };
 
@@ -43,7 +43,7 @@ in
                         };
                     };
 
-                    # extensions = with inputs.firefox-addons.packages.${pkgs-stable.system}; [
+                    # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
                     #     bitwarden
                     #     ublock-origin
                     #     vimium

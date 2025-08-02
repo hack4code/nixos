@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -6,7 +6,7 @@ let
 in
 {
     home-manager.users.${userName} = {
-        home.packages = with pkgs-stable; [
+        home.packages = with pkgs; [
             (
                 writeShellApplication {
                     name = "s6.sh";

@@ -1,11 +1,11 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
     version = config.homeManagerVersion;
-    sndctl = pkgs-stable.writeShellApplication {
+    sndctl = pkgs.writeShellApplication {
         name = "sndctl";
-        runtimeInputs = with pkgs-stable; [
+        runtimeInputs = with pkgs; [
             bluez-experimental
             coreutils
             gawk

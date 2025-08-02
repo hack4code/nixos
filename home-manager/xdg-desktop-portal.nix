@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -17,7 +17,7 @@ in
                         "org.freedesktop.impl.portal.Inhibit" = [ "none" ];
                     };
                 };
-                extraPortals = with pkgs-stable; [
+                extraPortals = with pkgs; [
                     xdg-desktop-portal-wlr
                     xdg-desktop-portal-gtk
                 ];

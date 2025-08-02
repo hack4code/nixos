@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -368,7 +368,7 @@ in
         };
 
         home = {
-            packages = with pkgs-stable; [
+            packages = with pkgs; [
                 bitwarden-cli
                 cmatrix
                 jupyter
@@ -380,7 +380,7 @@ in
 
             pointerCursor = {
                 enable = true;
-                package = pkgs-stable.graphite-cursors;
+                package = pkgs.graphite-cursors;
                 name = "${cursorName}";
                 size = 18;
                 gtk = {

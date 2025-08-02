@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -8,9 +8,9 @@ in
     home-manager.users.${userName} = {
         home.packages = [
             (
-                pkgs-stable.writeShellApplication {
+                pkgs.writeShellApplication {
                     name = "swayctl";
-                    runtimeInputs = with pkgs-stable; [
+                    runtimeInputs = with pkgs; [
                         coreutils
                         curl
                         ffmpeg

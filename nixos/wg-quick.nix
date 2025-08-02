@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     interface = config.wifiInterface;
@@ -25,16 +25,16 @@ in
             mtu = 1408;
 
             postUp = ''
-                # ${pkgs-stable.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
-                # ${pkgs-stable.ethtool}/bin/ethtool -K ${interface} rx-udp-gro-forwarding on
-                ${pkgs-stable.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
+                # ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
+                # ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-udp-gro-forwarding on
+                ${pkgs.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
                 sysctl -q net.ipv4.conf.${wgInterface}.route_localnet=1
-                ${pkgs-stable.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
+                ${pkgs.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
             '';
 
             preDown = ''
-                ${pkgs-stable.nftables}/bin/nft delete table ip dnscrypt-proxy
-                ${pkgs-stable.nftables}/bin/nft delete table ip6 dnscrypt-proxy
+                ${pkgs.nftables}/bin/nft delete table ip dnscrypt-proxy
+                ${pkgs.nftables}/bin/nft delete table ip6 dnscrypt-proxy
             '';
 
             peers = [{

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-stable, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 
 {
     imports = [
@@ -62,7 +62,7 @@
         bluetooth = {
             enable = true;
             powerOnBoot = true;
-            package = pkgs-stable.bluez-experimental;
+            package = pkgs.bluez-experimental;
             settings = {
                 Policy = {
                     AutoEnable = "true";
