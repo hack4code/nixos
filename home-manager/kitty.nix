@@ -13,10 +13,10 @@ in
                 enableZshIntegration = true;
             };
 
-            font = {
-                name = "Inetl One Mono";
-                size = 15.0;
-            };
+            # font = {
+            #     name = "Inetl One Mono";
+            #     size = 15.0;
+            # };
 
             keybindings = {
                 "kitty_mod+w" = "no_op";
@@ -31,9 +31,6 @@ in
             };
 
             settings = {
-                bold_font = "Inetl One Mono Medium";
-                italic_font = "Inetl One Mono Italic";
-                bold_italic_font = "Inetl One Mono Medium Italic";
                 undercurl_style = "thin-sparse";
                 disable_ligatures = "never";
                 cursor_shape = "underline";
@@ -42,6 +39,12 @@ in
             };
 
             extraConfig = ''
+                font_family family='Intel One Mono' postscript_name=IntelOneMono-Regular
+                bold_font  family='Intel One Mono' postscript_name=IntelOneMono-Medium
+                italic_font family='Intel One Mono' postscript_name=IntelOneMono-Italic
+                bold_italic_font family='Intel One Mono' postscript_name=IntelOneMono-MediumItalic
+                font_size 16
+
                 kitty_mod ctrl+shift
 
                 allow_remote_control socket
@@ -51,10 +54,10 @@ in
                 map kitty_mod+h kitty_scrollback_nvim
                 map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
 
-                modify_font cell_height +6px
-                modify_font baseline 3
+                # modify_font cell_height +4px
+                # modify_font baseline 3
 
-                box_drawing_scale 0.4, 1, 1.5, 2
+                # box_drawing_scale 0.4, 1, 1.5, 2
 
                 tab_bar_edge bottom
                 tab_bar_margin_width 2.0
