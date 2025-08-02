@@ -14,7 +14,7 @@ in
             };
 
             font = {
-                name = "Inetl One Mono Light";
+                name = "Inetl One Mono";
                 size = 15.0;
             };
 
@@ -31,9 +31,9 @@ in
             };
 
             settings = {
-                bold_font = "Inetl One Mono Regular";
-                italic_font = "Inetl One Mono Light Italic";
-                bold_italic_font = "Inetl One Mono Regular Italic";
+                bold_font = "Inetl One Mono Medium";
+                italic_font = "Inetl One Mono Italic";
+                bold_italic_font = "Inetl One Mono Medium Italic";
                 undercurl_style = "thin-sparse";
                 disable_ligatures = "never";
                 cursor_shape = "underline";
