@@ -133,7 +133,6 @@ in
                                     sleep)
                                         resume_kremap
                                         resume_system
-                                        setup_sound
                                         ;;
 
                                     suspend)

@@ -302,7 +302,7 @@ in
                 exec swayidle \
                     timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
                     timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
-                    after-resume "swayctl resume sleep"
+                    after-resume "swayctl resume sleep; sndctl setup"
 
                 exec_always --no-startup-id sndctl setup
 
