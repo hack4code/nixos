@@ -46,7 +46,7 @@ in
         };
 
         home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = "${version}";
+        home.stateVersion  = version;
     };
 }
 

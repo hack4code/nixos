@@ -18,15 +18,18 @@ let
 in
 {
     networking.wg-quick.interfaces = {
-        "${wgInterface}" = {
-            address = [ "${wgIp4Address}" "${wgIp6Address}" ];
+        ${wgInterface} = {
+            address = [
+                wgIp4Address
+                wgIp6Address
+            ];
             privateKey = wgPrivateKey;
             listenPort = wgListenPort;
             mtu = 1408;
 
             postUp = ''
-                # ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
-                # ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-udp-gro-forwarding on
+                ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
+                ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-udp-gro-forwarding on
                 ${pkgs.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
                 sysctl -q net.ipv4.conf.${wgInterface}.route_localnet=1
                 ${pkgs.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
@@ -37,14 +40,19 @@ in
                 ${pkgs.nftables}/bin/nft delete table ip6 dnscrypt-proxy
             '';
 
-            peers = [{
-                endpoint = "[${serverIp6Address}]:${wgServerPort}";
-                publicKey = wgServerPubkey;
-                presharedKey = wgPresharedKey;
+            peers = [
+                {
+                    endpoint = "[${serverIp6Address}]:${wgServerPort}";
+                    publicKey = wgServerPubkey;
+                    presharedKey = wgPresharedKey;
 
-                allowedIPs = [ "0.0.0.0/0" "::/0" ];
-                persistentKeepalive = 480;
-            }];
+                    allowedIPs = [
+                        "0.0.0.0/0"
+                        "::/0"
+                    ];
+                    persistentKeepalive = 480;
+                }
+            ];
         };
     };
 

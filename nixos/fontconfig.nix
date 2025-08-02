@@ -80,10 +80,12 @@
     console = {
         earlySetup = true;
         keyMap = "us";
-        packages = with pkgs; [ terminus_font ];
+        packages = with pkgs; [
+            terminus_font
+        ];
         font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
     };
 }
 
 
-# vim: ts =4 sw=4 sts=4 ft=nix et:
+# vim: ts=4 sw=4 sts=4 ft=nix et:

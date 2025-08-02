@@ -30,7 +30,7 @@ in
                     };
                 };
                 server_names = [
-                    "${dnsServerName}"
+                    dnsServerName
                 ];
                 static = {
                     linode = {

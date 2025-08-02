@@ -106,19 +106,19 @@ in
                     trackpoint = "2:10:TPPS/2_Elan_TrackPoint";
                 in
                 {
-                    "${keyboard}" = {
+                    ${keyboard} = {
                         xkb_layout = "us";
                         repeat_rate = "12";
                         repeat_delay = "1000";
                     };
 
-                    "${cherry}" = {
+                    ${cherry} = {
                         xkb_layout = "us";
                         repeat_rate = "12";
                         repeat_delay = "1000";
                     };
 
-                    "${touchpad}" = {
+                    ${touchpad} = {
                         dwt = "enabled";
                         tap = "enabled";
                         natural_scroll = "enabled";
@@ -127,13 +127,13 @@ in
                         pointer_accel = "0.7";
                     };
 
-                    "${trackpoint}" = {
+                    ${trackpoint} = {
                         accel_profile = "flat";
                     };
                 };
 
                 output = {
-                    "${monitorThinkpad}" = {
+                    ${monitorThinkpad} = {
                         position = "0,0";
                         mode = "2160x1350@60HZ";
                         scale = "1.5";
@@ -141,7 +141,7 @@ in
                         subpixel = "rgb";
                     };
 
-                    "${monitorSamsung}" = {
+                   ${monitorSamsung} = {
                         position = "1440,0";
                         mode = "2560x1440@75HZ";
                         scale = "1.5";
@@ -381,7 +381,7 @@ in
             pointerCursor = {
                 enable = true;
                 package = pkgs.graphite-cursors;
-                name = "${cursorName}";
+                name = cursorName;
                 size = 18;
                 gtk = {
                     enable = true;
@@ -390,7 +390,7 @@ in
         };
 
         home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = "${version}";
+        home.stateVersion = version;
     };
 }
 

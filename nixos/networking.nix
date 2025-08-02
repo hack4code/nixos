@@ -15,20 +15,29 @@ in
         hostName = hostName;
         useDHCP = false;
         dhcpcd.enable = false;
-        nameservers = [ "127.0.0.1" "::1" ];
+        nameservers = [
+            "::1"
+            "127.0.0.1"
+        ];
         wireless.dbusControlled = true;
         nftables.enable = true;
         firewall = {
             enable = true;
-            trustedInterfaces = [ wgInterface ];
-            allowedUDPPorts = [ wgListenPort ];
+            trustedInterfaces = [
+                wgInterface
+            ];
+            allowedUDPPorts = [
+                wgListenPort
+            ];
         };
 
         networkmanager = {
             enable = true;
             dns = "none";
-            wifi.backend = "iwd";
-            wifi.powersave = true;
+            wifi = {
+                backend = "iwd";
+                powersave = true;
+            };
 
             connectionConfig = {
                 "wifi.cloned-mac-address" = "preserve";

@@ -86,9 +86,9 @@ in
         };
 
         home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = "${version}";
+        home.stateVersion  = version;
     };
 }
 
 
-# vim: ts =4 sw=4 sts=4 ft=nix et:
+# vim: ts=4 sw=4 sts=4 ft=nix et:
