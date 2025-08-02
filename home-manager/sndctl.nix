@@ -43,6 +43,7 @@ let
             case "$1" in
                 setup)
                     connect_sony
+                    sleep 2s
                     set_sound_volume
                     ;;
 
