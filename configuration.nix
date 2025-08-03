@@ -15,6 +15,7 @@ in
         ./config/wireguard.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
+        ./config/input.nix
         ./config/output.nix
         ./config/wifi.nix
         ./config/ntp.nix
