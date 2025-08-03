@@ -14,10 +14,10 @@ in
                 enableZshIntegration = true;
             };
 
-             # font = {
-             #     name = "family='Inetl One Mono' postscript_name=IntelOneMono-Regular";
-             #     size = 15.0;
-             # };
+             font = {
+                 name = "Google Sans Code";
+                 size = 15.0;
+             };
 
             actionAliases = {
                 "kitty_scrollback_nvim" = "kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py";
@@ -45,13 +45,13 @@ in
             };
 
             extraConfig = ''
-                font_family family='Intel One Mono' postscript_name=IntelOneMono-Regular
-                bold_font  family='Intel One Mono' postscript_name=IntelOneMono-Medium
-                italic_font family='Intel One Mono' postscript_name=IntelOneMono-Italic
-                bold_italic_font family='Intel One Mono' postscript_name=IntelOneMono-MediumItalic
-                font_size 15
+                # font_family family='Intel One Mono' postscript_name=IntelOneMono-Regular
+                # bold_font  family='Intel One Mono' postscript_name=IntelOneMono-Medium
+                # italic_font family='Intel One Mono' postscript_name=IntelOneMono-Italic
+                # bold_italic_font family='Intel One Mono' postscript_name=IntelOneMono-MediumItalic
+                # font_size 15
 
-                # modify_font cell_height +4px
+                modify_font cell_height +6px
                 # modify_font baseline 3
                 # box_drawing_scale 0.4, 1, 1.5, 2
 
