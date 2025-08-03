@@ -10,13 +10,18 @@ in
             enable = true;
 
             shellIntegration = {
+                enableBashIntegration = true;
                 enableZshIntegration = true;
             };
 
-            # font = {
-            #     name = "Inetl One Mono";
-            #     size = 15.0;
-            # };
+             # font = {
+             #     name = "family='Inetl One Mono' postscript_name=IntelOneMono-Regular";
+             #     size = 15.0;
+             # };
+
+            actionAliases = {
+                "kitty_scrollback_nvim" = "kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py";
+            };
 
             keybindings = {
                 "kitty_mod+w" = "no_op";
@@ -25,7 +30,8 @@ in
                 "kitty_mod+q" = "close_tab";
                 "kitty_mod+k" = "next_tab";
                 "kitty_mod+j" = "previous_tab";
-                "kitty_mod+i" = "launch --stdin-source=@screen_scrollback --type=overlay vim -R -";
+                "kitty_mod+h" = "kitty_scrollback_nvim";
+                "kitty_mod+l" = "kitty_scrollback_nvim --config ksb_builtin_last_cmd_output";
                 "super+c" = "copy_to_clipboard";
                 "super+v" = "paste_from_clipboard";
             };
@@ -43,21 +49,24 @@ in
                 bold_font  family='Intel One Mono' postscript_name=IntelOneMono-Medium
                 italic_font family='Intel One Mono' postscript_name=IntelOneMono-Italic
                 bold_italic_font family='Intel One Mono' postscript_name=IntelOneMono-MediumItalic
-                font_size 16
-
-                kitty_mod ctrl+shift
-
-                allow_remote_control socket
-                listen_on unix:@kitty
-                action_alias kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
-
-                map kitty_mod+h kitty_scrollback_nvim
-                map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+                font_size 15
 
                 # modify_font cell_height +4px
                 # modify_font baseline 3
-
                 # box_drawing_scale 0.4, 1, 1.5, 2
+
+                symbol_map U+4E00-U+9FFF Noto Sans Mono CJK SC
+                symbol_map U+3400-U+4DBF Noto Sans Mono CJK TC
+                symbol_map U+3000-U+30FF Noto Sans Mono CJK JP
+                symbol_map U+AC00-U+D7FF Noto Sans Mono CJK KR
+
+                symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font
+                symbol_map U+1F000-U+1F02F,U+1F0A0-U+1F0FF,U+1F100-U+1F64F,U+1F680-U+1F6FF,U+1F910-U+1F96B,U+1F980-U+1F9E0 Noto Color Emoji
+
+                allow_remote_control socket
+                listen_on unix:@kitty
+
+                kitty_mod ctrl+shift
 
                 tab_bar_edge bottom
                 tab_bar_margin_width 2.0
@@ -69,15 +78,8 @@ in
 
                 window_padding_width 4 8
 
-                symbol_map U+4E00-U+9FFF Noto Sans Mono CJK SC
-                symbol_map U+3400-U+4DBF Noto Sans Mono CJK TC
-                symbol_map U+3000-U+30FF Noto Sans Mono CJK JP
-                symbol_map U+AC00-U+D7FF Noto Sans Mono CJK KR
 
-                symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font
-                symbol_map U+1F000-U+1F02F,U+1F0A0-U+1F0FF,U+1F100-U+1F64F,U+1F680-U+1F6FF,U+1F910-U+1F96B,U+1F980-U+1F9E0 Noto Color Emoji
-
-                # colortheme
+                # color
                 cursor                  #928374
                 cursor_text_color       background
 
