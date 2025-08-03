@@ -228,8 +228,6 @@ in
         ];
 
         systemPackages = with pkgs; [
-            /* systemd */
-            power-profiles-daemon
             /* tool */
             firefox
             openssh
