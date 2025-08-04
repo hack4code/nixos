@@ -257,8 +257,8 @@ in
 
                         local BEGIN
                         local END
-                        BEGIN=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | tail -n +3 | head -n 1)
-                        END=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | tail -n 1)
+                        BEGIN=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n 1)
+                        END=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n -2 | tail -n 1)
                         if ((BEGIN == END)); then
                             sudo nix-env --delete-generations "$BEGIN" --profile /nix/var/nix/profiles/system
                         else
