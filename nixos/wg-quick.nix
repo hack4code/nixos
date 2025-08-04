@@ -9,11 +9,11 @@ let
     wgPrivateKey = config.wgPrivateKey;
     wgServerPubkey = config.wgServerPubkey;
     wgPresharedKey = config.wgPresharedKey;
-    serverIp4Address = config.serverIp4Address;
-    serverIp6Address = config.serverIp6Address;
+    wgEndPoint = config.wgEndPoint;
     wgServerIp4Address = config.wgServerIp4Address;
     wgServerIp6Address = config.wgServerIp6Address;
-    wgServerPort = builtins.toString config.wgServerPort;
+    vpsIp4Address = config.vpsIp4Address;
+    vpsIp6Address = config.vpsIp6Address;
     dnsPort = builtins.toString config.dnsPort;
 in
 {
@@ -42,7 +42,7 @@ in
 
             peers = [
                 {
-                    endpoint = "[${serverIp6Address}]:${wgServerPort}";
+                    endpoint = wgEndPoint;
                     publicKey = wgServerPubkey;
                     presharedKey = wgPresharedKey;
 
@@ -61,14 +61,14 @@ in
             table ip dnscrypt-proxy {
                 chain input {
                     type filter hook input priority filter; policy accept;
-                    iifname "${wgInterface}" ip saddr ${wgServerIp4Address} udp sport ${dnsPort} ip saddr set ${serverIp4Address}
+                    iifname "${wgInterface}" ip saddr ${wgServerIp4Address} udp sport ${dnsPort} ip saddr set ${vpsIp4Address}
                 }
             }
 
             table ip6 dnscrypt-proxy {
                 chain input {
                     type filter hook input priority filter; policy accept;
-                    iifname "${wgInterface}" ip6 saddr ${wgServerIp6Address} udp sport ${dnsPort} ip6 saddr set ${serverIp6Address}
+                    iifname "${wgInterface}" ip6 saddr ${wgServerIp6Address} udp sport ${dnsPort} ip6 saddr set ${vpsIp6Address}
                 }
             }
 

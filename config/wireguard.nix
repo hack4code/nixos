@@ -13,8 +13,9 @@
         wgServer = mkOption { type = str; };
         wgServerIp4Address = mkOption { type = str; };
         wgServerIp6Address = mkOption { type = str; };
-        serverIp4Address = mkOption { type = str; };
-        serverIp6Address = mkOption { type = str; };
+        vpsIp4Address = mkOption { type = str; };
+        vpsIp6Address = mkOption { type = str; };
+        wgEndPoint = mkOption { type = str; };
 
         dnsPort = mkOption { type = port; };
     };
@@ -30,9 +31,10 @@
         wgServerIp4Address = "";
         wgServerIp6Address = "";
         wgServerPort = 0;
+        wgEndPoint = "";
 
-        serverIp4Address = "";
-        serverIp6Address = "";
+        vpsIp4Address = "";
+        vpsIp6Address = "";
         dnsPort = 0;
     };
 }
