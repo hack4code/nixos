@@ -245,27 +245,27 @@ in
                 workspace 11 output "${monitorThinkpad}"
 
                 mode "Mouse" {
-                    bindsym Shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
+                    bindsym shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
 
-                    # Mouse move
+                    # mouse move
                     bindsym h seat seat0 cursor move -15 0
                     bindsym j seat seat0 cursor move 0 15
                     bindsym k seat seat0 cursor move 0 -15
                     bindsym l seat seat0 cursor move 15 0
 
-                    # Left button
+                    # left button
                     bindsym s seat seat0 cursor press button1
                     bindsym --release s seat seat0 cursor release button1
 
-                    # Middle button
+                    # middle button
                     bindsym d seat seat0 cursor press button2
                     bindsym --release d seat seat0 cursor release button2
 
-                    # Right button
+                    # right button
                     bindsym f seat seat0 cursor press button3
                     bindsym --release f seat seat0 cursor release button3
 
-                    bindsym Escape mode default
+                    bindsym escape mode default
                 }
 
                 bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel_backlight -U 10
