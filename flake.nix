@@ -7,13 +7,12 @@
             url = "github:nix-community/lanzaboote/v0.4.2";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nixos-hardware.url = "github:nixos/nixos-hardware/master";
-
-        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
         home-manager = {
             url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nixos-hardware.url = "github:nixos/nixos-hardware/master";
+        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     };
 
     outputs = { nixpkgs-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
