@@ -61,10 +61,6 @@ in
                 XDG_PUBLICSHARE_DIR = "$HOME/temp";
                 XDG_TEMPLATES_DIR = "$HOME/temp";
 
-                XCURSOR_PATH = "$XCURSOR_PATH:~/.local/share/icons";
-                XCURSOR_THEME = "Graphite-dark-nord-cursor";
-                XCURSOR_SIZE = 20;
-
                 LANG = "en_US.UTF-8";
                 EDITOR = "vim";
 
