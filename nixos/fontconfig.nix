@@ -2,6 +2,12 @@
 
 {
     fonts = {
+        enableGhostscriptFonts = true;
+
+        fontDir = {
+            enable = true;
+        };
+
         packages = with pkgs; [
             /* noto */
             noto-fonts
