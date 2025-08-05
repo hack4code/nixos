@@ -50,30 +50,26 @@ monitor_full_name = {
 
 
 kitty_config_top = (
-    "--override font_family=\"family='Source Code Pro' postscript_name=SourceCodePro-Regular\" "
-    "--override bold_font=\"family='Source Code Pro' postscript_name=SourceCodePro-Medium\" "
+    "--override font_family='Source Code Pro' "
     "--override modify_font='cell_height +8px'"
 )
 
 
 kitty_config_mutt = (
-    "--override font_family=\"family='Fira Mono' postscript_name=FiraMono-Regular\" "
-    "--override bold_font=\"family='Fira Mono' postscript_name=FiraMono-Medium\" "
+    "--override font_family='Fira Mono' "
     "--override modify_font='cell_height +8px'"
 )
 
 
 kitty_config_ranger = (
-    "--override font_family=\"family='Fira Mono' postscript_name=FiraMono-Regular\" "
-    "--override bold_font=\"family='Fira Mono' postscript_name=FiraMono-Medium\" "
+    "--override font_family='Fira Mono' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override modify_font='cell_height +16px'"
 )
 
 
 kitty_config_weechat = (
-    "--override font_family=\"family='Fira Mono' postscript_name=FiraMono-Regular\" "
-    "--override bold_font=\"family='Fira Mono' postscript_name=FiraMono-Medium\" "
+    "--override font_family='Fira Mono' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override modify_font='cell_height +12px'"
 )
