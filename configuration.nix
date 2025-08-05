@@ -2,8 +2,10 @@
 
 let
     userName = config.userName;
+    groupName = config.groupName;
     userPassWord = config.userPassWord;
-    userID = config.userID;
+    uid = config.uid;
+    gid = config.gid;
     nixosVersion = config.nixosVersion;
 in
 {
@@ -149,22 +151,28 @@ in
     users = 
     {
         defaultUserShell = pkgs.zsh;
+        groups = {
+            ${groupName} = {
+                gid = gid;
+            };
+        };
+
         users = {
             ${userName} = {
                 isNormalUser = true;
                 home = "/home/${userName}";
-                uid = userID;
+                uid = uid;
                 description = "Sky Walker";
                 initialPassword = userPassWord;
                 linger = true;
                 extraGroups = [
-                    "audio"
-                    "avahi"
+                    groupName
+                    "wheel"
+                    "networkmanager"
                     "podman"
                     "tss"
-                    "networkmanager"
+                    "audio"
                     "video"
-                    "wheel"
                 ];
             };
         };

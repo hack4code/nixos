@@ -3,15 +3,19 @@
 {
     options = with lib; with types; {
         userName = mkOption { type = str; };
+        groupName = mkOption { type = str; };
         userPassWord = mkOption { type = str; };
         accountName = mkOption { type = str; };
-        userID = mkOption { type = int; };
+        uid = mkOption { type = int; };
+        gid = mkOption { type = int; };
     };
 
     config = {
         userName = "e";
+        groupName = "e";
         userPassWord = "123456";
-        userID = 1000;
+        uid = 1000;
+        gid = 1000;
         accountName = "code4hack";
     };
 }
