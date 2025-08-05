@@ -2,7 +2,7 @@
     description = "Secure Boot Enabled NixOS Config";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         lanzaboote = {
             url = "github:nix-community/lanzaboote/v0.4.2";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -11,8 +11,8 @@
             url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nixos-hardware.url = "github:nixos/nixos-hardware/master";
-        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     };
 
     outputs = { nixpkgs-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
