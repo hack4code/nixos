@@ -7,8 +7,9 @@
         addons = with pkgs; [
             fcitx5-chinese-addons
             fcitx5-rime
-            fcitx5-nord
             fcitx5-gtk
+            fcitx5-nord
+            fcitx5-fluent
         ];
     };
 }
