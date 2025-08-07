@@ -7,6 +7,7 @@ let
     uid = config.uid;
     gid = config.gid;
     nixosVersion = config.nixosVersion;
+    homeManagerVersion = config.homeManagerVersion;
 in
 {
     imports = [
@@ -104,6 +105,10 @@ in
         useUserPackages = true;
         useGlobalPkgs = true;
         backupFileExtension = "backup";
+        users.${userName} = {
+            home.enableNixpkgsReleaseCheck = false;
+            home.stateVersion = homeManagerVersion;
+        };
     };
 
     system = {

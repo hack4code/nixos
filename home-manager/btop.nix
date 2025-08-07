@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
     interface = config.wifiInterface;
 in
 {
@@ -91,9 +90,6 @@ in
                 custom_gpu_name5 = "";
             };
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = version;
     };
 }
 

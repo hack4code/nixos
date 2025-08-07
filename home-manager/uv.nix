@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -15,9 +14,6 @@ in
                 default = true
             '';
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = version;
     };
 }
 

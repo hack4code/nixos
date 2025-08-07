@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -104,9 +103,6 @@ in
             source = ../mpv;
             recursive = true;
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = version;
     };
 }
 

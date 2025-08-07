@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = {
@@ -34,9 +33,6 @@ in
             source = ../swaylock;
             recursive = true;
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = version;
     };
 }
 

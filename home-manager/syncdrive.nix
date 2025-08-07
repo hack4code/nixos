@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 
     syncdrive = pkgs.writeShellApplication {
         name = "syncdrive.sh";
@@ -142,9 +141,6 @@ in
                 ExecStart = "${syncdrive}/bin/syncdrive.sh";
             };
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = version;
     };
 }
 

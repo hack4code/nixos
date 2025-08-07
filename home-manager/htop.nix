@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 in
 {
     home-manager.users.${userName} = { config, ...}: {
@@ -58,9 +57,6 @@ in
                 (text "LoadAverage")
             ]);
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = version;
     };
 }
 

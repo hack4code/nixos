@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
     sndctl = pkgs.writeShellApplication {
         name = "sndctl";
         runtimeInputs = with pkgs; [
@@ -90,9 +89,6 @@ in
                 ExecStart = "${sndctl}/bin/sndctl timer";
             };
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = version;
     };
 }
 

@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
     bwSession = config.bwSession;
 in
 {
@@ -300,9 +299,6 @@ in
                 '';
             };
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = version;
     };
 }
 

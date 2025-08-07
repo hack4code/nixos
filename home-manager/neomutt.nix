@@ -2,10 +2,8 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 in
 {
-
     home-manager.users.${userName} = {
         accounts.email = {
             maildirBasePath = "mail";
@@ -102,9 +100,6 @@ in
             source = ../neomutt;
             recursive = true;
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion  = version;
     };
 }
 

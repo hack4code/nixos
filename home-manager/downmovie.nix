@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 
     downmovie = pkgs.writeShellApplication {
         name = "downmovie.sh";
@@ -113,9 +112,6 @@ in
                 ExecStart = "${downmovie}/bin/downmovie.sh";
             };
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = version;
     };
 }
 

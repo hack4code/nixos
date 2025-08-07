@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
     monitorSamsung = config.monitorSamsung;
     monitorThinkpad = config.monitorThinkpad;
 in
@@ -135,109 +134,105 @@ in
                 };
             };
 
-            style =
-                ''
-                    @define-color fg1       #ebdbb2;
-                    @define-color fg2       #d5c4a1;
-                    @define-color fg4       #a89984;
-                    @define-color bg0       #282828;
-                    @define-color bg0_h     #1d2021;
-                    @define-color bg0_s     #32302f;
-                    @define-color orange    #d65d0e;
-                    @define-color red       #cc241d;
-                    @define-color grey      #928374;
+            style = ''
+                @define-color fg1       #ebdbb2;
+                @define-color fg2       #d5c4a1;
+                @define-color fg4       #a89984;
+                @define-color bg0       #282828;
+                @define-color bg0_h     #1d2021;
+                @define-color bg0_s     #32302f;
+                @define-color orange    #d65d0e;
+                @define-color red       #cc241d;
+                @define-color grey      #928374;
 
 
-                    * {
-                        font-family: "Symbols Nerd Font", "Fira Mono";
-                        font-size: 16px;
-                    }
+                * {
+                    font-family: "Symbols Nerd Font", "Fira Mono";
+                    font-size: 16px;
+                }
 
 
-                    window#waybar {
-                        background-color: rgba(43, 48, 59, 0.0);
-                        color: #ffffff;
-                        transition-property: background-color;
-                        transition-duration: 0.5s;
-                    }
+                window#waybar {
+                    background-color: rgba(43, 48, 59, 0.0);
+                    color: #ffffff;
+                    transition-property: background-color;
+                    transition-duration: 0.5s;
+                }
 
 
-                    window#waybar.hidden {
-                        opacity: 0.2;
-                    }
+                window#waybar.hidden {
+                    opacity: 0.2;
+                }
 
 
-                    #waybar.top > box.horizontal {
-                        margin-left: 8pt;
-                        margin-right: 8pt;
-                        margin-top: 6pt;
-                        background-color: rgba(0, 0, 0, 1);
-                        background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) padding-box, linear-gradient(45deg, rgba(204, 36, 29, 1.0), rgba(215, 153, 33, 1.0)) border-box;
-                        border-radius: 16px;
-                        border: 2px solid @grey;
-                        padding: 1pt 1pt;
-                    }
+                #waybar.top > box.horizontal {
+                    margin-left: 8pt;
+                    margin-right: 8pt;
+                    margin-top: 6pt;
+                    background-color: rgba(0, 0, 0, 1);
+                    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) padding-box, linear-gradient(45deg, rgba(204, 36, 29, 1.0), rgba(215, 153, 33, 1.0)) border-box;
+                    border-radius: 16px;
+                    border: 2px solid @grey;
+                    padding: 1pt 1pt;
+                }
 
 
-                    #tray,
-                    #idle_inhibitor,
-                    #custom-notification,
-                    #clock,
-                    #battery,
-                    #cpu,
-                    #memory,
-                    #network,
-                    #pulseaudio {
-                        color: @fg1;
-                        letter-spacing: 0;
-                        margin: 2px 8px;
-                        font-weight: 500;
-                    }
+                #tray,
+                #idle_inhibitor,
+                #custom-notification,
+                #clock,
+                #battery,
+                #cpu,
+                #memory,
+                #network,
+                #pulseaudio {
+                color: @fg1;
+                    letter-spacing: 0;
+                    margin: 2px 8px;
+                    font-weight: 500;
+                }
 
 
-                    #tray {
-                        padding: 0 24px;
-                    }
+                #tray {
+                    padding: 0 24px;
+                }
 
 
-                    #workspaces {
-                        margin-left: 24px;
-                    }
+                #workspaces {
+                    margin-left: 24px;
+                }
 
 
-                    #workspaces button {
-                        font-size: 16px;
-                        font-weight: 600;
-                        color: @fg1;
-                        padding: 0px 4px;
-                        margin: 6px 4px;
-                        background: transparent;
-                    }
+                #workspaces button {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: @fg1;
+                    padding: 0px 4px;
+                    margin: 6px 4px;
+                    background: transparent;
+                }
 
 
-                    #workspaces button.focused {
-                        color: @bg0_h;
-                        background-color: @fg1;
-                    }
+                #workspaces button.focused {
+                color: @bg0_h;
+                   background-color: @fg1;
+                }
 
 
-                    #network.disconnected {
+                #network.disconnected {
+                    color: @red;
+                }
+
+
+                @keyframes blink {
+                    to {
                         color: @red;
+                        background-color: @bg0_h;
                     }
-
-
-                    @keyframes blink {
-                        to {
-                            color: @red;
-                            background-color: @bg0_h;
-                        }
-                    }
-                '';
-            };
-
-        home.enableNixpkgsReleaseCheck = false;
-            home.stateVersion  = version;
+                }
+            '';
         };
+    };
 }
 
 

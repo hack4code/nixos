@@ -2,7 +2,6 @@
 
 let
     userName = config.userName;
-    version = config.homeManagerVersion;
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
@@ -387,9 +386,6 @@ in
                 };
             };
         };
-
-        home.enableNixpkgsReleaseCheck = false;
-        home.stateVersion = version;
     };
 }
 
