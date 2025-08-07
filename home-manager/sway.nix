@@ -276,13 +276,13 @@ in
                 for_window [window_type="dialog"] floating enable
                 for_window [window_role="dialog"] floating enable
 
-                for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1, sticky enable, move position center, resize set 60 ppt 80 ppt
-                for_window [app_id="firefox" title="^File Upload$"] floating enable, border pixel 1, sticky enable, move position center, resize set 60 ppt 90 ppt
-                for_window [app_id="firefox" title="^Page Info"] floating enable, border pixel 1, sticky enable, move position center
+                for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
+                for_window [app_id="firefox" title="^File Upload$"] floating enable, border pixel 2, move position center, resize set 60 ppt 90 ppt
+                for_window [app_id="firefox" title="^Page Info"] floating enable, border pixel 1,  move position center
                 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 70 ppt 69 ppt, resize set 30 ppt 30 ppt
 
-                for_window [app_id="org.fcitx.fcitx5-config-qt"] floating enable, border pixel 1, sticky enable, move position center, resize set 50 ppt 70 ppt
-                for_window [app_id="org.fcitx.fcitx5-config-qt" title="^Fcitx Configuration$"] floating enable, border pixel 1, sticky enable, move position center, resize set 60 ppt 90 ppt
+                for_window [app_id="org.fcitx.fcitx5-config-qt"] floating enable, border pixel 1, move position center, resize set 50 ppt 70 ppt
+                for_window [app_id="org.fcitx.fcitx5-config-qt" title="^Fcitx Configuration$"] floating enable, border pixel 1, move position center, resize set 60 ppt 90 ppt
 
                 for_window [app_id="floatkitty"] floating enable, border pixel 1, move position center, resize set 64 ppt 60 ppt, opacity 0.95
 
