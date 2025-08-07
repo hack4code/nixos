@@ -2,22 +2,22 @@
 
 let
     userName = config.userName;
-    version = config.kernelVersion;
-    sha256 = config.kernelSha256;
+    kernelVersion = config.kernelVersion;
+    kernelSha256 = config.kernelSha256;
 in
 {
     boot = {
         consoleLogLevel = 3;
 
         kernelPackages = pkgs.linuxPackages_custom {
-            version = version;
+            version = kernelVersion;
             src = pkgs.fetchurl {
                 urls = [
-                    "file:///home/${userName}/code/kernel/linux-${version}.tar.xz"
-                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${version}.tar.xz"
-                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version}.tar.xz"
+                    "file:///home/${userName}/code/kernel/linux-${kernelVersion}.tar.xz"
+                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${kernelVersion}.tar.xz"
+                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz"
                 ];
-                sha256 = sha256;
+                sha256 = kernelSha256;
             };
             configfile = ../kernel/config;
         };
