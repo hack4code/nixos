@@ -83,7 +83,9 @@ let
 in
 {
     home-manager.users.${userName} = {
-        home.packages = [ downmovie ];
+        home.packages = [
+            downmovie
+        ];
 
         systemd.user.timers.downmovie = {
             Unit = {

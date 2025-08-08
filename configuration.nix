@@ -105,9 +105,13 @@ in
         useUserPackages = true;
         useGlobalPkgs = true;
         backupFileExtension = "backup";
-        users.${userName} = {
-            home.enableNixpkgsReleaseCheck = false;
-            home.stateVersion = homeManagerVersion;
+        users = {
+            ${userName} = {
+                home = {
+                    enableNixpkgsReleaseCheck = false;
+                    stateVersion = homeManagerVersion;
+                };
+            };
         };
     };
 
@@ -199,13 +203,11 @@ in
 
         neovim = {
             enable = true;
-            package = pkgs.neovim-unwrapped;
             defaultEditor = true;
         };
 
         sway = {
             enable = true;
-            package = pkgs.sway;
             wrapperFeatures = {
                 gtk = true;
             };
