@@ -259,6 +259,7 @@ in
             coreutils
             bc
             duf
+            bat
             /* git */
             gh
             git
