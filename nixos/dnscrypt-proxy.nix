@@ -9,7 +9,10 @@ in
         dnscrypt-proxy2 = {
             enable = true;
             settings = {
-                listen_addresses = [ "[::1]:53" "127.0.0.1:53" ];
+                listen_addresses = [
+                    "[::1]:53"
+                    "127.0.0.1:53"
+                ];
                 netprobe_timeout = -1;
                 netprobe_address = "10.0.0.1:22";
                 bootstrap_resolvers = [
@@ -29,14 +32,12 @@ in
                         minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
                     };
                 };
-                server_names = [
-                    dnsServerName
-                ];
                 static = {
                     linode = {
                         stamp = "${dnsStamp}";
                     };
                 };
+                server_names = [ dnsServerName ];
             };
         };
     };
