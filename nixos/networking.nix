@@ -12,15 +12,27 @@ let
 in
 {
     networking = {
-        hostName = hostName;
         useDHCP = false;
-        dhcpcd.enable = false;
+
+        hostName = hostName;
+
+        dhcpcd = {
+            enable = false;
+        };
+
         nameservers = [
             "::1"
             "127.0.0.1"
         ];
-        wireless.dbusControlled = true;
-        nftables.enable = true;
+
+        wireless = {
+            dbusControlled = true;
+        };
+
+        nftables = {
+            enable = true;
+        };
+
         firewall = {
             enable = true;
             trustedInterfaces = [
@@ -34,14 +46,16 @@ in
         networkmanager = {
             enable = true;
             dns = "none";
+
             wifi = {
                 backend = "iwd";
-                powersave = true;
+                powersave = false;
+                macAddress = "random";
             };
 
-            connectionConfig = {
-                "wifi.cloned-mac-address" = "preserve";
-            };
+            # connectionConfig = {
+            #     "wifi.cloned-mac-address" = "preserve";
+            # };
 
             settings = {
                 main = {
