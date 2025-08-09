@@ -7,6 +7,7 @@
         kernelVersion = mkOption { type = str; };
         kernelSha256 = mkOption { type = str; };
         hostName = mkOption { type = str; };
+        timeZone = mkOption { type = str; };
     };
 
     config = {
@@ -15,6 +16,7 @@
         kernelVersion = "6.16";
         kernelSha256 = "1a4be2fe6b5246aa4ac8987a8a4af34c42a8dd7d08b46ab48516bcc1befbcd83";
         hostName = "KISS";
+        timeZone = "Asia/Shanghai";
     };
 }
 
