@@ -56,20 +56,20 @@ kitty_config_top = (
 
 
 kitty_config_mutt = (
-    "--override font_family='Fira Mono' "
+    "--override font_family='Fira Code' "
     "--override modify_font='cell_height +8px'"
 )
 
 
 kitty_config_ranger = (
-    "--override font_family='Fira Mono' "
+    "--override font_family='Iosevka' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override modify_font='cell_height +16px'"
 )
 
 
 kitty_config_weechat = (
-    "--override font_family='Fira Mono' "
+    "--override font_family='JetBrains Mono' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override modify_font='cell_height +12px'"
 )
