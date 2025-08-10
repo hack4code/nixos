@@ -9,7 +9,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/wireguard";
+        device = "/home/${userName}/source/vps/wireguard";
         options = [
             "bind"
             "nfsvers=4.2"
