@@ -92,7 +92,6 @@ in
             shellAliases = {
                 ip = "ip -color";
                 wp = "wl-copy";
-                cat = "bat";
                 jf = "journalctl --follow";
                 jb = "journalctl --boot";
                 gu = "git pull";
