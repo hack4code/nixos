@@ -20,7 +20,7 @@
         dnsPort = mkOption { type = port; };
     };
 
-    config = {
+    config = rec {
         wgInterface = "";
         wgListenPort = 0;
         wgIp4Address = "";
@@ -31,10 +31,11 @@
         wgServerIp4Address = "";
         wgServerIp6Address = "";
         wgServerPort = 0;
-        wgEndPoint = "";
+        wgEndPoint = "[${vpsIp4Address}]:" + builtins.toString wgServerPort;
 
         vpsIp4Address = "";
         vpsIp6Address = "";
+
         dnsPort = 0;
     };
 }
