@@ -311,6 +311,8 @@ in
             ripgrep
             /* nix */
             nix-index
+            /* game */
+            tetris
         ];
     };
 }
