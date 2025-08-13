@@ -233,6 +233,11 @@ in
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
             '';
+
+            extraLuaConfig = ''
+
+                vim.opt.winborder = 'single'
+            '';
         };
     };
 }
