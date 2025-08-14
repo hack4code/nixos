@@ -21,6 +21,7 @@ in
                 "$HOME/source/docker"
                 "$HOME/source/systemd"
                 "$HOME/code"
+                "$HOME/.config"
             ];
 
             enableCompletion = true;
@@ -31,7 +32,7 @@ in
 
             autosuggestion = {
                 enable = true;
-                highlight = "bold, underline";
+                highlight = "bold";
                 strategy = [ "history" ];
             };
 
@@ -44,7 +45,7 @@ in
             };
 
             sessionVariables = {
-                PATH = "$HOME/bin:$HOME/.local/bin:$PATH:/usr/share/bcc/tools/:";
+                PATH = "$HOME/.local/bin/:/usr/share/bcc/tools/:$PATH";
 
                 /* xdg */
                 XDG_CONFIG_HOME = "$HOME/.config";
@@ -92,6 +93,7 @@ in
             shellAliases = {
                 ip = "ip -color";
                 wp = "wl-copy";
+                linode = "linode-cli --suppress-warnings";
                 jf = "journalctl --follow";
                 jb = "journalctl --boot";
                 gu = "git pull";
