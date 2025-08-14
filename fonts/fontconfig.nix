@@ -1,5 +1,9 @@
 { pkgs, ... }:
 
+let
+    swei-gothic = pkgs.callPackage ./swei-gothic.nix {};
+    google-fonts = pkgs.callPackage ./google-fonts.nix {};
+in
 {
     fonts = {
         enableGhostscriptFonts = true;
@@ -9,41 +13,45 @@
         };
 
         packages = with pkgs; [
-            /* noto */
-            noto-fonts
-            noto-fonts-cjk-sans
-            noto-fonts-emoji
-            /* roboto */
-            roboto-serif
-            roboto-mono
-            roboto-flex
-            /* source code */
-            source-code-pro
+            # /* noto */
+            # noto-fonts
+            # noto-fonts-cjk-sans
+            # noto-fonts-emoji
+            # /* roboto */
+            # roboto-serif
+            # roboto-mono
+            # roboto-flex
+            # /* jetbrains */
+            # jetbrains-mono
+            # /* source code */
+            # source-code-pro
+            # /* intel one */
+            # intel-one-mono
+            # /* fira */
+            # fira
+            # fira-code
             /* source han */
             source-han-serif
             source-han-sans
             source-han-mono
-            source-han-sans-japanese
-            source-han-serif-japanese
-            /* intel one */
-            intel-one-mono
             /* nerd */
             nerd-fonts.symbols-only
-            /* fira */
-            fira
-            fira-code
             /* awesome */
             font-awesome
             /* twitter */
             twemoji-color-font
             /* iosevka */
             iosevka
-            /* jetbrains */
-            jetbrains-mono
+            /* swei-gothic */
+            swei-gothic
+            /* google fonts */
+            google-fonts
         ];
 
 
         fontconfig = {
+            enable = true;
+
             defaultFonts = {
                 serif = [
                     "Noto Serif"

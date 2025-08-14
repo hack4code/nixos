@@ -28,7 +28,6 @@ in
         ./nixos/power.nix
         ./nixos/networking.nix
         ./nixos/sysctl.nix
-        ./nixos/fontconfig.nix
         ./nixos/container.nix
         ./nixos/input.nix
         ./nixos/sudo.nix
@@ -38,6 +37,7 @@ in
         ./nixos/wg-quick.nix
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
+        ./fonts/fontconfig.nix
         ./home-manager/sway.nix
         ./home-manager/swayctl.nix
         ./home-manager/sndctl.nix
