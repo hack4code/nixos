@@ -60,7 +60,7 @@ in
 
 
                         function check_before_sleep {
-                            while pgrep downmovie || pgrep syncdrive || pgrep vps || pgrep ffmpeg || pgrep nixos-rebuild; do
+                            while pgrep downmovie || pgrep syncdrive || pgrep vps || pgrep ffmpeg || pgrep nixos-rebuild || pgrep -f "nix develop"; do
                                 sleep 300s
                             done
                         }
