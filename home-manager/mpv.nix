@@ -27,7 +27,7 @@ in
                 demuxer-max-back-bytes = "128M";
                 cache-pause = false;
                 sub-auto = "all";
-                sub-font = "Roboto Flex,MiSans";
+                sub-font = "Swei Gothic CJK SC";
                 sub-font-size = 36;
                 sub-border-size = 1;
                 sub-border-color = "0/0/0/0.5";
