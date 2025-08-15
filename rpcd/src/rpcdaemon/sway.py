@@ -55,6 +55,14 @@ kitty_config_top = (
 )
 
 
+kitty_config_ncmpcpp = (
+    "--override font_family='Fira Mono' "
+    "--override symbol_map='U+4E00-U+9FFF Swei Gothic CJK SC' "
+    "--override symbol_map='U+3400-U+4DBF Swei Gothic CJK TC' "
+    "--override modify_font='cell_height +8px'"
+)
+
+
 kitty_config_mutt = (
     "--override font_family='Fira Code' "
     "--override modify_font='cell_height +8px'"
@@ -63,7 +71,7 @@ kitty_config_mutt = (
 
 kitty_config_ranger = (
     "--override font_family='Iosevka' "
-    "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
+    "--override symbol_map='U+4E00-U+9FFF Swei Gothic CJK SC' "
     "--override modify_font='cell_height +16px'"
 )
 
@@ -112,7 +120,7 @@ command_ncmpcpp = (
     "exec kitty "
     "--class ncmpcpp "
     "--title ncmpcpp "
-    f"{kitty_config_top} "
+    f"{kitty_config_ncmpcpp} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@ncmpcpp "
     "zsh -c 'ncmpcpp --quiet'"
