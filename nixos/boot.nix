@@ -11,10 +11,7 @@ in
         kernelPackages = pkgs.linuxPackages_custom {
             version = kernelVersion;
             src = pkgs.fetchurl {
-                urls = [
-                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${kernelVersion}.tar.xz"
-                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz"
-                ];
+                url = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${kernelVersion}.tar.xz";
                 sha256 = kernelSha256;
             };
             configfile = ../kernel/config;
