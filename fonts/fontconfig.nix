@@ -3,6 +3,8 @@
 let
     swei-gothic = pkgs.callPackage ./swei-gothic.nix {};
     google-fonts = pkgs.callPackage ./google-fonts.nix {};
+    vivo-sans = pkgs.callPackage ./vivo-sans.nix {};
+    misans = pkgs.callPackage ./misans.nix {};
 in
 {
     fonts = {
@@ -46,6 +48,10 @@ in
             swei-gothic
             /* google fonts */
             google-fonts
+            /* vivo sans */
+            vivo-sans
+            /* MiSans */
+            misans
         ];
 
 
@@ -60,6 +66,7 @@ in
 
                 sansSerif = [
                     "Noto Sans"
+                    "MiSans"
                     "Source Han Sans"
                 ];
 
@@ -87,6 +94,25 @@ in
 
             /* firefox emoji */
             useEmbeddedBitmaps = true;
+
+            # localConf = ''
+            #     <match target="scan">
+            #         <test name="family">
+            #             <string>MiSans Latin</string>
+            #         </test>
+            #         <edit name="spacing">
+            #             <int>100</int>
+            #         </edit>
+            #     </match>
+            #     <match target="scan">
+            #         <test name="family">
+            #             <string>MiSans</string>
+            #         </test>
+            #         <edit name="spacing">
+            #             <int>100</int>
+            #         </edit>
+            #     </match>
+            # '';
         };
     };
 
