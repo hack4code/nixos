@@ -268,6 +268,7 @@ in
             uv
             /* network */
             curl
+            axel
             wget
             nftables
             ethtool
