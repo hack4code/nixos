@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-    userName = config.userName;
     kernelVersion = config.kernelVersion;
     kernelSha256 = config.kernelSha256;
 in
@@ -13,7 +12,6 @@ in
             version = kernelVersion;
             src = pkgs.fetchurl {
                 urls = [
-                    "file:///home/${userName}/code/kernel/linux-${kernelVersion}.tar.xz"
                     "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${kernelVersion}.tar.xz"
                     "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz"
                 ];
