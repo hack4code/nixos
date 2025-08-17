@@ -45,7 +45,6 @@ in
             };
 
             extraConfig = ''
-
                 modify_font cell_height +6px
 
                 symbol_map U+4E00-U+9FFF Noto Sans SC
@@ -68,7 +67,6 @@ in
                 tab_title_template "{index}"
 
                 window_padding_width 4 8
-
 
                 # color
                 cursor                  #928374
