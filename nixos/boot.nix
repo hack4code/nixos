@@ -6,8 +6,6 @@ let
 in
 {
     boot = {
-        consoleLogLevel = 3;
-
         kernelPackages = pkgs.linuxPackages_custom {
             version = kernelVersion;
             src = pkgs.fetchurl {
@@ -75,6 +73,8 @@ in
             tmpfsSize = "60%";
             cleanOnBoot = true;
         };
+
+        consoleLogLevel = 3;
     };
 }
 
