@@ -18,9 +18,8 @@ in
         kernelParams = [
             "loglevel=5"
             "rootfstype=ext4"
-            "rw"
             "efi=runtime"
-            "idle=nomwait"
+            "rw"
         ];
 
         loader = {
