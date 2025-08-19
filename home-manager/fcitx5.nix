@@ -53,14 +53,14 @@ in
                         "Vertical Candidate List" = "True";
                         UseAccentColor = "False";
                         WheelForPaging = "False";
-                        Font = "\"MiSans Medium 12\"";
-                        MenuFont = "\"MiSans 10\"";
-                        TrayFont = "\"MiSans Medium 13\"";
+                        Font = "\"Swei Gothic CJK SC 12\"";
+                        MenuFont = "\"MiSans VF 10\"";
+                        TrayFont = "\"Swei Gothic CJK SC 13\"";
                         TrayOutlineColor = "#282828";
                         TrayTextColor = "#ebdbb2";
                         PreferTextIcon = "True";
                         ShowLayoutNameInIcon = "True";
-                        UseInputMethodLanguageToDisplayText = "False";
+                        UseInputMethodLanguageToDisplayText = "True";
                         PerScreenDPI = "False";
                         ForceWaylandDPI = 0;
                     };
