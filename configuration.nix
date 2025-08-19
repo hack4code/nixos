@@ -156,11 +156,6 @@ in
     users = 
     {
         defaultUserShell = pkgs.zsh;
-        groups = {
-            ${groupName} = {
-                gid = gid;
-            };
-        };
 
         users = {
             ${userName} = {
@@ -171,7 +166,6 @@ in
                 initialPassword = userPassWord;
                 linger = true;
                 extraGroups = [
-                    groupName
                     "wheel"
                     "networkmanager"
                     "podman"
