@@ -2,10 +2,8 @@
 
 let
     userName = config.userName;
-    groupName = config.groupName;
     userPassWord = config.userPassWord;
     uid = config.uid;
-    gid = config.gid;
     nixosVersion = config.nixosVersion;
     homeManagerVersion = config.homeManagerVersion;
     timeZone = config.timeZone;
