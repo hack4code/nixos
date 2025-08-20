@@ -79,6 +79,7 @@ kitty_config_ranger = (
 kitty_config_weechat = (
     "--override font_family='JetBrains Mono' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
+    "--override symbol_map='U+3400-U+4DBF MiSans TC VF' "
     "--override modify_font='cell_height +12px'"
 )
 
@@ -509,7 +510,7 @@ def setup_workspaces_for_books() -> None:
         return
     workspace = 6
     for book in reading.iterdir():
-        if workspace > 8:
+        if workspace > 9:
             return
         if not book.is_file():
             continue
