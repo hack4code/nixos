@@ -38,6 +38,7 @@ in
                 writeShellApplication {
                     name = "setkernel.sh";
                     runtimeInputs = [
+                        axel
                         coreutils
                         curl
                         gnused
@@ -54,9 +55,9 @@ in
                         rm -rf linux-*
 
                         if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
-                            curl --remote-name "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
+                            axel -n 4 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
                         else
-                            if ! curl --remote-name "https://cdn.kernel.org/pub/linux/kernel/v6.x/$KERNEL"; then
+                            if ! axel -n 4 "https://cdn.kernel.org/pub/linux/kernel/v6.x/$KERNEL"; then
                                 echo "failed to download kernel archive file for version $1" 1>&2
                                 exit 1
                             fi
@@ -86,7 +87,6 @@ in
                     name = "mountvps.sh";
                     runtimeInputs = [
                         coreutils
-                        curl
                         gnused
                         openssh
                     ];
