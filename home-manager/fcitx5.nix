@@ -53,9 +53,9 @@ in
                         "Vertical Candidate List" = "True";
                         UseAccentColor = "False";
                         WheelForPaging = "False";
-                        Font = "\"Swei Gothic CJK SC 12\"";
+                        Font = "\"Swei Gothic CJK SC Medium 12\"";
                         MenuFont = "\"MiSans VF 10\"";
-                        TrayFont = "\"Swei Gothic CJK SC 13\"";
+                        TrayFont = "\"Swei Gothic CJK SC Medium 12\"";
                         TrayOutlineColor = "#282828";
                         TrayTextColor = "#ebdbb2";
                         PreferTextIcon = "True";
