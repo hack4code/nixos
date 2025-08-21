@@ -106,6 +106,7 @@ in
                 gcaa = "git commit --all --amend";
                 gl = "git log";
                 glp = "git log --patch";
+                gln = "git log --name-only";
                 gs = "git status";
                 gr = "git rebase";
                 grm = "git rebase main";
