@@ -14,9 +14,6 @@ in
                     ];
                     text = ''
                         wpctl set-volume @DEFAULT_AUDIO_SINK@ 60%
-
-
-                        # vim: ts=4 sw=4 sts=4 ft=bash et:
                     '';
                 }
             )
@@ -28,9 +25,6 @@ in
                     ];
                     text = ''
                         wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%
-
-
-                        # vim: ts=4 sw=4 sts=4 ft=bash et:
                     '';
                 }
             )
@@ -63,7 +57,6 @@ in
                             fi
                         fi
 
-                        chmod a+r "$KERNEL"
                         tar xf "$KERNEL"
 
                         SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
@@ -76,9 +69,6 @@ in
 
                         cd "linux-$1/" || exit 1
                         cp "$HOME/source/nixos/kernel/config" .config
-
-
-                        # vim: ts=4 sw=4 sts=4 ft=bash et:
                     '';
                 }
             )
@@ -153,9 +143,6 @@ in
                                 fi
                             fi
                         fi
-
-
-                        # vim: ts=4 sw=4 sts=4 ft=bash et:
                     '';
                 }
             )
