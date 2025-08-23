@@ -227,10 +227,6 @@ in
             pkgs.bashInteractive
         ];
 
-        pathsToLink = [
-            "/share/zsh"
-        ];
-
         systemPackages = 
         let
             kernelPackages = with pkgs-stable; [
