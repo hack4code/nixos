@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 let
     userName = config.userName;
@@ -231,7 +231,29 @@ in
             "/share/zsh"
         ];
 
-        systemPackages = with pkgs; [
+        systemPackages = 
+        let
+            kernelPackages = with pkgs-stable; [
+                stdenv
+                ncurses
+                gnumake
+                bc
+                flex
+                bison
+                elfutils
+                openssl
+                qemu_full
+                debootstrap
+                gcc
+                gdb
+                clang
+                lld
+                llvmPackages.libllvm
+                pkg-config
+                pahole
+            ];
+        in
+        with pkgs; [
             /* tool */
             firefox
             openssh
@@ -245,7 +267,6 @@ in
             jq
             procps
             coreutils
-            bc
             duf
             bat
             /* git */
@@ -285,8 +306,6 @@ in
             hydra-check
             /* secure boot */
             sbctl
-            /* build tootls */
-            gnumake
             /* bluetooth */
             bluez-tools
             /* ifuse */
@@ -306,7 +325,7 @@ in
             nix-index
             /* game */
             tetris
-        ];
+        ] ++ kernelPackages;
     };
 }
 
