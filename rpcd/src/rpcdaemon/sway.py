@@ -672,7 +672,7 @@ def shutdown_system() -> None:
 def move_mpv_to_workspace(focus: bool = True) -> None:
     if (container_mpv := find_container_after_start("mpv", None)) is None:
         raise SwayIpcError("container mpv not exists")
-    move_container_to_workspace(container_mpv, "9", focus=focus)
+    move_container_to_workspace(container_mpv, "10", focus=focus)
 
 
 def launch_floating_kitty() -> None:
