@@ -162,7 +162,9 @@ in
 
                     "${modifier}+return" = "exec kitty";
                     "${modifier}+semicolon" = "exec swayctl kitty";
-                    "${modifier}+apostrophe" = "workspace number 11";
+                    "${modifier}+apostrophe" = "workspace number 10";
+                    "${modifier}+comma" = "workspace number 11";
+                    "${modifier}+period" = "workspace number 12";
 
                     "${modifier}+a" = "exec --no-startup-id swaync-client -t -sw";
                     "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
