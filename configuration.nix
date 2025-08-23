@@ -256,6 +256,7 @@ in
             ffmpeg
             fastfetch
             p7zip
+            unrar
             dosfstools
             eza
             fzf
