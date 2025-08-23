@@ -508,15 +508,27 @@ def setup_workspaces_for_books() -> None:
     reading = Path.home() / "book" / ".reading"
     if not reading.exists():
         return
+    study = reading / "study"
+    if not study.exists():
+        return
     workspace = 6
-    for book in reading.iterdir():
-        if workspace > 9:
-            return
+    for book in study.iterdir():
+        if workspace > 8:
+            break
         if not book.is_file():
             continue
         if book.suffix in (".pdf", ".epub"):
             open_book(book, workspace)
             workspace += 1
+    novel = reading / "novel"
+    if not novel.exists():
+        return
+    for book in novel.iterdir():
+        if not book.is_file():
+            continue
+        if book.suffix in (".pdf", ".epub"):
+            open_book(book, 9)
+            return
 
 
 def move_cursor_to_workspace_0() -> None:
