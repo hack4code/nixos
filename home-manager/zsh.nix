@@ -94,6 +94,8 @@ in
                 ip = "ip -color";
                 wp = "wl-copy";
                 linode = "linode-cli --suppress-warnings";
+                vc = "ssh -T linode";
+                vd = "ssh -T linode docker container";
                 jf = "journalctl --follow";
                 jb = "journalctl --boot";
                 gu = "git pull";
