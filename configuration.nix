@@ -251,7 +251,6 @@ in
         in
         with pkgs; [
             /* tool */
-            firefox
             openssh
             ffmpeg
             fastfetch

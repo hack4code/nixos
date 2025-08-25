@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 let
     userName = config.userName;
@@ -7,6 +7,7 @@ in
     home-manager.users.${userName} = {
         programs.firefox = {
             enable = true;
+            package = pkgs-stable.firefox;
 
             languagePacks = [
                 "en"
@@ -27,18 +28,33 @@ in
                         force = true;
                         engines = {
                             "Nix Packages" = {
-                                urls = [{
-                                    template = "https://search.nixos.org/packages";
-                                    params = [
-                                        { name = "type"; value = "packages"; }
-                                        { name = "query"; value = "{searchTerms}"; }
-                                    ];
-                                }];
-                                icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                                definedAliases = [ "@np" ];
+                                urls = [
+                                    {
+                                        template = "https://search.nixos.org/packages";
+                                        params = [
+                                            {
+                                                name = "type";
+                                                value = "packages";
+                                            }
+                                            {
+                                                name = "query";
+                                                value = "{searchTerms}";
+                                            }
+                                        ];
+                                    }
+                                ];
+                                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                                definedAliases = [
+                                    "@n"
+                                    "@nixpackage"
+                                ];
                             };
 
-                            "google".metaData.alias = "@g";
+                            google= {
+                                metaData = {
+                                    alias = "@g";
+                                };
+                            };
                         };
                     };
 
@@ -68,7 +84,6 @@ in
                     #     };
                     # };
 
-                    /* user.js */
                     extraConfig = ''
                         /* chrome */
                         user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -363,7 +378,6 @@ in
                         /* vim: set ts=4 sw=4 ft=javascript et: */
                     '';
 
-                    /* userChrome.css */
                     userChrome = ''
                         @media not -moz-pref("sidebar.verticalTabs") {
                             .tabbrowser-tab[fadein] {
@@ -552,7 +566,6 @@ in
                         }
                     '';
 
-                    /* userContent.css */
                     userContent = ''
                         :root {
                           scrollbar-width: none !important;
