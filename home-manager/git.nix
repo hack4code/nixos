@@ -24,10 +24,10 @@ in
                     rebase = true;
                 };
                 "https \"https://github.com\"" = {
-                    proxy = "socks5://127.0.0.1:1080";
+                    proxy = "socks5://10.0.0.1:1080";
                 };
                 "http \"https://github.com\"" = {
-                    proxy = "socks5://127.0.0.1:1080";
+                    proxy = "socks5://10.0.0.1:1080";
                 };
 
                 "credential \"https://github.com\"" = {
