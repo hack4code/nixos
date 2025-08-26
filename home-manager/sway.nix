@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 let
     userName = config.userName;
@@ -374,7 +374,7 @@ in
                 jupyter
                 mpc
                 (
-                    callPackage ../rpcd/rpcd.nix {}
+                    callPackage ../rpcd/rpcd.nix { pkgs = pkgs-stable; }
                 )
             ];
 
