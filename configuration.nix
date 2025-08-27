@@ -229,7 +229,7 @@ in
 
         systemPackages = 
         let
-            kernelPackages = with pkgs-stable; [
+            kernelPackages = with pkgs; [
                 stdenv
                 ncurses
                 gnumake
