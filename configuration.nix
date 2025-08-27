@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -228,42 +228,44 @@ in
         ];
 
         systemPackages = 
-        let
-            kernelPackages = with pkgs; [
-                stdenv
-                ncurses
-                gnumake
-                bc
-                flex
-                bison
-                elfutils
-                openssl
-                qemu_full
-                debootstrap
-                gcc
-                gdb
-                clang
-                lld
-                llvmPackages.libllvm
-                pkg-config
-                pahole
-            ];
-        in
+        # let
+        #     kernelPackages = with pkgs; [
+        #         stdenv
+        #         ncurses
+        #         gnumake
+        #         bc
+        #         flex
+        #         bison
+        #         elfutils
+        #         openssl
+        #         qemu_full
+        #         debootstrap
+        #         gcc
+        #         gdb
+        #         clang
+        #         lld
+        #         llvmPackages.libllvm
+        #         pkg-config
+        #         pahole
+        #     ];
+        # in
         with pkgs; [
+            /* compress */
+            p7zip
+            unrar
+            /* sys tool */
+            dosfstools
+            procps
+            duf
             /* tool */
             openssh
             ffmpeg
             fastfetch
-            p7zip
-            unrar
-            dosfstools
             eza
             fzf
             libnotify
             jq
-            procps
             coreutils
-            duf
             bat
             /* git */
             gh
@@ -275,18 +277,18 @@ in
             /* python */
             python3
             uv
-            /* network */
-            curl
+            /* net */
             axel
-            wget
-            nftables
+            curl
+            dig
             ethtool
             iproute2
             mtr
-            tcpdump
-            dig
-            rclone
+            nftables
             nmap
+            rclone
+            tcpdump
+            wget
             /* tpm2 */
             tpm2-tools
             /* firmware */
@@ -307,7 +309,7 @@ in
             /* ifuse */
             libimobiledevice
             ifuse
-            /* neovim */
+            /* vim */
             lua-language-server
             clang-tools
             pyright
@@ -321,7 +323,10 @@ in
             nix-index
             /* game */
             tetris
-        ] ++ kernelPackages;
+            /* build */
+            bc
+            gnumake
+        ];
     };
 }
 
