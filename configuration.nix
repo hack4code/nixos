@@ -27,7 +27,6 @@ in
         ./nixos/networking.nix
         ./nixos/sysctl.nix
         ./nixos/container.nix
-        # ./nixos/input.nix
         ./nixos/sudo.nix
         ./nixos/services.nix
         ./nixos/pipewire.nix
@@ -35,7 +34,6 @@ in
         ./nixos/wg-quick.nix
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
-        ./nixos/input.nix
         ./fonts/fontconfig.nix
         ./home-manager/sway.nix
         ./home-manager/swayctl.nix
@@ -230,49 +228,28 @@ in
         ];
 
         systemPackages = 
-        # let
-        #     kernelPackages = with pkgs; [
-        #         stdenv
-        #         ncurses
-        #         gnumake
-        #         bc
-        #         flex
-        #         bison
-        #         elfutils
-        #         openssl
-        #         qemu_full
-        #         debootstrap
-        #         gcc
-        #         gdb
-        #         clang
-        #         lld
-        #         llvmPackages.libllvm
-        #         pkg-config
-        #         pahole
-        #     ];
-        # in
         with pkgs; [
             /* compress */
             p7zip
             unrar
-            /* sys tool */
+            /* sys */
             dosfstools
             procps
             duf
-            /* tool */
-            openssh
-            ffmpeg
-            fastfetch
-            eza
-            fzf
-            libnotify
-            jq
-            coreutils
+            /* shell */
             bat
+            coreutils
+            eza
+            fastfetch
+            fzf
+            jq
+            libnotify
+            qrencode
             /* git */
             gh
             git
             /* video */
+            ffmpeg
             libvpl
             /* container */
             podman-compose
@@ -288,6 +265,7 @@ in
             mtr
             nftables
             nmap
+            openssh
             rclone
             tcpdump
             wget
@@ -301,7 +279,6 @@ in
             /* console font */
             kbd
             /* */
-            qrencode
             /* nixos */
             hydra-check
             /* secure boot */
@@ -322,7 +299,7 @@ in
             nixd
             ripgrep
             /* nix */
-            nix-index
+            # nix-index
             /* game */
             tetris
             /* build */
