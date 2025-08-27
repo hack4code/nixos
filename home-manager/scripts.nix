@@ -69,6 +69,7 @@ in
 
                         cd "linux-$1/" || exit 1
                         cp "$HOME/source/nixos/kernel/config" .config
+                        echo "use flake kernel#default" >> .envrc && direnv allow
                     '';
                 }
             )
