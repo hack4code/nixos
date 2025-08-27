@@ -66,7 +66,6 @@ in
 
                 sansSerif = [
                     "Noto Sans"
-                    "MiSans"
                     "Source Han Sans"
                 ];
 
