@@ -12,7 +12,7 @@ pkgs.stdenv.mkDerivation {
         owner = "max32002";
         repo = "swei-gothic";
         tag = tag;
-        sha256 = "Ko8du9HRmi+k6a3My1r5Zyv1BX362BONy/RH5C9ECSU=";
+        hash = "sha256-Ko8du9HRmi+k6a3My1r5Zyv1BX362BONy/RH5C9ECSU=";
         curlOpts = "-L";
     };
 
