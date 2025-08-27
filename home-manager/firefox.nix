@@ -7,7 +7,6 @@ in
     home-manager.users.${userName} = {
         programs.firefox = {
             enable = true;
-            # package = pkgs-stable.firefox;
 
             languagePacks = [
                 "en"
