@@ -7,7 +7,7 @@ pkgs.stdenv.mkDerivation {
 
     src = pkgs.fetchzip {
         url = "https://github.com/google/fonts/archive/main.zip";
-        sha256 = "ae39q6R+E5ymIXVOB0ptX3E+vLZ7BWjX6D+aaJeRrhY=";
+        hash = "sha256-dS0QNYbpiN3m85Lsnu8AAEg8XUnPl7ZZB8zt/+s2zRw=";
         curlOpts = "-L";
     };
 
