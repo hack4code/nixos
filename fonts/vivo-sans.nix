@@ -7,9 +7,9 @@ pkgs.stdenv.mkDerivation {
 
     src = pkgs.fetchzip {
         url = "https://developersstatic.vivo.com/developers/1cdcaef3b39848f290bf90346642ed1d/20241022/vivo%20Sans.zip";
-        sha256 = "aElDbYVAjRB6fudw3WCK3awIxtsFnA7N7d7sOw67490=";
-        stripRoot = false;
+        hash = "sha256-aElDbYVAjRB6fudw3WCK3awIxtsFnA7N7d7sOw67490=";
         curlOpts = "-L";
+        stripRoot = false;
     };
 
     installPhase = ''
