@@ -153,6 +153,7 @@ in
                     "ssh"
                     "uv"
                     "colored-man-pages"
+                    "direnv"
                 ];
 
                 extraConfig = ''

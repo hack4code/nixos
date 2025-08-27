@@ -64,6 +64,7 @@ in
         ./home-manager/uv.nix
         ./home-manager/scripts.nix
         ./home-manager/git.nix
+        ./home-manager/direnv.nix
     ];
 
     nix = {
