@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -7,7 +7,7 @@ in
     home-manager.users.${userName} = {
         programs.firefox = {
             enable = true;
-            package = pkgs-stable.firefox;
+            # package = pkgs-stable.firefox;
 
             languagePacks = [
                 "en"
