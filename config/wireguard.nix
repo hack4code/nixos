@@ -15,6 +15,7 @@
         wgServerIp6Address = mkOption { type = str; };
         vpsIp4Address = mkOption { type = str; };
         vpsIp6Address = mkOption { type = str; };
+        wgMTU = mkOption { type = int; };
         wgEndPoint = mkOption { type = str; };
 
         dnsPort = mkOption { type = port; };
@@ -31,7 +32,10 @@
         wgServerIp4Address = "";
         wgServerIp6Address = "";
         wgServerPort = 0;
-        wgEndPoint = "[${vpsIp4Address}]:" + builtins.toString wgServerPort;
+        wgMTU = 1200;
+        # wgEndPoint = "${vpsIp4Address}:" + builtins.toString wgServerPort;
+        # wgEndPoint = "[${vpsIp6Address}]:" + builtins.toString wgServerPort;
+        wgEndPoint = "[${wgServerIp6Address}]:" + builtins.toString wgServerPort;
 
         vpsIp4Address = "";
         vpsIp6Address = "";

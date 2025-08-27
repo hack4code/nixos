@@ -12,6 +12,7 @@ let
     wgEndPoint = config.wgEndPoint;
     wgServerIp4Address = config.wgServerIp4Address;
     wgServerIp6Address = config.wgServerIp6Address;
+    wgMTU = config.wgMTU;
     vpsIp4Address = config.vpsIp4Address;
     vpsIp6Address = config.vpsIp6Address;
     dnsPort = builtins.toString config.dnsPort;
@@ -25,7 +26,7 @@ in
             ];
             privateKey = wgPrivateKey;
             listenPort = wgListenPort;
-            mtu = 1408;
+            mtu = wgMTU;
 
             postUp = ''
                 ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
