@@ -27,7 +27,7 @@ in
         ./nixos/networking.nix
         ./nixos/sysctl.nix
         ./nixos/container.nix
-        ./nixos/input.nix
+        # ./nixos/input.nix
         ./nixos/sudo.nix
         ./nixos/services.nix
         ./nixos/pipewire.nix
@@ -35,6 +35,7 @@ in
         ./nixos/wg-quick.nix
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
+        ./nixos/input.nix
         ./fonts/fontconfig.nix
         ./home-manager/sway.nix
         ./home-manager/swayctl.nix
