@@ -4,13 +4,15 @@ let
     userName = config.userName;
 in
 {
-    home-manager.users.${userName} = {
-        i18n.inputMethod.enable = true;
-        i18n.inputMethod.type = "fcitx5";
-        i18n.inputMethod.fcitx5 = {
+    home-manager.users.${userName}.i18n.inputMethod = {
+        enable = true;
+        type = "fcitx5";
+        fcitx5 = {
             waylandFrontend = true;
+            
             addons = with pkgs; [
-                fcitx5-chinese-addons
+                rime-data
+                rime-cli
                 fcitx5-rime
                 fcitx5-gtk
                 fcitx5-nord
