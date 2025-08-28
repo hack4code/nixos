@@ -35,6 +35,7 @@ in
         ./nixos/dnscrypt-proxy.nix
         ./nixos/nfs.nix
         ./fonts/fontconfig.nix
+        ./input/ibus.nix
         ./home-manager/sway.nix
         ./home-manager/swayctl.nix
         ./home-manager/sndctl.nix
@@ -58,7 +59,7 @@ in
         ./home-manager/vim.nix
         ./home-manager/downmovie.nix
         ./home-manager/syncdrive.nix
-        ./home-manager/fcitx5.nix
+        # ./home-manager/fcitx5.nix
         ./home-manager/rime.nix
         ./home-manager/uv.nix
         ./home-manager/scripts.nix
