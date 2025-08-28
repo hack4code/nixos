@@ -76,15 +76,15 @@ in
                 FZF_CTRL_R_OPTS = "--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'";
 
                 /* fcitx5 */
-                # GTK_IM_MODULE = "wayland";
-                # SDL_IM_MODULE = "fcitx";
-                # XMODIFIERS = "@im=fcitx";
-                # QT_IM_MODULE = "fcitx";
+                GTK_IM_MODULE = "wayland";
+                SDL_IM_MODULE = "fcitx";
+                XMODIFIERS = "@im=fcitx";
+                QT_IM_MODULE = "fcitx";
 
                 /* ibus */
-                GTK_IM_MODULE = "ibus";
-                XMODIFIERS = "@im=ibus";
-                QT_IM_MODULE = "ibus";
+                # GTK_IM_MODULE = "ibus";
+                # XMODIFIERS = "@im=ibus";
+                # QT_IM_MODULE = "ibus";
 
 
                 /* sway */

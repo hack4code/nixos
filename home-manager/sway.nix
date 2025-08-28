@@ -296,8 +296,8 @@ in
                 exec swaybg -o "eDP-1" -i "${bgThinkpad}" -m fill
 
                 exec --no-startup-id wl-paste -t text --watch clipman store --no-persist
-                # exec fcitx5 -d --replace
-                exec ibus-daemon -rxRd
+                # exec ibus-daemon -rxRd
+                exec fcitx5 -d --replace
 
                 exec swaync
                 exec swayidle \

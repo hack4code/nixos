@@ -59,7 +59,7 @@ in
         ./home-manager/vim.nix
         ./home-manager/downmovie.nix
         ./home-manager/syncdrive.nix
-        # ./home-manager/fcitx5.nix
+        ./home-manager/fcitx5.nix
         ./home-manager/rime.nix
         ./home-manager/uv.nix
         ./home-manager/scripts.nix
