@@ -100,8 +100,8 @@ in
                 ip = "ip -color";
                 wp = "wl-copy";
                 linode = "linode-cli --suppress-warnings";
-                vc = "ssh -T linode";
-                vd = "ssh -T linode docker container";
+                vc = "kssh -T linode";
+                vd = "kssh -T linode docker container";
                 jf = "journalctl --follow";
                 jb = "journalctl --boot";
                 gu = "git pull";
@@ -216,12 +216,12 @@ in
 
 
                     function vpsdf {
-                        ssh -T linode "df -h -l -t ext4 --output=source,size,used,avail,pcent"
+                        kssh -T linode "df -h -l -t ext4 --output=source,size,used,avail,pcent"
                     }
 
 
                     function vpsls {
-                        ssh -T linode 'cd ~/download/complete/; du --human-readable --all --max-depth 1' | sed 's:\./::' | awk '{ if (! (($2==".") && (NR<=2))) print $0; }'
+                        kssh -T linode 'cd ~/download/complete/; du --human-readable --all --max-depth 1' | sed 's:\./::' | awk '{ if (! (($2==".") && (NR<=2))) print $0; }'
                     }
 
 
