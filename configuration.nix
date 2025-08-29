@@ -131,11 +131,13 @@ in
         autoUpgrade = {
             enable = false;
         };
+
         etc = {
             overlay = {
                 enable = true;
             };
         };
+
         stateVersion = nixosVersion;
     };
 
