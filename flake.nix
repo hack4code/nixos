@@ -1,14 +1,27 @@
 {
     description = "Secure Boot Enabled NixOS Config";
 
+    nixConfig = {
+        substituters = [
+            "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+            "https://mirror.sjtu.edu.cn/nix-channels/store"
+            "https://cache.nixos.org"
+            "https://nix-community.cachix.org"
+        ];
+
+        trusted-public-keys = [
+            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
+    };
+
     inputs = {
         nixpkgs = {
             url = "github:NixOS/nixpkgs/nixos-unstable";
         };
 
-        lanzaboote = {
-            url = "github:nix-community/lanzaboote/v0.4.2";
-            inputs.nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable = {
+            url = "github:NixOS/nixpkgs/nixos-25.05";
         };
 
         home-manager = {
@@ -20,18 +33,19 @@
             url = "github:NixOS/nixos-hardware/master";
         };
 
-        nixpkgs-stable = {
-            url = "github:NixOS/nixpkgs/nixos-25.05";
+        lanzaboote = {
+            url = "github:nix-community/lanzaboote/v0.4.2";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
     outputs = { nixpkgs-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
     {
         nixosConfigurations = {
-            KISS = nixpkgs.lib.nixosSystem rec {
+            KISS = nixpkgs-stable.lib.nixosSystem rec {
                 system = "x86_64-linux";
                 specialArgs = {
-                    pkgs-stable = import nixpkgs-stable {
+                    pkgs-unstable = import nixpkgs {
                         inherit system;
                         config = {
                             allowUnfree = true;
