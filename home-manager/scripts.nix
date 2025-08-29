@@ -46,7 +46,6 @@ in
                         KERNEL="linux-$1.tar.xz"
 
                         cd "$HOME/code/kernel/" || exit 1
-                        rm -rf linux-*
 
                         if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
                             axel -n 4 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
