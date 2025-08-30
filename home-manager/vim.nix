@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs-unstable, ... }:
 
 let
     userName = config.userName;
@@ -6,11 +6,12 @@ in
 {
     home-manager.users.${userName} = {
         programs.neovim = {
+            package = pkgs-unstable.neovim-unwrapped;
             enable = true;
             viAlias = true;
             vimAlias = true;
 
-            plugins = with pkgs.vimPlugins; [
+            plugins = with pkgs-unstable.vimPlugins; [
                 {
                     plugin = gruvbox-nvim;
                     type = "lua";
