@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
     userName = config.userName;
@@ -25,6 +25,8 @@ in
         };
 
         wayland.windowManager.sway = {
+            package = pkgs-unstable.sway;
+
             enable = true;
 
             systemd = {

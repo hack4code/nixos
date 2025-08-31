@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs-unstable, ... }:
 
 let
     userName = config.userName;
@@ -6,7 +6,10 @@ in
 {
     home-manager.users.${userName} = {
         programs.swaylock = {
+            package = pkgs-unstable.swaylock;
+
             enable = true;
+
             settings = {
                 # ignore-empty-password = true;
                 show-failed-attempts = true;

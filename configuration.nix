@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
     userName = config.userName;
@@ -216,17 +216,24 @@ in
         };
 
         sway = {
+            package = pkgs-unstable.sway;
+
             enable = true;
 
             wrapperFeatures = {
                 gtk = true;
             };
 
-            extraPackages = with pkgs; [
-                swaybg
-                swaylock
-                swayimg
-                swayidle
+            extraPackages =
+            let
+                swayExtraPackages = with pkgs-unstable; [
+                    swaybg
+                    # swaylock
+                    swayimg
+                    swayidle
+                ];
+            in
+            with pkgs; [
                 # swaynotificationcenter
                 # wofi
                 # waybar
@@ -240,7 +247,7 @@ in
                 zathura
                 wl-kbptr
                 slurp
-            ];
+            ] ++ swayExtraPackages;
         };
     };
 
