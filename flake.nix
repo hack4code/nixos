@@ -51,6 +51,13 @@
                             allowUnfree = true;
                         };
                     };
+
+                    pkgs-stable = import nixpkgs-stable {
+                        inherit system;
+                        config = {
+                            allowUnfree = true;
+                        };
+                    };
                 };
 
                 modules = [
