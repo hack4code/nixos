@@ -32,6 +32,10 @@
         power-profiles-daemon = {
             enable = true;
         };
+
+        fprintd = {
+            enable = true;
+        };
     };
 }
 
