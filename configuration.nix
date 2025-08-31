@@ -162,6 +162,16 @@ in
                 interface = "tabrmd";
             };
         };
+
+        pam = {
+            services.swaylock = {
+                text = ''
+                    auth sufficient ${pkgs.linux-pam}/lib/security/pam_unix.so try_first_pass likeauth nullok
+                    auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
+                    auth login
+                '';
+            };
+        };
     };
 
     users = 
