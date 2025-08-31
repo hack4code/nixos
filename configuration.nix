@@ -181,8 +181,6 @@ in
                     "networkmanager"
                     "podman"
                     "tss"
-                    "audio"
-                    "video"
                 ];
             };
         };
@@ -209,24 +207,26 @@ in
 
         sway = {
             enable = true;
+
             wrapperFeatures = {
                 gtk = true;
             };
+
             extraPackages = with pkgs; [
                 swaybg
                 swaylock
                 swayimg
                 swayidle
-                swaynotificationcenter
-                wofi
-                waybar
+                # swaynotificationcenter
+                # wofi
+                # waybar
                 clipman
                 wl-clipboard
-                kitty
+                # kitty
                 weechat
-                ranger
+                # ranger
                 w3m
-                neomutt
+                # neomutt
                 zathura
                 wl-kbptr
                 slurp
