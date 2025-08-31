@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs-unstable, ... }:
 
 let
     userName = config.userName;
@@ -8,8 +8,12 @@ in
 {
     home-manager.users.${userName} = {
         programs.waybar = {
+            package = pkgs-unstable.waybar;
             enable = true;
-            systemd.enable = false;
+            systemd = {
+                enable = false;
+            };
+
             settings = {
                 mainBar = {
                     layer = "top";
