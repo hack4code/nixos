@@ -374,7 +374,9 @@ in
             packages = with pkgs; [
                 bitwarden-cli
                 cmatrix
+                frogmouth
                 jupyter
+                linode-cli
                 mpc
                 (
                     callPackage ../rpcd/rpcd.nix { }
