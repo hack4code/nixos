@@ -210,26 +210,6 @@ in
                     }
 
 
-                    function vpsid {
-                        linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1
-                    }
-
-
-                    function vpsdf {
-                        kssh -T linode "df -h -l -t ext4 --output=source,size,used,avail,pcent"
-                    }
-
-
-                    function vpsls {
-                        kssh -T linode 'cd ~/download/complete/; du --human-readable --all --max-depth 1' | sed 's:\./::' | awk '{ if (! (($2==".") && (NR<=2))) print $0; }'
-                    }
-
-
-                    function vpstr {
-                        linode-cli --suppress-warnings account transfer --json | jq -r '.[] | (.used | tostring) + "G/" + (.quota | tostring) + "G"'
-                    }
-
-
                     function magnet {
                         sed -nE 's/.*(magnet:.+)\]$/\1\n/p'
                     }
