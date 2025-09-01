@@ -146,6 +146,73 @@ in
                     '';
                 }
             )
+            (
+                writeShellApplication {
+                    name = "vps.sh";
+
+                    runtimeInputs = [
+                        linode-cli
+                        openssh
+                    ];
+
+                    text = ''
+                        VPS="linode"
+                        SSH=$(command -v ssh)
+
+
+                        function vps_id {
+                            linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1
+                        }
+
+                        function vps_df {
+                            $SSH -T "$VPS" "df -h -l -t ext4 --output=source,size,used,avail,pcent"
+                        }
+
+                        function vps_download {
+                            $SSH -T "$VPS" 'cd ~/download/complete/; du --human-readable --all --max-depth 1' | sed 's:\./::' | awk '{ if (! (($2==".") && (NR<=2))) print $0; }'
+                        }
+
+                        function vps_transfer {
+                            linode-cli --suppress-warnings account transfer --json | jq -r '.[] | (.used | tostring) + "G/" + (.quota | tostring) + "G"'
+                        }
+
+                        function vps_reboot {
+                            local VPS_ID
+
+                            VPS_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
+                            if [[ -n "$VPS_ID" ]]; then
+                                linode-cli --suppress-warnings linodes reboot "$VPS_ID"
+                            fi
+                        }
+
+
+                        case "$1" in
+                            reboot|rb)
+                                vps_reboot
+                                ;;
+
+                            df)
+                                vps_df
+                                ;;
+
+                            download|dl)
+                                vps_download
+                                ;;
+
+                            id)
+                                vps_id
+                                ;;
+
+                            transfer|tr)
+                                vps_transfer
+                                ;;
+
+                            *)
+                                ;;
+                       esac
+                    '';
+                }
+            )
         ];
     };
 }
