@@ -46,6 +46,7 @@ in
                         KERNEL="linux-$1.tar.xz"
 
                         cd "$HOME/code/kernel/" || exit 1
+                        rm -rf linux*
 
                         if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
                             axel -n 4 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
@@ -68,7 +69,6 @@ in
 
                         cd "linux-$1/" || exit 1
                         cp "$HOME/source/nixos/kernel/config" .config
-                        echo "use flake kernel#default" >> .envrc && direnv allow
                     '';
                 }
             )
