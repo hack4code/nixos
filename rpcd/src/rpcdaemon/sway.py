@@ -527,7 +527,7 @@ def setup_workspaces_for_books() -> None:
         if not book.is_file():
             continue
         if book.suffix in (".pdf", ".epub"):
-            open_book(book, 9)
+            open_book(book, workspace)
             return
 
 
