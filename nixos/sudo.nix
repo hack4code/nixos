@@ -1,25 +1,10 @@
-{ config, ... }:
-
-let
-    userName = config.userName;
-in
 {
-    security.sudo.extraRules = [
-        {
-            users = [
-                userName
-            ];
-
-            commands = [
-                {
-                    command = "ALL";
-                    options = [
-                        "NOPASSWD"
-                    ];
-                }
-            ];
-        }
-    ];
+    security = {
+        sudo-rs = {
+            enable = true;
+            wheelNeedsPassword = false;
+        };
+    };
 }
 
 
