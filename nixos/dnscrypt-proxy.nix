@@ -14,7 +14,7 @@ in
                     "127.0.0.1:53"
                 ];
                 netprobe_timeout = -1;
-                netprobe_address = "10.0.0.1:22";
+                netprobe_address = "1.1.1.1:53";
                 bootstrap_resolvers = [
                     "8.8.8.8:53"
                     "1.1.1.1:53"
