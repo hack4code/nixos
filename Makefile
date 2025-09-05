@@ -9,7 +9,7 @@ systemd:
 	systemctl --user disable swaync.service
 
 rebuild:
-	sudo nixos-rebuild switch --cores 7 --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS"
+	sudo nixos-rebuild switch --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS"
 
 rebuild-offline:
 	sudo nixos-rebuild switch --offline --impure --show-trace --print-build-logs --verbose --flake ".#KISS"
