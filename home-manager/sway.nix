@@ -366,6 +366,7 @@ in
                 test -d document || mkdir document
                 test -d download || mkdir download
                 test -d source || mkdir source
+                test -d .local/share/fetchmail || mkdir .local/share/fetchmail
                 test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
             '';
         };

@@ -2,12 +2,12 @@
 
 {
     options = with lib; with types; {
-       gmailUserName  = mkOption { type = str; };
-       gmailPassword  = mkOption { type = str; };
+        gmailAccount = mkOption { type = str; };
+        gmailPassword = mkOption { type = str; };
     };
 
     config = {
-        gmailUserName = "";
+        gmailAccount = "";
         gmailPassword = "";
     };
 }

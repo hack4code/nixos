@@ -21,6 +21,7 @@ in
         ./config/output.nix
         ./config/wifi.nix
         ./config/ntp.nix
+        ./config/gmail.nix
         ./nixos/hardware.nix
         ./nixos/boot.nix
         ./nixos/power.nix
@@ -65,6 +66,7 @@ in
         ./home-manager/scripts.nix
         ./home-manager/git.nix
         ./home-manager/direnv.nix
+        ./home-manager/fetchmail.nix
     ];
 
     nix = {
