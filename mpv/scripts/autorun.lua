@@ -63,112 +63,15 @@ end
 
 
 local function set_sub_ass(tracks)
-  local episode = nil
-  local fn = mp.get_property("filename")
-  if (fn ~= nil) then
-    local i, _ = string.find(string.lower(fn), "s%d%de%d%d")
-    if (i ~= nil) then
-      local n = string.find(string.lower(fn), "s%d%de%d%d")
-      if (n ~= nil) then
-        episode = string.sub(fn, n)
-      end
-    end
-  end
-
-  local is_sub_set = false
-  local is_simple_sub_set = false
-  local is_traditional_sub_set = false
   for _, track in ipairs(tracks) do
     local id = track["id"]
     if (track["type"] == "sub") then
       local name = track["external-filename"]
       if (name ~= nil) then
-        local i = nil
-        if (episode ~= nil) then
-          i, _ = string.find(string.lower(name), string.lower(episode))
-        end
-        if (i ~= nil) then
-          is_sub_set = true
           mp.set_property_native("sid", id)
-        end
-        local m, _ = string.find(name, "简体")
-        local p, _ = string.find(name, "繁体")
-        if (p ~= nil) then
-          is_traditional_sub_set = true
-          mp.set_property_native("sid", id)
-        elseif (m ~= nil) and (is_traditional_sub_set == false) then
-          is_simple_sub_set = true
-          mp.set_property_native("sid", id)
-        end
-        local u, _ = string.find(name, "英文")
-        if (u ~= nil) then
-          if (p ~= nil) then
-            return true
-          elseif (is_simple_sub_set == false) then
-            is_sub_set = true
-            mp.set_property_native("sid", id)
-          end
-        end
+          return
       end
     end
-  end
-  if (is_sub_set == true) or (is_simple_sub_set == true) or (is_traditional_sub_set == true) then
-    return true
-  else
-    return false
-  end
-end
-
-
-local function set_native_sub(tracks)
-  local is_sub_set = false
-  local is_chinese_sub_set = false
-  for _, track in ipairs(tracks) do
-    if (track["type"] == "sub") then
-      local id = track["id"]
-      local name = track["title"]
-      if (name ~= nil) then
-        local i, _ = string.find(string.lower(name), "chinese")
-        if (i ~= nil) then
-          mp.set_property_native("sid", id)
-          local p, _ = string.find(string.lower(name), "traditional")
-          if (p ~= nil) then
-            return true
-          else
-            is_chinese_sub_set = true
-          end
-        end
-        i, _ = string.find(string.lower(name), "ch")
-        if (i ~= nil) then
-          is_chinese_sub_set = true
-          mp.set_property_native("sid", id)
-        end
-        i, _ = string.find(string.lower(name), "en")
-        if (i ~= nil) and (is_chinese_sub_set == false) then
-          is_sub_set = true
-          mp.set_property_native("sid", id)
-        end
-      else
-        local lang = track["lang"]
-        if (lang ~= nil) then
-          local i, _ = string.find(string.lower(lang), "ch")
-          if (i ~= nil) then
-            is_chinese_sub_set = true
-            mp.set_property_native("sid", id)
-          end
-          i, _ = string.find(string.lower(lang), "en")
-          if (i ~= nil) then
-            is_sub_set = true
-            mp.set_property_native("sid", id)
-          end
-        end
-      end
-    end
-  end
-  if (is_sub_set == true) or (is_chinese_sub_set == true) then
-    return true
-  else
-    return false
   end
 end
 
@@ -180,9 +83,7 @@ local function on_file_loaded()
     return
   end
   set_audio_id(tracks)
-  if (set_sub_ass(tracks) == false) then
-    set_native_sub(tracks)
-  end
+  set_sub_ass(tracks)
 end
 
 
