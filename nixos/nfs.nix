@@ -21,7 +21,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/docker";
+        device = "/home/${userName}/source/vps/docker";
         options = [
             "bind"
             "nfsvers=4.2"
