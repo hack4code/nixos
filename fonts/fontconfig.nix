@@ -94,24 +94,14 @@ in
             /* firefox emoji */
             useEmbeddedBitmaps = true;
 
-            # localConf = ''
-            #     <match target="scan">
-            #         <test name="family">
-            #             <string>MiSans Latin</string>
-            #         </test>
-            #         <edit name="spacing">
-            #             <int>100</int>
-            #         </edit>
-            #     </match>
-            #     <match target="scan">
-            #         <test name="family">
-            #             <string>MiSans</string>
-            #         </test>
-            #         <edit name="spacing">
-            #             <int>100</int>
-            #         </edit>
-            #     </match>
-            # '';
+            localConf = ''
+                <alias>
+                    <family>Microsoft YaHei</family>
+                    <prefer>
+                        <family>Swei Gothic CJK SC</family>
+                    </prefer>
+                </alias>
+            '';
         };
     };
 
