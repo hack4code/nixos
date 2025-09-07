@@ -14,16 +14,22 @@ in
                 userName = "code4hack";
                 realName = "Liu Wei";
                 passwordCommand = "bw list items --search fetchmail | jq -r '.[].login.password'";
-                maildir.path = "gmail";
+                maildir = {
+                    path = "gmail";
+                };
                 folders = {
                     inbox = "inbox";
                 };
                 imap = {
                     host = "imap.gmail.com";
                     port = 993;
-                    tls.enable = true;
+                    tls = {
+                        enable = true;
+                    };
                 };
-                neomutt.enable = false;
+                neomutt = {
+                    enable = false;
+                };
             };
         };
 
