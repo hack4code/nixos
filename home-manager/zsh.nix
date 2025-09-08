@@ -11,17 +11,15 @@ in
 
             defaultKeymap = "emacs";
 
-            dotDir = ".config/zsh/";
+            dotDir = ".config/zsh";
 
             autocd = true;
             cdpath = [
                 "$HOME"
-                "$HOME/music"
                 "$HOME/source"
-                "$HOME/source/docker"
-                "$HOME/source/systemd"
-                "$HOME/code"
+                "$HOME/source/vps/docker"
                 "$HOME/.config"
+                "$HOME/code"
             ];
 
             enableCompletion = true;
@@ -32,12 +30,12 @@ in
 
             autosuggestion = {
                 enable = true;
-                highlight = "bold";
+                # highlight = "bold";
                 strategy = [ "history" ];
             };
 
             history = {
-                size = 10000;
+                size = 100000;
                 ignoreAllDups = true;
                 ignoreSpace = true;
                 saveNoDups = true;
@@ -45,7 +43,7 @@ in
             };
 
             sessionVariables = {
-                PATH = "$HOME/.local/bin/:/usr/share/bcc/tools/:$PATH";
+                PATH = "$HOME/.local/bin/:$PATH:";
 
                 /* xdg */
                 XDG_CONFIG_HOME = "$HOME/.config";
@@ -88,7 +86,7 @@ in
 
 
                 /* sway */
-                WLR_RENDERER = "vulkan";
+                # WLR_RENDERER = "vulkan";
                 SDL_VIDEODRIVER = "wayland";
                 QT_QPA_PLATFORM = "wayland";
 
@@ -102,8 +100,12 @@ in
                 linode = "linode-cli --suppress-warnings";
                 vc = "kssh -T linode";
                 vd = "kssh -T linode docker container";
+                vdl = "kssh -T linode docker container list";
+                vdg = "kssh -T linode docker container logs";
                 jf = "journalctl --follow";
+                jfi = "journalctl --follow --identifier";
                 jb = "journalctl --boot";
+                jbi = "journalctl --boot --identifier";
                 gu = "git pull";
                 gp = "git push";
                 gpf = "git push --force";
@@ -122,8 +124,6 @@ in
                 gw = "git switch";
                 gwm = "git switch main";
                 gwe = "git switch e";
-                sed = "sed -E";
-                paste = "paste --delimiters ' '";
                 t = "date '+%F %H:%M %A'";
                 reboot = "systemctl reboot";
             };
@@ -149,17 +149,17 @@ in
                 enable = true;
 
                 plugins = [
-                    "sudo"
-                    "fzf"
-                    "systemd"
-                    "kitty"
-                    "podman"
-                    "eza"
-                    "gh"
-                    "ssh"
-                    "uv"
                     "colored-man-pages"
                     "direnv"
+                    "eza"
+                    "fzf"
+                    "gh"
+                    "kitty"
+                    "uv"
+                    "podman"
+                    "sudo"
+                    "ssh"
+                    "systemd"
                 ];
 
                 extraConfig = ''
@@ -217,7 +217,7 @@ in
 
                     function nug {
                         cd $HOME/source/nixos/
-                        make switch
+                        make update
                         cd -
                     }
 
