@@ -1,0 +1,12 @@
+[Unit]
+Description=podman ipv6 network
+After=NetworkManager-wait-online.service dnscrypt-proxy2.service wg-quick-wg0.service
+
+[Network]
+DNS=8.8.8.8
+DNS=2001:4860:4860::8888
+IPv6=true
+Subnet=fdd0:63a:5df1:aa52::/64
+
+[Service]
+TimeoutStartSec=900
