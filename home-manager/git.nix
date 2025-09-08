@@ -7,8 +7,10 @@ in
     home-manager.users.${userName} = {
         programs.git = {
             enable = true;
+
             userName = "code4hack";
             userEmail = "code4hack+github@gmail.com";
+
             diff-highlight = {
                 enable = true;
                 pagerOpts = [
@@ -16,16 +18,16 @@ in
                     "-RFX"
                 ];
             };
+
             extraConfig = {
                 init = {
                     defaultBranch = "main";
                 };
+
                 pull = {
                     rebase = true;
                 };
-                "https \"https://github.com\"" = {
-                    proxy = "socks5h://10.0.0.1:1080";
-                };
+
                 "http \"https://github.com\"" = {
                     proxy = "socks5h://10.0.0.1:1080";
                 };
@@ -33,10 +35,12 @@ in
                 "credential \"https://github.com\"" = {
                     helper = "!/run/current-system/sw/bin/gh auth git-credential";
                 };
+
                 "credential \"https://gist.github.com\"" = {
                     helper = "!/run/current-system/sw/bin/gh auth git-credential";
                 };
             };
+
             ignores = [
                 "*~"
                 "*.swp"
