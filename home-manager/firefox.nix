@@ -98,8 +98,8 @@ in
 
                         /* wayland */
                         user_pref("widget.wayland.fractional-scale.enabled", false);
-                        user_pref("widget.wayland.vsync.enabled", true);
-                        user_pref("widget.gtk.global-menu.wayland.enabled", true);
+                        user_pref("widget.wayland.vsync.enabled", false);
+                        user_pref("widget.gtk.global-menu.wayland.enabled", false);
 
                         /* tab */
                         user_pref("browser.tabs.closeTabByDblclick", true);
@@ -451,7 +451,7 @@ in
                             }
 
                             .tabbrowser-tab .tab-label {
-                                font-family: "MiSans";
+                                font-family: Roboto Flex, MiSans !important;
                                 font-size: 13px;
                             }
                         }
@@ -479,33 +479,27 @@ in
                             display: none !important;
                         }
 
-                        /* popup menu */
                         #mainPopupSet menupopup, #appMenu-popup {
-                            font-family: "Roboto Mono";
+                            font-family: Roboto Flex, MiSans !important;
                             font-size: 12px;
                         }
 
-                        /* address bar */
                         .urlbar-input-box {
-                            font-family: "Roboto Flex" !important;
+                            font-family: Roboto Flex, MiSans !important;
                         }
 
-                        /* buttons */
                         .titlebar-buttonbox-container {
                             display: none;
                         }
 
-                        /* container */
                         #pageAction-urlbar-_testpilot-containers {
                             display: none;
                         }
 
-                        /* container name */
                         #userContext-icons #userContext-label {
                             display: none;
                         }
 
-                        /* read button */
                         #reader-mode-button {
                             display: none;
                         }
@@ -550,7 +544,6 @@ in
                             display: none;
                         }
 
-                        /* order */
                         #navigator-toolbox #nav-bar {
                             order: 1 !important;
                         }
@@ -560,7 +553,6 @@ in
                         }
 
                         #PersonalToolbar {
-                            order: 3 !important;
                             display: none;
                         }
                     '';
