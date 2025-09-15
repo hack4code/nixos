@@ -692,9 +692,9 @@ main(int argc, char **argv) {
         sd_journal_print(LOG_INFO, "kremap running\n");
         run_thread_remap();
         run_thread_event();
-        pthread_join(g_thread_remap, NULL);
-        pthread_cancel(g_thread_event);
         pthread_join(g_thread_event, NULL);
+        pthread_cancel(g_thread_remap);
+        pthread_join(g_thread_remap, NULL);
     }
 
     pthread_mutex_destroy(&g_mutex_app_id);
