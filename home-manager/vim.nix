@@ -230,6 +230,7 @@ in
 
                 nnoremap <silent> ;s :noh<cr>
                 nnoremap <silent> ;e :Explore<cr>
+                nnoremap <silent> ;d :lua vim.diagnostic.disable()<cr>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
