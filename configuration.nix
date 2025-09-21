@@ -171,8 +171,8 @@ in
                     text = ''
                         auth sufficient ${pkgs.linux-pam}/lib/security/pam_unix.so try_first_pass likeauth nullok
                         auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
-                        auth required   ${pkgs.linux-pam}/lib/security/pam_deny.so
-                        auth required   ${pkgs.linux-pam}/lib/security/pam_unix.so
+                        auth required ${pkgs.linux-pam}/lib/security/pam_deny.so
+                        auth required ${pkgs.linux-pam}/lib/security/pam_unix.so
                     '';
                 };
 
@@ -338,7 +338,6 @@ in
             nixd
             ripgrep
             /* nix */
-            # nix-index
             /* game */
             tetris
             /* build */
