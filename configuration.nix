@@ -67,6 +67,7 @@ in
         ./home-manager/git.nix
         ./home-manager/direnv.nix
         ./home-manager/fetchmail.nix
+        ./home-manager/podman.nix
     ];
 
     nix = {
