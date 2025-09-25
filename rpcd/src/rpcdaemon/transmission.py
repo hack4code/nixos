@@ -29,9 +29,13 @@ def add_torrent_to_transmission(magnet: str,
     if session_id is None:
         headers = {}
     else:
-        headers = {"X-Transmission-Session-Id": session_id}
+        headers = {
+            "X-Transmission-Session-Id": session_id
+        }
     data = {
-        "arguments": {"filename": magnet},
+        "arguments": {
+            "filename": magnet
+        },
         "method": "torrent-add"
     }
     r = httpx.post(
