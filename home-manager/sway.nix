@@ -357,7 +357,7 @@ in
         home.activation = {
             initHome = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
                 test -d book || mkdir book book/.reading
-                test -d mail || mkdir mail mail/inbox mail/inbox/cur mail/inbox/new mail/inbox/tmp
+                test -d mail || mkdir mail mail/inbox mail/inbox/cur mail/inbox/new mail/inbox/tmp mail/ebpf mail/ebpf/cur mail/ebpf/new mail/ebpf/tmp mail/ffmpeg mail/ffmpeg/cur mail/ffmpeg/new mail/ffmpeg/tmp mail/linux-doc mail/linux-doc/cur mail/linux-doc/new mail/linux-doc/tmp mail/linux-man mail/linux-man/cur mail/linux-man/new mail/linux-man/tmp mail/linux-toolchains mail/linux-toolchains/cur mail/linux-toolchains/new mail/linux-toolchains/tmp mail/netfilter mail/netfilter/cur mail/netfilter/new mail/netfilter/tmp mail/netfilter-devel mail/netfilter-devel/cur mail/netfilter-devel/new mail/netfilter-devel/tmp mail/NixOS mail/NixOS/cur mail/NixOS/new mail/NixOS/tmp mail/pandas mail/pandas/cur mail/pandas/new mail/pandas/tmp mail/perf mail/perf/cur mail/perf/new mail/perf/tmp mail/perf-devel mail/perf-devel/cur mail/perf-devel/new mail/perf-devel/tmp mail/python mail/python/cur mail/python/new mail/python/tmp mail/scipy mail/scipy/cur mail/scipy/new mail/scipy/tmp mail/tor mail/tor/cur mail/tor/new mail/tor/tmp
                 test -d movie || mkdir movie movie/.rsync movie/.camer
                 test -d music || mkdir music music/lyrics music/playlist music/song music/youtube
                 test -d picture || mkdir picture picture/icon picture/mpv picture/screen picture/wallpaper
