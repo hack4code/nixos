@@ -312,6 +312,7 @@ in
             /* tpm2 */
             tpm2-tools
             /* firmware */
+            linux-firmware
             sof-firmware
             /* bluetooth */
             pavucontrol
