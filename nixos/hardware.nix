@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ pkgs, modulesPath, ... }:
 
 {
     imports = [
@@ -41,9 +41,13 @@
     ];
 
     hardware = {
+        enableAllFirmware = true;
+        enableRedistributableFirmware = true;
+        firmwareCompression = "none";
+
         cpu = {
             intel = {
-                updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+                updateMicrocode = true;
             };
         };
 
