@@ -225,10 +225,9 @@ in
                         /* microphone */
                         user_pref("permissions.default.microphone", 2);
 
-                        /* fingerprint */
-                        user_pref("privacy.resistFingerprinting", false);
-
                         /* privacy */
+                        user_pref("privacy.resistFingerprinting", false);
+                        user_pref("privacy.firstparty.isolate", true);
                         user_pref("privacy.userContext.enabled", true);
                         user_pref("privacy.trackingprotection.enabled",	true);
                         user_pref("privacy.trackingprotection.pbmode.enabled", true);
@@ -259,6 +258,7 @@ in
                         user_pref("network.stricttransportsecurity.preloadlist", true);
 
                         /* webrtc */
+                        user_pref("media.peerconnection.enabled", false);
                         user_pref("media.peerconnection.turn.disable", false);
                         user_pref("media.peerconnection.use_document_iceservers", false);
                         user_pref("media.peerconnection.video.enabled", false);
