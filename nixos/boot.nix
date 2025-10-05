@@ -64,6 +64,7 @@ in
         };
 
         blacklistedKernelModules = [
+            "xe"
             "i2c_i801"
         ];
 
