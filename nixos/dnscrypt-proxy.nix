@@ -5,7 +5,6 @@ let
     dnsStamp = config.dnsStamp;
 in
 {
-    systemd.services.dnscrypt-proxy2.after = [ "network-online.target" ];
     services = {
         dnscrypt-proxy2 = {
             enable = true;

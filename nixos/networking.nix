@@ -11,6 +11,10 @@ let
     wgInterface = config.wgInterface;
 in
 {
+    systemd.services.NetworkManager-wait-online.environment = {
+        NM_ONLINE_TIMEOUT = "180";
+    };
+
     networking = {
         useDHCP = false;
 
@@ -53,10 +57,6 @@ in
                 macAddress = "random";
             };
 
-            # connectionConfig = {
-            #     "wifi.cloned-mac-address" = "preserve";
-            # };
-
             settings = {
                 main = {
                     systemd-resolved = false;
@@ -83,8 +83,8 @@ in
                     type = "wifi";
                     autoconnect = true;
                     permissions = "";
-                    wait-device-timeout = 120000;
-                    wait-activation-delay = 1000;
+                    wait-device-timeout = 300000;
+                    wait-activation-delay = 300000;
                 };
 
                 wifi = {
