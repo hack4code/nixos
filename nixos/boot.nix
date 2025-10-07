@@ -56,10 +56,6 @@ in
                 "erofs"
                 /* efi */
                 "efivarfs"
-                /* wireless */
-                "rfkill"
-                "cfg80211"
-                "iwlwifi"
             ];
         };
 
