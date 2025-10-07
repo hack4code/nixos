@@ -12,7 +12,7 @@ in
             text = ''
                 [Unit]
                 Description=Podman Network With IPv6
-                After=NetworkManager-wait-online.service dnscrypt-proxy2.service wg-quick-wg0.service
+                After=network-online.target dnscrypt-proxy2.service wg-quick-wg0.service
 
                 [Network]
                 DNS=8.8.8.8
