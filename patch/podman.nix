@@ -5,20 +5,12 @@ let
 in
 {
     home-manager.users.${userName} = {
-        home.file.".config/systemd/user/podman-user-wait-network-online.service.d/50-exec-search-path.conf" = {
+        home.file.".config/systemd/user/podman-user-wait-network-online.service.d/50-exe.conf" = {
             executable = false;
             force = true;
             text = ''
                 [Service]
                 ExecSearchPath=${lib.makeBinPath (with pkgs; [bashInteractive systemd coreutils openssh])}:/bin
-            '';
-        };
-
-        home.file.".config/systemd/user/podman-user-wait-network-online.service.d/50-exe-start-pre.conf" = {
-            executable = false;
-            force = true;
-            text = ''
-                [Service]
                 ExecStartPre=sh -c "while ! ssh -q -T linode exit &>/dev/null; do sleep 24s; done"
             '';
         };
