@@ -79,6 +79,10 @@ in
             cores = 7;
             max-jobs = 7;
             show-trace = true;
+            sandbox = true;
+            sandbox-fallback = false;
+            require-sigs = true;
+            auto-optimise-store = true;
 
             trusted-users = [
                 "@wheel"
