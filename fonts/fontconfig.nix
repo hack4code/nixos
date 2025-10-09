@@ -80,6 +80,8 @@ in
                 ];
             };
 
+            antialias = true;
+
             hinting = {
                 enable = true;
                 autohint = false;
@@ -93,6 +95,7 @@ in
 
             /* firefox emoji */
             useEmbeddedBitmaps = true;
+
 
             localConf = ''
                 <alias>
