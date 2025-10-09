@@ -22,19 +22,19 @@ in
         ./config/wifi.nix
         ./config/ntp.nix
         ./config/gmail.nix
-        ./nixos/hardware.nix
-        ./nixos/boot.nix
-        ./nixos/power.nix
-        ./nixos/networking.nix
-        ./nixos/sysctl.nix
-        ./nixos/container.nix
-        ./nixos/sudo.nix
-        ./nixos/services.nix
-        ./nixos/pipewire.nix
-        ./nixos/kremap.nix
-        ./nixos/wg-quick.nix
-        ./nixos/dnscrypt-proxy.nix
-        ./nixos/nfs.nix
+        ./modules/hardware.nix
+        ./modules/boot.nix
+        ./modules/power.nix
+        ./modules/networking.nix
+        ./modules/sysctl.nix
+        ./modules/container.nix
+        ./modules/sudo.nix
+        ./modules/services.nix
+        ./modules/pipewire.nix
+        ./modules/kremap.nix
+        ./modules/wg-quick.nix
+        ./modules/dnscrypt-proxy.nix
+        ./modules/nfs.nix
         ./fonts/fontconfig.nix
         ./input/ibus.nix
         ./home-manager/sway.nix
