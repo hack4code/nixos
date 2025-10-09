@@ -11,8 +11,8 @@
     config = {
         monitorThinkpad = "Chimei Innolux Corporation 0x1301 Unknown";
         monitorSamsung = "Samsung Electric Company LS24A600U H4ZRB00248";
-        bgThinkpad = "$HOME/.config/sway/wallpaper/a-view-of-mount-fuji-across-lake-suwa-by-hokusai.png";
-        bgSamsung = "$HOME/.config/sway/wallpaper/japanese-sea.png";
+        bgThinkpad = "$HOME/.config/sway/wallpaper/the-assassination-of-julius.webp";
+        bgSamsung = "$HOME/.config/sway/wallpaper/the-death-of-socrates.jpeg";
     };
 }
 
