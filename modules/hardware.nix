@@ -43,7 +43,7 @@
     hardware = {
         enableAllFirmware = true;
         enableRedistributableFirmware = true;
-        firmwareCompression = "none";
+        firmwareCompression = "zstd";
 
         cpu = {
             intel = {
