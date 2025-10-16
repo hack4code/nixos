@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 6.17.2 Kernel Configuration
+# Linux/x86 6.17.3 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 14.3.0"
 CONFIG_CC_IS_GCC=y
@@ -1666,7 +1666,7 @@ CONFIG_BRIDGE_CFM=y
 # CONFIG_VLAN_8021Q is not set
 CONFIG_LLC=m
 # CONFIG_LLC2 is not set
-# CONFIG_ATALK is not set
+CONFIG_ATALK=m
 # CONFIG_X25 is not set
 # CONFIG_LAPB is not set
 # CONFIG_PHONET is not set
