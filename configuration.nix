@@ -230,8 +230,6 @@ in
         };
 
         sway = {
-            package = pkgs-unstable.sway;
-
             enable = true;
 
             wrapperFeatures = {
@@ -242,12 +240,12 @@ in
             let
                 swayExtraPackages = with pkgs-unstable; [
                     swaybg
-                    # swaylock
-                    swayimg
-                    swayidle
                 ];
             in
             with pkgs; [
+                # swaylock
+                swayimg
+                swayidle
                 # swaynotificationcenter
                 # wofi
                 # waybar
