@@ -42,7 +42,43 @@
     outputs = { nixpkgs-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
     {
         nixosConfigurations = {
-            KISS = nixpkgs-stable.lib.nixosSystem rec {
+            KISS-UNSTABLE = nixpkgs.lib.nixosSystem rec {
+                system = "x86_64-linux";
+                specialArgs = {
+                    pkgs-unstable = import nixpkgs {
+                        inherit system;
+                        config = {
+                            allowUnfree = true;
+                        };
+                    };
+
+                    pkgs-stable = import nixpkgs-stable {
+                        inherit system;
+                        config = {
+                            allowUnfree = true;
+                        };
+                    };
+                };
+
+                modules = [
+                    home-manager.nixosModules.home-manager
+                    nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
+                    lanzaboote.nixosModules.lanzaboote
+                    (
+                        { lib, ... }:
+                        {
+                            boot.loader.systemd-boot.enable = lib.mkForce false;
+                            boot.lanzaboote = {
+                                enable = true;
+                                pkiBundle = "/var/lib/sbctl";
+                            };
+                        }
+                    )
+                    ./configuration.nix
+                ];
+            };
+
+            KISS-STABLE = nixpkgs-stable.lib.nixosSystem rec {
                 system = "x86_64-linux";
                 specialArgs = {
                     pkgs-unstable = import nixpkgs {
