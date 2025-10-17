@@ -151,12 +151,10 @@ in
             (
                 writeShellApplication {
                     name = "vps.sh";
-
                     runtimeInputs = [
                         linode-cli
                         openssh
                     ];
-
                     text = ''
                         VPS="linode"
                         SSH=$(command -v ssh)
@@ -212,6 +210,58 @@ in
                             *)
                                 ;;
                        esac
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "dnstemp.sh";
+                    runtimeInputs = [
+                        coreutils
+                        gnused
+                        systemd
+                    ];
+                    text = ''
+                        TEMP="/tmp/dnscrypt-proxy"
+                        CONFIG="$HOME/source/vps/dnscrypt-proxy.toml"
+                        PROXY="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
+                        [[ -x "$PROXY" ]] || exit 1
+                        [[ -f "$CONFIG" ]] || exit 1
+                        [[ -d "$TEMP" ]] || mkdir -p $TEMP
+
+                        cp "$CONFIG" "$TEMP/"
+                        sudo systemctl stop dnscrypt-proxy.service
+                        sudo "$PROXY" -config "$TEMP/dnscrypt-proxy.toml" -child &>/dev/null &
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "post.sh";
+                    runtimeInputs = [
+                        curl
+                    ];
+                    text = ''
+                        if (($# < 1)); then
+                            exit 1;
+                        fi
+                        curl -F "file=@$1" https://0x0.st
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "matrix.sh";
+                    runtimeInputs = [
+                        cmatrix
+                        curl
+                    ];
+                    text = ''
+                        COLORS=(green red blue yellow cyan magenta)
+                        N=$((RANDOM % ''${#COLORS[@]}))
+
+                        cmatrix -a -C "''${COLORS[$N]}"
+                        # curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     '';
                 }
             )

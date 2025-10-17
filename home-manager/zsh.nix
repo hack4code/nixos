@@ -131,7 +131,7 @@ in
             initContent = lib.mkOrder 1500 ''
                 # keymap
                 bindkey -s '^[x' "cd ~ && clear\n"
-                bindkey -s '^[m' "matrix\n"
+                bindkey -s '^[m' "matrix.sh\n"
                 bindkey -s '^[s' "sway\n"
                 bindkey -s '^[j' "journalctl --boot --follow\n"
 
@@ -193,23 +193,6 @@ in
                     }
 
 
-                    function post {
-                        if (($# < 1)); then
-                            return 1;
-                        fi
-                        curl -F "file=@$1" https://0x0.st
-                    }
-
-
-                    function matrix {
-                        local COLORS=(green red blue yellow cyan magenta)
-                        local N=$(($RANDOM % ''${#COLORS[@]} + 1))
-
-                        cmatrix -a -C "''${COLORS[$N]}"
-                        curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
-                    }
-
-
                     function magnet {
                         sed -nE 's/.*(magnet:.+)\]$/\1\n/p'
                     }
@@ -230,10 +213,12 @@ in
                     function ndg {
                         if (($# == 1)); then
                             sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
+                            return
                         fi
 
                         if (($# == 2)); then
                             sudo nix-env --delete-generations `seq "$1" "$2" | tr '\n' ' '` --profile /nix/var/nix/profiles/system
+                            return
                         fi
 
                         local N
@@ -251,22 +236,6 @@ in
                         else
                             sudo nix-env --delete-generations $(seq --separator=' ' $BEGIN $END) --profile /nix/var/nix/profiles/system
                         fi
-                    }
-
-
-                    function dnstemp {
-                        local PROXY
-                        local DIR="/tmp/dnscrypt-proxy"
-                        local CONFIG="$HOME/source/vps/dnscrypt-proxy.toml"
-
-                        PROXY="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
-                        [[ -x "$PROXY" ]] || return
-                        [[ -f "$CONFIG" ]] || return
-                        [[ -d "$DIR" ]] || mkdir -p "$DIR/"
-
-                        cp "$CONFIG" "$DIR/"
-                        sudo systemctl stop dnscrypt-proxy2.service
-                        sudo $PROXY -config $DIR/dnscrypt-proxy.toml -child &>/dev/null &
                     }
 
 

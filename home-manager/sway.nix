@@ -372,7 +372,6 @@ in
         home = {
             packages = with pkgs; [
                 bitwarden-cli
-                cmatrix
                 frogmouth
                 jupyter
                 linode-cli
