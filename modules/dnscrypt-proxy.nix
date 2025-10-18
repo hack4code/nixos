@@ -5,12 +5,12 @@ let
     dnsStamp = config.dnsStamp;
 in
 {
-    systemd.services.dnscrypt-proxy2.after = [
+    systemd.services.dnscrypt-proxy.after = [
         "wg-quick-wg0.service"
     ];
 
     services = {
-        dnscrypt-proxy2 = {
+        dnscrypt-proxy = {
             enable = true;
             settings = {
                 listen_addresses = [
