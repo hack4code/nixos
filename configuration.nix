@@ -205,6 +205,7 @@ in
                     "networkmanager"
                     "podman"
                     "tss"
+                    "wireshark"
                 ];
             };
         };
@@ -227,6 +228,17 @@ in
         neovim = {
             enable = true;
             defaultEditor = true;
+        };
+
+        wireshark = {
+            enable = true;
+            # package = pkgs.wireshark;
+            dumpcap = {
+                enable = true;
+            };
+            usbmon = {
+                enable = true;
+            };
         };
 
         sway = {
