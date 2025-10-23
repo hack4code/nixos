@@ -42,7 +42,7 @@
     outputs = { nixpkgs-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
     {
         nixosConfigurations = {
-            KISS = nixpkgs.lib.nixosSystem rec {
+            KISS = nixpkgs-stable.lib.nixosSystem rec {
                 system = "x86_64-linux";
                 specialArgs = {
                     pkgs-unstable = import nixpkgs {
