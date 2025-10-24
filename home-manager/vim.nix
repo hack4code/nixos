@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
     userName = config.userName;
@@ -240,6 +240,20 @@ in
 
                 vim.opt.winborder = 'single'
             '';
+        };
+
+        home = {
+            packages = with pkgs; [
+                lua-language-server
+                clang-tools
+                pyright
+                fd
+                bash-language-server
+                shellcheck
+                shfmt
+                nixd
+                ripgrep
+            ];
         };
     };
 }

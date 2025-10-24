@@ -333,7 +333,6 @@ in
             pulseaudio
             /* console font */
             kbd
-            /* */
             /* nixos */
             hydra-check
             /* secure boot */
@@ -343,17 +342,6 @@ in
             /* ifuse */
             libimobiledevice
             ifuse
-            /* vim */
-            lua-language-server
-            clang-tools
-            pyright
-            fd
-            bash-language-server
-            shellcheck
-            shfmt
-            nixd
-            ripgrep
-            /* nix */
             /* game */
             tetris
             /* build */
