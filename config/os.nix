@@ -13,8 +13,8 @@
     config = {
         nixosVersion = "25.11";
         homeManagerVersion = "25.05";
-        kernelVersion = "6.17.4";
-        kernelSha256 = "010a12296e6fba7597ff36681be2485fd3b1780ac8fd9e6a9f3cfe193f0491db";
+        kernelVersion = "6.17.5";
+        kernelSha256 = "c05faf36e9c2164be723cf6ada8533788804d48f9dd2fe1be2ccee3616a92bce";
         hostName = "KISS";
         timeZone = "Asia/Shanghai";
     };
