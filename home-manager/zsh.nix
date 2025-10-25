@@ -97,6 +97,7 @@ in
             shellAliases = {
                 ip = "ip -color";
                 wp = "wl-copy";
+                tp = "cd \"$(mktemp -d)\"";
                 linode = "linode-cli --suppress-warnings";
                 vc = "kssh -T linode";
                 vd = "kssh -T linode docker container";
