@@ -376,7 +376,8 @@ in
                         /* mkv */
                         user_pref("media.mkv.enabled", true);
 
-                        /* vim: set ts=4 sw=4 ft=javascript et: */
+                        /* ai */
+                        user_pref("browser.ml.enable", false);
                     '';
 
                     userChrome = ''
