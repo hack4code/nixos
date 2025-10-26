@@ -95,7 +95,7 @@ in
         };
 
         gc = {
-            automatic = false;
+            automatic = true;
             dates = "weekly";
             options = "--delete-older-than 8d";
             persistent = true;
