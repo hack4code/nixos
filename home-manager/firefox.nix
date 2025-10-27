@@ -378,6 +378,9 @@ in
 
                         /* ai */
                         user_pref("browser.ml.enable", false);
+
+                        /* file picker */
+                        user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
                     '';
 
                     userChrome = ''
