@@ -17,9 +17,10 @@ in
             cdpath = [
                 "$HOME"
                 "$HOME/source"
+                "$HOME/code"
+                "$HOME/music"
                 "$HOME/source/vps/docker"
                 "$HOME/.config"
-                "$HOME/code"
             ];
 
             enableCompletion = true;
