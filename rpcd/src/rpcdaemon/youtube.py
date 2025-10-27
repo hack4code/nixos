@@ -28,7 +28,7 @@ def download_song_from_youtube(url: str) -> None:
         'noplaylist': True,
         'keepvideo': False,
         'restrictfilenames': True,
-        'cookiesfrombrowser': ('firefox', None, None, 'self'),
+        'cookiesfrombrowser': ('firefox', 'KISS', None, 'self'),
         'format': 'm4a/bestaudio/best',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
@@ -53,7 +53,7 @@ def download_video_from_youtube(url: str) -> None:
         'restrictfilenames': True,
         'writesubtitles': True,
         'subtitleslangs': ['^en.*'],
-        'cookiesfrombrowser': ('firefox', None, None, 'self'),
+        'cookiesfrombrowser': ('firefox', 'KISS', None, 'self'),
         'format': 'bestvideo[height<=?1080]+bestaudio/best',
         'paths': {
             'home': str(path.absolute())
