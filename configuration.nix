@@ -271,6 +271,7 @@ in
                 zathura
                 wl-kbptr
                 slurp
+                xdg-desktop-portal-termfilechooser
             ] ++ swayExtraPackages;
         };
     };
