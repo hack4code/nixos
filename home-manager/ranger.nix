@@ -67,7 +67,7 @@ in
         };
 
         home.file.".config/ranger" = {
-            source = ../ranger;
+            source = ./ranger;
             recursive = true;
         };
     };
