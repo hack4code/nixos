@@ -348,7 +348,7 @@ in
 
         home.file.".config/sway" = {
             force = true;
-            source = ../sway;
+            source = ./sway;
             recursive = true;
         };
 
