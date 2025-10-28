@@ -377,7 +377,7 @@ in
                 linode-cli
                 mpc
                 (
-                    callPackage ../rpcd/rpcd.nix { }
+                    callPackage ./rpcd/rpcd.nix { }
                 )
             ];
 
