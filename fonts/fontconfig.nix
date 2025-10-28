@@ -96,7 +96,6 @@ in
             /* firefox emoji */
             useEmbeddedBitmaps = true;
 
-
             localConf = ''
                 <alias>
                     <family>Microsoft YaHei</family>
