@@ -1,0 +1,109 @@
+#vomnibar {
+	background-color: #44475A;
+}
+
+
+#vomnibar input {
+	font-family: Roboto, Swei Gothic CJK SC;
+	font-weight: 400;
+	color: #f8f8f2;
+	background-color: #282828;
+	height: 36px;
+    width: 100%;
+	padding: 12px;
+	box-sizing: border-box;
+	border: 1px solid #6272a4;
+	border-radius: 6px;
+	box-shadow: #bd93f9 0px 0px 1px;
+}
+
+
+#vomnibar-search-area {
+	display: block;
+	background-color: #6272a4;
+	padding: 6px 12px;
+	border: 1px solid #6272a4;
+}
+
+
+#vomnibar ul {
+	background-color: #44475a;
+	list-style: none;
+	margin-top: 1px;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+}
+
+
+#vomnibar li {
+	font-family: MiSans;
+	font-size: 16px;
+	font-weight: 500;
+	color: #f8f8f2;
+	position: relative;
+	display: list-item;
+	border-bottom: 1px solid #6272a4;
+}
+
+
+#vomnibar li .top-half {
+	font-weight: 400;
+	overflow: visible;
+}
+
+
+#vomnibar li .bottom-half {
+	font-size: 14px;
+	font-weight: 300;
+	margin-top: 5px;
+}
+
+
+#vomnibar li .source {
+	color: #bd93f9;
+}
+
+
+#vomnibar li .url {
+	color: #50fa7b;
+	white-space: nowrap;
+}
+
+
+#vomnibar li .match {
+	font-weight: 300;
+	color: #ffb86c;
+}
+
+
+#vomnibar li em, #vomnibar li .title {
+	font-weight: 300;
+	color: #f8f8f2;
+}
+
+
+#vomnibar li em {
+	font-style: italic;
+}
+
+
+#vomnibar li em .match, #vomnibar li .title .match {
+	color: #ffb86c;
+}
+
+
+#vomnibar li.selected {
+	background-color: #6272a4;
+}
+
+
+#vomnibar input::selection {
+	background-color: #8be9fd
+}
+
+
+/*
+* vim: ts=4 sw=4 sts=4 ft=css et:
+*/

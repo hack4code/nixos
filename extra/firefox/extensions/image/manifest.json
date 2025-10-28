@@ -1,0 +1,22 @@
+{
+	"name": "Display Image In Browser",
+	"description": "change the response content type and disposition to force images to open in the browser window",
+	"version": "1.4",
+	"manifest_version": 2,
+	"author": "code4hack",
+	"icons": {
+		"32": "icon-32.png",
+		"64": "icon-64.png"
+	},
+	"background": { "scripts": ["background.js"] },
+	"permissions": [
+		"<all_urls>",
+		"webRequest",
+		"webRequestBlocking"
+	],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "displayImageInline@code4hack"
+		}
+	}
+}
