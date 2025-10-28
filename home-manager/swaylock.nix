@@ -31,7 +31,7 @@ in
         };
 
         home.file.".config/swaylock" = {
-            source = ../swaylock;
+            source = ./swaylock;
             recursive = true;
         };
     };
