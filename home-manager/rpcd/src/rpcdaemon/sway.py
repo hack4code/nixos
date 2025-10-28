@@ -444,7 +444,7 @@ def set_ncmpcpp_after_boot() -> None:
         return
     set_ncmpcpp_for_playing()
     time.sleep(0.8)
-    set_mpd_volume(48)
+    set_mpd_volume(36)
     play_mpd()
 
 
