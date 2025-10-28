@@ -12,7 +12,7 @@ in
                 url = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${kernelVersion}.tar.xz";
                 sha256 = kernelSha256;
             };
-            configfile = ../kernel/config;
+            configfile = ./kernel/config;
         };
 
         kernelParams = [
