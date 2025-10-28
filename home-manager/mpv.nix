@@ -100,7 +100,7 @@ in
         };
 
         home.file.".config/mpv" = {
-            source = ../mpv;
+            source = ./mpv;
             recursive = true;
         };
     };
