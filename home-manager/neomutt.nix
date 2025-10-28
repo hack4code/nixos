@@ -103,7 +103,7 @@ in
         };
 
         home.file.".config/neomutt" = {
-            source = ../neomutt;
+            source = ./neomutt;
             recursive = true;
         };
     };
