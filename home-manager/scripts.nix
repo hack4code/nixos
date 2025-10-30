@@ -70,7 +70,7 @@ in
                         sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
 
                         cd "linux-$1/" || exit 1
-                        cp "$HOME/source/nixos/kernel/config" .config
+                        cp "$HOME/source/nixos/modules/kernel/config" .config
                     '';
                 }
             )
