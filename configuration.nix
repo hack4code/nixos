@@ -349,6 +349,7 @@ in
             /* build */
             bc
             gnumake
+            file
         ];
     };
 }
