@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs-stable, ... }:
 
 let
     userName = config.userName;
@@ -7,6 +7,7 @@ in
     home-manager.users.${userName} = {
         services.swaync = {
             enable = true;
+            package = pkgs-stable.swaynotificationcenter;
             settings = {
                 positionX = "right";
                 positionY = "top";
