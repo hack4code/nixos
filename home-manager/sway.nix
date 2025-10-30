@@ -171,7 +171,7 @@ in
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
                     "${modifier}+g" = "exec --no-startup-id swayctl htop togglefullscreen";
-                    "${modifier}+i" = "exec firefox -P KISS --private-window";
+                    "${modifier}+i" = "exec tor-browser";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
                     "${modifier}+m" = "exec wl-kbptr -o modes=floating','click -o mode_floating.source=detect";
