@@ -624,9 +624,9 @@ def restart_linode_tab() -> None:
 
 
 def resume_linode() -> None:
-    if find_container_by_app_id("shell") is not None:
-        restart_linode_tab()
     restart_container_linode()
+    send_esc_to_linode()
+
 
 
 def resume_ncmpcpp() -> bool:
