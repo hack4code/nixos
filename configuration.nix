@@ -289,6 +289,7 @@ in
             unrar
             /* sys */
             dosfstools
+            file
             procps
             duf
             /* shell */
@@ -318,11 +319,9 @@ in
             ethtool
             iproute2
             mtr
-            nftables
             nmap
             openssh
             rclone
-            tcpdump
             tor-browser
             wget
             /* tpm2 */
@@ -349,7 +348,6 @@ in
             /* build */
             bc
             gnumake
-            file
         ];
     };
 }
