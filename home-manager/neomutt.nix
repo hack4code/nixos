@@ -36,70 +36,70 @@ in
         programs.neomutt = {
             enable = true;
 
-            editor = "vim";
-            checkStatsInterval = 120;
+            # editor = "vim";
+            # checkStatsInterval = 120;
 
-            sidebar = {
-                enable = true;
-                shortPath = true;
-                width = 30;
-                format = "%B(%N|%S)";
-            };
+            # sidebar = {
+            #     enable = true;
+            #     shortPath = true;
+            #     width = 30;
+            #     format = "%B(%N|%S)";
+            # };
 
-            sort = "date-received";
+            # sort = "date-received";
 
-            binds = [
-                { key = "\\Cp"; action = "sidebar-prev"; map = [ "index" "pager" ]; }
-                { key = "\\Cn"; action = "sidebar-next"; map = [ "index" "pager" ]; }
-                { key = "\\Co"; action = "sidebar-open"; map = [ "index" "pager" ]; }
-                { key = "\\C]"; action = "sidebar-first"; map = [ "index" "pager" ]; }
+            # binds = [
+            #     { key = "\\Cp"; action = "sidebar-prev"; map = [ "index" "pager" ]; }
+            #     { key = "\\Cn"; action = "sidebar-next"; map = [ "index" "pager" ]; }
+            #     { key = "\\Co"; action = "sidebar-open"; map = [ "index" "pager" ]; }
+            #     { key = "\\C]"; action = "sidebar-first"; map = [ "index" "pager" ]; }
 
-                { key = "g"; action = "first-entry"; map = [ "index" ]; }
-                { key = "G"; action = "last-entry"; map = [ "index" ]; }
-                { key = "zt"; action = "current-top"; map = [ "index" ]; }
-                { key = "zz"; action = "current-middle"; map = [ "index" ]; }
-                { key = "zb"; action = "current-bottom"; map = [ "index" ]; }
-                { key = "\\Cj"; action = "next-new-then-unread"; map = [ "index" "pager" ]; }
+            #     { key = "g"; action = "first-entry"; map = [ "index" ]; }
+            #     { key = "G"; action = "last-entry"; map = [ "index" ]; }
+            #     { key = "zt"; action = "current-top"; map = [ "index" ]; }
+            #     { key = "zz"; action = "current-middle"; map = [ "index" ]; }
+            #     { key = "zb"; action = "current-bottom"; map = [ "index" ]; }
+            #     { key = "\\Cj"; action = "next-new-then-unread"; map = [ "index" "pager" ]; }
 
-                { key = "["; action = "half-up"; map = [ "pager" ]; }
-                { key = "]"; action = "half-down"; map = [ "pager" ]; }
-                { key = "H"; action = "top"; map = [ "pager" ]; }
-                { key = "L"; action = "bottom"; map = [ "pager" ]; }
-            ];
+            #     { key = "["; action = "half-up"; map = [ "pager" ]; }
+            #     { key = "]"; action = "half-down"; map = [ "pager" ]; }
+            #     { key = "H"; action = "top"; map = [ "pager" ]; }
+            #     { key = "L"; action = "bottom"; map = [ "pager" ]; }
+            # ];
 
-            macros = [
-                { key = "\\Ca"; action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"; map = [ "index" ]; }
-            ];
+            # macros = [
+            #     { key = "\\Ca"; action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"; map = [ "index" ]; }
+            # ];
 
-            settings = {
-                pager_stop = "yes";
-                pager_index_lines = 5;
-                read_inc = 25;
-                mailcap_path = "\"~/.config/neomutt/mailcap\"";
-                sidebar_visible = "yes";
-                sidebar_delim_chars = "'/.'";
-                sidebar_divider_char = "'| '";
-                sidebar_format = "'%B(%N|%S)'";
-                beep = "yes";
-                collapse_unread = "yes";
-            };
+            # settings = {
+            #     pager_stop = "yes";
+            #     pager_index_lines = 5;
+            #     read_inc = 25;
+            #     mailcap_path = "\"~/.config/neomutt/mailcap\"";
+            #     sidebar_visible = "yes";
+            #     sidebar_delim_chars = "'/.'";
+            #     sidebar_divider_char = "'| '";
+            #     sidebar_format = "'%B(%N|%S)'";
+            #     beep = "yes";
+            #     collapse_unread = "yes";
+            # };
 
-            extraConfig = ''
-                set arrow_cursor
-                set edit_headers
+            # extraConfig = ''
+            #     set arrow_cursor
+            #     set edit_headers
 
-                # header
-                ignore *
-                unignore Subject Date
-                unhdr_order *
-                hdr_order Subject Date
+            #     # header
+            #     ignore *
+            #     unignore Subject Date
+            #     unhdr_order *
+            #     hdr_order Subject Date
 
-                auto_view text/html
+            #     auto_view text/html
 
-                set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\""
+            #     set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\""
 
-                source color.muttrc
-            '';
+            #     source color.muttrc
+            # '';
         };
 
         home.file.".config/neomutt" = {
