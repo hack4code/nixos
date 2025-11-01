@@ -333,18 +333,18 @@ in
             '';
         };
 
-        home.file.".config/sway/kitty/kitty.session" = {
-            executable = false;
-            force = true;
-            text = ''
-                launch zsh -i -c 'kssh -t linode'
-                new_tab
-                launch zsh -i -c ipython
-                new_tab
-                launch zsh -i
-                focus
-            '';
-        };
+        # home.file.".config/sway/kitty/kitty.session" = {
+        #     executable = false;
+        #     force = true;
+        #     text = ''
+        #         launch zsh -i -c 'kssh -t linode'
+        #         new_tab
+        #         launch zsh -i -c ipython
+        #         new_tab
+        #         launch zsh -i
+        #         focus
+        #     '';
+        # };
 
         home.file.".config/sway" = {
             force = true;
@@ -373,7 +373,6 @@ in
             packages = with pkgs; [
                 bitwarden-cli
                 frogmouth
-                jupyter
                 linode-cli
                 mpc
                 (
