@@ -13,12 +13,19 @@ in
                         default = [
                             "gtk"
                         ];
+
+                        # "org.freedesktop.impl.portal.FileChooser" = [
+                        #     "termfilechooser"
+                        # ];
+
                         "org.freedesktop.impl.portal.Screenshot" = [
                             "wlr"
                         ];
+
                         "org.freedesktop.impl.portal.ScreenCast" = [
                             "wlr"
                         ];
+
                         "org.freedesktop.impl.portal.Inhibit" = [
                             "none"
                         ];
@@ -27,9 +34,12 @@ in
                 extraPortals = with pkgs; [
                     xdg-desktop-portal-wlr
                     xdg-desktop-portal-gtk
+                    # xdg-desktop-portal-termfilechooser
                 ];
             };
         };
+
+        # home.sessionVariables.TERMCMD = "kitty --class=file_chooser";
     };
 }
 
