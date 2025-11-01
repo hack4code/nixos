@@ -230,13 +230,14 @@ in
             defaultEditor = true;
         };
 
+        # uvx
+        nix-ld = {
+            enable = true;
+        };
+
         wireshark = {
             enable = true;
-            # package = pkgs.wireshark;
             dumpcap = {
-                enable = true;
-            };
-            usbmon = {
                 enable = true;
             };
         };
@@ -310,7 +311,6 @@ in
             /* container */
             podman-compose
             /* python */
-            python3
             uv
             /* net */
             axel
