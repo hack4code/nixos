@@ -380,7 +380,7 @@ in
                         user_pref("browser.ml.enable", false);
 
                         /* file picker */
-                        user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+                        user_pref("widget.use-xdg-desktop-portal.file-picker", 0);
                     '';
 
                     userChrome = ''
