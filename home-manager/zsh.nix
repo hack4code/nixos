@@ -212,6 +212,11 @@ in
                     }
 
 
+                    function ngc {
+                        nix-collect-garbage -d
+                    }
+
+
                     function ndg {
                         if (($# == 1)); then
                             sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
