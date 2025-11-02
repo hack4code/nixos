@@ -162,7 +162,7 @@ command_kitty = (
     "--class shell "
     "--title shell "
     "--listen-on=unix:@kitty "
-    "--session ~/.config/sway/kitty/kitty.session"
+    # "--session ~/.config/sway/kitty/kitty.session"
 )
 
 
