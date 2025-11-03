@@ -148,6 +148,17 @@ const SITE = window.location.href;
     }
 
 
+    function hide_ai_comment() {
+        console.log("hide_ai_comment");
+        const $node = $("#expandable-metadata");
+        if ($node.length) {
+            $node.hide();
+            return true;
+        }
+        return false;
+    }
+
+
     if (!hide_head_container()) {
         VM.observe(document.body, () => {
             if (hide_head_container())
@@ -184,6 +195,13 @@ const SITE = window.location.href;
         if (!hide_badge()) {
             VM.observe(document.body, () => {
                 if (hide_badge())
+                    return true
+            });
+        }
+
+        if (!hide_ai_comment()) {
+            VM.observe(document.body, () => {
+                if (hide_ai_comment())
                     return true
             });
         }
