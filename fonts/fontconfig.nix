@@ -1,11 +1,5 @@
 { pkgs, ... }:
 
-let
-    swei-gothic = pkgs.callPackage ./swei-gothic.nix {};
-    google-fonts = pkgs.callPackage ./google-fonts.nix {};
-    vivo-sans = pkgs.callPackage ./vivo-sans.nix {};
-    misans = pkgs.callPackage ./misans.nix {};
-in
 {
     fonts = {
         enableGhostscriptFonts = true;
@@ -45,13 +39,21 @@ in
             /* iosevka */
             iosevka
             /* swei-gothic */
-            swei-gothic
+            (
+                callPackage ./swei-gothic.nix {}
+            )
             /* google fonts */
-            google-fonts
+            (
+                callPackage ./google-fonts.nix {}
+            )
             /* vivo sans */
-            vivo-sans
+            (
+                callPackage ./vivo-sans.nix {}
+            )
             /* MiSans */
-            misans
+            (
+                callPackage ./misans.nix {}
+            )
         ];
 
 
@@ -112,7 +114,7 @@ in
     };
 
     console = {
-        earlySetup = true;
+        earlySetup = false;
         keyMap = "us";
         packages = with pkgs; [
             terminus_font
