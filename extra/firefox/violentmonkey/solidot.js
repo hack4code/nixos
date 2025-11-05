@@ -37,7 +37,7 @@ const SITE = window.location.href;
         $node = $('#ads + div');
         $node.find('a').each(function () {
             const txt = $(this).text();
-            if (txt.startsWith("【火热报名中】")) {
+            if (txt.includes("NVIDIA")) {
                 $node.hide();
                 return true;
             };
