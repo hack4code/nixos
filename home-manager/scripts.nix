@@ -265,6 +265,17 @@ in
                     '';
                 }
             )
+            (
+                writeShellApplication {
+                    name = "testmsg.sh";
+                    runtimeInputs = [
+                        curl
+                    ];
+                    text = ''
+                        curl -X POST --header "Content-Type: application/json" --data '{"message": "test"}' http://127.0.0.1:8080/notify
+                    '';
+                }
+            )
         ];
     };
 }
