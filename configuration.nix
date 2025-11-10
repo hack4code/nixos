@@ -289,9 +289,10 @@ in
             unrar
             /* sys */
             dosfstools
+            duf
             file
             procps
-            duf
+            sysstat
             /* shell */
             bat
             coreutils
