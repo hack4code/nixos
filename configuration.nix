@@ -288,6 +288,7 @@ in
             p7zip
             unrar
             /* sys */
+            binutils
             dosfstools
             duf
             file
