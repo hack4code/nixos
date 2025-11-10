@@ -2,9 +2,10 @@
 
 let
     userName = config.userName;
+    appName = "downmovie.sh";
 
     downmovie = pkgs.writeShellApplication {
-        name = "downmovie.sh";
+        name = "${appName}";
         runtimeInputs = with pkgs; [
             rsync
             openssh
@@ -38,18 +39,23 @@ let
             }
 
 
-            # shellcheck disable=SC2016
-            for PID in $(pgrep -f "$(basename '$0')"); do
+            function panic {
+                echo "$*" 1>&2
+                notify "$*"
+                exit 1
+            }
+
+
+            for PID in $(pgrep "${appName}"); do
                 if [[ $PID != "$$" ]]; then
-                    echo "downmovie already running"
+                    echo "${appName} already running"
                     exit 0
                 fi
             done
 
 
             if ! $SSH -q -o ConnectTimeout=8 $VPS exit; then
-                notify "failed connecting $VPS"
-                exit 1
+                panic "failed connecting $VPS"
             fi
 
             if ! [[ -d "$DEST" ]]; then
@@ -58,26 +64,23 @@ let
 
             # shellcheck disable=SC2016
             while ! $SSH -q -T $VPS 'test -z "$(ls -A ~/download/complete/)"'; do
-                if $RSYNC -aqz --perms --fsync --remove-source-files --partial-dir='.rsync-partial' --filter='- *.part' --bwlimit=0 --chmod='D0700,F600' --log-file='/dev/null' "$SOURCE" "$DEST"; then
-                    notify "finished movie downloading"
-                else
-                    echo "rsync error" 1>&2
-                    notify "rsync error"
-                    exit 2
+                if ! $RSYNC -aqz --perms --fsync --remove-source-files --partial-dir='.rsync-partial' --filter='- *.part' --bwlimit=0 --chmod='D0700,F600' --log-file='/dev/null' "$SOURCE" "$DEST"; then
+                    panic "rsync error"
                 fi
+
                 # shellcheck disable=SC2016
                 $SSH -q -T $VPS 'cd ~/download/complete/ && find . -type d -empty -delete'
                 if [[ -n "$($SSH -q -T $VPS 'cd ~/download/complete/ && find . -type f -name *.part')" ]]; then
-                    echo "found .part files" 1>&2
-                    notify "found .part files"
-                    exit 3
+                    panic "found .part files"
                 fi
             done
 
+            if [[ -n "$(ls -A ~/movie/.rsync/)" ]]; then
+                notify "finished downloading"
+                echo "finished downloading" | systemd-cat --identifier downmovie
+            fi
+
             exit 0
-
-
-            # vim: ts=4 sw=4 sts=4 ft=bash et:
         '';
     };
 in
@@ -111,7 +114,7 @@ in
             Service = {
                 Type = "simple";
                 StandardOutput = "journal";
-                ExecStart = "${downmovie}/bin/downmovie.sh";
+                ExecStart = "${downmovie}/bin/${appName}";
             };
         };
     };
