@@ -177,11 +177,11 @@ const SITE = window.location.href;
 
     if (SITE.includes('watch?')) {
         VM.shortcut.register('a-a', () => {
-            download_youtube_song();
+            click_like_button();
         });
 
         VM.shortcut.register('a-s', () => {
-            click_like_button();
+            download_youtube_song();
         });
 
         VM.shortcut.register('a-d', () => {
