@@ -11,7 +11,6 @@ in
 {
     imports = [
         ./patch/tpm2-tss-fapi.nix
-        ./patch/podman.nix
         ./config/user.nix
         ./config/os.nix
         ./config/wireguard.nix

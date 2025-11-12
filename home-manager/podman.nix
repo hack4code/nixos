@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     userName = config.userName;
@@ -24,6 +24,16 @@ in
 
                 [Service]
                 TimeoutStartSec=900
+            '';
+        };
+
+        home.file.".config/systemd/user/podman-user-wait-network-online.service.d/50-exe.conf" = {
+            executable = false;
+            force = true;
+            text = ''
+                [Service]
+                ExecSearchPath=${lib.makeBinPath (with pkgs; [bashInteractive systemd coreutils openssh])}:/bin
+                ExecStartPre=sh -c "while ! ssh -q -T linode exit &>/dev/null; do sleep 24s; done"
             '';
         };
     };
