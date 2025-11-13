@@ -3,8 +3,9 @@
 let
     userName = config.userName;
 
+    appName = "syncdrive.sh";
     syncdrive = pkgs.writeShellApplication {
-        name = "syncdrive.sh";
+        name = "${appName}";
 
         runtimeInputs = with pkgs; [
             rclone
@@ -62,8 +63,7 @@ let
             )
 
 
-            # shellcheck disable=SC2016
-            for PID in $(pgrep -f "$(basename '$0')"); do
+            for PID in $(pgrep "${appName}"); do
                 if [[ $PID != "$$" ]]; then
                     exit 0
                 fi
@@ -105,15 +105,14 @@ let
             done
 
             echo "finished backup" | systemd-cat --identifier syncdrive
-
-
-            # vim: ts=4 sw=4 sts=4 ft=bash et:
         '';
     };
 in
 {
     home-manager.users.${userName} = {
-        home.packages = [ syncdrive ];
+        home.packages = [
+            syncdrive
+        ];
 
         systemd.user.timers.syncdrive = {
             Unit = {
@@ -138,7 +137,7 @@ in
             Service = {
                 Type = "simple";
                 StandardOutput = "journal";
-                ExecStart = "${syncdrive}/bin/syncdrive.sh";
+                ExecStart = "${syncdrive}/bin/${appName}";
             };
         };
     };
