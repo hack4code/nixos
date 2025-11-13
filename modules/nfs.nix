@@ -9,7 +9,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/vps/wireguard";
+        device = "/home/${userName}/source/nixos/extra/vps/wireguard";
         options = [
             "bind"
             "nfsvers=4.2"
@@ -21,7 +21,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/vps/docker";
+        device = "/home/${userName}/source/nixos/extra/vps/docker";
         options = [
             "bind"
             "nfsvers=4.2"
