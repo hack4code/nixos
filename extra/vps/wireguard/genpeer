@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+
+if (($# != 1)); then
+    echo "need a number for ip address" 1>&2
+    exit 1
+fi
+
+
+IFS="$(ip -oneline addr show scope global | awk '$2 ~ /^en|^eth/ {print $2; exit}' | cut -d/ -f1)"
+if [[ -z "$IFS" ]]; then
+    # shellcheck disable=SC2141
+    IFS="eth0"
+fi
+
+
+WGIF="$(wg show interfaces | head --lines 1)"
+if [[ -z "$WGIF" ]]; then
+    echo "no wg interface found" 1>&2
+    exit 1
+fi
+
+
+IP4P="10.0.0.${1}/32"
+WGIP6="$(ip -6 -oneline addr show scope global dev "$WGIF" | awk '{print $4}' | cut -d / -f 1)"
+if [[ -n "$WGIP6" ]]; then
+    IP6P="$(echo "$WGIP6" | sed -E "s/1$/$1/")/128"
+else
+    IP6P="fd42:42:42::$1/128"
+fi
+
+
+KEYPRIP=$(wg genkey)
+KEYPUBP=$(echo "$KEYPRIP" | wg pubkey)
+LPORTP="8888"
+KEYPUBS=$(wg show "$WGIF" public-key)
+PKEY=$(wg genpsk)
+ADDRS4=$(ip -4 -o addr show scope global dev "$IFS" | awk '{print $4; exit}' | cut -d/ -f1)
+ADDRS6=$(ip -6 -o addr show scope global dev "$IFS" | awk '{print $4; exit}' | cut -d/ -f1)
+LPORTS=$(wg show "$WGIF" listen-port)
+if [[ -z "$LPORTS" ]]; then
+    LPORTS="8888"
+fi
+
+
+# peer
+IP4P=$IP4P \
+IP6P=$IP6P \
+KEYPRIP=$KEYPRIP \
+LPORTP=$LPORTP \
+KEYPUBS=$KEYPUBS \
+PKEY=$PKEY \
+ADDRS4=$ADDRS4 \
+ADDRS6=$ADDRS6 \
+WGIP6=$WGIP6 \
+LPORTS=$LPORTS \
+envsubst < wgp | \
+sed '/^MTU/aDNS = 8.8.8.8, 2001:4860:4860::8888' > wg0.conf
+
+
+cat <<EOF
+
+[Peer]
+PresharedKey = $PKEY
+PublicKey = $KEYPUBP
+AllowedIPs = $IP4P, $IP6P
+EOF
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

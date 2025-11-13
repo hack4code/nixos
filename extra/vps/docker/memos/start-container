@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+
+NAME="memos"
+IMAGE="neosmemo/memos:stable"
+MEMOPATH="$HOME/memos/"
+
+
+WGIF=$(wg show interfaces | head --lines=1)
+if [[ -n "$WGIF" ]]; then
+    IP=$(ip -oneline -brief -4 addr show dev "$WGIF" | awk '{print $3}' | cut -d/ -f1)
+fi
+
+if [[ -z "$IP" ]]; then
+    IP="127.0.0.1"
+fi
+
+if docker container list --all --format '{{.Names}}' | grep -q "$NAME"; then
+    docker container stop $NAME
+    docker container rm $NAME
+    docker image rm $IMAGE
+fi
+
+if [[ ! -d $MEMOPATH ]]; then
+    echo "mkdir memos ..."
+    mkdir -p "$MEMOPATH"
+fi
+
+echo "create container ..."
+docker container create \
+    --name $NAME \
+    --restart always \
+    --memory 512m \
+    --memory-swap 1G \
+    --publish "$IP:5230:5230" \
+    --volume "$MEMOPATH:/var/opt/memos" \
+    $IMAGE
+
+echo "start container ..."
+docker container start $NAME
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

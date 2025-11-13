@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+
+IMAGE="jedisct1/dnscrypt-server"
+
+IF="eth0"
+NAME="dnscrypt"
+ZONE="$HOME/.config/dnscrypt/zones"
+PORT="6666"
+IP6=$(ip -6 -oneline addr show dev $IF scope global | awk '{print $4;exit}' | cut -d/ -f1)
+
+
+echo "rm container..."
+if (docker container list --all --format '{{.Names}}' | grep -q "$NAME"); then
+    docker container stop "$NAME"
+    docker container rm "$NAME"
+    docker image rm "$IMAGE"
+fi
+
+if [[ ! -d $ZONE ]]; then
+    echo "mkdir $ZONE..."
+    mkdir -p "$ZONE/"
+fi
+
+echo "pull image..."
+docker image pull "$IMAGE"
+
+echo "start container..."
+docker container run \
+    --detach \
+    --restart always \
+    --network host \
+    --volume "$ZONE:/opt/unbound/etc/unbound/zones" \
+    --name $NAME \
+    $IMAGE \
+    init -N "dnscrypt.linode" -E "[${IP6}]:$PORT"
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

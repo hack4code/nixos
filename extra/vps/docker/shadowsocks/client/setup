@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+
+NAME="shadowsocks"
+
+SERVER="${1-}"
+PASSWORD="${2-}"
+
+
+function clean_container {
+    if [[ $(systemctl --user is-active $NAME) == "active" ]]; then
+        systemctl --user stop $NAME
+    fi
+    if podman container list --format '{{.Names}}' | grep -q $NAME; then
+        podman container stop $NAME
+    fi
+    if podman container list --all --format '{{.Names}}' | grep -q $NAME; then
+        podman container rm $NAME
+    fi
+    if podman image list --all --format "{{.Repository}}" | grep -q "$NAME"; then
+        podman image rm $NAME
+    fi
+}
+
+
+function setup_systemd_service {
+    local SYSTEMD="$HOME/.config/containers/systemd/"
+    if ! [[ -d "$SYSTEMD" ]]; then
+        echo "mkdir $SYSTEMD"
+        mkdir -p "$SYSTEMD/"
+    fi
+    cp shadowsocks.container "$SYSTEMD/"
+
+    echo "systemd reload ..."
+    systemctl --user daemon-reload
+}
+
+
+echo "clean container ..."
+clean_container
+
+echo "build image ..."
+podman image build \
+    --build-arg SERVER="$SERVER" \
+    --build-arg PASSWORD="$PASSWORD" \
+    --no-cache \
+    -t $NAME \
+    .
+
+setup_systemd_service
+
+echo "restart systemd service ..."
+systemctl --user restart $NAME
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

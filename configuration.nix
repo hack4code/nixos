@@ -18,6 +18,7 @@ in
         ./config/dnscrypt-proxy.nix
         ./config/input.nix
         ./config/output.nix
+        ./config/vps.nix
         ./config/wifi.nix
         ./config/ntp.nix
         ./config/gmail.nix

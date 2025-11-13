@@ -1,0 +1,16 @@
+{
+  "log": {
+    "loglevel": "info"
+  },
+  "inbounds": [{
+    "port": 10086,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [{ "id": "f82145ea-8022-4962-ba07-e91335bae47b" }]
+    }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  }]
+}

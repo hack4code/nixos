@@ -1,0 +1,50 @@
+{ lib, ... }:
+
+{
+    options = with lib; with types; {
+        wgInterface = mkOption { type = str; };
+        wgListenPort = mkOption { type = port; };
+        wgServerPort = mkOption { type = port; };
+        wgIp4Address = mkOption { type = str; };
+        wgIp6Address = mkOption { type = str; };
+        wgPrivateKey = mkOption { type = str; };
+        wgServerPubkey = mkOption { type = str; };
+        wgPresharedKey = mkOption { type = str; };
+        wgServer = mkOption { type = str; };
+        wgServerIp4Address = mkOption { type = str; };
+        wgServerIp6Address = mkOption { type = str; };
+        vpsV6Range = mkOption { type = str; };
+        vpsIp4Address = mkOption { type = str; };
+        vpsIp6Address = mkOption { type = str; };
+        wgMTU = mkOption { type = int; };
+        wgEndPoint = mkOption { type = str; };
+
+        dnsPort = mkOption { type = port; };
+    };
+
+    config = rec {
+        wgInterface = "wg0";
+        wgListenPort = ${LPORTP};
+        wgIp4Address = "${IP4P}";
+        wgIp6Address = "${IP6P}";
+        wgPrivateKey = "${KEYPRIP}";
+        wgServerPubkey = "${KEYPUBS}";
+        wgPresharedKey = "${PKEY}";
+        wgServerIp4Address = "${WGIP4S}";
+        wgServerIp6Address = "${WGIP6S}";
+        wgServerPort = ${LPORTS};
+        wgMTU = 1408;
+        # wgEndPoint = "${DOLLAR}{vpsIp4Address}:" + builtins.toString wgServerPort;
+        # wgEndPoint = "[${DOLLAR}{vpsIp6Address}]:" + builtins.toString wgServerPort;
+        wgEndPoint = "[${DOLLAR}{wgServerIp6Address}]:" + builtins.toString wgServerPort;
+
+        vpsV6Range = "${V6RANGE}";
+        vpsIp4Address = "${ADDRS4}";
+        vpsIp6Address = "${ADDRS6}";
+
+        dnsPort = ${DNSPORT};
+    };
+}
+
+
+# vim: ts=4 sw=4 sts=4 ft=nix et:

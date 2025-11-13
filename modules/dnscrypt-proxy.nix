@@ -37,7 +37,7 @@ in
                     };
                 };
                 static = {
-                    linode = {
+                    "${dnsServerName}" = {
                         stamp = "${dnsStamp}";
                     };
                 };

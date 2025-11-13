@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    vpsName = config.vpsName;
 in
 {
     home-manager.users.${userName} = {
@@ -83,7 +84,7 @@ in
                         openssh
                     ];
                     text = ''
-                        VPS="linode"
+                        VPS="${vpsName}"
                         SSH=$(command -v ssh)
                         TARGETS=("docker" "wireguard" "spider" "transmission")
 
@@ -156,7 +157,7 @@ in
                         openssh
                     ];
                     text = ''
-                        VPS="linode"
+                        VPS="${vpsName}"
                         SSH=$(command -v ssh)
 
 

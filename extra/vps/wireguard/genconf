@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+
+WGIF="wg0"
+IP4S="10.0.0.1/32"
+if (($# > 0)); then
+    IP6S="${1}::1/64"
+    WGIP6="${1}::1"
+else
+    IP6S="fd42:42:42::1/64"
+    WGIP6="fd42:42:42::1"
+fi
+IFS=$(ip -oneline addr show scope global | awk '$2 ~ /^en|^eth/ {print $2; exit}' | cut -d/ -f1)
+ADDRS4=$(ip -4 -oneline addr show scope global dev "$IFS" | awk '{print $4; exit}' | cut -d/ -f1)
+ADDRS6=$(ip -6 -oneline addr show scope global dev "$IFS" | awk '{print $4; exit}' | cut -d/ -f1)
+LPORTS="9999"
+KEYPRIS=$(wg genkey)
+KEYPUBS=$(echo "$KEYPRIS" | wg pubkey)
+
+
+IP4P="10.0.0.2/32"
+if (($# > 0)); then
+    V6RANGE="$1"
+    IP6P="${1}::2/128"
+else
+    V6RANGE="fd42:42:42"
+    IP6P="fd42:42:42::2/128"
+fi
+LPORTP="8888"
+KEYPRIP=$(wg genkey)
+KEYPUBP=$(echo "$KEYPRIP" | wg pubkey)
+PKEY=$(wg genpsk)
+
+
+IP4S=$IP4S \
+IP6S=$IP6S \
+KEYPRIS=$KEYPRIS \
+LPORTS=$LPORTS \
+IFS=$IFS \
+KEYPUBP=$KEYPUBP \
+PKEY=$PKEY \
+IP4P=$IP4P \
+IP6P=$IP6P \
+envsubst < wgs > "${WGIF}.conf.s"
+
+
+DNSPORT=$(ss -4 -tlnp | grep dns | awk '$4 ~ /0.0.0.0/ {split($4, a, ":"); print a[2]}')
+if [[ -z "$DNSPORT" ]]; then
+    DNSPORT="6666"
+fi
+V6RANGE=$V6RANGE \
+DNSPORT=$DNSPORT \
+WGIP4S=$(echo "$IP4S" | cut -d / -f 1) \
+WGIP6S=$(echo "$IP6S" | cut -d / -f 1) \
+IP4P=$IP4P \
+IP6P=$IP6P \
+KEYPRIP=$KEYPRIP \
+LPORTP=$LPORTP \
+KEYPUBS=$KEYPUBS \
+PKEY=$PKEY \
+ADDRS4=$ADDRS4 \
+ADDRS6=$ADDRS6 \
+WGIP6=$WGIP6 \
+LPORTS=$LPORTS \
+DOLLAR='$' \
+envsubst < wireguard.nix.template > wireguard.nix
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

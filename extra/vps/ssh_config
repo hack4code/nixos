@@ -1,0 +1,11 @@
+HOST linode
+    HostName 10.0.0.1
+    User root
+    Port 22
+    ConnectTimeout 180
+    Compression yes
+    CheckHostIP no
+    PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    LogLevel QUIET

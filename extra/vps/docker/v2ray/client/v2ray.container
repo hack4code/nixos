@@ -1,0 +1,17 @@
+[Unit]
+Description=v2ray
+
+[Container]
+Label=app=v2ray
+ContainerName=v2ray
+Image=localhost/v2ray
+Network=podmanv6.network
+PublishPort=127.0.0.1:1080:1080
+PodmanArgs=--memory 256m --memory-swap 1g
+Exec=run -c /etc/v2ray/config.json
+
+[Service]
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

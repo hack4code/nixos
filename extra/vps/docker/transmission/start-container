@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+
+NAME="transmission"
+DOWNLOAD="$HOME/download"
+WG=$(command -v wg)
+
+WGIF=$($WG show interfaces | head --lines=1)
+if [[ -n "$WGIF" ]]; then
+    IP=$(ip -oneline -4 addr show dev "$WGIF" | awk '{print $4; exit}' | cut -d/ -f1)
+fi
+
+if [[ -z "$IP" ]]; then
+    IP="127.0.0.1"
+fi
+
+if docker container list --all --format '{{.Names}}' | grep -q "$NAME"; then
+    docker container stop "$NAME"
+    docker container rm "$NAME"
+    docker image rm "$NAME"
+fi
+
+if [[ ! -d $DOWNLOAD ]]; then
+    echo "mkdir $DOWNLOAD ..."
+    mkdir "$DOWNLOAD/"
+    echo "mkdir $DOWNLOAD/complete/ ..."
+    mkdir "$DOWNLOAD/complete/"
+    echo "mkdir $DOWNLOAD/incomplete/ ..."
+    mkdir "$DOWNLOAD/incomplete/"
+    echo "mkdir $DOWNLOAD/watch/ ..."
+    mkdir "$DOWNLOAD/watch/"
+fi
+
+echo "build image ..."
+docker image build \
+    --no-cache \
+    -t $NAME \
+    .
+
+echo "start container ..."
+docker container run \
+    --detach \
+    --network host \
+    --restart always \
+    --memory 512m \
+    --memory-swap 1G \
+    --volume "$DOWNLOAD/:/download/" \
+    --name $NAME \
+    $NAME
+
+echo "update config ..."
+RPCLIST=$(echo "$IP" | sed -E 's/[^.]+$/*/')
+echo "listen address: $IP, rpclist: $RPCLIST"
+docker container exec $NAME /bin/bash -c "while [[ ! -f /transmission/settings.json ]]; do sleep 2; done"
+docker container exec $NAME /bin/sed -i "/rpc-enabled/s/false/true/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i "/rpc-bind-address/s/0.0.0.0/$IP/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i -E "/rpc-whitelist/s/127.0.0.1[^\"]+/$RPCLIST/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i -E "/cache-size-mb/s/[0-9]+/64/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i "/trash-original-torrent-files/s/false/true/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i "/rename-partial-files/s/false/true/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i "/port-forwarding-enabled/s/true/false/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i -E "/encryption/s/[0-9]+/1/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i -E "/peer-port/s/[0-9]+/65535/" /transmission/settings.json
+docker container exec $NAME /bin/sed -i -E "/download-queue-size/s/[0-9]+/8/" /transmission/settings.json
+
+echo "container restart ..."
+docker container restart $NAME
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

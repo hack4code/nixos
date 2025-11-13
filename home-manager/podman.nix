@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    vpsName = config.vpsName;
     vpsV6Range = config.vpsV6Range;
 in
 {
@@ -33,7 +34,7 @@ in
             text = ''
                 [Service]
                 ExecSearchPath=${lib.makeBinPath (with pkgs; [bashInteractive systemd coreutils openssh])}:/bin
-                ExecStartPre=sh -c "while ! ssh -q -T linode exit &>/dev/null; do sleep 24s; done"
+                ExecStartPre=sh -c "while ! ssh -q -T ${vpsName} exit &>/dev/null; do sleep 24s; done"
             '';
         };
     };

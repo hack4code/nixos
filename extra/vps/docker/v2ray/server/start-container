@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+
+NAME="v2ray"
+UUID=${1-}
+
+
+if docker container list --all --format '{{.Names}}' | grep -q "$NAME"; then
+    docker container stop $NAME
+    docker container rm $NAME
+    docker image rm $NAME
+fi
+
+echo "build image ..."
+docker image build \
+    --build-arg UUID="$UUID" \
+    --no-cache \
+    -t $NAME \
+    .
+
+echo "create container ..."
+docker container create \
+    --network host \
+    --restart always \
+    --name $NAME \
+    $NAME
+
+echo "start container ..."
+docker container start $NAME
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

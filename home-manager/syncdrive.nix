@@ -2,10 +2,11 @@
 
 let
     userName = config.userName;
+    vpsName = config.vpsName;
 
     appName = "syncdrive.sh";
     syncdrive = pkgs.writeShellApplication {
-        name = "${appName}";
+        name = appName;
 
         runtimeInputs = with pkgs; [
             rclone
@@ -28,7 +29,7 @@ let
             RCLONE=$(command -v rclone)
             NOTIFY=$(command -v notify-send)
 
-            VPS="linode"
+            VPS="${vpsName}"
 
             NFS_SPIDER="10.0.0.2:/export/spider"
             MOUNT_OPT="vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto"
@@ -83,7 +84,7 @@ let
             fi
 
             if ! $SSH -T $VPS "mount -t nfs4 -l" | grep -q "$ROOT/spider"; then
-                if ! $SSH -T linode "mount -t nfs -o '$MOUNT_OPT' '$NFS_SPIDER' $ROOT/spider"; then
+                if ! $SSH -T $VPS "mount -t nfs -o '$MOUNT_OPT' '$NFS_SPIDER' $ROOT/spider"; then
                     notify "spider mount failed"
                     exit 1
                 fi

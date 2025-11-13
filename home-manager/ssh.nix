@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    vpsName = config.vpsName;
 in
 {
     home-manager.users.${userName} = {
@@ -10,8 +11,8 @@ in
             hashKnownHosts = false;
 
             matchBlocks = {
-                linode = {
-                    host = "linode";
+                "${vpsName}" = {
+                    host = "${vpsName}";
                     hostname = "10.0.0.1";
                     port = 22;
                     user = "root";

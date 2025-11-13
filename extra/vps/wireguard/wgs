@@ -1,0 +1,14 @@
+[Interface]
+Address = ${IP4S}, ${IP6S}
+PrivateKey = ${KEYPRIS}
+ListenPort = ${LPORTS}
+PostUP = ethtool -K ${IFS} rx-gro-list off
+PostUP = ethtool -K ${IFS} rx-udp-gro-forwarding on
+PostUP = tc qdisc add dev %i root fq_codel;
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ${IFS} -j MASQUERADE; ip6tables -A FORWARD -o %i -j ACCEPT; ip6tables -A FORWARD -i %i -j ACCEPT;
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ${IFS} -j MASQUERADE; ip6tables -D FORWARD -o %i -j ACCEPT; ip6tables -D FORWARD -i %i -j ACCEPT;
+
+[Peer]
+PresharedKey = ${PKEY}
+PublicKey = ${KEYPUBP}
+AllowedIPs = ${IP4P}, ${IP6P}

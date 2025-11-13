@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+
+NAME="tor"
+
+
+WGIF=$(wg show interfaces | head --lines=1)
+if [[ -n $WGIF ]]; then
+    IP=$(ip -4 -oneline addr show dev "$WGIF" | awk '{print $4; exit}' | cut -d/ -f1)
+fi
+if [[ -z $IP ]]; then
+    LADDR="127.0.0.1"
+    NET="127.0.0.1/32"
+else
+    LADDR=$IP
+    NET="$IP/24"
+fi
+
+if docker container list --all --format '{{.Names}}' | grep -q "$NAME"; then
+    docker container stop $NAME
+    docker container rm $NAME
+    docker image rm $NAME
+fi
+
+echo "build image ..."
+docker image build \
+    --build-arg LADDR="$LADDR" \
+    --build-arg NET="$NET" \
+    --no-cache \
+    -t $NAME \
+    .
+
+echo "create container ..."
+docker container create \
+    --network host \
+    --name $NAME \
+    --memory 512m \
+    --memory-swap 1G \
+    --restart always \
+    $NAME
+
+
+echo "start container..."
+docker container start $NAME
+
+
+# vim: ts=4 sw=4 sts=4 ft=bash et:

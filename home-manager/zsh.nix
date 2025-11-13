@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    vpsName = config.vpsName;
     bwSession = config.bwSession;
 in
 {
@@ -100,10 +101,10 @@ in
                 wp = "wl-copy";
                 tp = "cd \"$(mktemp -d)\"";
                 linode = "linode-cli --suppress-warnings";
-                vc = "kssh -T linode";
-                vd = "kssh -T linode docker container";
-                vdl = "kssh -T linode docker container list";
-                vdg = "kssh -T linode docker container logs";
+                vc = "kssh -T ${vpsName}";
+                vd = "kssh -T ${vpsName} docker container";
+                vdl = "kssh -T ${vpsName} docker container list";
+                vdg = "kssh -T ${vpsName} docker container logs";
                 jf = "journalctl --follow";
                 jfi = "journalctl --follow --identifier";
                 jb = "journalctl --boot";

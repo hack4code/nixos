@@ -2,10 +2,11 @@
 
 let
     userName = config.userName;
+    vpsName = config.vpsName;
     appName = "downmovie.sh";
 
     downmovie = pkgs.writeShellApplication {
-        name = "${appName}";
+        name = appName;
         runtimeInputs = with pkgs; [
             rsync
             openssh
@@ -24,7 +25,7 @@ let
             RSYNC=$(command -v rsync)
             NOTIFY=$(command -v notify-send)
 
-            VPS="linode"
+            VPS="${vpsName}"
             SOURCE="10.0.0.1::movie"
             DEST="$HOME/movie/.rsync/"
             ICON="$HOME/picture/icon/network.png"
