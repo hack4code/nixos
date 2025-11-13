@@ -20,8 +20,7 @@ in
                 "$HOME/source"
                 "$HOME/code"
                 "$HOME/music"
-                "$HOME/source/vps/docker"
-                "$HOME/.config"
+                "$HOME/source/nixos/extra"
             ];
 
             enableCompletion = true;
@@ -193,57 +192,6 @@ in
                         fi
                         tput setaf "$1"
                         echo "Hello World!"
-                    }
-
-
-                    function magnet {
-                        sed -nE 's/.*(magnet:.+)\]$/\1\n/p'
-                    }
-
-
-                    function nug {
-                        cd $HOME/source/nixos/
-                        make update
-                        cd -
-                    }
-
-
-                    function nlg {
-                        nixos-rebuild list-generations
-                    }
-
-
-                    function ngc {
-                        nix-collect-garbage -d
-                    }
-
-
-                    function ndg {
-                        if (($# == 1)); then
-                            sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
-                            return
-                        fi
-
-                        if (($# == 2)); then
-                            sudo nix-env --delete-generations `seq "$1" "$2" | tr '\n' ' '` --profile /nix/var/nix/profiles/system
-                            return
-                        fi
-
-                        local N
-                        N=$(nixos-rebuild list-generations --json | jq 'length')
-                        if ((N < 3)); then
-                            return
-                        fi
-
-                        local BEGIN
-                        local END
-                        BEGIN=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n 1)
-                        END=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n -2 | tail -n 1)
-                        if ((BEGIN == END)); then
-                            sudo nix-env --delete-generations "$BEGIN" --profile /nix/var/nix/profiles/system
-                        else
-                            sudo nix-env --delete-generations $(seq --separator=' ' $BEGIN $END) --profile /nix/var/nix/profiles/system
-                        fi
                     }
 
 
