@@ -27,7 +27,7 @@ function scpcmd {
 function rebuild_nixos {
     cd "$HOME/source/nixos/" || panic "$HOME/source/nixos not exist"
     make switch
-    cd - || exit 1
+    cd - || panic "rebuild_nixos"
 }
 
 
@@ -67,18 +67,15 @@ function prepare {
 
     local BW
     BW="$(command -v bw)"
-    echo "sync bitwarden..."
     if ! $BW sync &>/dev/null; then
-        panic "bw sync error"
+        panic "bw sync failed"
     fi
-
 
     local RCLONE
     RCLONE="$(command -v rclone)"
     if ! $RCLONE ls drive:spider &>/dev/null; then
         panic "rclone failed"
     fi
-
 
     if ! linode-cli --suppress-warnings users list &>/dev/null; then
         panic "linode-cli not worked"
@@ -652,7 +649,7 @@ function setup_v2ray {
 
     cd "$(pwd)/docker/v2ray/client/" || panic "$(pwd)/docker/v2ray/client not exist"
     ./setup "$ADDRESS" "$UUID"
-    cd - || exit 1
+    cd - || panic "setup_v2ray"
 }
 
 
@@ -678,7 +675,7 @@ function setup_shadowsocks {
 
     cd "$(pwd)/docker/shadowsocks/client/" || panic "$(pwd)/docker/shadowsocks/client not exist"
     ./setup "$SERVER" "$PASSWORD"
-    cd - || exit 1
+    cd - || panic "setup_shadowsocks"
 }
 
 
@@ -792,9 +789,17 @@ case "$1" in
         clear_docker
         ;;
 
+    prepare)
+        prepare
+        ;;
+
     setup)
         create_node
         clear_docker
+        ;;
+
+    panic)
+        panic "panic test"
         ;;
 
     *)
