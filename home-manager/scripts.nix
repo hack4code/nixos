@@ -277,6 +277,77 @@ in
                     '';
                 }
             )
+            (
+                writeShellApplication {
+                    name = "nug";
+                    runtimeInputs = [
+                        gnumake
+                    ];
+                    text = ''
+                        cd "$HOME/source/nixos/"
+                        make update
+                        cd -
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "nlg";
+                    runtimeInputs = [
+                        nixos-rebuild
+                    ];
+                    text = ''
+                        nixos-rebuild list-generations
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "ngc";
+                    runtimeInputs = [
+                        nixos-rebuild
+                    ];
+                    text = ''
+                        nix-collect-garbage -d
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "ndg";
+                    runtimeInputs = [
+                        coreutils
+                        jq
+                        nix
+                        nixos-rebuild
+                    ];
+                    text = ''
+                        if (($# == 1)); then
+                            sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
+                            exit
+                        fi
+
+                        if (($# == 2)); then
+                            # shellcheck disable=SC2046
+                            sudo nix-env --delete-generations $(seq "$1" "$2" | tr '\n' ' ' | sed -E 's/\s+$//') --profile /nix/var/nix/profiles/system
+                            exit
+                        fi
+
+                        N=$(nixos-rebuild list-generations --json | jq 'length')
+                        if ((N < 3)); then
+                            exit
+                        fi
+
+                        BEGIN=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n 1)
+                        END=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n -2 | tail -n 1)
+                        if ((BEGIN == END)); then
+                            sudo nix-env --delete-generations "$BEGIN" --profile /nix/var/nix/profiles/system
+                        else
+                            sudo nix-env --delete-generations $(seq --separator=' ' "$BEGIN" "$END") --profile /nix/var/nix/profiles/system
+                        fi
+                    '';
+                }
+            )
         ];
     };
 }
