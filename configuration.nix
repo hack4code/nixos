@@ -287,14 +287,14 @@ in
             /* compress */
             p7zip
             unrar
-            /* sys */
+            /* tool */
+            bc
             binutils
             dosfstools
             duf
             file
             procps
             sysstat
-            /* shell */
             bat
             coreutils
             eza
@@ -335,8 +335,6 @@ in
             pulseaudio
             /* console font */
             kbd
-            /* nixos */
-            hydra-check
             /* secure boot */
             sbctl
             /* bluetooth */
@@ -344,11 +342,10 @@ in
             /* ifuse */
             libimobiledevice
             ifuse
+            /* develop */
+            gnumake
             /* game */
             tetris
-            /* build */
-            bc
-            gnumake
         ];
     };
 }
