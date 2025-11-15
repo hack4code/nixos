@@ -99,6 +99,7 @@ in
                 ip = "ip -color";
                 wp = "wl-copy";
                 tp = "cd \"$(mktemp -d)\"";
+                lg = "lazygit";
                 linode = "linode-cli --suppress-warnings";
                 vc = "kssh -T ${vpsName}";
                 vd = "kssh -T ${vpsName} docker container";
