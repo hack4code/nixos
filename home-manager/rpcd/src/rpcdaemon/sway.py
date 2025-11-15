@@ -617,18 +617,6 @@ def launch_linode_tab() -> None:
     )
 
 
-def restart_linode_tab() -> None:
-    if (id_tab := find_linode_tab_id()) is not None:
-        close_linode_tab(id_tab)
-    launch_linode_tab()
-
-
-def resume_linode() -> None:
-    restart_container_linode()
-    send_esc_to_linode()
-
-
-
 def resume_ncmpcpp() -> bool:
     if get_mpd_state() == "playing":
         set_ncmpcpp_for_playing()
@@ -648,10 +636,10 @@ def resume_system() -> None:
     set_monitor_power("thinkpad", "on")
     set_monitor_power("samsung", "on")
     workspace_focus = find_workspace_focused() or "1"
-    resume_linode()
+    restart_container_linode()
     resume_ncmpcpp()
-    move_cursor_to_workspace_0()
     focus_workspace(workspace_focus)
+    move_cursor_to_workspace_0()
     send_esc_to_linode()
 
 
