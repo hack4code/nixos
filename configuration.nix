@@ -65,6 +65,7 @@ in
         ./home-manager/uv.nix
         ./home-manager/scripts.nix
         ./home-manager/git.nix
+        ./home-manager/lazygit.nix
         ./home-manager/direnv.nix
         ./home-manager/fetchmail.nix
         ./home-manager/podman.nix
