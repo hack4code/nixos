@@ -216,23 +216,26 @@ in
             )
             (
                 writeShellApplication {
-                    name = "dnstemp.sh";
+                    name = "dnstmp.sh";
                     runtimeInputs = [
                         coreutils
                         gnused
                         systemd
+                        nix
                     ];
                     text = ''
                         TEMP="/tmp/dnscrypt-proxy"
-                        CONFIG="$HOME/source/vps/dnscrypt-proxy.toml"
+                        CONFIG="$HOME/source/nixos/extra/vps/dnscrypt-proxy.toml"
                         PROXY="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
+                        LOG="/tmp/dnscrypt-proxy.log"
+
                         [[ -x "$PROXY" ]] || exit 1
                         [[ -f "$CONFIG" ]] || exit 1
                         [[ -d "$TEMP" ]] || mkdir -p $TEMP
 
                         cp "$CONFIG" "$TEMP/"
-                        sudo systemctl stop dnscrypt-proxy.service
-                        sudo "$PROXY" -config "$TEMP/dnscrypt-proxy.toml" -child &>/dev/null &
+                        sudo systemctl stop dnscrypt-proxy2.service
+                        nohup sudo "$PROXY" -config "$TEMP/dnscrypt-proxy.toml" -child &>"$LOG" &
                     '';
                 }
             )
@@ -345,6 +348,22 @@ in
                         else
                             sudo nix-env --delete-generations $(seq --separator=' ' "$BEGIN" "$END") --profile /nix/var/nix/profiles/system
                         fi
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "pp";
+                    runtimeInputs = [
+                        nix
+                    ];
+                    text = ''
+                        if (($# != 1)); then
+                            echo "package name not found" 1>&2
+                            exit 1
+                        fi
+
+                        nix-instantiate --eval-only --expr "(import <nixpkgs> {}).$1.outPath" | sed 's/"//g'
                     '';
                 }
             )
