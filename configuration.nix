@@ -250,13 +250,7 @@ in
                 gtk = true;
             };
 
-            extraPackages =
-            let
-                swayExtraPackages = with pkgs-unstable; [
-                    swaybg
-                ];
-            in
-            with pkgs; [
+            extraPackages = with pkgs; [
                 # swaylock
                 swayimg
                 swayidle
@@ -273,7 +267,9 @@ in
                 zathura
                 wl-kbptr
                 slurp
-            ] ++ swayExtraPackages;
+            ] ++ (with pkgs-unstable; [
+                swaybg
+            ]);
         };
     };
 
