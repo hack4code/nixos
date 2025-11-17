@@ -92,17 +92,6 @@ const SITE = window.location.href;
     }
 
 
-    function hide_badge() {
-        console.log("hide_badge");
-        const $node = $("ytd-badge-supported-renderer");
-        if ($node.length) {
-            $node.hide();
-            return true;
-        }
-        return false;
-    }
-
-
     function adjust_css() {
         console.log("adjust_css");
         const $node = $("#title h1");
@@ -151,6 +140,17 @@ const SITE = window.location.href;
     function hide_ai_comment() {
         console.log("hide_ai_comment");
         const $node = $("#expandable-metadata");
+        if ($node.length) {
+            $node.hide();
+            return true;
+        }
+        return false;
+    }
+
+
+    function hide_badge() {
+        console.log("hide_badge");
+        const $node = $("#title > ytd-badge-supported-renderer");
         if ($node.length) {
             $node.hide();
             return true;
