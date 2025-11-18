@@ -97,6 +97,7 @@ in
 
             shellAliases = {
                 ip = "ip -color";
+                ip6 = "ip -color -6";
                 wp = "wl-copy";
                 tp = "cd \"$(mktemp -d)\"";
                 lg = "lazygit";
