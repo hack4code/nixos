@@ -1,9 +1,11 @@
-{ config, pkgs-stable, ... }:
+{ config, lib, pkgs-stable, ... }:
 
 let
     userName = config.userName;
 in
 {
+    systemd.user.services.swaync.wantedBy = lib.mkForce [];
+
     home-manager.users.${userName} = {
         services.swaync = {
             enable = true;
