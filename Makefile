@@ -1,6 +1,6 @@
 update: flake switch
-switch: rebuild systemd
-offline: rebuild-offline systemd
+switch: rebuild
+offline: rebuild-offline
 
 flake:
 	sudo env https_proxy=socks5h://10.0.0.1:1080 nix flake update
