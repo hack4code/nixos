@@ -1,0 +1,9 @@
+table ip nix-proxy {
+    chain postrouting {
+        type nat hook postrouting priority srcnat; policy accept;
+        ip saddr 192.168.2.0/24 oif "wlan0" masquerade
+    }
+}
+
+
+# vim: ts=4 sw=4 sts=4 ft=nft et:
