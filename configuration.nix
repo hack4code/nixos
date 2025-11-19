@@ -312,6 +312,7 @@ in
             uv
             /* net */
             axel
+            conntrack-tools
             curl
             dig
             ethtool
