@@ -343,6 +343,7 @@ in
             gnumake
             /* game */
             tetris
+            nethack
         ];
     };
 }
