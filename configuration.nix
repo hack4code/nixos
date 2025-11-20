@@ -344,8 +344,9 @@ in
             /* develop */
             gnumake
             /* game */
-            tetris
+            dwarf-fortress
             nethack
+            tetris
         ];
     };
 }
