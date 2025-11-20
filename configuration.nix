@@ -320,6 +320,7 @@ in
             mtr
             nmap
             openssh
+            pwru
             rclone
             tor-browser
             wget
