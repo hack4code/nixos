@@ -358,12 +358,37 @@ in
                         nix
                     ];
                     text = ''
-                        if (($# != 1)); then
-                            echo "package name not found" 1>&2
+                        function panic {
+                            echo "$*" 1>&2
                             exit 1
+                        }
+
+
+                        if (($# != 1)); then
+                            panic "need package name"
                         fi
 
                         nix-instantiate --eval-only --expr "(import <nixpkgs> {}).$1.outPath" | sed 's/"//g'
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "sp";
+                    runtimeInputs = [
+                        nix
+                    ];
+                    text = ''
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
+                        if (($# != 1)); then
+                            panic "need package name"
+                        fi
+                        env https_proxy=socks5://10.0.0.1:1080 nix search --quiet nixpkgs "$1"
                     '';
                 }
             )
