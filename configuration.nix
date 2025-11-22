@@ -231,13 +231,14 @@ in
             defaultEditor = true;
         };
 
-        # uvx
+        # uv
         nix-ld = {
             enable = true;
         };
 
         wireshark = {
             enable = true;
+            package = pkgs.wireshark;
             dumpcap = {
                 enable = true;
             };
