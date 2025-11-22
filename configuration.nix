@@ -323,6 +323,7 @@ in
             openssh
             pwru
             rclone
+            tcptrace
             tor-browser
             wget
             /* tpm2 */
