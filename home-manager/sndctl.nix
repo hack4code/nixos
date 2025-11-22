@@ -16,7 +16,7 @@ let
                 local T=0
                 local SONY="20:64:DE:85:A4:E3"
 
-                while [[ $(bluetoothctl info $SONY | awk -F : '/Connected/ {print $2; exit}' | tr -d ' \n') != "yes" ]]; do
+                while [[ "$(bluetoothctl info $SONY | awk -F : '/Connected/ {print $2; exit}' | tr -d ' \n')" != "yes" ]]; do
                     bluetoothctl connect "$SONY" &>/dev/null
                     sleep 2s
                     T=$((T + 1))
