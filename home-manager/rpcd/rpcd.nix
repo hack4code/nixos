@@ -20,7 +20,7 @@ pkgs.python3Packages.buildPythonApplication {
         yt-dlp
         i3ipc
         mpd2
-        systemd
+        systemd-python
     ];
 }
 
