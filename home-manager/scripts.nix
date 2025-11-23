@@ -234,7 +234,7 @@ in
                         [[ -d "$TEMP" ]] || mkdir -p $TEMP
 
                         cp "$CONFIG" "$TEMP/"
-                        sudo systemctl stop dnscrypt-proxy2.service
+                        sudo systemctl stop dnscrypt-proxy.service
                         nohup sudo "$PROXY" -config "$TEMP/dnscrypt-proxy.toml" -child &>"$LOG" &
                     '';
                 }
