@@ -221,17 +221,16 @@ in
                         coreutils
                         gnused
                         systemd
-                        nix
                     ];
                     text = ''
-                        TEMP="/tmp/dnscrypt-proxy"
+                        TEMP='/tmp/dnscrypt-proxy'
                         CONFIG="$HOME/source/nixos/extra/vps/dnscrypt-proxy.toml"
                         PROXY="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
-                        LOG="/tmp/dnscrypt-proxy.log"
+                        LOG='/tmp/dnscrypt-proxy.log'
 
                         [[ -x "$PROXY" ]] || exit 1
-                        [[ -f "$CONFIG" ]] || exit 1
-                        [[ -d "$TEMP" ]] || mkdir -p $TEMP
+                        [[ -f $CONFIG ]] || exit 1
+                        [[ -d $TEMP ]] || mkdir -p $TEMP
 
                         cp "$CONFIG" "$TEMP/"
                         sudo systemctl stop dnscrypt-proxy.service
@@ -249,6 +248,7 @@ in
                         if (($# < 1)); then
                             exit 1;
                         fi
+
                         curl -F "file=@$1" https://0x0.st
                     '';
                 }
@@ -296,9 +296,6 @@ in
             (
                 writeShellApplication {
                     name = "nlg";
-                    runtimeInputs = [
-                        nixos-rebuild
-                    ];
                     text = ''
                         nixos-rebuild list-generations
                     '';
@@ -307,9 +304,6 @@ in
             (
                 writeShellApplication {
                     name = "ngc";
-                    runtimeInputs = [
-                        nixos-rebuild
-                    ];
                     text = ''
                         nix-collect-garbage -d
                     '';
@@ -321,8 +315,6 @@ in
                     runtimeInputs = [
                         coreutils
                         jq
-                        nix
-                        nixos-rebuild
                     ];
                     text = ''
                         if (($# == 1)); then
@@ -354,9 +346,6 @@ in
             (
                 writeShellApplication {
                     name = "pp";
-                    runtimeInputs = [
-                        nix
-                    ];
                     text = ''
                         function panic {
                             echo "$*" 1>&2
@@ -375,9 +364,6 @@ in
             (
                 writeShellApplication {
                     name = "sp";
-                    runtimeInputs = [
-                        nix
-                    ];
                     text = ''
                         function panic {
                             echo "$*" 1>&2
@@ -388,6 +374,7 @@ in
                         if (($# != 1)); then
                             panic "need package name"
                         fi
+
                         env https_proxy=socks5://10.0.0.1:1080 nix search --quiet nixpkgs "$1"
                     '';
                 }
