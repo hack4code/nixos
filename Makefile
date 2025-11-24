@@ -1,10 +1,10 @@
 update: flake switch
 
 flake:
-	sudo env https_proxy=socks5h://10.0.0.1:1080 nix flake update
+	env https_proxy=socks5h://10.0.0.1:1080 nix flake update
 
 switch:
-	sudo nixos-rebuild switch --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS"
+	nixos-rebuild switch --sudo --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS"
 
 offline:
-	sudo nixos-rebuild switch --offline --impure --show-trace --print-build-logs --verbose --flake ".#KISS"
+	nixos-rebuild switch --sudo --offline --impure --show-trace --print-build-logs --verbose --flake ".#KISS"
