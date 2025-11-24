@@ -22,6 +22,9 @@ in
             "rw"
         ];
 
+        kernelModules = [
+        ];
+
         loader = {
             efi = {
                 canTouchEfiVariables = true;
@@ -56,6 +59,9 @@ in
                 "erofs"
                 /* efi */
                 "efivarfs"
+                /* */
+                "bridge"
+                "br_netfilter"
             ];
         };
 
