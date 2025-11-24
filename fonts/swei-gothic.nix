@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
         repo = "swei-gothic";
         tag = tag;
         hash = "sha256-Ko8du9HRmi+k6a3My1r5Zyv1BX362BONy/RH5C9ECSU=";
-        curlOpts = "-L";
+        curlOpts = "-L --retry 8";
     };
 
     installPhase = ''
