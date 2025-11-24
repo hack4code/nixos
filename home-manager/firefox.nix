@@ -315,10 +315,13 @@ in
                         user_pref("gfx.webrender.enabled", true);
                         user_pref("gfx.webrender.precache-shaders", true);
                         user_pref("gfx.webrender.program-binary-disk", true);
+                        user_pref("gfx.webrender.layer-compositor", true);
                         user_pref("layers.gpu-process.enabled", true);
                         user_pref("layers.gpu-process.force-enabled", true);
                         user_pref("layers.acceleration.force-enabled", true);
                         user_pref("image.mem.decode_bytes_at_a_time", 65536);
+                        user_pref("media.wmf.zero-copy-nv12-textures-force-enabled", true);
+                        user_pref("media.av1.enabled", false);
 
                         /* network */
                         user_pref("network.http.max-connections", 900);
