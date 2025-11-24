@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 
-WGIP="10.0.0.1"
+WGIP='10.0.0.1'
 NIX_CONFIG="$HOME/source/nixos/configuration.nix"
 DNSCRYPT_NIX="$HOME/source/nixos/modules/dnscrypt-proxy.nix"
+NIXOS="$HOME/source/nixos"
 DNSCRYPT_CONFIG="$HOME/source/nixos/config/dnscrypt-proxy.nix"
-MOUNT_OPT="vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto"
+MOUNT_OPT='vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto'
 
 
 function panic {
@@ -25,24 +26,24 @@ function scpcmd {
 
 
 function rebuild_nixos {
-    cd "$HOME/source/nixos/" || panic "$HOME/source/nixos not exist"
+    cd "$NIXOS/" || panic "$NIXOS not exist"
     make switch
-    cd - || panic "rebuild_nixos"
+    cd - || panic rebuild_nixos
 }
 
 
 function disable_wireguard_service {
-    sed -i -E "/wg-quick/s/^/#/" "$NIX_CONFIG"
+    sed -i -E '/wg-quick/s/^/#/' "$NIX_CONFIG"
 }
 
 
 function enable_wireguard_service {
-    sed -i -E "/wg-quick/s/^#+//" "$NIX_CONFIG"
+    sed -i -E '/wg-quick/s/^#+//' "$NIX_CONFIG"
 }
 
 
 function reset_dnscrypt_proxy {
-    sed -i -E "/server_names/s/^/#/" "$DNSCRYPT_NIX"
+    sed -i -E '/server_names/s/^/#/' "$DNSCRYPT_NIX"
 }
 
 
@@ -50,44 +51,44 @@ function enable_dnscrypt_proxy {
     local SDNS
 
     SDNS=$(sshcmd "docker container logs dnscrypt" | grep -E -o -m 1 'sdns:.+$')
-    if [[ -z "$SDNS" ]]; then
-        panic "sdns for linode is empty"
+    if [[ -z $SDNS ]]; then
+        panic 'sdns for linode is empty'
     fi
 
-    sed -i -E "/dnsServerName/s,\".*\",\"linode\"," "$DNSCRYPT_CONFIG"
+    sed -i -E '/dnsServerName/s,".*","linode",' "$DNSCRYPT_CONFIG"
     sed -i -E "/dnsStamp/s,\".*\",\"$SDNS\"," "$DNSCRYPT_CONFIG"
-    sed -i -E "/server_names/s/^#+//" "$DNSCRYPT_NIX"
+    sed -i -E '/server_names/s/^#+//' "$DNSCRYPT_NIX"
 }
 
 
 function prepare {
-    echo "reconnect wifi..."
+    echo 'reconnect wifi...'
     nmcli device wifi rescan
     nmcli device wifi connect TP-LINK_1225 --ask
 
     local BW
     BW="$(command -v bw)"
     if ! $BW sync &>/dev/null; then
-        panic "bw sync failed"
+        panic 'bw sync failed'
     fi
 
     local RCLONE
     RCLONE="$(command -v rclone)"
     if ! $RCLONE ls drive:spider &>/dev/null; then
-        panic "rclone failed"
+        panic 'rclone failed'
     fi
 
     if ! linode-cli --suppress-warnings users list &>/dev/null; then
-        panic "linode-cli not worked"
+        panic 'linode-cli not worked'
     fi
 
-    echo "reset dnscrypt-proxy"
+    echo 'reset dnscrypt-proxy'
     reset_dnscrypt_proxy
 
-    echo "disable wireguard"
+    echo 'disable wireguard'
     disable_wireguard_service
 
-    echo "rebuild nixos..."
+    echo 'rebuild nixos...'
     rebuild_nixos
 }
 
@@ -103,10 +104,10 @@ function destory_linode {
 
 
 function create_linode {
-    local USRE="code4hack"
-    local LABEL="gentoo"
-    local LINODE_TYPE="g6-nanode-1"
-    local LINODE_IMAGE="linode/gentoo"
+    local USRE='code4hack'
+    local LABEL='gentoo'
+    local LINODE_TYPE='g6-nanode-1'
+    local LINODE_IMAGE='linode/gentoo'
 
     local PASS
     local SSH_KEY
@@ -115,29 +116,29 @@ function create_linode {
 
     PASS=$(bw list items --search gentoo | jq -r '.[].login.password' | head --lines 1)
     if [[ -z "$PASS" ]]; then
-        panic "root password is empty"
+        panic 'root password is empty'
     fi
 
     SSH_KEY=$(linode-cli --suppress-warnings sshkeys list --json | jq -r '.[].ssh_key')
-    if [[ -z "$SSH_KEY" ]]; then
-        panic "ssh pubkey is empty"
+    if [[ -z $SSH_KEY ]]; then
+        panic 'ssh pubkey is empty'
     fi
 
     LINODE_REGION=$(linode-cli --suppress-warnings regions list --json | jq -r '.[] | (.id + ": " + .label)' | fzf | cut -d : -f 1 | tr -d ' ')
     if [[ -z "$LINODE_REGION" ]]; then
-        panic "region is empty"
+        panic 'region is empty'
     fi
 
-    linode-cli --suppress-warnings linodes create --no-defaults --region "$LINODE_REGION" --type "$LINODE_TYPE" --authorized_users "$USRE" --authorized_keys "$SSH_KEY" --label "$LABEL" --root_pass "$PASS" --image "$LINODE_IMAGE" --swap_size 512
+    linode-cli --suppress-warnings linodes create --no-defaults --region "$LINODE_REGION" --type $LINODE_TYPE --authorized_users $USRE --authorized_keys "$SSH_KEY" --label $LABEL --root_pass "$PASS" --image "$LINODE_IMAGE" --swap_size 512
 
     while ! linode-cli --suppress-warnings linodes list --json | jq -r '.[].status' | grep -q running; do
-        echo "waiting linode online..."
+        echo 'waiting linode online...'
         sleep 24s
     done
 
     IP4=$(linode-cli --suppress-warnings networking ips-list --json | jq -r '.[] | select(.type=="ipv4") | .address')
     if [[ -z "$IP4" ]]; then
-        panic "no vps ip4 address found"
+        panic 'no vps ip4 address found'
     fi
 
     while ! ping -c 1 "$IP4"; do
@@ -151,19 +152,19 @@ function reboot_linode {
 
     LINODE_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
     if [[ -z "$LINODE_ID" ]]; then
-        panic "no linode ID found"
+        panic 'no linode ID found'
     fi
 
     linode-cli --suppress-warnings linodes reboot "$LINODE_ID"
 
-    echo "linode is rebooting..."
+    echo 'linode is rebooting...'
     sleep 32s
 }
 
 
 function test_ssh {
     while ! sshcmd exit; do
-        echo "waiting ssh online"
+        echo 'waiting ssh online'
         sleep 16s
     done
 }
@@ -174,7 +175,7 @@ function setup_ssh {
 
     IP4=$(linode-cli --suppress-warnings networking ips-list --json | jq -r '.[] | select(.type=="ipv4") | .address' | head --lines 1)
     if [[ -z "$IP4" ]]; then
-        panic "no vps ipv4 address found"
+        panic 'no vps ipv4 address found'
     fi
 
     sed -i -E "/HOST.*linode/{n;s/[0-9.]+/$IP4/}" ssh_config
@@ -192,12 +193,12 @@ function enable_firewall {
 
     FIREWALL_ID=$(linode-cli --suppress-warnings firewalls list --json | jq -r '.[].id' | head --lines 1)
     if [[ -z "$FIREWALL_ID" ]]; then
-        panic "no firewall ID found"
+        panic 'no firewall ID found'
     fi
 
     LINODE_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
     if [[ -z "$LINODE_ID" ]]; then
-        panic "no linode ID found"
+        panic 'no linode ID found'
     fi
 
     linode-cli --suppress-warnings firewalls device-create "$FIREWALL_ID" --type linode --id "$LINODE_ID"
@@ -215,7 +216,7 @@ function setup_v6range {
 
     LINODE_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
     if [[ -z "$LINODE_ID" ]]; then
-        panic "no linode ID found"
+        panic 'no linode ID found'
     fi
 
     linode-cli --suppress-warnings networking v6-range-create --prefix_length 64 --linode_id "$LINODE_ID"
@@ -224,7 +225,7 @@ function setup_v6range {
 
 function test_wireguard {
     while ! ping -q -c 1 $WGIP; do
-        echo "waiting wireguard online..."
+        echo 'waiting wireguard online...'
         sleep 16s
     done
 }
@@ -240,19 +241,19 @@ function setup_wireguard {
 
     V6RANGE=$(linode-cli --suppress-warnings networking v6-ranges --json | jq -r '.[].range' | sed -E 's/:+$//' | head --lines 1)
     if [[ -z "$V6RANGE" ]]; then
-        panic "no v6range found"
+        panic 'no v6range found'
     fi
 
-    if ! sshcmd "test -f /etc/sysctl.d/net.conf"; then
+    if ! sshcmd 'test -f /etc/sysctl.d/net.conf'; then
         scpcmd -q sysctl/*.conf linode:/etc/sysctl.d/
     fi
 
-    if ! sshcmd "qlist -I" | grep -q "sys-apps/ethtool"; then
-        sshcmd "emerge sys-apps/ethtool"
+    if ! sshcmd 'qlist -I' | grep -q sys-apps/ethtool; then
+        sshcmd 'emerge sys-apps/ethtool'
     fi
 
-    if ! sshcmd "qlist -I" | grep -q "net-vpn/wireguard-tools"; then
-        sshcmd "emerge net-vpn/wireguard-tools"
+    if ! sshcmd 'qlist -I' | grep -q net-vpn/wireguard-tools; then
+        sshcmd 'emerge net-vpn/wireguard-tools'
     fi
 
     sshcmd "test -d $WIREGUARD || mkdir $WIREGUARD"
@@ -260,12 +261,12 @@ function setup_wireguard {
     sshcmd "cd $WIREGUARD; ./genconf $V6RANGE";
     sshcmd "cd $WIREGUARD; cp wg0.conf.s /etc/wireguard/wg0.conf"
 
-    if ! sshcmd "test -f /etc/init.d/wg-quick.wg0"; then
-        sshcmd "ln -s /etc/init.d/wg-quick /etc/init.d/wg-quick.wg0"
+    if ! sshcmd 'test -f /etc/init.d/wg-quick.wg0'; then
+        sshcmd 'ln -s /etc/init.d/wg-quick /etc/init.d/wg-quick.wg0'
     fi
 
-    if ! sshcmd "rc-update -C show" | grep -q 'wg-quick.wg0'; then
-        sshcmd "rc-update add wg-quick.wg0 default"
+    if ! sshcmd 'rc-update -C show' | grep -q wg-quick.wg0; then
+        sshcmd 'rc-update add wg-quick.wg0 default'
     fi
 
     scpcmd -q "linode:$WIREGUARD/wireguard.nix" "$WGCONFIG"
@@ -387,7 +388,7 @@ function setup_docker {
 
     V6RANGE=$(linode-cli --suppress-warnings networking v6-ranges --json | jq -r '.[].range' | sed -E 's/:+$//' | head --lines 1)
     if [[ -z "$V6RANGE" ]]; then
-        panic "no v6range found"
+        panic 'no v6range found'
     fi
 
     local CIDR
@@ -429,7 +430,7 @@ function mount_docker {
 
     sshcmd "test -d $DOCKER || mkdir -p $DOCKER"
     if ! sshcmd "mount -t nfs -o \"$MOUNT_OPT\" \"$NFS_DOCKER\" \"$DOCKER\""; then
-        panic "docker mount failed"
+        panic 'docker mount failed'
     fi
 }
 
@@ -510,7 +511,7 @@ function setup_memos {
         [[ -d "$TEMP" ]] || mkdir -p "$TEMP"
         rclone sync drive:memos "$TEMP/"
         if ! [[ -f "$TEMP/memos_prod.db" ]]; then
-            panic "no memos_prod.db found"
+            panic 'no memos_prod.db found'
         fi
         sshcmd "mkdir $MEMOS"
         scpcmd -q "$TEMP/memos_prod.db" "linode:$MEMOS/"
@@ -533,7 +534,7 @@ function mount_spider {
 
     sshcmd "test -d $SPIDER || mkdir $SPIDER"
     if ! sshcmd "mount -t nfs -o \"$MOUNT_OPT\" \"$NFS_SPIDER\" \"$SPIDER\""; then
-        panic "mount spider failed"
+        panic 'mount spider failed'
     fi
 }
 
@@ -550,7 +551,7 @@ function setup_spider {
 
     rm -rf "$STATIC/script"
     if ! podman container run --userns keep-id --volume "$SOURCE/www/src/static/:/home/node/build/" --workdir /home/node/build/app/ node ./build; then
-        panic "react build error"
+        panic 'react build error'
     fi
 
     rm -rf "$STATIC/app/node_modules"
@@ -571,7 +572,7 @@ function setup_spider {
         [[ -d "$TEMP" ]] || mkdir -p "$TEMP"
         rclone sync drive:spider "$TEMP"
         if ! [[ -f "$TEMP/spider.gz" ]]; then
-            panic "spider.gz not found"
+            panic 'spider.gz not found'
         fi
         scpcmd -q "$TEMP/spider.gz" "linode:$ROOT/mongo/dump/"
         sshcmd "cd $SPIDER; docker compose exec mongodb mongosh /docker-entrypoint-initdb.d/init_db.js"
@@ -614,7 +615,7 @@ function setup_crontab {
     ROOT="$(sshcmd pwd)"
 
     if ! sshcmd "test -f /etc/crontab"; then
-        panic "no crontab found"
+        panic 'no crontab found'
     fi
 
     if ! sshcmd "cat /etc/crontab" | grep -F -q "torrent.sh"; then
@@ -649,7 +650,7 @@ function setup_v2ray {
 
     cd "$(pwd)/docker/v2ray/client/" || panic "$(pwd)/docker/v2ray/client not exist"
     ./setup "$ADDRESS" "$UUID"
-    cd - || panic "setup_v2ray"
+    cd - || panic setup_v2ray
 }
 
 
@@ -662,12 +663,12 @@ function setup_shadowsocks {
     local SERVER_SHADOWSOCKS="$ROOT/docker/shadowsocks/server"
 
     PASSWORD=$(cat /proc/sys/kernel/random/uuid)
-    if [[ -z "$PASSWORD" ]]; then
+    if [[ -z $PASSWORD ]]; then
         panic "can't get uuid from /proc/sys/kernel/random/uuid"
     fi
 
     SERVER=$(linode-cli --suppress-warnings networking ips-list --json | jq -r '.[] | select(.type=="ipv4") | .address')
-    if [[ -z "$SERVER" ]]; then
+    if [[ -z $SERVER ]]; then
         panic "can't find server ipv6 address"
     fi
 
@@ -675,7 +676,7 @@ function setup_shadowsocks {
 
     cd "$(pwd)/docker/shadowsocks/client/" || panic "$(pwd)/docker/shadowsocks/client not exist"
     ./setup "$SERVER" "$PASSWORD"
-    cd - || panic "setup_shadowsocks"
+    cd - || panic setup_shadowsocks
 }
 
 
@@ -799,7 +800,7 @@ case "$1" in
         ;;
 
     panic)
-        panic "panic test"
+        panic 'panic test'
         ;;
 
     *)
