@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 6.17.8 Kernel Configuration
+# Linux/x86 6.17.9 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 14.3.0"
 CONFIG_CC_IS_GCC=y
@@ -145,7 +145,10 @@ CONFIG_VIRT_CPU_ACCOUNTING_GEN=y
 CONFIG_HAVE_SCHED_AVG_IRQ=y
 CONFIG_BSD_PROCESS_ACCT=y
 CONFIG_BSD_PROCESS_ACCT_V3=y
-# CONFIG_TASKSTATS is not set
+CONFIG_TASKSTATS=y
+CONFIG_TASK_DELAY_ACCT=y
+CONFIG_TASK_XACCT=y
+CONFIG_TASK_IO_ACCOUNTING=y
 # CONFIG_PSI is not set
 # end of CPU/Task time and stats accounting
 
