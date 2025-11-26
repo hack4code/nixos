@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
     userName = config.userName;
 in
 {
+    systemd.user.services.fcitx5-daemon.wantedBy = lib.mkForce [];
+
     home-manager.users.${userName}.i18n.inputMethod = {
         enable = true;
         type = "fcitx5";
