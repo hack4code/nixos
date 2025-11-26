@@ -11,7 +11,7 @@ in
         type = "fcitx5";
         fcitx5 = {
             waylandFrontend = true;
-            
+
             addons = with pkgs; [
                 rime-data
                 rime-cli

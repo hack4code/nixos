@@ -113,7 +113,7 @@ in
         config = {
             allowUnfree = true;
         };
-    }; 
+    };
 
     home-manager = {
         useUserPackages = true;
@@ -189,7 +189,7 @@ in
         };
     };
 
-    users = 
+    users =
     {
         defaultUserShell = pkgs.zsh;
 
@@ -280,7 +280,7 @@ in
             pkgs.bashInteractive
         ];
 
-        systemPackages = 
+        systemPackages =
         with pkgs; [
             /* compress */
             p7zip
