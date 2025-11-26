@@ -12,6 +12,13 @@ in
             vimAlias = true;
 
             plugins = with pkgs-unstable.vimPlugins; [
+                vim-airline-themes
+                {
+                    plugin = vim-airline;
+                    config = ''
+                        let g:airline_theme='base16_gruvbox_dark_hard'
+                    '';
+                }
                 {
                     plugin = gruvbox-nvim;
                     type = "lua";
@@ -40,15 +47,6 @@ in
                             transparent_mode = false,
                         })
                         vim.cmd('colorscheme gruvbox')
-                    '';
-                }
-                {
-                    plugin = lualine-nvim;
-                    type = "lua";
-                    config = ''
-                        require('lualine').setup({
-                            options = { theme = 'gruvbox' }
-                        })
                     '';
                 }
                 {
@@ -139,6 +137,7 @@ in
                         vim.keymap.set('n', ';b', builtin.buffers, { desc = 'Telescope buffers' })
                         vim.keymap.set('n', ';g', builtin.live_grep, { desc = 'Telescope live grep' })
                         vim.keymap.set('n', ';a', builtin.diagnostics, { desc = 'Telescope diagnostics' })
+                        vim.keymap.set('n', ';d', ':lua vim.diagnostic.disable()<CR>', { desc = 'Disable diagnostics' })
                     '';
                 }
                 {
@@ -228,9 +227,8 @@ in
                 set nobackup
                 set mouse=
 
-                nnoremap <silent> ;s :noh<cr>
-                nnoremap <silent> ;e :Explore<cr>
-                nnoremap <silent> ;d :lua vim.diagnostic.disable()<cr>
+                nnoremap <silent> ;s :noh<CR>
+                nnoremap <silent> ;e :Explore<CR>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
