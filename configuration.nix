@@ -275,13 +275,12 @@ in
     };
 
     environment = {
-        shells = [
-            pkgs.zsh
-            pkgs.bashInteractive
+        shells = with pkgs; [
+            zsh
+            bashInteractive
         ];
 
-        systemPackages =
-        with pkgs; [
+        systemPackages = with pkgs; [
             /* compress */
             p7zip
             unrar
