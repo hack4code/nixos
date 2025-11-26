@@ -44,8 +44,6 @@ in
             };
 
             sessionVariables = {
-                PATH = "$HOME/.local/bin/:$PATH:";
-
                 /* xdg */
                 XDG_CONFIG_HOME = "$HOME/.config";
                 XDG_CACHE_HOME = "$HOME/.cache";
@@ -175,7 +173,7 @@ in
 
                     HIST_STAMPS="yyyy-mm-dd"
 
-                    umask 0077
+                    umask 077
 
                     autoload compinit
                     zstyle ':completion:*' menu select
