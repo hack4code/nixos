@@ -265,7 +265,7 @@ function setup_wireguard {
         sshcmd 'ln -s /etc/init.d/wg-quick /etc/init.d/wg-quick.wg0'
     fi
 
-    if ! sshcmd 'rc-update -C show' | grep -q wg-quick.wg0; then
+    if ! sshcmd 'rc-update -C show' | grep -q 'wg-quick.wg0'; then
         sshcmd 'rc-update add wg-quick.wg0 default'
     fi
 
@@ -274,24 +274,24 @@ function setup_wireguard {
     sshcmd "rm -rf $WIREGUARD"
     sshcmd "mkdir $WIREGUARD"
 
-    echo "enable wireguard service"
+    echo 'enable wireguard service'
     enable_wireguard_service
 }
 
 
 function setup_timezone {
-    sshcmd "ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime"
+    sshcmd 'ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime'
 }
 
 
 function setup_hostname {
-    sshcmd "echo linode >/etc/hostname"
+    sshcmd 'echo linode >/etc/hostname'
 }
 
 
 function setup_nfs {
-    if ! sshcmd "qlist -I" | grep -q "net-fs/nfs-utils"; then
-        sshcmd "emerge net-fs/nfs-utils"
+    if ! sshcmd 'qlist -I' | grep -q 'net-fs/nfs-utils'; then
+        sshcmd 'emerge net-fs/nfs-utils'
     fi
 }
 
@@ -311,8 +311,8 @@ function setup_htop {
 
     ROOT=$(sshcmd pwd)
     local HTOP_CONFIG="$ROOT/.config/htop"
-    if ! sshcmd "qlist -I" | grep -q "sys-process/htop"; then
-        sshcmd "emerge sys-process/htop"
+    if ! sshcmd 'qlist -I' | grep -q 'sys-process/htop'; then
+        sshcmd 'emerge sys-process/htop'
     fi
     sshcmd "test -d $HTOP_CONFIG || mkdir -p $HTOP_CONFIG"
     if ! sshcmd "test -f $HTOP_CONFIG/htoprc"; then
@@ -322,12 +322,12 @@ function setup_htop {
 
 
 function setup_cron {
-    if ! sshcmd "qlist -I" | grep -q "sys-process/cronie"; then
-        sshcmd "emerge sys-process/cronie"
+    if ! sshcmd 'qlist -I' | grep -q 'sys-process/cronie'; then
+        sshcmd 'emerge sys-process/cronie'
     fi
 
-    if ! sshcmd "rc-update -C show" | grep -q cronie; then
-        sshcmd "rc-update add cronie default"
+    if ! sshcmd 'rc-update -C show' | grep -q cronie; then
+        sshcmd 'rc-update add cronie default'
     fi
 }
 
@@ -338,8 +338,8 @@ function setup_fastfetch {
     ROOT=$(sshcmd pwd)
     local FASTFETCH_CONFIG="$ROOT/.config/fastfetch"
 
-    if ! sshcmd "qlist -I" | grep -q "app-misc/fastfetch"; then
-        sshcmd "emerge app-misc/fastfetch"
+    if ! sshcmd 'qlist -I' | grep -q 'app-misc/fastfetch'; then
+        sshcmd 'emerge app-misc/fastfetch'
     fi
 
     sshcmd "test -d $FASTFETCH_CONFIG || mkdir -p $FASTFETCH_CONFIG"
@@ -350,7 +350,7 @@ function setup_fastfetch {
 
 
 function setup_jq {
-    sshcmd "emerge app-misc/jq"
+    sshcmd 'emerge app-misc/jq'
 }
 
 
@@ -360,25 +360,25 @@ function setup_sshd {
 
 
 function setup_portage_utils {
-    if ! sshcmd "command -v qlist"; then
-        sshcmd "emerge portage-utils"
+    if ! sshcmd 'command -v qlist'; then
+        sshcmd 'emerge portage-utils'
     fi
 }
 
 function setup_ntpd {
-    if ! sshcmd "qlist -I" | grep -q "net-misc/ntp"; then
-        sshcmd "emerge net-misc/ntp"
+    if ! sshcmd 'qlist -I' | grep -q 'net-misc/ntp'; then
+        sshcmd 'emerge net-misc/ntp'
     fi
 
-    if ! sshcmd "rc-update -C show" | grep -q ntpd; then
-        sshcmd "rc-update add ntpd default"
+    if ! sshcmd 'rc-update -C show' | grep -q ntpd; then
+        sshcmd 'rc-update add ntpd default'
     fi
 }
 
 
 function setup_gentoolkit {
-    if ! sshcmd "qlist -I" | grep -q "app-portage/gentoolkit"; then
-        sshcmd "emerge app-portage/gentoolkit"
+    if ! sshcmd 'qlist -I' | grep -q 'app-portage/gentoolkit'; then
+        sshcmd 'emerge app-portage/gentoolkit'
     fi
 }
 
@@ -394,37 +394,37 @@ function setup_docker {
     local CIDR
     CIDR="${V6RANGE}:aaaa::/80"
 
-    if ! sshcmd "qlist -I" | grep -q "app-containers/docker"; then
-        sshcmd "emerge app-containers/docker"
-        sshcmd "emerge app-containers/docker-cli"
-        sshcmd "emerge app-containers/docker-buildx"
-        sshcmd "emerge app-containers/docker-compose"
+    if ! sshcmd 'qlist -I' | grep -q 'app-containers/docker'; then
+        sshcmd 'emerge app-containers/docker'
+        sshcmd 'emerge app-containers/docker-cli'
+        sshcmd 'emerge app-containers/docker-buildx'
+        sshcmd 'emerge app-containers/docker-compose'
     fi
 
-    if ! sshcmd "cat /etc/init.d/docker" | grep -q 'wg-quick.wg0'; then
+    if ! sshcmd 'cat /etc/init.d/docker' | grep -q 'wg-quick.wg0'; then
         sshcmd "sed -i -E '/rc_ulimit=/a rc_need=\"wg-quick.wg0\"' /etc/init.d/docker"
     fi
 
-    sshcmd "test -d /etc/docker || mkdir /etc/docker"
-    if ! sshcmd "test -f /etc/docker/daemon.json"; then
-        scpcmd -q daemon.json "linode:/etc/docker/"
+    sshcmd 'test -d /etc/docker || mkdir /etc/docker'
+    if ! sshcmd 'test -f /etc/docker/daemon.json'; then
+        scpcmd -q daemon.json 'linode:/etc/docker/'
         sshcmd "sed -i -E '/fixed-cidr-v6/s,\"\",\"${CIDR}\",' /etc/docker/daemon.json"
     fi
 
-    if ! sshcmd "rc-update -C show" | grep -q docker; then
-        sshcmd "rc-update add docker default"
+    if ! sshcmd 'rc-update -C show' | grep -q docker; then
+        sshcmd 'rc-update add docker default'
     fi
 }
 
 
 function mount_docker {
     local ROOT
-    local NFS_DOCKER="10.0.0.2:/export/docker"
+    local NFS_DOCKER='10.0.0.2:/export/docker'
 
     ROOT=$(sshcmd pwd)
     local DOCKER="$ROOT/docker"
 
-    if sshcmd "mount -t nfs4 -l" | grep -q "$DOCKER"; then
+    if sshcmd 'mount -t nfs4 -l' | grep -q "$DOCKER"; then
         return
     fi
 
@@ -452,15 +452,15 @@ function setup_dante {
 
 
 function setup_rsyncd {
-    if ! sshcmd "qlist -I" | grep -q "net-misc/rsync"; then
-        sshcmd "emerge net-misc/rsync"
+    if ! sshcmd 'qlist -I' | grep -q 'net-misc/rsync'; then
+        sshcmd 'emerge net-misc/rsync'
     fi
-    if ! sshcmd "rc-update -C show" | grep -q rsyncd; then
-        sshcmd "rc-update add rsyncd default"
+    if ! sshcmd 'rc-update -C show' | grep -q rsyncd; then
+        sshcmd 'rc-update add rsyncd default'
     fi
 
-    if ! cmp -s <(sshcmd "cat /etc/rsyncd.conf") rsyncd.conf; then
-        scpcmd -q rsyncd.conf "linode:/etc/"
+    if ! cmp -s <(sshcmd 'cat /etc/rsyncd.conf') rsyncd.conf; then
+        scpcmd -q rsyncd.conf 'linode:/etc/'
     fi
 }
 
@@ -508,7 +508,7 @@ function setup_memos {
     local MEMOS="$ROOT/memos"
 
     if ! sshcmd "test -d $MEMOS"; then
-        [[ -d "$TEMP" ]] || mkdir -p "$TEMP"
+        [[ -d $TEMP ]] || mkdir -p "$TEMP"
         rclone sync drive:memos "$TEMP/"
         if ! [[ -f "$TEMP/memos_prod.db" ]]; then
             panic 'no memos_prod.db found'
@@ -523,12 +523,12 @@ function setup_memos {
 
 function mount_spider {
     local ROOT
-    local NFS_SPIDER="10.0.0.2:/export/spider"
+    local NFS_SPIDER='10.0.0.2:/export/spider'
 
     ROOT=$(sshcmd pwd)
     local SPIDER="$ROOT/spider"
 
-    if sshcmd "mount -t nfs4 -l" | grep -q "$SPIDER"; then
+    if sshcmd 'mount -t nfs4 -l' | grep -q "$SPIDER"; then
         return
     fi
 
@@ -569,9 +569,9 @@ function setup_spider {
     sshcmd "cd $SPIDER; docker compose up --detach"
 
     if ! sshcmd "test -f $ROOT/mongo/dump/spider.gz"; then
-        [[ -d "$TEMP" ]] || mkdir -p "$TEMP"
+        [[ -d $TEMP ]] || mkdir -p "$TEMP"
         rclone sync drive:spider "$TEMP"
-        if ! [[ -f "$TEMP/spider.gz" ]]; then
+        if ! [[ -f $TEMP/spider.gz ]]; then
             panic 'spider.gz not found'
         fi
         scpcmd -q "$TEMP/spider.gz" "linode:$ROOT/mongo/dump/"
@@ -611,18 +611,18 @@ function setup_crontab {
     local USRE
     local ROOT
 
-    USRE="$(sshcmd whoami)"
-    ROOT="$(sshcmd pwd)"
+    USRE=$(sshcmd whoami)
+    ROOT=$(sshcmd pwd)
 
-    if ! sshcmd "test -f /etc/crontab"; then
+    if ! sshcmd 'test -f /etc/crontab'; then
         panic 'no crontab found'
     fi
 
-    if ! sshcmd "cat /etc/crontab" | grep -F -q "torrent.sh"; then
+    if ! sshcmd 'cat /etc/crontab' | grep -F -q torrent.sh; then
         ssh -F ssh_config -T linode "echo '*/5 * * * * $USRE $ROOT/transmission/torrent.sh' >>/etc/crontab"
     fi
 
-    if ! sshcmd "cat /etc/crontab" | grep -F -q "crawl.sh"; then
+    if ! sshcmd 'cat /etc/crontab' | grep -F -q crawl.sh; then
         ssh -F ssh_config -T linode "echo '0 7 * * * $USRE $ROOT/crawl/crawl.sh' >>/etc/crontab"
     fi
 }
@@ -637,12 +637,12 @@ function setup_v2ray {
     local SERVER_V2RAY="$ROOT/docker/v2ray/server"
 
     UUID=$(cat /proc/sys/kernel/random/uuid)
-    if [[ -z "$UUID" ]]; then
+    if [[ -z $UUID ]]; then
         panic "can't get uuid from /proc/sys/kernel/random/uuid"
     fi
 
     ADDRESS=$(linode-cli --suppress-warnings networking ips-list --json | jq -r '.[] | select(.type=="ipv6") | .address')
-    if [[ -z "$ADDRESS" ]]; then
+    if [[ -z $ADDRESS ]]; then
         panic "can't find server ipv6 address"
     fi
 
@@ -681,92 +681,92 @@ function setup_shadowsocks {
 
 
 function clear_docker {
-        sshcmd "docker system prune --all --force"
+        sshcmd 'docker system prune --all --force'
 }
 
 
 function create_node {
-    echo "destory linode"
+    echo 'destory linode'
     destory_linode
-    echo "create linode"
+    echo 'create linode'
     create_linode
-    echo "setup ssh"
+    echo 'setup ssh'
     setup_ssh
-    echo "setup_sshd"
+    echo 'setup_sshd'
     setup_sshd
-    echo "test ssh"
+    echo 'test ssh'
     test_ssh
-    echo "setup portage-util"
+    echo 'setup portage-util'
     setup_portage_utils
-    echo "setup v6range"
+    echo 'setup v6range'
     setup_v6range
-    echo "setup wireguard"
+    echo 'setup wireguard'
     setup_wireguard
-    echo "reboot linode"
+    echo 'reboot linode'
     reboot_linode
-    echo "rebuild nixos"
+    echo 'rebuild nixos'
     rebuild_nixos
-    echo "test wireguard"
+    echo 'test wireguard'
     test_wireguard
-    echo "reset ssh"
+    echo 'reset ssh'
     reset_ssh
-    echo "test ssh"
+    echo 'test ssh'
     test_ssh
-    echo "enable firewall"
+    echo 'enable firewall'
     enable_firewall
-    echo "setup hostname"
+    echo 'setup hostname'
     setup_hostname
-    echo "setup timezone"
+    echo 'setup timezone'
     setup_timezone
-    echo "setup ntpd"
+    echo 'setup ntpd'
     setup_ntpd
-    echo "setup htop"
+    echo 'setup htop'
     setup_htop
-    echo "setup jq"
+    echo 'setup jq'
     setup_jq
-    echo "setup cron"
+    echo 'setup cron'
     setup_cron
-    echo "setup fastfetch"
+    echo 'setup fastfetch'
     setup_fastfetch
-    echo "setup gentoolkit"
+    echo 'setup gentoolkit'
     setup_gentoolkit
-    echo "setup bash profile"
+    echo 'setup bash profile'
     setup_bash_profile
-    echo "setup nfs"
+    echo 'setup nfs'
     setup_nfs
-    echo "setup docker"
+    echo 'setup docker'
     setup_docker
-    echo "reboot linode"
+    echo 'reboot linode'
     reboot_linode
-    echo "test ssh"
+    echo 'test ssh'
     test_ssh
-    echo "mount docker"
+    echo 'mount docker'
     mount_docker
-    echo "setup tor"
+    echo 'setup tor'
     setup_tor
-    echo "setup dante"
+    echo 'setup dante'
     setup_dante
-    echo "setup transmission"
+    echo 'setup transmission'
     setup_transmission
-    echo "setup rsyncd"
+    echo 'setup rsyncd'
     setup_rsyncd
-    echo "setup dnscrypt"
+    echo 'setup dnscrypt'
     setup_dnscrypt
-    echo "setup memos"
+    echo 'setup memos'
     setup_memos
-    echo "setup shadowsocks"
+    echo 'setup shadowsocks'
     setup_shadowsocks
-    echo "mount spider"
+    echo 'mount spider'
     mount_spider
-    echo "setup spider"
+    echo 'setup spider'
     setup_spider
-    echo "setup crontab"
+    echo 'setup crontab'
     setup_crontab
-    echo "reboot linode"
+    echo 'reboot linode'
     reboot_linode
-    echo "rebuild nixos"
+    echo 'rebuild nixos'
     rebuild_nixos
-    echo "test ssh"
+    echo 'test ssh'
     test_ssh
 }
 
@@ -777,7 +777,7 @@ case "$1" in
         stop_spider
         mount_docker
         eval "setup_$1"
-        if [[ "$1" == "dnscrypt" ]]; then
+        if [[ "$1" == 'dnscrypt' ]]; then
             rebuild_nixos
         fi
         start_spider
