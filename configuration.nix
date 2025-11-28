@@ -298,6 +298,7 @@ in
             fastfetch
             fzf
             jq
+            iotop
             libnotify
             qrencode
             /* git */
