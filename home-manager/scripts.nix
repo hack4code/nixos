@@ -375,7 +375,7 @@ in
                             panic "need package name"
                         fi
 
-                        env https_proxy=socks5h://10.0.0.1:1080 nix search --quiet nixpkgs "$1"
+                        env https_proxy=socks5h://10.0.0.1:1080 nix search --quiet --pretty nixpkgs "$1"
                     '';
                 }
             )
