@@ -159,6 +159,22 @@ const SITE = window.location.href;
     }
 
 
+    function adjust_sub_position() {
+        function adjust() {
+            const video = document.querySelector('video');
+            const track = video.textTracks;
+            for (var i=0; i<track.length; i++)
+                for (var j=0; j<track[i].cues.length; j++)
+                    track[i].cues[j].line = 4;
+        }
+
+        const track_elem = document.querySelector('track');
+        track_elem.addEventListener('loaded', adjust, false);
+        track_elem.addEventListener('load', adjust, false);
+    }
+
+
+    /* */
     if (!hide_head_container()) {
         VM.observe(document.body, () => {
             if (hide_head_container())
