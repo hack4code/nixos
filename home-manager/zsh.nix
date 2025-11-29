@@ -185,16 +185,6 @@ in
                     bindkey -M menuselect 'k' vi-up-line-or-history
 
 
-                    function color {
-                        if (($# != 1)); then
-                            echo "please give the color value!!!"
-                            return 1
-                        fi
-                        tput setaf "$1"
-                        echo "Hello World!"
-                    }
-
-
                     SWAY=$(command -v sway)
                     function sway {
                         if [[ $TERM == "xterm-kitty" ]]; then
