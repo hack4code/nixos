@@ -379,6 +379,51 @@ in
                     '';
                 }
             )
+            (
+                writeShellApplication {
+                    name = "bp";
+                    text = ''
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
+                        if (($# != 1)); then
+                            panic 'need bin name'
+                        fi
+
+                        if ! [[ -h "$(command -v "$1")" ]]; then
+                            panic 'not a link'
+                        fi
+
+                        readlink "$(command -v "$1")" | cut -d / -f 4 | cut -d - -f 2
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "color.sh";
+                    runtimeInputs = [
+                        coreutils
+                        ncurses
+                    ];
+                    text = ''
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
+                        if (($# != 1)); then
+                            panic "please give the color value!"
+                        fi
+
+                        tput setaf "$1"
+                        echo "Hello World!"
+                    '';
+                }
+            )
         ];
     };
 }
