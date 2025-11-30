@@ -39,38 +39,48 @@ in
                         gnused
                     ];
                     text = ''
-                        if (($# != 1)); then
+                        function panic {
+                            echo "$*" 1>&2
                             exit 1
+                        }
+
+
+                        if (($# != 1)); then
+                            panic 'need kernel version number'
                         fi
 
                         OSNIX="$HOME/source/nixos/config/os.nix"
                         KERNEL="linux-$1.tar.xz"
 
-                        cd "$HOME/code/kernel/" || exit 1
-                        if ! [[ -d "$HOME/code/kernel/linux-$1" ]]; then
-                            rm -rf linux*
+                        DEST="$HOME/code/kernel/"
+                        cd "$DEST/" || panic "$DEST not exist"
 
-                            if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
-                                axel -n 8 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
-                            else
-                                if ! axel -n 8 "https://cdn.kernel.org/pub/linux/kernel/v6.x/$KERNEL"; then
-                                    echo "failed to download kernel archive file for version $1" 1>&2
-                                    exit 1
-                                fi
-                            fi
-
-                            tar xf "$KERNEL" && rm -f "$KERNEL"
+                        if [[ -d "$DEST/linux-$1" ]]; then
+                            echo "$KERNEL exist"
+                            exit 0
                         fi
+
+                        rm -rf linux*
+
+                        if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
+                            axel -n 8 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
+                        fi
+
+                        if ! [[ -f $KERNEL ]]; then
+                            panic "$KERNEL not exist"
+                        fi
+
+                        tar xf "$KERNEL" && rm -f "$KERNEL"
 
                         SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
-                        if [[ -z "$SHA256" ]]; then
-                            echo "no signature found" 1>&2
-                            exit 1
+                        if [[ -z $SHA256 ]]; then
+                            panic 'no signature found'
                         fi
+
                         sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$OSNIX"
                         sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
 
-                        cd "linux-$1/" || exit 1
+                        cd "linux-$1/" || panic "linux-$1/ not exist"
                         cp "$HOME/source/nixos/modules/kernel/config" .config
                     '';
                 }
