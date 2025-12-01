@@ -5,21 +5,24 @@ let
 in
 {
     home-manager.users.${userName} = {
+        programs.diff-highlight = {
+            enable = true;
+            enableGitIntegration = true;
+            pagerOpts = [
+                "--tabs=4"
+                "-RFX"
+            ];
+        };
+
         programs.git = {
             enable = true;
 
-            userName = "code4hack";
-            userEmail = "code4hack+github@gmail.com";
+            settings = {
+                user = {
+                    name = "code4hack";
+                    email = "code4hack+github@gmail.com";
+                };
 
-            diff-highlight = {
-                enable = true;
-                pagerOpts = [
-                    "--tabs=4"
-                    "-RFX"
-                ];
-            };
-
-            extraConfig = {
                 init = {
                     defaultBranch = "main";
                 };
