@@ -12,7 +12,7 @@ in
 
             defaultKeymap = "emacs";
 
-            dotDir = ".config/zsh";
+            dotDir = "/home/${userName}/.config/zsh";
 
             autocd = true;
             cdpath = [
