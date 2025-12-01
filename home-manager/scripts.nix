@@ -73,7 +73,7 @@ in
                         tar xf "$KERNEL" && rm -f "$KERNEL"
 
                         SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
-                        if [[ -z $SHA256 ]]; then
+                        if [[ -z "$SHA256" ]]; then
                             panic 'no signature found'
                         fi
 
