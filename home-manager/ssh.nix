@@ -8,7 +8,7 @@ in
     home-manager.users.${userName} = {
         programs.ssh = {
             enable = true;
-            hashKnownHosts = false;
+            enableDefaultConfig = false;
 
             matchBlocks = {
                 "${vpsName}" = {
@@ -20,6 +20,7 @@ in
                     checkHostIP = false;
                     compression = true;
                     forwardX11 = false;
+                    hashKnownHosts = false;
                     serverAliveCountMax = 3;
                     serverAliveInterval = 16;
                     extraOptions = {
