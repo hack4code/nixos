@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -6,12 +6,11 @@ in
 {
     home-manager.users.${userName} = {
         programs.neovim = {
-            package = pkgs-unstable.neovim-unwrapped;
             enable = true;
             viAlias = true;
             vimAlias = true;
 
-            plugins = with pkgs-unstable.vimPlugins; [
+            plugins = with pkgs.vimPlugins; [
                 vim-airline-themes
                 {
                     plugin = vim-airline;
