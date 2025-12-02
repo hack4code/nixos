@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -269,9 +269,8 @@ in
                 zathura
                 wl-kbptr
                 slurp
-            ] ++ (with pkgs-unstable; [
                 swaybg
-            ]);
+            ];
         };
     };
 
