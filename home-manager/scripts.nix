@@ -49,7 +49,8 @@ in
                             panic 'need kernel version number'
                         fi
 
-                        OSNIX="$HOME/source/nixos/config/os.nix"
+                        KERNELNIX="$HOME/source/nixos/config/kernel.nix"
+                        CONFIG="$HOME/source/nixos/modules/kernel/config"
                         KERNEL="linux-$1.tar.xz"
 
                         DEST="$HOME/code/kernel/"
@@ -77,11 +78,11 @@ in
                             panic 'no signature found'
                         fi
 
-                        sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$OSNIX"
-                        sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$OSNIX"
+                        sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$KERNELNIX"
+                        sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$KERNELNIX"
 
                         cd "linux-$1/" || panic "linux-$1/ not exist"
-                        cp "$HOME/source/nixos/modules/kernel/config" .config
+                        cp "$CONFIG" .config
                     '';
                 }
             )
