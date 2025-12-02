@@ -4,6 +4,9 @@ let
     userName = config.userName;
 in
 {
+    # environment.variables.QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
+    # environment.variables.GTK_USE_PORTAL = 1;
+
     home-manager.users.${userName} = {
         programs.kitty = {
             enable = true;
@@ -135,9 +138,6 @@ in
                 protocol http, https
                 mime     image/*
                 action   launch --type=overlay swayimg "exec://wget -qO- ''${URL}"
-
-
-                #: vim: ts=4 sw=4 sts=4 ft=config et:
             '';
         };
     };
