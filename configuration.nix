@@ -12,7 +12,8 @@ in
     imports = [
         ./patch/tpm2-tss-fapi.nix
         ./config/user.nix
-        ./config/os.nix
+        ./config/system.nix
+        ./config/kernel.nix
         ./config/wireguard.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
