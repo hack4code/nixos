@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, ... }:
+{ config, ... }:
 
 let
     userName = config.userName;
@@ -7,7 +7,6 @@ in
     home-manager.users.${userName} = {
         programs.ranger = {
             enable = true;
-            package = pkgs-unstable.ranger;
 
             settings = {
                 viewmode = "miller";
