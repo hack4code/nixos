@@ -61,6 +61,11 @@ in
                             exit 0
                         fi
 
+                        if ! [[ -f .envrc ]]; then
+                            echo "use flake kernel#default" > .envrc
+                            direnv allow
+                        fi
+
                         rm -rf linux*
 
                         if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
@@ -75,7 +80,7 @@ in
 
                         SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
                         if [[ -z "$SHA256" ]]; then
-                            panic 'no signature found'
+                            panic 'no sha256 signature found'
                         fi
 
                         sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$KERNELNIX"
