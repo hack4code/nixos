@@ -310,7 +310,6 @@ in
             /* container */
             podman-compose
             /* python */
-            uv
             /* net */
             axel
             conntrack-tools
