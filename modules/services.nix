@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
     services = {
         avahi = {
@@ -27,6 +29,7 @@
 
         usbmuxd = {
             enable = true;
+            package = pkgs.usbmuxd2;
         };
 
         power-profiles-daemon = {
