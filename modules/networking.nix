@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
     hostName = config.hostName;
@@ -39,12 +39,33 @@ in
 
         firewall = {
             enable = true;
-            trustedInterfaces = [
-                wgInterface
+            package = pkgs.nftables;
+            backend = "nftables";
+            allowPing = false;
+            checkReversePath = true;
+            extraPackages = [
+                pkgs.ipset
             ];
-            allowedUDPPorts = [
-                wgListenPort
-            ];
+            interfaces = {
+                "${wifiInterface}" = {
+                    allowedUDPPorts = [
+                        # wiregurad
+                        wgListenPort
+                    ];
+                };
+                "${wgInterface}" = {
+                    allowedTCPPorts = [
+                        # NFS
+                        111
+                        2049
+                    ];
+                    allowedUDPPorts = [
+                        # NFS
+                        111
+                        2049
+                    ];
+                };
+            };
         };
 
         networkmanager = {
@@ -69,7 +90,7 @@ in
                 };
 
                 logging = {
-                    level = "INFO";
+                    level = "WARNING";
                     domains = "ALL";
                     backend = "journal";
                 };
