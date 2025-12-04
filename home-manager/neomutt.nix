@@ -1,25 +1,23 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
+    gmailAccount = config.gmailAccount;
+    gmailMailBoxes = config.gmailMailBoxes;
 in
 {
     home-manager.users.${userName} = {
         accounts.email = {
-            maildirBasePath = "mail";
+            maildirBasePath = "/home/${userName}";
             accounts.gmail = {
+                enable = true;
+
                 primary = true;
-                flavor = "gmail.com";
-                address = "code4hack@gmail.com";
-                userName = "code4hack";
-                realName = "Liu Wei";
+                userName = gmailAccount;
+                realName = gmailAccount;
+                address = "${gmailAccount}@gmail.com";
+
                 passwordCommand = "bw list items --search fetchmail | jq -r '.[].login.password'";
-                maildir = {
-                    path = "gmail";
-                };
-                folders = {
-                    inbox = "inbox";
-                };
                 imap = {
                     host = "imap.gmail.com";
                     port = 993;
@@ -27,17 +25,41 @@ in
                         enable = true;
                     };
                 };
-                neomutt = {
+
+                msmtp = {
+                    enable = true;
+                };
+
+                getmail = {
                     enable = false;
+                };
+
+                mbsync = {
+                    enable = false;
+                };
+
+                maildir = {
+                    path = "mail";
+                };
+
+                folders = {
+                    inbox = "inbox";
+                    drafts = "drafts";
+                    trash = "trash";
+                    sent = "sent";
+                };
+
+                neomutt = {
+                    enable = true;
+                    mailboxType = "maildir";
+                    showDefaultMailbox = false;
+                    extraMailboxes = gmailMailBoxes;
                 };
             };
         };
 
         programs.neomutt = {
             enable = true;
-            /*
-            sourcePrimaryAccount = false;
-            unmailboxes = true;
 
             editor = "vim";
             checkStatsInterval = 120;
@@ -45,24 +67,25 @@ in
             sidebar = {
                 enable = true;
                 shortPath = true;
-                width = 30;
+                width = 36;
                 format = "%B(%N|%S)";
             };
 
             sort = "date-received";
 
             binds = [
-                { key = "\\Cp"; action = "sidebar-prev"; map = [ "index" "pager" ]; }
-                { key = "\\Cn"; action = "sidebar-next"; map = [ "index" "pager" ]; }
+                { key = "\\Ck"; action = "sidebar-prev"; map = [ "index" "pager" ]; }
+                { key = "\\Cj"; action = "sidebar-next"; map = [ "index" "pager" ]; }
                 { key = "\\Co"; action = "sidebar-open"; map = [ "index" "pager" ]; }
-                { key = "\\C]"; action = "sidebar-first"; map = [ "index" "pager" ]; }
+                { key = "\\C0"; action = "sidebar-first"; map = [ "index" "pager" ]; }
 
                 { key = "g"; action = "first-entry"; map = [ "index" ]; }
                 { key = "G"; action = "last-entry"; map = [ "index" ]; }
                 { key = "zt"; action = "current-top"; map = [ "index" ]; }
                 { key = "zz"; action = "current-middle"; map = [ "index" ]; }
                 { key = "zb"; action = "current-bottom"; map = [ "index" ]; }
-                { key = "\\Cj"; action = "next-new-then-unread"; map = [ "index" "pager" ]; }
+
+                { key = "<Tab>"; action = "next-unread"; map = [ "index" "pager" ]; }
 
                 { key = "["; action = "half-up"; map = [ "pager" ]; }
                 { key = "]"; action = "half-down"; map = [ "pager" ]; }
@@ -71,85 +94,101 @@ in
             ];
 
             macros = [
-                { key = "\\Ca"; action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"; map = [ "index" ]; }
+                {
+                    key = "\\Ca";
+                    action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>";
+                    map = [ "index" ];
+                }
             ];
 
             settings = {
+                folder="~/mail/";
+                tilde="yes";
+                mark_old="no";
+                move="no";
                 pager_stop = "yes";
-                pager_index_lines = 5;
-                read_inc = 25;
-                mailcap_path = "\"~/.config/neomutt/mailcap\"";
+                delete="yes";
+                arrow_cursor="yes";
+                use_threads="yes";
+                tmp_dir="/tmp/neomutt";
+                check_new="yes";
+                sidebar_sort_method="unread";
+                sidebar_next_new_wrap="yes";
+                sidebar_indent_string="   ";
                 sidebar_visible = "yes";
                 sidebar_delim_chars = "'/.'";
                 sidebar_divider_char = "'| '";
-                sidebar_format = "'%B(%N|%S)'";
+                mail_check="60";
+                mail_check_recent="yes";
+                mail_check_stats="yes";
+                maildir_check_cur="yes";
+                maildir_trash="no";
+                narrow_tree="no";
+                sleep_time="0";
+                status_on_top="no";
+                pager_index_lines = "5";
+                read_inc = "25";
+                mailcap_path = "~/.config/neomutt/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap:";
                 beep = "yes";
                 collapse_unread = "yes";
             };
 
             extraConfig = ''
-                set arrow_cursor
-                set edit_headers
+                # set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\"";
 
-                # header
                 ignore *
-                unignore Subject Date
-                unhdr_order *
-                hdr_order Subject Date
+                unignore Subject
+                # unhdr_order *
+                # hdr_order Subject
 
-                auto_view text/html
+                color        attachment             color109        default
+                color        bold                   color229        default
+                color        error                  color167        default
+                color        hdrdefault             color246        default
+                color        indicator              color142        default
+                color        markers                color243        default
+                color        normal                 default         default
+                color        quoted                 color250        default
+                color        quoted1                color108        default
+                color        quoted2                color250        default
+                color        quoted3                color108        default
+                color        quoted4                color250        default
+                color        quoted5                color108        default
+                color        search                 color234        default
+                color        signature              color108        default
+                color        status                 color141        color236
+                color        tilde                  color231        default
+                color        tree                   color141        default
+                color        underline              color223        default
 
-                set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\""
+                color        sidebar_divider        color13         default
+                color        sidebar_new            color14         default
+                color        sidebar_indicator      color223        color237
+                color        sidebar_highlight      color142        default
 
-                mailboxes `echo $HOME/mail/*`
+                color        index                  color117        default     ~U
+                color        index                  color59         default     ~D
 
-                # general ------------- foreground ---- background -----------------------------
-                color error		          color167	      default
-                color indicator		      brightgreen	    default
-                color markers		        color210	      default
-                # color message		        default		      default
-                # color normal		        default		      default
-                # color prompt		        default	        default
-                color search		        color84		      default
-                color status 		        color141	      color236
-                color tilde		          color231	      default
-                color tree		          color141	      default
+                color        header                 color142        default     "^Subject:"
 
-                # message index ------- foreground ---- background -----------------------------
-                color index		          color210	      default 	    ~D # deleted messages
-                color index		          color84		      default 	    ~F # flagged messages
-                color index		          color117	      default 	    ~N # new messages
-                color index		          color212	      default 	    ~Q # messages which have been replied to
-                color index		          color215	      default 	    ~T # tagged messages
-                color index		          color141	      default		    ~v # messages part of a collapsed thread
-
-                # message headers ----- foreground ---- background -----------------------------
-                color header		        color142        default		    ^Subject:.* # subject
-                color header		        color214        default		    ^Date:.*    # date
-
-                # message body -------- foreground ---- background -----------------------------
-                color attachment	      color245  	    default
-                color body		          cyan 	          default		    [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+         # email
-                color body		          blue 	          default		    (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+  # url
-                color quoted		        color61		      default
-                color quoted1		        color117	      default
-                color quoted2		        color84		      default
-                color quoted3		        color215	      default
-                color quoted4		        color212	      default
-                color signature		      color212	      default
-
-                # sidebar ------------  foreground ---- background -----------------------------
-                color sidebar_new       color14         default
-                color sidebar_divider   color13         default
-                color sidebar_highlight brightgreen     default
-                color sidebar_indicator lightred        default
+                color        body                   color142        default     "[a-z]{3,255}://[[:graph:]]*"
+                color        body                   color142        default     "([-[:alnum:]]+\\.)+([0-9]{1,3}|[-[:alpha:]]+)/[[:graph:]]*"
+                color        body                   color142        default     "([-[:alnum:]]+\\.){2,255}[-[:alpha:]]{2,10}"
+                color        body                   color142        default     "((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"
+                color        body                   color142        default     "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+"
+                color        body                   color208        default     "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+                color        body                   color208        default     "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+                color        body                   color234        default     "[;:]-*[)>(<lt;|]"
+                color        body                   color229        default     "\\*[- A-Za-z]+\\*"
             '';
-            */
         };
 
-        home.file.".config/neomutt" = {
-            source = ./neomutt;
-            recursive = true;
+        home.file.".config/neomutt/mailcap" = {
+            executable = false;
+            force = true;
+            text = ''
+                text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput;
+            '';
         };
     };
 }
