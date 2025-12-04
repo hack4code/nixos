@@ -34,6 +34,12 @@ const SITE = window.location.href;
 
     function hide_ads() {
         console.log("hide_ads");
+        $node = $('#ads');
+        if ($node.length) {
+            $node.hide();
+            return true;
+        }
+        /*
         $node = $('#ads + div');
         $node.find('a').each(function () {
             const txt = $(this).text();
@@ -42,6 +48,7 @@ const SITE = window.location.href;
                 return true;
             };
         });
+        */
         return false;
     }
 
