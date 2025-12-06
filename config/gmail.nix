@@ -4,11 +4,14 @@
     options = with lib; with types; {
         gmailAccount = mkOption { type = str; };
         gmailPassword = mkOption { type = str; };
+        gmailMailBoxes = mkOption { type = listOf str; };
     };
 
     config = {
         gmailAccount = "";
         gmailPassword = "";
+        gmailMailBoxes = [
+        ];
     };
 }
 
