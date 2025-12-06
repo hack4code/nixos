@@ -10,15 +10,18 @@ in
 
             settings = {
                 show = "run";
+                width = 280;
                 always_parse_args = "true";
                 show_all = "false";
                 insensitive = "true";
                 allow_images = "true";
                 term = "kitty";
                 hide_scroll = "true";
-                key_forward = "Ctrl-n";
-                key_backward = "Ctrl-p";
+                key_forward = "Ctrl-j";
+                key_backward = "Ctrl-k";
                 key_exit = "Ctrl-bracketleft";
+                prompt="";
+                close_on_focus_loss="true";
             };
 
             style = ''
@@ -34,9 +37,18 @@ in
                   font-size: 20px;
                   color: #ebdbb2;
                   background: transparent;
-                  border: 1px solid #d79921;
+                  border: 1px solid #fb4934;
                   border-radius: 4px;
                   margin: 4px;
+                  box-shadow: none;
+                }
+
+                #input > image.left {
+                  -gtk-icon-transform:scaleX(0);
+                }
+
+                #input > image.right {
+                  -gtk-icon-transform:scaleX(0);
                 }
 
                 #inner-box {
@@ -61,6 +73,10 @@ in
 
                 #entry:selected {
                   background-color: rgba(0, 0, 0, 0);
+                }
+
+                #img {
+                    display: none;
                 }
             '';
         };
