@@ -20,8 +20,8 @@
 
 
 # channel
-/set irc.server.libera.autojoin "#ranger,#fcitx,#sway,#mpv,#wikipedia-zh-politics,#firefox,#tuna,#tuna-random,#archlinux,#nixos,#neovim,"
-/set irc.server.oftc.autojoin "#linode,#mm,#tor,#home-manager,"
+/set irc.server.libera.autojoin "#fcitx,#wikipedia-zh-politics,#tuna,#tuna-random,#archlinux,#bash,##English,#bgpwtf,##cats,#neomutt,#neovim,#netfilter,#networking,"
+/set irc.server.oftc.autojoin "#linode,#tor,"
 
 
 # script
@@ -31,7 +31,16 @@
 
 # key
 /key bind ctrl-q /quit
-/key bind ctrl-j /go
+/key unbind ctrl-j
+/key bind ctrl-j /buffer +1
+/key unbind ctrl-k
+/key bind ctrl-k /buffer -1
+/key unbind ctrl-s
+/key bind ctrl-s /go
+/key unbind ctrl-d
+/key bind ctrl-d /window scroll_down
+/key unbind ctrl-u
+/key bind ctrl-u /window scroll_up
 
 #
 /set weechat.color.separator black
