@@ -14,6 +14,8 @@ let
     trackpoint = config.trackpoint;
 
     cursorName = "graphite-dark-nord";
+
+    gmailMailBoxes = config.gmailMailBoxes;
 in
 {
     home-manager.users.${userName} = { lib, ... }:
@@ -349,21 +351,24 @@ in
             recursive = true;
         };
 
-        home.activation = {
+        home.activation =
+        let
+            mboxes = lib.strings.concatStrings (lib.strings.intersperse " " (map (v: "mail/${v} mail/${v}/new mail/${v}/cur mail/${v}/tmp") gmailMailBoxes));
+        in
+        {
             initHome = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
+                test -d mail || mkdir mail mail/sent mail/trash mail/inbox mail/drafts ${mboxes}
                 test -d book || mkdir book book/.reading
-                test -d mail || mkdir mail mail/trash mail/trash/cur mail/trash/new mail/trash/tmp mail/sent mail/sent/cur mail/sent/new mail/sent/tmp mail/drafts mail/drafts/new mail/drafts/cur mail/drafts/tmp mail/inbox mail/inbox/cur mail/inbox/new mail/inbox/tmp mail/ebpf mail/ebpf/cur mail/ebpf/new mail/ebpf/tmp mail/ffmpeg mail/ffmpeg/cur mail/ffmpeg/new mail/ffmpeg/tmp mail/linux-doc mail/linux-doc/cur mail/linux-doc/new mail/linux-doc/tmp mail/linux-man mail/linux-man/cur mail/linux-man/new mail/linux-man/tmp mail/linux-toolchains mail/linux-toolchains/cur mail/linux-toolchains/new mail/linux-toolchains/tmp mail/netfilter mail/netfilter/cur mail/netfilter/new mail/netfilter/tmp mail/netfilter-devel mail/netfilter-devel/cur mail/netfilter-devel/new mail/netfilter-devel/tmp mail/NixOS mail/NixOS/cur mail/NixOS/new mail/NixOS/tmp mail/pandas mail/pandas/cur mail/pandas/new mail/pandas/tmp mail/perf mail/perf/cur mail/perf/new mail/perf/tmp mail/perf-devel mail/perf-devel/cur mail/perf-devel/new mail/perf-devel/tmp mail/python mail/python/cur mail/python/new mail/python/tmp mail/scipy mail/scipy/cur mail/scipy/new mail/scipy/tmp mail/tor mail/tor/cur mail/tor/new mail/tor/tmp
                 test -d movie || mkdir movie movie/.rsync movie/.camer
                 test -d music || mkdir music music/lyrics music/playlist music/song music/youtube
                 test -d picture || mkdir picture picture/icon picture/mpv picture/screen picture/wallpaper
-                test -d temp || mkdir temp temp/drive temp/neomutt temp/test
+                test -d temp || mkdir temp temp/drive temp/test
                 test -d code || mkdir code
                 test -d document || mkdir document
                 test -d download || mkdir download
                 test -d source || mkdir source
                 test -d .local/share/fetchmail || mkdir .local/share/fetchmail
                 test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
-                test -d .cache/neomutt || mkdir .cache/neomutt
             '';
         };
 
