@@ -100,10 +100,12 @@ in
                 tp = "cd \"$(mktemp -d)\"";
                 lg = "lazygit";
                 linode = "linode-cli --suppress-warnings";
+                ms = "make switch";
+                mu = "make update";
                 vc = "kssh -T ${vpsName}";
                 vd = "kssh -T ${vpsName} docker container";
-                vdl = "kssh -T ${vpsName} docker container list";
-                vdg = "kssh -T ${vpsName} docker container logs";
+                vl = "kssh -T ${vpsName} docker container list";
+                vg = "kssh -T ${vpsName} docker container logs";
                 jf = "journalctl --follow";
                 jfi = "journalctl --follow --identifier";
                 jb = "journalctl --boot";
@@ -112,8 +114,7 @@ in
                 gp = "git push";
                 gpf = "git push --force";
                 gd = "git diff";
-                gc = "git commit";
-                gca = "git commit --all";
+                gcm = "git commit --message";
                 gcam = "git commit --all --message";
                 gcaa = "git commit --all --amend";
                 gl = "git log";
@@ -121,9 +122,7 @@ in
                 gln = "git log --name-only";
                 gs = "git status";
                 gr = "git rebase";
-                grm = "git rebase main";
                 grc = "git rebase --continue";
-                gw = "git switch";
                 gwm = "git switch main";
                 gwe = "git switch e";
                 t = "date '+%F %H:%M %A'";
