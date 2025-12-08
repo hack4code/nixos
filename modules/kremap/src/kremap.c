@@ -28,7 +28,7 @@
 
 
 const uint32_t G_T_FIND_DEV = 2;
-const uint32_t G_T_CONNECT_SWAY = 2;
+const uint32_t G_T_CONNECT_SWAY = 30;
 
 bool g_running = true;
 char g_focus_app_id[256] = {0};
@@ -554,7 +554,7 @@ process_window_event(int fd) {
             sd_journal_print(
                     LOG_ERR,
                     "process_window_event: ip_recv return NULL\n");
-            break;
+            return;
         }
 
         json_object *root = json_tokener_parse(reply->payload);
@@ -563,7 +563,7 @@ process_window_event(int fd) {
                     LOG_ERR,
                     "process_window_event: json_tokener_parse error\n");
             free_response(reply);
-            break;
+            return;
         }
 
         json_object *o_change = json_object_object_get(root, "change");
@@ -610,9 +610,9 @@ free_reply:
 
 void *
 thread_window_event(void *) {
-    while (true) {
-        int fd;
+    int fd;
 
+    while (true) {
         while (true) {
             fd = ipc_open();
             if (fd != -1)
@@ -621,11 +621,17 @@ thread_window_event(void *) {
         }
 
         if (subscribe_window_event(fd) == false) {
+            sd_journal_print(LOG_ERR, "subscribe_window_event error\n");
             close(fd);
-            pthread_exit(NULL);
+            continue;
         }
 
+        sd_journal_print(LOG_INFO, "process_window_event begin\n");
         process_window_event(fd);
+        sd_journal_print(LOG_INFO, "process_window_event end\n");
+        pthread_mutex_lock(&g_mutex_app_id);
+        memset(g_focus_app_id, 0, sizeof(g_focus_app_id));
+        pthread_mutex_unlock(&g_mutex_app_id);
         close(fd);
     }
 }
@@ -693,7 +699,6 @@ main(int argc, char **argv) {
         run_thread_remap();
         run_thread_event();
         pthread_join(g_thread_event, NULL);
-        pthread_cancel(g_thread_remap);
         pthread_join(g_thread_remap, NULL);
     }
 

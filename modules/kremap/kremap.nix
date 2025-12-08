@@ -9,6 +9,7 @@ pkgs.stdenv.mkDerivation {
         systemd
         libevdev
         json_c
+        libgcc
     ];
 
     buildPhase = ''

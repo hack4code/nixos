@@ -16,7 +16,7 @@ in
                 KillMode = "mixed";
                 TimeoutStopSec = 120;
                 ExecStart = "${kremap}/bin/kremap";
-                Restart="always";
+                # Restart="always";
             };
         };
     };
