@@ -18,6 +18,12 @@ let
     dnsPort = builtins.toString config.dnsPort;
 in
 {
+    systemd.services."wg-quick-${wgInterface}" = {
+        after = [
+            "network-online.target"
+        ];
+    };
+
     networking.wg-quick.interfaces = {
         ${wgInterface} = {
             address = [
