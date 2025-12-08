@@ -343,7 +343,10 @@ in
             libimobiledevice
             ifuse
             /* develop */
+            glibcInfo
             gnumake
+            linux-manual
+            man-pages
             /* game */
             dwarf-fortress
             nethack
