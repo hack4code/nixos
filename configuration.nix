@@ -23,6 +23,7 @@ in
         ./config/wifi.nix
         ./config/ntp.nix
         ./config/gmail.nix
+        ./config/podman.nix
         ./modules/hardware.nix
         ./modules/boot.nix
         ./modules/power.nix
