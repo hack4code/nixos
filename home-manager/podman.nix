@@ -6,6 +6,16 @@ let
     vpsV6Range = config.vpsV6Range;
 in
 {
+    systemd.user.services.podman-user-wait-network-online = {
+        preStart = ''
+            bash -c "while ! ssh -q -T ${vpsName} exit &>/dev/null; do sleep 24s; done"
+        '';
+
+        serviceConfig = {
+            ExecSearchPath = "${lib.makeBinPath (with pkgs; [bashInteractive systemd coreutils openssh])}:/bin";
+        };
+    };
+
     home-manager.users.${userName} = {
         home.file.".config/containers/systemd/podmanv6.network" = {
             executable = false;
@@ -25,16 +35,6 @@ in
 
                 [Service]
                 TimeoutStartSec=900
-            '';
-        };
-
-        home.file.".config/systemd/user/podman-user-wait-network-online.service.d/50-exe.conf" = {
-            executable = false;
-            force = true;
-            text = ''
-                [Service]
-                ExecSearchPath=${lib.makeBinPath (with pkgs; [bashInteractive systemd coreutils openssh])}:/bin
-                ExecStartPre=sh -c "while ! ssh -q -T ${vpsName} exit &>/dev/null; do sleep 24s; done"
             '';
         };
     };
