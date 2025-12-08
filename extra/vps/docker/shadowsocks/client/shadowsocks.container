@@ -5,7 +5,7 @@ Description=shadowsocks
 Label=app=shadowsocks
 ContainerName=shadowsocks
 Image=localhost/shadowsocks
-Network=podmanv6.network
+Network=podmanv6
 PublishPort=127.0.0.1:1080:1080
 PodmanArgs=--memory 256m --memory-swap 1g
 Exec=sslocal -c /etc/shadowsocks.json
