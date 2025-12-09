@@ -373,7 +373,7 @@ in
                             panic "need package name"
                         fi
 
-                        nix-instantiate --eval-only --expr "(import <nixpkgs> {}).$1.outPath" | sed 's/"//g'
+                        nix-instantiate --quiet --eval-only --expr "(import <nixpkgs> {}).$1.outPath" | sed 's/"//g'
                     '';
                 }
             )
