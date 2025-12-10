@@ -143,7 +143,9 @@ in
 
                 color        attachment             color109        default
                 color        bold                   color229        default
-                color        error                  color167        default
+                color        error                  color1          default
+                color        message                color9          default
+                color        prompt                 color190        default
                 color        hdrdefault             color246        default
                 color        indicator              color142        default
                 color        markers                color243        default
@@ -156,14 +158,14 @@ in
                 color        quoted5                color108        default
                 color        search                 color234        default
                 color        signature              color108        default
-                color        status                 color141        color236
+                color        status                 color141        color237
                 color        tilde                  color231        default
                 color        tree                   color141        default
                 color        underline              color223        default
 
                 color        sidebar_divider        color13         default
-                color        sidebar_new            color14         default
-                color        sidebar_indicator      color223        color237
+                color        sidebar_new            color6          default
+                color        sidebar_indicator      color9          color237
                 color        sidebar_highlight      color142        default
 
                 color        index                  color117        default     ~U
@@ -171,14 +173,9 @@ in
 
                 color        header                 color142        default     "^Subject:"
 
-                color        body                   color142        default     "[a-z]{3,255}://[[:graph:]]*"
-                color        body                   color142        default     "([-[:alnum:]]+\\.)+([0-9]{1,3}|[-[:alpha:]]+)/[[:graph:]]*"
-                color        body                   color142        default     "([-[:alnum:]]+\\.){2,255}[-[:alpha:]]{2,10}"
-                color        body                   color142        default     "((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"
                 color        body                   color142        default     "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+"
                 color        body                   color208        default     "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
                 color        body                   color208        default     "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
-                color        body                   color234        default     "[;:]-*[)>(<lt;|]"
                 color        body                   color229        default     "\\*[- A-Za-z]+\\*"
             '';
         };
