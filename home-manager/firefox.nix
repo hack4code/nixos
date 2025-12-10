@@ -461,7 +461,7 @@ in
 
                             .tabbrowser-tab .tab-label {
                                 font-family: Roboto Flex, MiSans !important;
-                                font-size: 13px;
+                                font-size: 12px;
                             }
                         }
 
