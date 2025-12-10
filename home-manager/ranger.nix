@@ -13,9 +13,8 @@ in
                 column_ratios = "1,2,4";
                 show_hidden = false;
                 confirm_on_delete = "never";
-                preview_script = "~/.config/ranger/scope.sh";
                 automatically_count_files = true;
-                preview_images = true;
+                preview_images = false;
                 preview_images_method = "kitty";
                 w3m_delay = 0.8;
                 colorscheme = "dracula";
