@@ -72,6 +72,7 @@ in
         ./home-manager/fetchmail.nix
         ./home-manager/podman.nix
         ./home-manager/gtk.nix
+        ./home-manager/qt.nix
     ];
 
     nix = {
