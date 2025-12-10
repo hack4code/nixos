@@ -44,6 +44,7 @@ in
         ./home-manager/sndctl.nix
         ./home-manager/swaylock.nix
         ./home-manager/swaync.nix
+        ./home-manager/swayimg.nix
         ./home-manager/waybar.nix
         ./home-manager/ssh.nix
         ./home-manager/btop.nix
@@ -257,7 +258,7 @@ in
 
             extraPackages = with pkgs; [
                 # swaylock
-                swayimg
+                # swayimg
                 swayidle
                 # swaynotificationcenter
                 # wofi
