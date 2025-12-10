@@ -71,6 +71,7 @@ in
         ./home-manager/direnv.nix
         ./home-manager/fetchmail.nix
         ./home-manager/podman.nix
+        ./home-manager/gtk.nix
     ];
 
     nix = {
