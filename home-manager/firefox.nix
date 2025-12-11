@@ -97,7 +97,7 @@ in
                         user_pref("browser.translations.enable", true);
 
                         /* wayland */
-                        user_pref("widget.wayland.fractional-scale.enabled", false);
+                        user_pref("widget.wayland.fractional-scale.enabled", true);
                         user_pref("widget.wayland.vsync.enabled", false);
                         user_pref("widget.gtk.global-menu.wayland.enabled", false);
 
