@@ -9,7 +9,7 @@
     };
 
     config = {
-        nixosVersion = "25.11";
+        nixosVersion = "26.05";
         homeManagerVersion = "25.11";
         hostName = "KISS";
         timeZone = "Asia/Shanghai";
