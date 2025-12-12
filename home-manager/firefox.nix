@@ -98,8 +98,8 @@ in
 
                         /* wayland */
                         user_pref("widget.wayland.fractional-scale.enabled", true);
-                        user_pref("widget.wayland.vsync.enabled", false);
-                        user_pref("widget.gtk.global-menu.wayland.enabled", false);
+                        user_pref("widget.wayland.vsync.enabled", true);
+                        user_pref("widget.gtk.global-menu.wayland.enabled", true);
 
                         /* tab */
                         user_pref("browser.tabs.closeTabByDblclick", true);
@@ -427,7 +427,7 @@ in
                             }
 
                             :root {
-                                --tab-min-height: 16px !important;
+                                --tab-min-height: 32px !important;
                             }
 
                             #tabbrowser-tabs {
