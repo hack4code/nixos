@@ -2,8 +2,6 @@
 
 let
     userName = config.userName;
-    userPassWord = config.userPassWord;
-    uid = config.uid;
     nixosVersion = config.nixosVersion;
     homeManagerVersion = config.homeManagerVersion;
     timeZone = config.timeZone;
@@ -37,6 +35,7 @@ in
         ./modules/wg-quick.nix
         ./modules/dnscrypt-proxy.nix
         ./modules/nfs.nix
+        ./modules/user.nix
         ./fonts/fontconfig.nix
         ./input/ibus.nix
         ./home-manager/sway.nix
@@ -194,28 +193,6 @@ in
         };
     };
 
-    users =
-    {
-        defaultUserShell = pkgs.zsh;
-
-        users = {
-            ${userName} = {
-                isNormalUser = true;
-                home = "/home/${userName}";
-                uid = uid;
-                description = "Sky Walker";
-                initialPassword = userPassWord;
-                linger = true;
-                extraGroups = [
-                    "wheel"
-                    "networkmanager"
-                    "podman"
-                    "tss"
-                    "wireshark"
-                ];
-            };
-        };
-    };
 
     programs = {
         appimage = {

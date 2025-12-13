@@ -1,0 +1,33 @@
+{ config, pkgs, ... }:
+let
+    userName = config.userName;
+    uid = config.uid;
+    userPassWord = config.userPassWord;
+in
+{
+    users =
+    {
+        defaultUserShell = pkgs.zsh;
+
+        users = {
+            ${userName} = {
+                isNormalUser = true;
+                home = "/home/${userName}";
+                uid = uid;
+                description = "Sky Walker";
+                initialPassword = userPassWord;
+                linger = true;
+                extraGroups = [
+                    "wheel"
+                    "networkmanager"
+                    "podman"
+                    "tss"
+                    "wireshark"
+                ];
+            };
+        };
+    };
+}
+
+
+# vim: ts=4 sw=4 sts=4 ft=nix et:
