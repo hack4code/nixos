@@ -35,6 +35,7 @@ in
         ./modules/home-manager.nix
         ./modules/user.nix
         ./modules/nix.nix
+        ./modules/security.nix
         ./fonts/fontconfig.nix
         ./input/ibus.nix
         ./home-manager/sway.nix
@@ -75,52 +76,11 @@ in
     ];
 
 
-
     time = {
         timeZone = timeZone;
         hardwareClockInLocalTime = false;
     };
 
-    security = {
-        rtkit = {
-            enable = true;
-        };
-
-        polkit = {
-            enable = true;
-        };
-
-        tpm2 = {
-            enable = true;
-            pkcs11 = {
-                enable = true;
-            };
-            abrmd = {
-                enable = true;
-            };
-            tctiEnvironment = {
-                enable = true;
-                interface = "tabrmd";
-            };
-        };
-
-        pam = {
-            services = {
-                swaylock = {
-                    text = ''
-                        auth sufficient ${pkgs.linux-pam}/lib/security/pam_unix.so try_first_pass likeauth nullok
-                        auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
-                        auth required ${pkgs.linux-pam}/lib/security/pam_deny.so
-                        auth required ${pkgs.linux-pam}/lib/security/pam_unix.so
-                    '';
-                };
-
-                login = {
-                    fprintAuth = false;
-                };
-            };
-        };
-    };
 
     programs = {
         appimage = {
