@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-    nixosVersion = config.nixosVersion;
     timeZone = config.timeZone;
 in
 {
@@ -35,6 +34,7 @@ in
         ./modules/nfs.nix
         ./modules/home-manager.nix
         ./modules/user.nix
+        ./modules/nix.nix
         ./fonts/fontconfig.nix
         ./input/ibus.nix
         ./home-manager/sway.nix
@@ -75,19 +75,6 @@ in
     ];
 
 
-    system = {
-        autoUpgrade = {
-            enable = false;
-        };
-
-        etc = {
-            overlay = {
-                enable = true;
-            };
-        };
-
-        stateVersion = nixosVersion;
-    };
 
     time = {
         timeZone = timeZone;
@@ -134,7 +121,6 @@ in
             };
         };
     };
-
 
     programs = {
         appimage = {
