@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 let
-    userName = config.userName;
     nixosVersion = config.nixosVersion;
-    homeManagerVersion = config.homeManagerVersion;
     timeZone = config.timeZone;
 in
 {
@@ -35,6 +33,7 @@ in
         ./modules/wg-quick.nix
         ./modules/dnscrypt-proxy.nix
         ./modules/nfs.nix
+        ./modules/home-manager.nix
         ./modules/user.nix
         ./fonts/fontconfig.nix
         ./input/ibus.nix
@@ -75,63 +74,6 @@ in
         ./home-manager/qt.nix
     ];
 
-    nix = {
-        channel = {
-            enable = false;
-        };
-
-        settings = {
-            cores = 7;
-            max-jobs = 7;
-            show-trace = true;
-            sandbox = true;
-            sandbox-fallback = false;
-            require-sigs = true;
-            auto-optimise-store = true;
-
-            trusted-users = [
-                "@wheel"
-            ];
-
-            experimental-features = [
-                "flakes"
-                "nix-command"
-            ];
-        };
-
-        gc = {
-            automatic = false;
-            dates = "weekly";
-            options = "--delete-older-than 8d";
-            persistent = true;
-        };
-
-        optimise = {
-            automatic = true;
-            persistent = true;
-        };
-    };
-
-    nixpkgs = {
-        hostPlatform = "x86_64-linux";
-        config = {
-            allowUnfree = true;
-        };
-    };
-
-    home-manager = {
-        useUserPackages = true;
-        useGlobalPkgs = true;
-        backupFileExtension = "backup";
-        users = {
-            ${userName} = {
-                home = {
-                    enableNixpkgsReleaseCheck = false;
-                    stateVersion = homeManagerVersion;
-                };
-            };
-        };
-    };
 
     system = {
         autoUpgrade = {
