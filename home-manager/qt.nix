@@ -11,7 +11,7 @@ in
                 name = "adwaita";
             };
             style = {
-                name = "adwaita";
+                name = "adwaita-highcontrast";
             };
         };
     };
