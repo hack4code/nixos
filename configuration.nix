@@ -24,7 +24,7 @@ in
         ./modules/power.nix
         ./modules/networking.nix
         ./modules/sysctl.nix
-        ./modules/container.nix
+        ./modules/podman.nix
         ./modules/sudo.nix
         ./modules/services.nix
         ./modules/pipewire.nix
