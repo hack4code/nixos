@@ -261,8 +261,14 @@ in
                         curl
                     ];
                     text = ''
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
                         if (($# < 1)); then
-                            exit 1;
+                            panic 'no file found'
                         fi
 
                         curl -F "file=@$1" https://0x0.st
