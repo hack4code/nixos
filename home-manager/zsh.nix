@@ -99,9 +99,10 @@ in
                 wp = "wl-copy";
                 tp = "cd \"$(mktemp -d)\"";
                 lg = "lazygit";
-                linode = "linode-cli --suppress-warnings";
+                li = "linode-cli --suppress-warnings";
                 ms = "make switch";
                 mu = "make update";
+                mn = "make nconfig";
                 vc = "kssh -T ${vpsName}";
                 vd = "kssh -T ${vpsName} docker container";
                 vl = "kssh -T ${vpsName} docker container list";
@@ -121,7 +122,6 @@ in
                 glp = "git log --patch";
                 gln = "git log --name-only";
                 gs = "git status";
-                gr = "git rebase";
                 grc = "git rebase --continue";
                 gwm = "git switch main";
                 gwe = "git switch e";
