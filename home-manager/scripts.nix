@@ -397,7 +397,7 @@ in
                             panic "need package name"
                         fi
 
-                        nix search --quiet --offline nixpkgs "$1"
+                        nix search --quiet --offline nixpkgs "$1" 2>/dev/null
                     '';
                 }
             )
