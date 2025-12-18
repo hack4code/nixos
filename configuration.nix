@@ -211,6 +211,8 @@ in
             /* ifuse */
             libimobiledevice
             ifuse
+            /* usb */
+            usbutils
             /* develop */
             glibcInfo
             gnumake
