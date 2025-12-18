@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
     virtualisation = {
         containers = {
@@ -14,9 +12,6 @@
 
         podman = {
             enable = true;
-            package = pkgs.podman.override {
-                systemdMinimal = pkgs.systemd;
-            };
             dockerCompat = false;
             defaultNetwork = {
                 settings = {
