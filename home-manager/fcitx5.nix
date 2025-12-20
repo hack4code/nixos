@@ -19,8 +19,7 @@ in
                     fcitx5-rime
                     fcitx5-gtk
                     fcitx5-lua
-                    fcitx5-nord
-                    fcitx5-material-color
+                    fcitx5-fluent
                 ];
 
                 settings = {
@@ -37,25 +36,25 @@ in
 
                     globalOptions = {
                         Behavior = {
-                            ActiveByDefault = false;
+                            ActiveByDefault = "False";
                             resetStateWhenFocusIn = "Yes";
                             ShareInputState = "No";
-                            PreeditEnabledByDefault = false;
-                            ShowInputMethodInformation = false;
-                            showInputMethodInformationWhenFocusIn = false;
-                            CompactInputMethodInformation = true;
-                            ShowFirstInputMethodInformation = false;
-                            PreloadInputMethod = true;
-                            AllowInputMethodForPassword = false;
-                            ShowPreeditForPassword = false;
+                            PreeditEnabledByDefault = "False";
+                            ShowInputMethodInformation = "False";
+                            showInputMethodInformationWhenFocusIn = "False";
+                            CompactInputMethodInformation = "True";
+                            ShowFirstInputMethodInformation = "False";
+                            PreloadInputMethod = "True";
+                            AllowInputMethodForPassword = "False";
+                            ShowPreeditForPassword = "False";
                             DefaultPageSize = 8;
-                            AutoSavePeriod = 30;
                         };
                     };
 
                     addons = {
                         classicui.globalSection = {
-                            Theme = "Material-Color-black";
+                            Theme = "FluentDark-solid";
+                            DarkTheme = "FluentDark-solid";
                             "Vertical Candidate List" = "True";
                             UseAccentColor = "False";
                             WheelForPaging = "False";
@@ -79,8 +78,8 @@ in
                         };
 
                         clipboard.globalSection = {
-                            "Trigger Key" = "\"Alt+semicolon\"";
-                            "Paste Primary" = "\"Control+v\"";
+                            # TriggerKey = "Control+;";
+                            # PastePrimaryKey = "Super+V";
                             "Number of entries" = 8;
                         };
                     };
