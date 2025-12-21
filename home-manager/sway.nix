@@ -295,7 +295,7 @@ in
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
                 exec swaybg -o "${monitorSamsung}" -i "${bgSamsung}" -m fill
-                exec swaybg -o "eDP-1" -i "${bgThinkpad}" -m fill
+                exec swaybg -o "${monitorThinkpad}" -i "${bgThinkpad}" -m fill
 
                 exec --no-startup-id wl-paste -t text --watch clipman store --no-persist
                 # exec ibus-daemon -rxRd
