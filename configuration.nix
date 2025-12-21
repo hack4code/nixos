@@ -130,6 +130,7 @@ in
                 # waybar
                 clipman
                 wl-clipboard
+                wlr-randr
                 # kitty
                 weechat
                 # ranger
