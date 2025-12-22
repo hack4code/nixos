@@ -44,6 +44,7 @@ let
             BOOK_PATH="$HOME/book"
             SONG_PATH="$HOME/music/song"
             LYRICS_PATH="$HOME/music/lyrics"
+            DOCUMENT_PATH="$HOME/document"
 
 
             function notify {
@@ -58,6 +59,7 @@ let
             declare -A SYNCDIR=(
                 ["$MEMOS_PATH"]="drive:memos"
                 ["$BOOK_PATH"]="drive:book"
+                ["$DOCUMENT_PATH"]="drive:document"
                 ["$SONG_PATH"]="drive:song"
                 ["$LYRICS_PATH"]="drive:lyrics"
                 ["$SPIDER_PATH"]="drive:spider"
