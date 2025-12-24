@@ -178,7 +178,7 @@ in
                     "${modifier}+k" = "workspace next_on_output";
                     "${modifier}+m" = "exec wl-kbptr -o modes=floating','click -o mode_floating.source=detect";
 
-                    "${modifier}+o" = "exec wofi";
+                    "${modifier}+o" = "exec sherlock";
                     "${modifier}+q" = "kill";
                     "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
                     "${modifier}+s" = "exec --no-startup-id swaync-client -C";
