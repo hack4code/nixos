@@ -90,7 +90,6 @@ in
                 };
 
                 logging = {
-                    level = "WARNING";
                     domains = "ALL";
                     backend = "journal";
                 };
