@@ -111,9 +111,9 @@ in
                 jfi = "journalctl --follow --identifier";
                 jb = "journalctl --boot";
                 jbi = "journalctl --boot --identifier";
-                gu = "git pull";
-                gp = "git push";
-                gpf = "git push --force";
+                gp = "git pull";
+                gP = "git push";
+                gPf = "git push --force";
                 gd = "git diff";
                 gcm = "git commit --message";
                 gcam = "git commit --all --message";
