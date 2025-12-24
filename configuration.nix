@@ -6,73 +6,73 @@ in
 {
     imports = [
         ./patch/tpm2-tss-fapi.nix
-        ./config/user.nix
-        ./config/system.nix
-        ./config/kernel.nix
-        ./config/wireguard.nix
-        ./config/bitwarden.nix
-        ./config/dnscrypt-proxy.nix
-        ./config/input.nix
-        ./config/output.nix
-        ./config/vps.nix
-        ./config/wifi.nix
-        ./config/ntp.nix
-        ./config/gmail.nix
-        ./config/podman.nix
-        ./modules/hardware.nix
-        ./modules/boot.nix
-        ./modules/power.nix
-        ./modules/networking.nix
-        ./modules/sysctl.nix
-        ./modules/podman.nix
-        ./modules/sudo.nix
-        ./modules/services.nix
-        ./modules/pipewire.nix
-        ./modules/kremap.nix
-        ./modules/wg-quick.nix
-        ./modules/dnscrypt-proxy.nix
-        ./modules/nfs.nix
-        ./modules/home-manager.nix
-        ./modules/user.nix
-        ./modules/nix.nix
-        ./modules/security.nix
         ./fonts/fontconfig.nix
         ./input/ibus.nix
-        ./home-manager/sway.nix
-        ./home-manager/swayctl.nix
+        ./config/bitwarden.nix
+        ./config/dnscrypt-proxy.nix
+        ./config/gmail.nix
+        ./config/input.nix
+        ./config/kernel.nix
+        ./config/ntp.nix
+        ./config/output.nix
+        ./config/podman.nix
+        ./config/system.nix
+        ./config/user.nix
+        ./config/vps.nix
+        ./config/wifi.nix
+        ./config/wireguard.nix
+        ./modules/boot.nix
+        ./modules/dnscrypt-proxy.nix
+        ./modules/hardware.nix
+        ./modules/home-manager.nix
+        ./modules/kremap.nix
+        ./modules/networking.nix
+        ./modules/nfs.nix
+        ./modules/nix.nix
+        ./modules/pipewire.nix
+        ./modules/podman.nix
+        ./modules/power.nix
+        ./modules/security.nix
+        ./modules/services.nix
+        ./modules/sudo.nix
+        ./modules/sysctl.nix
+        ./modules/user.nix
+        ./modules/wg-quick.nix
+        ./home-manager/btop.nix
+        ./home-manager/direnv.nix
+        ./home-manager/downmovie.nix
+        ./home-manager/fcitx5.nix
+        ./home-manager/fetchmail.nix
+        ./home-manager/firefox.nix
+        ./home-manager/git.nix
+        ./home-manager/gtk.nix
+        ./home-manager/htop.nix
+        ./home-manager/kitty.nix
+        ./home-manager/lazygit.nix
+        ./home-manager/mpd.nix
+        ./home-manager/mpv.nix
+        ./home-manager/ncmpcpp.nix
+        ./home-manager/neomutt.nix
+        ./home-manager/podman.nix
+        ./home-manager/qt.nix
+        ./home-manager/ranger.nix
+        ./home-manager/rime.nix
+        ./home-manager/scripts.nix
+        ./home-manager/sherlock.nix
         ./home-manager/sndctl.nix
+        ./home-manager/ssh.nix
+        ./home-manager/swayctl.nix
+        ./home-manager/swayimg.nix
         ./home-manager/swaylock.nix
         ./home-manager/swaync.nix
-        ./home-manager/swayimg.nix
-        ./home-manager/waybar.nix
-        ./home-manager/ssh.nix
-        ./home-manager/btop.nix
-        ./home-manager/htop.nix
-        ./home-manager/xdg-desktop-portal.nix
-        ./home-manager/zsh.nix
-        ./home-manager/neomutt.nix
-        ./home-manager/ranger.nix
-        ./home-manager/kitty.nix
-        ./home-manager/mpd.nix
-        ./home-manager/ncmpcpp.nix
-        ./home-manager/mpv.nix
-        ./home-manager/zathura.nix
-        ./home-manager/firefox.nix
-        ./home-manager/vim.nix
-        ./home-manager/downmovie.nix
+        ./home-manager/sway.nix
         ./home-manager/syncdrive.nix
-        ./home-manager/fcitx5.nix
-        ./home-manager/rime.nix
         ./home-manager/uv.nix
-        ./home-manager/scripts.nix
-        ./home-manager/git.nix
-        ./home-manager/lazygit.nix
-        ./home-manager/direnv.nix
-        ./home-manager/fetchmail.nix
-        ./home-manager/podman.nix
-        ./home-manager/gtk.nix
-        ./home-manager/qt.nix
-        ./home-manager/sherlock.nix
+        ./home-manager/vim.nix
+        ./home-manager/waybar.nix
+        ./home-manager/xdg-desktop-portal.nix
+        ./home-manager/zathura.nix
+        ./home-manager/zsh.nix
     ];
 
 
@@ -122,24 +122,24 @@ in
             };
 
             extraPackages = with pkgs; [
-                # swaylock
-                # swayimg
+                swaybg
+                swaylock
+                swayimg
                 swayidle
-                # swaynotificationcenter
-                # wofi
-                # waybar
+                swaynotificationcenter
+                waybar
                 clipman
                 wl-clipboard
-                wlr-randr
-                # kitty
+                kitty
                 weechat
-                # ranger
+                ranger
                 w3m
-                # neomutt
+                neomutt
                 zathura
-                wl-kbptr
+                sherlock-launcher
                 slurp
-                swaybg
+                wl-kbptr
+                wlr-randr
             ];
         };
     };
@@ -155,31 +155,31 @@ in
             p7zip
             unrar
             /* tool */
+            bat
             bc
             binutils
+            coreutils
             dosfstools
             duf
-            file
-            procps
-            sysstat
-            bat
-            coreutils
             eza
             fastfetch
+            fd
+            file
             fzf
-            jq
             iotop
+            jq
             libnotify
+            procps
             qrencode
+            sysstat
             /* git */
             gh
             git
             /* video */
             ffmpeg
             libvpl
-            /* container */
+            /* podman */
             podman-compose
-            /* python */
             /* net */
             axel
             conntrack-tools
