@@ -55,7 +55,6 @@ in
         ./home-manager/kitty.nix
         ./home-manager/mpd.nix
         ./home-manager/ncmpcpp.nix
-        ./home-manager/wofi.nix
         ./home-manager/mpv.nix
         ./home-manager/zathura.nix
         ./home-manager/firefox.nix
@@ -73,6 +72,7 @@ in
         ./home-manager/podman.nix
         ./home-manager/gtk.nix
         ./home-manager/qt.nix
+        ./home-manager/sherlock.nix
     ];
 
 
