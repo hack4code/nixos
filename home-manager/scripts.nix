@@ -9,28 +9,6 @@ in
         home.packages = with pkgs; [
             (
                 writeShellApplication {
-                    name = "s6.sh";
-                    runtimeInputs = [
-                        wireplumber
-                    ];
-                    text = ''
-                        wpctl set-volume @DEFAULT_AUDIO_SINK@ 60%
-                    '';
-                }
-            )
-            (
-                writeShellApplication {
-                    name = "s8.sh";
-                    runtimeInputs = [
-                        wireplumber
-                    ];
-                    text = ''
-                        wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%
-                    '';
-                }
-            )
-            (
-                writeShellApplication {
                     name = "setkernel.sh";
                     runtimeInputs = [
                         axel
