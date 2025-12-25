@@ -5,7 +5,7 @@ let
     inherit (builtins) fromJSON readFile toFile toJSON unsafeDiscardStringContext;
     cfg = config.security.tpm2;
     tctiCfg = cfg.tctiEnvironment;
-    userName = config.userName;
+    userHome = config.userHome;
 in
 {
     config = mkIf (cfg.enable && tctiCfg.enable) (
@@ -19,8 +19,8 @@ in
         defaultCfgFile = pkg + /etc/tpm2-tss/fapi-config.json;
         defaultCfg = fromJSON (unsafeDiscardStringContext (readFile defaultCfgFile));
         fixedCfg = defaultCfg // {
-            system_dir = "/home/${userName}/.local/share/tpm2-tss/system/keystore";
-            log_dir = "~/.local/share/tpm2-tss/log";
+            system_dir = "${userHome}/.local/share/tpm2-tss/system/keystore";
+            log_dir = "${userHome}/.local/share/tpm2-tss/log";
             tcti = "${tctiCfg.interface}:${tctiOption}";
             profile_name = "P_RSA2048SHA256";
             ek_cert_less = "yes";
