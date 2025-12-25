@@ -300,6 +300,7 @@ in
                 exec --no-startup-id wl-paste -t text --watch clipman store --no-persist
                 # exec ibus-daemon -rxRd
                 exec fcitx5 -d --replace
+                exec sherlock --daemonize
 
                 exec swaync
                 exec swayidle \
