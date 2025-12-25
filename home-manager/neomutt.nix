@@ -2,13 +2,14 @@
 
 let
     userName = config.userName;
+    userHome = config.userHome;
     gmailAccount = config.gmailAccount;
     gmailMailBoxes = config.gmailMailBoxes;
 in
 {
     home-manager.users.${userName} = {
         accounts.email = {
-            maildirBasePath = "/home/${userName}";
+            maildirBasePath = userHome;
             accounts.gmail = {
                 enable = true;
 
