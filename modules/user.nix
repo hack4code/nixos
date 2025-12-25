@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
     userName = config.userName;
+    userHome = config.userHome;
     uid = config.uid;
     userPassWord = config.userPassWord;
 in
@@ -12,7 +13,7 @@ in
         users = {
             ${userName} = {
                 isNormalUser = true;
-                home = "/home/${userName}";
+                home = userHome;
                 uid = uid;
                 description = "Sky Walker";
                 initialPassword = userPassWord;
