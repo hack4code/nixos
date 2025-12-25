@@ -1,0 +1,65 @@
+{ config, pkgs, ... }:
+
+let
+    userName = config.userName;
+    userHome = config.userHome;
+in
+{
+    home-manager.users.${userName} = {
+        xdg = {
+            enable = true;
+
+            cacheHome = "${userHome}/.cache";
+            configHome = "${userHome}/.config";
+            dataHome = "${userHome}/.local/share";
+            stateHome = "${userHome}/.local/state";
+
+            userDirs = {
+                enable = true;
+                createDirectories = false;
+                desktop = "${userHome}/temp";
+                documents = "${userHome}/document";
+                download = "${userHome}/download";
+                music = "${userHome}/music";
+                pictures = "${userHome}/picture";
+                publicShare = "${userHome}/temp";
+                templates = "${userHome}/temp";
+                videos = "${userHome}/movie";
+                extraConfig = {
+                    XDG_MISC_DIR = "${userHome}/temp";
+                };
+            };
+
+            portal = {
+                enable = true;
+                config = {
+                    sway = {
+                        default = [
+                            "gtk"
+                        ];
+
+                        "org.freedesktop.impl.portal.Screenshot" = [
+                            "wlr"
+                        ];
+
+                        "org.freedesktop.impl.portal.ScreenCast" = [
+                            "wlr"
+                        ];
+
+                        "org.freedesktop.impl.portal.Inhibit" = [
+                            "none"
+                        ];
+                    };
+                };
+
+                extraPortals = with pkgs; [
+                    xdg-desktop-portal-wlr
+                    xdg-desktop-portal-gtk
+                ];
+            };
+        };
+    };
+}
+
+
+# vim: ts=4 sw=4 sts=4 ft=nix et:

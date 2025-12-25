@@ -70,7 +70,7 @@ in
         ./home-manager/uv.nix
         ./home-manager/vim.nix
         ./home-manager/waybar.nix
-        ./home-manager/xdg-desktop-portal.nix
+        ./home-manager/xdg.nix
         ./home-manager/zathura.nix
         ./home-manager/zsh.nix
     ];
