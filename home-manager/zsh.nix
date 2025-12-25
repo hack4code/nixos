@@ -45,20 +45,6 @@ in
             };
 
             sessionVariables = {
-                /* xdg */
-                XDG_CONFIG_HOME = "$HOME/.config";
-                XDG_CACHE_HOME = "$HOME/.cache";
-                XDG_DATA_HOME = "$HOME/.local/share";
-                XDG_STATE_HOME = "$HOME/.local/state";
-                XDG_DOCUMENTS_DIR = "$HOME/document";
-                XDG_DOWNLOAD_DIR = "$HOME/download";
-                XDG_MUSIC_DIR = "$HOME/music";
-                XDG_VIDEOS_DIR = "$HOME/movie";
-                XDG_PICTURES_DIR = "$HOME/picture";
-                XDG_DESKTOP_DIR = "$HOME/temp";
-                XDG_PUBLICSHARE_DIR = "$HOME/temp";
-                XDG_TEMPLATES_DIR = "$HOME/temp";
-
                 LANG = "en_US.UTF-8";
                 EDITOR = "vim";
 
