@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-    userName = config.userName;
+    userHome = config.userHome;
 in
 {
     fileSystems."/export/wireguard" = {
@@ -9,7 +9,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/nixos/extra/vps/wireguard";
+        device = "${userHome}/source/nixos/extra/vps/wireguard";
         options = [
             "bind"
             "nfsvers=4.2"
@@ -21,7 +21,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/nixos/extra/vps/docker";
+        device = "${userHome}/source/nixos/extra/vps/docker";
         options = [
             "bind"
             "nfsvers=4.2"
@@ -33,7 +33,7 @@ in
             "/"
             "/home"
         ];
-        device = "/home/${userName}/source/spider";
+        device = "${userHome}/source/spider";
         options = [
             "bind"
             "nfsvers=4.2"
