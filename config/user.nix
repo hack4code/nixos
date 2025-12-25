@@ -5,12 +5,14 @@
         userName = mkOption { type = str; };
         uid = mkOption { type = int; };
         userPassWord = mkOption { type = str; };
+        userHome = mkOption { type = str; };
     };
 
-    config = {
+    config = rec {
         userName = "e";
         uid = 1000;
         userPassWord = "123456";
+        userHome = "/home/${userName}";
     };
 }
 
