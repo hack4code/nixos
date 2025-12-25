@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    userHome = config.userHome;
 in
 {
     home-manager.users.${userName} = {
@@ -14,13 +15,13 @@ in
                 startWhenNeeded = true;
             };
 
-            musicDirectory = /home/${userName}/music/song;
-            playlistDirectory = /home/${userName}/music/playlist;
+            musicDirectory = "${userHome}/music/song";
+            playlistDirectory = "${userHome}/music/playlist";
 
             extraConfig = ''
-                sticker_file "/home/${userName}/.local/share/mpd/sticker.sql"
-                state_file "/home/${userName}/.local/state/mpd/state"
-                log_file "/home/${userName}/.local/share/mpd/log"
+                sticker_file "${userHome}/.local/share/mpd/sticker.sql"
+                state_file "${userHome}/.local/state/mpd/state"
+                log_file "${userHome}/.local/share/mpd/log"
                 log_level "info"
 
                 auto_update "yes"
