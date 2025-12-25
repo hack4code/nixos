@@ -24,7 +24,6 @@ in
         ./modules/boot.nix
         ./modules/dnscrypt-proxy.nix
         ./modules/hardware.nix
-        ./modules/home-manager.nix
         ./modules/kremap.nix
         ./modules/networking.nix
         ./modules/nfs.nix
@@ -46,6 +45,7 @@ in
         ./home-manager/firefox.nix
         ./home-manager/git.nix
         ./home-manager/gtk.nix
+        ./home-manager/home.nix
         ./home-manager/htop.nix
         ./home-manager/kitty.nix
         ./home-manager/lazygit.nix
@@ -81,6 +81,11 @@ in
         hardwareClockInLocalTime = false;
     };
 
+    home-manager = {
+        useUserPackages = true;
+        useGlobalPkgs = true;
+        backupFileExtension = "backup";
+    };
 
     programs = {
         appimage = {
