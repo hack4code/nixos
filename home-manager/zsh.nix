@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    userHome = config.userHome;
     vpsName = config.vpsName;
     bwSession = config.bwSession;
 in
@@ -12,7 +13,7 @@ in
 
             defaultKeymap = "emacs";
 
-            dotDir = "/home/${userName}/.config/zsh";
+            dotDir = "${userHome}/.config/zsh";
 
             autocd = true;
             cdpath = [
