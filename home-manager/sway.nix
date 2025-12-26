@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
     userName = config.userName;
@@ -13,13 +13,10 @@ let
     touchpad = config.touchpad;
     trackpoint = config.trackpoint;
 
-    cursorName = "graphite-dark-nord";
-
-    gmailMailBoxes = config.gmailMailBoxes;
+    cursorName = config.cursorName;
 in
 {
-    home-manager.users.${userName} = { lib, ... }:
-    {
+    home-manager.users.${userName} = {
         services = {
             gnome-keyring = {
                 enable = true;
@@ -177,6 +174,7 @@ in
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
                     "${modifier}+m" = "exec wl-kbptr -o modes=floating','click -o mode_floating.source=detect";
+                    "${modifier}+n" = "exec wl-kbptr -o modes=tile','click";
 
                     "${modifier}+o" = "exec sherlock";
                     "${modifier}+q" = "kill";
@@ -247,29 +245,29 @@ in
                 workspace 10 output "${monitorSamsung}"
                 workspace 11 output "${monitorThinkpad}"
 
-                mode "Mouse" {
-                    bindsym shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
+                # mode "Mouse" {
+                #     bindsym shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
 
-                    # mouse move
-                    bindsym h seat seat0 cursor move -15 0
-                    bindsym j seat seat0 cursor move 0 15
-                    bindsym k seat seat0 cursor move 0 -15
-                    bindsym l seat seat0 cursor move 15 0
+                #     # mouse move
+                #     bindsym h seat seat0 cursor move -15 0
+                #     bindsym j seat seat0 cursor move 0 15
+                #     bindsym k seat seat0 cursor move 0 -15
+                #     bindsym l seat seat0 cursor move 15 0
 
-                    # left button
-                    bindsym s seat seat0 cursor press button1
-                    bindsym --release s seat seat0 cursor release button1
+                #     # left button
+                #     bindsym s seat seat0 cursor press button1
+                #     bindsym --release s seat seat0 cursor release button1
 
-                    # middle button
-                    bindsym d seat seat0 cursor press button2
-                    bindsym --release d seat seat0 cursor release button2
+                #     # middle button
+                #     bindsym d seat seat0 cursor press button2
+                #     bindsym --release d seat seat0 cursor release button2
 
-                    # right button
-                    bindsym f seat seat0 cursor press button3
-                    bindsym --release f seat seat0 cursor release button3
+                #     # right button
+                #     bindsym f seat seat0 cursor press button3
+                #     bindsym --release f seat seat0 cursor release button3
 
-                    bindsym escape mode default
-                }
+                #     bindsym escape mode default
+                # }
 
                 bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel_backlight -U 10
                 bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel_backlight -A 10
@@ -306,7 +304,7 @@ in
                 exec swayidle \
                     timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
                     timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
-                    after-resume "sndctl setup; swayctl resume sleep"
+                    after-resume "swayctl resume sleep; sndctl setup"
 
                 exec_always --no-startup-id sndctl setup
 
@@ -332,49 +330,6 @@ in
             force = true;
             source = ./sway;
             recursive = true;
-        };
-
-        home.activation =
-        let
-            mboxes = lib.strings.concatStrings (lib.strings.intersperse " " (map (v: "mail/${v} mail/${v}/new mail/${v}/cur mail/${v}/tmp") gmailMailBoxes));
-        in
-        {
-            initHome = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
-                test -d mail || mkdir mail mail/sent mail/trash mail/inbox mail/drafts ${mboxes}
-                test -d book || mkdir book book/.reading
-                test -d movie || mkdir movie movie/.rsync movie/.camer
-                test -d music || mkdir music music/lyrics music/playlist music/song music/youtube
-                test -d picture || mkdir picture picture/icon picture/mpv picture/screen picture/wallpaper
-                test -d temp || mkdir temp temp/drive temp/test
-                test -d code || mkdir code
-                test -d document || mkdir document
-                test -d download || mkdir download
-                test -d source || mkdir source
-                test -d .local/share/fetchmail || mkdir .local/share/fetchmail
-                test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
-            '';
-        };
-
-        home = {
-            packages = with pkgs; [
-                bitwarden-cli
-                frogmouth
-                linode-cli
-                mpc
-                (
-                    callPackage ./rpcd/rpcd.nix { }
-                )
-            ];
-
-            pointerCursor = {
-                enable = true;
-                package = pkgs.graphite-cursors;
-                name = cursorName;
-                size = 18;
-                gtk = {
-                    enable = true;
-                };
-            };
         };
     };
 }
