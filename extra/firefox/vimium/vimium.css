@@ -4,7 +4,7 @@
 
 
 #vomnibar input {
-    font-family: Roboto, Swei Gothic CJK SC;
+    font-family: Roboto Flex, Swei Gothic CJK SC;
     font-weight: 400;
     color: #f8f8f2;
     background-color: #282828;
@@ -101,6 +101,11 @@
 
 #vomnibar input::selection {
     background-color: #8be9fd
+}
+
+
+.vimium-reset {
+    font-family: JetBrains Mono !important;
 }
 
 

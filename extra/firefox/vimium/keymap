@@ -1,0 +1,41 @@
+unmap t
+map t Vomnibar.activateTabSelection
+unmap T
+map T togglePinTab
+
+unmap o
+unmap O
+map o Vomnibar.activateInNewTab
+map O Vomnibar.activate
+
+unmap b
+map b Vomnibar.activateBookmarksInNewTab
+unmap B
+map B Vomnibar.activateBookmarks
+
+unmap R
+map R reload hard
+
+unmap J
+unmap K
+
+unmap e
+map e createTab
+
+map <c-]> passNextKey
+
+unmap <c-d>
+map <c-d> scrollFullPageDown
+unmap <c-u>
+map <c-u> scrollFullPageUp
+
+unmap <c-l>
+map <c-l> moveTabRight
+unmap <c-h>
+map <c-h> moveTabLeft
+
+unmap <c-e>
+map <c-e> lastTab
+unmap <c-0>
+map <c-0> firstTab
+unmap <c-j>

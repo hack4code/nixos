@@ -1,0 +1,12 @@
+w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+m: https://search.douban.com/movie/subject_search?search_text=%s 豆瓣电影
+e: https://dictionary.cambridge.org/us/dictionary/english-chinese-simplified/%s 剑桥英语
+y: https://www.youtube.com/results?search_query=%s Youtube
+r: https://datatracker.ietf.org/doc/html/rfc%s RFC
+b: https://search.douban.com/book/subject_search?search_text=%s 豆瓣读书
+a: https://anybt.eth.limo/#/search?q=%s&order=&category= AnyBT
+t: https://thepiratebay.org/search.php?q=%s&all=on 海盗湾
+#t: http://piratebayo3klnzokct3wt5yyxb2vpebbuyjl7m623iaxmqhsd52coid.onion/search.php?q=%s 海盗湾
+p: https://peps.python.org/pep-%s/ PEP
+n: https://search.nixos.org/packages?channel=25.11&from=0&size=50&sort=relevance&type=packages&query=%s NixPkgs
+u: https://yandex.com/search?text=%s Yandex
