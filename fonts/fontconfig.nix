@@ -67,13 +67,13 @@
                 ];
 
                 sansSerif = [
+                    "Roboto Flex"
                     "Noto Sans"
-                    "Source Han Sans"
                 ];
 
                 monospace = [
-                    "Intel One Mono"
                     "JetBrains Mono"
+                    "Intel One Mono"
                 ];
 
                 emoji = [
@@ -114,7 +114,7 @@
     };
 
     console = {
-        earlySetup = false;
+        earlySetup = true;
         keyMap = "us";
         packages = with pkgs; [
             terminus_font
