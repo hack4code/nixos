@@ -5,6 +5,7 @@ let
     homeManagerVersion = config.homeManagerVersion;
     cursorName = config.cursorName;
     gmailMailBoxes = config.gmailMailBoxes;
+    bwSession = config.bwSession;
 in
 {
     home-manager.users.${userName} = { lib, ... }:
@@ -21,6 +22,38 @@ in
             sessionPath = [
                 "$HOME/.local/bin"
             ];
+
+            sessionVariables = {
+                EDITOR = "vim";
+                LANG = "en_US.UTF-8";
+                LIBVIRT_DEFAULT_URI = "qemu:///system";
+
+                # GNUPGHOME = "$HOME/.config/gpg";
+                # GOPATH = "$HOME/.local/share/go";
+                # GPG_TTY = "$(tty)";
+
+                /* fcitx5 */
+                GTK_IM_MODULE = "wayland";
+                SDL_IM_MODULE = "fcitx";
+                XMODIFIERS = "@im=fcitx";
+                QT_IM_MODULE = "fcitx";
+
+                /* ibus */
+                # GTK_IM_MODULE = "ibus";
+                # XMODIFIERS = "@im=ibus";
+                # QT_IM_MODULE = "ibus";
+
+                /* sway */
+                WLR_RENDERER = "vulkan";
+                SDL_VIDEODRIVER = "wayland";
+                QT_QPA_PLATFORM = "wayland";
+                QT_ENABLE_HIGHDPI_SCALING = "1";
+                QT_FONT_DPI = "108";
+                # QT_SCALE_FACTOR = "1.0";
+
+                /* bitwarden */
+                BW_SESSION = "${bwSession}";
+            };
 
             packages = with pkgs; [
                 bitwarden-cli
