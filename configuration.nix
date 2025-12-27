@@ -17,6 +17,7 @@ in
         ./config/output.nix
         ./config/podman.nix
         ./config/system.nix
+        ./config/theme.nix
         ./config/user.nix
         ./config/vps.nix
         ./config/wifi.nix
@@ -44,7 +45,6 @@ in
         ./home-manager/fetchmail.nix
         ./home-manager/firefox.nix
         ./home-manager/git.nix
-        ./home-manager/gtk.nix
         ./home-manager/home.nix
         ./home-manager/htop.nix
         ./home-manager/kitty.nix
@@ -54,7 +54,6 @@ in
         ./home-manager/ncmpcpp.nix
         ./home-manager/neomutt.nix
         ./home-manager/podman.nix
-        ./home-manager/qt.nix
         ./home-manager/ranger.nix
         ./home-manager/rime.nix
         ./home-manager/scripts.nix
@@ -67,6 +66,7 @@ in
         ./home-manager/swaync.nix
         ./home-manager/sway.nix
         ./home-manager/syncdrive.nix
+        ./home-manager/theme.nix
         ./home-manager/uv.nix
         ./home-manager/vim.nix
         ./home-manager/waybar.nix
