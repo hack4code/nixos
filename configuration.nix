@@ -198,7 +198,6 @@ in
             pwru
             rclone
             tcptrace
-            tor-browser
             wget
             /* tpm2 */
             tpm2-tools
