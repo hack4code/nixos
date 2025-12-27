@@ -21,6 +21,7 @@ in
             profiles = {
                 KISS = {
                     isDefault = true;
+                    id = 0;
                     name = "KISS";
                     search = {
                         default = "google";
@@ -575,6 +576,16 @@ in
                           display: none !important;
                         }
                     '';
+                };
+
+                TOR = {
+                    isDefault = false;
+                    name = "TOR";
+                    id = 1;
+                    search = {
+                        default = "ddg";
+                        force = true;
+                    };
                 };
             };
         };
