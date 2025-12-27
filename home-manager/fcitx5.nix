@@ -59,7 +59,7 @@ in
                             UseAccentColor = "False";
                             WheelForPaging = "False";
                             Font = "\"Swei Gothic CJK SC Medium 12\"";
-                            MenuFont = "\"MiSans 10\"";
+                            MenuFont = "\"MiSans Semibold 10\"";
                             TrayFont = "\"Swei Gothic CJK TC Medium 12\"";
                             TrayOutlineColor = "#282828";
                             TrayTextColor = "#ebdbb2";
