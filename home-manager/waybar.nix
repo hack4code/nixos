@@ -150,7 +150,7 @@ in
 
 
                 * {
-                    font-family: "Symbols Nerd Font", "Fira Mono";
+                    font-family: "Symbols Nerd Font", "Fira Mono", "Noto Sans";
                     font-size: 16px;
                 }
 
@@ -207,7 +207,7 @@ in
 
 
                 #workspaces button {
-                    font-size: 16px;
+                    font-size: 18px;
                     font-weight: 600;
                     color: @fg1;
                     padding: 0px 4px;
