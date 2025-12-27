@@ -22,6 +22,7 @@ in
 
             style = {
                 name = qtStyleName;
+                package = pkgs.adwaita-qt;
             };
         };
 
@@ -32,6 +33,7 @@ in
 
             iconTheme = {
                 name = gtkIconTheme;
+                package = pkgs.adwaita-icon-theme;
             };
 
             cursorTheme = {

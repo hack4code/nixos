@@ -16,7 +16,7 @@
         cursorName = "graphite-dark-nord";
         cursorSize = 18;
         qtThemeName = "adwaita";
-        qtStyleName = "adwaita-highcontrast";
+        qtStyleName = "adwaita";
         gtkColorScheme = "light";
         gtkIconTheme = "Adwaita";
         gtkFontName = "Roboto Flex";
