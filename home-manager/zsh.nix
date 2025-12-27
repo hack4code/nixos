@@ -4,7 +4,6 @@ let
     userName = config.userName;
     userHome = config.userHome;
     vpsName = config.vpsName;
-    bwSession = config.bwSession;
 in
 {
     home-manager.users.${userName} = {
@@ -45,39 +44,9 @@ in
             };
 
             sessionVariables = {
-                LANG = "en_US.UTF-8";
-                EDITOR = "vim";
-
-                GPG_TTY = "$(tty)";
-                LIBVIRT_DEFAULT_URI = "qemu:///system";
-                GNUPGHOME = "$HOME/.config/gpg";
-
-                /* go */
-                GOPATH = "$HOME/.local/share/go";
-
                 /* fzf */
                 FZF_DEFAULT_OPTS = "$FZF_DEFAULT_OPTS --border rounded --color 'dark,hl:red,pointer:green,current-hl:bright-red' --marker='>' --pointer='◆' --separator='─' --scrollbar='│'";
                 FZF_CTRL_R_OPTS = "--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'";
-
-                /* fcitx5 */
-                GTK_IM_MODULE = "wayland";
-                SDL_IM_MODULE = "fcitx";
-                XMODIFIERS = "@im=fcitx";
-                QT_IM_MODULE = "fcitx";
-
-                /* ibus */
-                # GTK_IM_MODULE = "ibus";
-                # XMODIFIERS = "@im=ibus";
-                # QT_IM_MODULE = "ibus";
-
-
-                /* sway */
-                WLR_RENDERER = "vulkan";
-                SDL_VIDEODRIVER = "wayland";
-                QT_QPA_PLATFORM = "wayland";
-
-                /* bitwarden */
-                BW_SESSION = "${bwSession}";
             };
 
             shellAliases = {
