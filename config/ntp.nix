@@ -7,9 +7,7 @@
 
     config = {
         ntpServers = [
-            "0.de.pool.ntp.org"
-            "1.de.pool.ntp.org"
-            "2.de.pool.ntp.org"
+            "ntp.tuna.tsinghua.edu.cn"
             "3.de.pool.ntp.org"
         ];
     };
