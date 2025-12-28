@@ -227,6 +227,11 @@ in
             dwarf-fortress
             nethack
             tetris
+            /* icon */
+            candy-icons
+            graphite-cursors
+            kdePackages.breeze
+            kdePackages.breeze-icons
         ];
     };
 }
