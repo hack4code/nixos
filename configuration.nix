@@ -227,9 +227,6 @@ in
             dwarf-fortress
             nethack
             tetris
-            /* icon */
-            candy-icons
-            kdePackages.breeze
         ];
     };
 }
