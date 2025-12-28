@@ -71,6 +71,21 @@ in
                 }
 
                 {
+                    name = "supertux2";
+                    alias = "supertux";
+                    type = "command";
+                    args = {
+                        tux = {
+                            icon = "supertux2";
+                            exec = "${pkgs.superTux}/bin/supertux2";
+                            search_string = "tux";
+                        };
+                    };
+                    priority = 4;
+                    home = "Home";
+                }
+
+                {
                     name = "Kill Process";
                     alias = "kill";
                     type = "process";
@@ -94,6 +109,7 @@ in
             ];
 
             settings = {
+                theme = "light";
                 default_apps = {
                     terminal = "kitty";
                     browser = "firefox --new-tab %u";
@@ -116,7 +132,7 @@ in
                 };
 
                 behavior = {
-                    use_xdg_data_dir_icons = true;
+                    use_xdg_data_dir_icons = false;
                     animate = true;
                 };
 
