@@ -139,18 +139,13 @@ in
                     bindkey -M menuselect 'j' vi-down-line-or-history
                     bindkey -M menuselect 'k' vi-up-line-or-history
 
-
                     SWAY=$(command -v sway)
                     function sway {
                         if [[ $TERM == "xterm-kitty" ]]; then
                             return
                         fi
 
-                        while [[ -z "$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')" ]]; do
-                            sleep 1s
-                        done
-                        wpctl set-default "$(wpctl status | grep -F Headphones | grep -v Microphone | cut -d . -f 1 | awk '{print $2}' | tr -d '\s\n')"
-                        exec "$SWAY"
+                        exec "$SWAY" &>/tmp/sway.log
                     }
                 '';
             };
