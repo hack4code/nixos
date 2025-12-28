@@ -56,6 +56,8 @@ in
                 { condition = "mime ^text, label pager"; command = "\"$PAGER\" -- \"$@\""; }
                 { condition = "ext zip, has 7z"; command = "7z l \"$1\" | less"; }
                 { condition = "ext zip, has 7z"; command = "for file in \"$@\"; do 7z e \"$file\"; done"; }
+                { condition = "ext 7z, has 7z"; command = "7z l \"$1\" | less"; }
+                { condition = "ext 7z, has 7z"; command = "for file in \"$@\"; do 7z e \"$file\"; done"; }
                 { condition = "ext rar, has unrar"; command = "unrar l \"$1\" | less"; }
                 { condition = "ext rar, has unrar"; command = "for file in \"$@\"; do unrar e \"$file\"; done"; }
                 { condition = "ext tar|gz|bz2|xz, has tar"; command = "tar vvtf \"$1\" | \"$PAGER\""; }
