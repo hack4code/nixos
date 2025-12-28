@@ -15,7 +15,7 @@ let
     wgMTU = config.wgMTU;
     vpsIp4Address = config.vpsIp4Address;
     vpsIp6Address = config.vpsIp6Address;
-    dnsPort = builtins.toString config.dnsPort;
+    dnsPort = toString config.dnsPort;
 in
 {
     systemd.services."wg-quick-${wgInterface}" = {
@@ -40,28 +40,48 @@ in
                 ${pkgs.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
                 ${pkgs.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
                 ${pkgs.procps}/bin/sysctl -q net.ipv4.conf.${wgInterface}.route_localnet=1
+                #
                 # tuna
                 ${pkgs.iproute2}/bin/ip rule add to 101.6.15.130/32 table main
                 ${pkgs.iproute2}/bin/ip -6 rule add to 2402:f000:1:400::2/128 table main
+                # ntp.tuna
+                ${pkgs.iproute2}/bin/ip rule add to 101.6.6.172/32 table main
+                ${pkgs.iproute2}/bin/ip -6 rule add to 2402:f000:1:416:101:6:6:172/128 table main
                 # sjtu
                 ${pkgs.iproute2}/bin/ip rule add to 111.186.58.212/32 table main
                 # ustc
                 ${pkgs.iproute2}/bin/ip rule add to 202.38.95.110/32 table main
                 ${pkgs.iproute2}/bin/ip -6 rule add to 2001:da8:d800:95::110/128 table main
+                # douban
+                ${pkgs.iproute2}/bin/ip rule add to 120.53.130.158/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 140.143.177.206/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 81.70.124.99/32 table main
+                # zhihu
+                ${pkgs.iproute2}/bin/ip rule add to 43.135.83.2/32 table main
             '';
 
             preDown = ''
                 ${pkgs.nftables}/bin/nft delete table ip dnscrypt-proxy
                 ${pkgs.nftables}/bin/nft delete table ip6 dnscrypt-proxy
                 ${pkgs.nftables}/bin/nft delete table ip rpcdaemon
+                #
                 # tuna
                 ${pkgs.iproute2}/bin/ip rule delete to 101.6.15.130/32
                 ${pkgs.iproute2}/bin/ip -6 rule delete to 2402:f000:1:400::2/128
+                # ntp tuna
+                ${pkgs.iproute2}/bin/ip rule delete to 101.6.6.172/32
+                ${pkgs.iproute2}/bin/ip -6 rule delete to 2402:f000:1:416:101:6:6:172/128
                 # sjtu
                 ${pkgs.iproute2}/bin/ip rule delete to 111.186.58.212/32
                 # ustc
                 ${pkgs.iproute2}/bin/ip rule delete to 202.38.95.110
                 ${pkgs.iproute2}/bin/ip -6 rule delete to 2001:da8:d800:95::110/128
+                # douban
+                ${pkgs.iproute2}/bin/ip rule delete to 120.53.130.158/32
+                ${pkgs.iproute2}/bin/ip rule delete to 140.143.177.206/32
+                ${pkgs.iproute2}/bin/ip rule delete to 81.70.124.99/32
+                # zhihu
+                ${pkgs.iproute2}/bin/ip rule delete to 43.135.83.2/32
             '';
 
             peers = [
