@@ -67,13 +67,13 @@
                 ];
 
                 sansSerif = [
-                    "Roboto Flex"
+                    "Roboto Condensed"
                     "Noto Sans"
                 ];
 
                 monospace = [
                     "JetBrains Mono"
-                    "Intel One Mono"
+                    "MiSans"
                 ];
 
                 emoji = [
