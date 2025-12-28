@@ -15,12 +15,14 @@
     config = {
         cursorName = "graphite-dark-nord";
         cursorSize = 18;
-        qtThemeName = "adwaita";
-        qtStyleName = "adwaita";
+        /* gtk */
         gtkColorScheme = "light";
         gtkIconTheme = "Adwaita";
-        gtkFontName = "Roboto Flex";
+        gtkFontName = "Roboto Condensed";
         gtkFontSize = 10;
+        /* qt */
+        qtThemeName = "breeze";
+        qtStyleName = "breeze";
     };
 }
 

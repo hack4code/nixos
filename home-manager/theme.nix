@@ -22,7 +22,7 @@ in
 
             style = {
                 name = qtStyleName;
-                package = pkgs.adwaita-qt;
+                package = pkgs.kdePackages.breeze;
             };
         };
 

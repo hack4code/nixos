@@ -67,7 +67,7 @@
                 ];
 
                 sansSerif = [
-                    "Roboto Condensed"
+                    "Roboto Flex"
                     "Noto Sans"
                 ];
 

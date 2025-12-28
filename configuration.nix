@@ -229,9 +229,7 @@ in
             tetris
             /* icon */
             candy-icons
-            graphite-cursors
             kdePackages.breeze
-            kdePackages.breeze-icons
         ];
     };
 }
