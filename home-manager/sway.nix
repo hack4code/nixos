@@ -299,16 +299,16 @@ in
                 # exec ibus-daemon -rxRd
                 exec fcitx5 -d --replace
                 exec sherlock --daemonize
-
                 exec swaync
+
                 exec swayidle \
                     timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
-                    timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
-                    after-resume "swayctl resume sleep; sndctl setup"
-
-                exec_always --no-startup-id sndctl setup
+                    timeout 3600 "bluetoothctl power off; swayctl suspend" resume "swayctl resume suspend" \
+                    after-resume "swayctl resume sleep; bluetoothctl power on; sndctl setup"
 
                 exec_always --no-startup-id rpcd
+
+                exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
         };
 
