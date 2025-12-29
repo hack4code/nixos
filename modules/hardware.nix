@@ -65,18 +65,21 @@
 
         bluetooth = {
             enable = true;
+
             powerOnBoot = true;
-            package = pkgs.bluez-experimental;
+
             settings = {
                 Policy = {
                     AutoEnable = "true";
                 };
+
                 General = {
                     ControllerMode = "dual";
                     Experimental = true;
                     KernelExperimental = true;
-                    DiscoverableTimeout = 0;
-                    MultiProfile = "multiple";
+                    DiscoverableTimeout = 180;
+                    FastConnectable = true;
+                    UserspaceHID = true;
                 };
             };
         };
