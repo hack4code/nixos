@@ -4,8 +4,9 @@ let
     userName = config.userName;
     sndctl = pkgs.writeShellApplication {
         name = "sndctl";
+
         runtimeInputs = with pkgs; [
-            bluez-experimental
+            bluez
             coreutils
             gawk
             wireplumber
@@ -13,36 +14,37 @@ let
 
         text = ''
             function connect_sony {
-                local T=0
-                local SONY="20:64:DE:85:A4:E3"
+                local sony="20:64:DE:85:A4:E3"
+                local n=0
 
-                while [[ "$(bluetoothctl info $SONY | awk -F : '/Connected/ {print $2; exit}' | tr -d ' \n')" != "yes" ]]; do
-                    bluetoothctl connect "$SONY" &>/dev/null
-                    sleep 2s
-                    T=$((T + 1))
-                    if ((T > 60)); then
+                while [[ "$(bluetoothctl info "$sony" | awk -F : '/Connected/ {print $2; exit}' | tr -d ' \n')" != "yes" ]]; do
+                    n=$((n + 1))
+                    if ((n > 60)); then
                         return
                     fi
+
+                    bluetoothctl connect "$sony"
+
+                    sleep 2s
                 done
             }
 
 
             function set_sound_volume {
-                local H
+                local hour
 
-                H=$(date +'%k')
-                if ((H >= 5)) && ((H < 18)); then
+                hour=$(date +'%k')
+                if ((hour >= 5)) && ((hour < 18)); then
                     wpctl set-volume @DEFAULT_SINK@ 80%
                 else
                     wpctl set-volume @DEFAULT_SINK@ 60%
                 fi
             }
 
-
             case "$1" in
                 setup)
                     connect_sony
-                    sleep 2s
+                    sleep 8s
                     set_sound_volume
                     ;;
 
