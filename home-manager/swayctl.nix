@@ -9,6 +9,7 @@ in
             (
                 pkgs.writeShellApplication {
                     name = "swayctl";
+
                     runtimeInputs = with pkgs; [
                         coreutils
                         curl
@@ -236,11 +237,7 @@ in
                                         ;;
                                 esac
                                 ;;
-
                         esac
-
-
-                        # vim: set ts=4 sw=4 sts=4 ft=bash et: #
                     '';
                 }
             )
