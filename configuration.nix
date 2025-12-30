@@ -227,6 +227,7 @@ in
             dwarf-fortress
             nethack
             tetris
+            superTux
         ];
     };
 }
