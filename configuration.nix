@@ -197,7 +197,7 @@ in
             openssh
             pwru
             rclone
-            tcptrace
+            # tcptrace
             wget
             /* tpm2 */
             tpm2-tools
@@ -224,8 +224,8 @@ in
             linux-manual
             man-pages
             /* game */
-            dwarf-fortress
-            nethack
+            # dwarf-fortress
+            # nethack
             tetris
             superTux
         ];
