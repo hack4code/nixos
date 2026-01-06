@@ -20,6 +20,12 @@ in
                 userfeedback*
             '';
 
+            aliases = {
+                "Volume Control" = {
+                    icon = "media-optical";
+                };
+            };
+
             launchers = [
                 {
                     name = "App Launcher";
@@ -60,7 +66,7 @@ in
                     args = {
                         commands = {
                             nextsong = {
-                                icon = "mpd";
+                                icon = "gnome-music";
                                 exec = "bash -c '${pkgs.mpc}/bin/mpc next'";
                                 search_string = "next";
                             };
@@ -86,6 +92,21 @@ in
                 }
 
                 {
+                    name = "pcsx2";
+                    alias = "pcsx2";
+                    type = "command";
+                    args = {
+                        tux = {
+                            icon = "pcsx2";
+                            exec = "${pkgs.pcsx2}/bin/pcsx2-qt";
+                            search_string = "pcsx";
+                        };
+                    };
+                    priority = 5;
+                    home = "Home";
+                }
+
+                {
                     name = "Kill Process";
                     alias = "kill";
                     type = "process";
@@ -101,7 +122,7 @@ in
                     type = "web_launcher";
                     args = {
                         search_engine = "google";
-                        icon = "google";
+                        icon = "searchmonkey";
                     };
                     priority = 8;
                     home = "Home";
