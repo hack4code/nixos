@@ -45,6 +45,31 @@
         "net.ipv4.udp_mem" = "65536 262144 1048576";
         "net.ipv4.udp_rmem_min" = "31457280";
         "net.ipv4.udp_wmem_min" = "31457280";
+
+        /* kernel harden */
+        "kernel.kptr_restrict" = 2;
+        "kernel.dmesg_restrict" = 1;
+        "kernel.perf_event_paranoid" = 3;
+        "kernel.kexec_load_disabled" = 1;
+        "kernel.randomize_va_space" = 2;
+        "kernel.yama.ptrace_scope" = 3;
+
+        "dev.tty.ldisc_autoload" = 0;
+        "dev.tty.legacy_tiocsti" = 0;
+
+        "kernel.unprivileged_bpf_disabled" = 1;
+        "kernel.warn_limit" = 1;
+        "kernel.oops_limit" = 1;
+
+        "net.core.bpf_jit_harden" = 2;
+
+        "vm.unprivileged_userfaultfd" = 0;
+
+        "fs.protected_symlinks" = 1;
+        "fs.protected_hardlinks" = 1;
+        "fs.protected_fifos" = 2;
+        "fs.protected_regular" = 2;
+        "fs.suid_dumpable" = 0;
     };
 }
 
