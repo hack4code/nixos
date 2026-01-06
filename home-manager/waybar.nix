@@ -147,15 +147,16 @@ in
                 @define-color orange    #d65d0e;
                 @define-color red       #cc241d;
                 @define-color grey      #928374;
+                @define-color blue      #83a598;
 
 
                 * {
-                    font-family: "Symbols Nerd Font", "Fira Mono", "Noto Sans";
+                    font-family: "Fira Mono";
                     font-size: 16px;
                 }
 
 
-                window#waybar {
+                #waybar {
                     background-color: rgba(43, 48, 59, 0.0);
                     color: #ffffff;
                     transition-property: background-color;
@@ -163,7 +164,7 @@ in
                 }
 
 
-                window#waybar.hidden {
+                #waybar.hidden {
                     opacity: 0.2;
                 }
 
@@ -175,7 +176,7 @@ in
                     background-color: rgba(0, 0, 0, 1);
                     background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) padding-box, linear-gradient(45deg, rgba(204, 36, 29, 1.0), rgba(215, 153, 33, 1.0)) border-box;
                     border-radius: 16px;
-                    border: 2px solid @grey;
+                    border: 1px solid @blue;
                     padding: 1pt 1pt;
                 }
 
