@@ -228,6 +228,7 @@ in
             # nethack
             tetris
             superTux
+            pcsx2
         ];
     };
 }
