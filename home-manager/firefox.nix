@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
     userName = config.userName;
@@ -9,13 +9,104 @@ in
             enable = true;
 
             languagePacks = [
-                "en"
+                "en-US"
                 "zh-cn"
             ];
 
             policies = {
                 BlockAboutConfig = false;
+
+                DisableFirefoxStudies = true;
+                DontCheckDefaultBrowser = true;
+
+                AutofillAddressEnabled = false;
+                AutofillCreditCardEnabled = false;
+                PostQuantumKeyAgreementEnabled = true;
+
+                FirefoxSuggest = {
+                    WebSuggestions = false;
+                    SponsoredSuggestions = false;
+                    ImproveSuggest = false;
+                    Locked = true;
+                };
+
+                DisableTelemetry = true;
+                EnableTrackingProtection = {
+                    Value = true;
+                    Locked = true;
+                    Cryptomining = true;
+                    Fingerprinting = true;
+                };
+
+                DisablePocket = true;
+                NetworkPrediction = false;
+
+                SanitizeOnShutdown = {
+                    Cache = true;
+                    FormData = true;
+                    SiteSettings = true;
+                    OfflineApps = true;
+                };
+
+                /* download */
                 DefaultDownloadDirectory = "$HOME/download";
+
+                HttpAllowlist = [
+                    "http://localhost"
+                    "http://127.0.0.1"
+                    "http://10.0.0.1"
+                    "http://linode.me"
+                ];
+
+                /* cookies */
+                Cookies = {
+                    Allow = [
+                        "http://127.0.0.1"
+                        "http://10.0.0.1:9091"
+                        "http://www.linode.me"
+                        "http://memos.linode.me"
+                        /* wikipedia */
+                        "https://wikipedia.org"
+                        /* github */
+                        "https://github.com"
+                        /* lwn */
+                        "https://lwn.net"
+                        /* google */
+                        "https://google.com"
+                        "https://www.google.com"
+                        "https://accounts.google.com"
+                        "https://mail.google.com"
+                        "https://dirve.google.com"
+                        "https://youtube.com"
+                        /* douban */
+                        "https://douban.com"
+                        /* zhihu */
+                        "https://zhihu.com"
+                        /* monkeytype */
+                        "https://monkeytype.com"
+                        /* linode */
+                        "https://linode.com"
+                        /* stackoverflow */
+                        "https://stackoverflow.com"
+                        /* reddit */
+                        "https://reddit.com"
+                        /* srt */
+                        "https://srtku.com"
+                        /* zlib */
+                        "http://zh.bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion"
+                    ];
+                };
+
+                /* search engines */
+                SearchEngines = {
+                    Remove = [
+                        "ebay"
+                        "Bing"
+                        "Perplexity"
+                    ];
+                    Default = "Google";
+                };
+                SearchSuggestEnabled = false;
             };
 
             profiles = {
@@ -27,29 +118,6 @@ in
                         default = "google";
                         force = true;
                         engines = {
-                            "Nix Packages" = {
-                                urls = [
-                                    {
-                                        template = "https://search.nixos.org/packages";
-                                        params = [
-                                            {
-                                                name = "type";
-                                                value = "packages";
-                                            }
-                                            {
-                                                name = "query";
-                                                value = "{searchTerms}";
-                                            }
-                                        ];
-                                    }
-                                ];
-                                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                                definedAliases = [
-                                    "@n"
-                                    "@nixpackage"
-                                ];
-                            };
-
                             google= {
                                 metaData = {
                                     alias = "@g";
@@ -57,12 +125,6 @@ in
                             };
                         };
                     };
-
-                    # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-                    #     bitwarden
-                    #     ublock-origin
-                    #     vimium
-                    # ];
 
                     # containers = {
                     #     self = {
