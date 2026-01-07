@@ -245,30 +245,6 @@ in
                 workspace 10 output "${monitorSamsung}"
                 workspace 11 output "${monitorThinkpad}"
 
-                # mode "Mouse" {
-                #     bindsym shift+a mode default, exec "wl-kbptr; swaymsg mode Mouse"
-
-                #     # mouse move
-                #     bindsym h seat seat0 cursor move -15 0
-                #     bindsym j seat seat0 cursor move 0 15
-                #     bindsym k seat seat0 cursor move 0 -15
-                #     bindsym l seat seat0 cursor move 15 0
-
-                #     # left button
-                #     bindsym s seat seat0 cursor press button1
-                #     bindsym --release s seat seat0 cursor release button1
-
-                #     # middle button
-                #     bindsym d seat seat0 cursor press button2
-                #     bindsym --release d seat seat0 cursor release button2
-
-                #     # right button
-                #     bindsym f seat seat0 cursor press button3
-                #     bindsym --release f seat seat0 cursor release button3
-
-                #     bindsym escape mode default
-                # }
-
                 bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel_backlight -U 10
                 bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel_backlight -A 10
                 bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 10%+
@@ -278,15 +254,23 @@ in
                 for_window [window_type="dialog"] floating enable
                 for_window [window_role="dialog"] floating enable
 
+                # firefox
                 for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
                 for_window [app_id="firefox" title="^File Upload$"] floating enable, border pixel 2, move position center, resize set 60 ppt 90 ppt
                 for_window [app_id="firefox" title="^Page Info"] floating enable, border pixel 1,  move position center
                 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 70 ppt 69 ppt, resize set 30 ppt 30 ppt
 
+                # fcitx5
                 for_window [app_id="org.fcitx."] floating enable, border pixel 1, move position center, resize set 60 ppt 84 ppt
                 for_window [app_id="org.fcitx." title="^Fcitx Configuration$"] floating enable, border pixel 1, move position center, resize set 60 ppt 96 ppt
 
+                # kitty
                 for_window [app_id="floatkitty"] floating enable, border pixel 1, move position center, resize set 64 ppt 60 ppt, opacity 0.95
+
+                # pcsx2
+                for_window [title="^PCSX2"] move workspace 9, floating enable, border pixel 2, move position center, resize set 95 ppt 96 ppt
+                for_window [title="^PCSX2 v2"] move workspace 9, floating disable
+                for_window [title="God of War"] move workspace 9, floating disable
 
                 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
