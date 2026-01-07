@@ -63,6 +63,7 @@ in
                 NIXOS="$HOME/mail/NixOS"
                 EBPF="$HOME/mail/ebpf"
                 PYTHON="$HOME/mail/python"
+                LINUXHARDENING="$HOME/mail/linux-harden"
 
                 logfile $HOME/.local/share/fetchmail/maildrop.log
 
@@ -191,6 +192,12 @@ in
                 if (/^List-ID:.*Python.org/)
                 {
                     to $PYTHON
+                }
+
+
+                if (/^List-ID:.*linux-hardening.vger.kernel.org/)
+                {
+                    to $LINUXHARDENING
                 }
 
 
