@@ -33,7 +33,7 @@ in
 
             iconTheme = {
                 name = gtkIconTheme;
-                package = pkgs.adwaita-icon-theme;
+                package = pkgs.candy-icons;
             };
 
             cursorTheme = {
