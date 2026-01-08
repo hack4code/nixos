@@ -7,7 +7,6 @@ in
     imports = [
         ./patch/tpm2-tss-fapi.nix
         ./fonts/fontconfig.nix
-        ./input/ibus.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
         ./config/gmail.nix
