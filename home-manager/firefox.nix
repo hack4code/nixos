@@ -32,20 +32,25 @@ in
 
                 DisableTelemetry = true;
                 EnableTrackingProtection = {
-                    Value = true;
                     Locked = true;
+                    Value = true;
                     Cryptomining = true;
                     Fingerprinting = true;
+                    EmailTracking = true;
                 };
 
                 DisablePocket = true;
                 NetworkPrediction = false;
 
                 SanitizeOnShutdown = {
+                    Locked = true;
                     Cache = true;
+                    Cookies = true;
+                    Sessions = true;
                     FormData = true;
                     SiteSettings = true;
-                    OfflineApps = true;
+                    History = false;
+                    Downloads = false;
                 };
 
                 /* download */
@@ -63,8 +68,7 @@ in
                     Allow = [
                         "http://127.0.0.1"
                         "http://10.0.0.1:9091"
-                        "http://www.linode.me"
-                        "http://memos.linode.me"
+                        "http://linode.me"
                         /* wikipedia */
                         "https://wikipedia.org"
                         /* github */
@@ -76,7 +80,7 @@ in
                         "https://www.google.com"
                         "https://accounts.google.com"
                         "https://mail.google.com"
-                        "https://dirve.google.com"
+                        "https://drive.google.com"
                         "https://youtube.com"
                         /* douban */
                         "https://douban.com"
@@ -93,7 +97,7 @@ in
                         /* srt */
                         "https://srtku.com"
                         /* zlib */
-                        "http://zh.bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion"
+                        "http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion"
                     ];
                 };
 
@@ -134,13 +138,13 @@ in
                     #     };
 
                     #     study = {
-                    #         color = "turquoise";
+                    #         color = "orange";
                     #         icon = "pet";
                     #         id = 2;
                     #     };
 
                     #     tor = {
-                    #         color = "yellow";
+                    #         color = "blue";
                     #         icon = "fence";
                     #         id = 3;
                     #     };
