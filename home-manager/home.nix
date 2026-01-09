@@ -51,6 +51,11 @@ in
                 QT_FONT_DPI = "100";
                 # QT_SCALE_FACTOR = "1.0";
 
+                /* fzf */
+                FZF_DEFAULT_OPTS = "--border rounded --color 'dark,hl:red,pointer:green,current-hl:bright-red' --marker='>' --pointer='◆' --separator='─' --scrollbar='│'";
+                FZF_CTRL_R_OPTS = "--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'";
+                FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
+
                 /* bitwarden */
                 BW_SESSION = "${bwSession}";
             };
