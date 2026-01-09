@@ -65,17 +65,18 @@ in
 
             scriptOpts = {
                 console = {
-                    font = "Iosevka Term";
+                    monospace_font = "JetBrains Mono";
                     font_size = 18;
+                    border_size = 0;
                 };
 
                 stats = {
                     font = "Iosevka Term";
-                    font_mono = "Iosevka";
+                    font_mono = "JetBrains Mono";
                     font_size = 18;
                     font_color = "FFFFFF";
                     alpha = 0.6;
-                    border_size = 1;
+                    border_size = 0;
                     duration = 8;
                 };
             };
