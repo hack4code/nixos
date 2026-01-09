@@ -40,13 +40,10 @@ in
                 ignoreAllDups = true;
                 ignoreSpace = true;
                 saveNoDups = true;
-                path = "$HOME/.config/zsh/zsh_history";
+                path = "$HOME/.config/zsh/history";
             };
 
             sessionVariables = {
-                /* fzf */
-                FZF_DEFAULT_OPTS = "$FZF_DEFAULT_OPTS --border rounded --color 'dark,hl:red,pointer:green,current-hl:bright-red' --marker='>' --pointer='◆' --separator='─' --scrollbar='│'";
-                FZF_CTRL_R_OPTS = "--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'";
             };
 
             shellAliases = {
