@@ -276,7 +276,7 @@ in
                         curl
                     ];
                     text = ''
-                        curl -X POST --header "Content-Type: application/json" --data '{"message": "test"}' http://127.0.0.1:8080/notify
+                        curl -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
                     '';
                 }
             )
