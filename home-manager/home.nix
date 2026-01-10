@@ -48,7 +48,7 @@ in
                 SDL_VIDEODRIVER = "wayland";
                 QT_QPA_PLATFORM = "wayland";
                 QT_ENABLE_HIGHDPI_SCALING = "1";
-                QT_FONT_DPI = "100";
+                QT_FONT_DPI = "96";
                 # QT_SCALE_FACTOR = "1.0";
 
                 /* fzf */
