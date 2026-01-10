@@ -270,7 +270,7 @@ in
                 # pcsx2
                 for_window [title="^PCSX2"] move workspace 9, floating enable, border pixel 2, move position center, resize set 95 ppt 96 ppt
                 for_window [title="^PCSX2 v2"] move workspace 9, floating disable
-                for_window [title="God of War"] move workspace 9, floating disable
+                for_window [title="^God of War$"] move workspace 9
 
                 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
