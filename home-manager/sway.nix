@@ -261,7 +261,7 @@ in
                 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 70 ppt 69 ppt, resize set 30 ppt 30 ppt
 
                 # fcitx5
-                for_window [app_id="org.fcitx."] floating enable, border pixel 1, move position center, resize set 60 ppt 84 ppt
+                for_window [app_id="org.fcitx."] floating enable, border pixel 1, move position center, resize set 50 ppt 80 ppt
                 for_window [app_id="org.fcitx." title="^Fcitx Configuration$"] floating enable, border pixel 1, move position center, resize set 60 ppt 96 ppt
 
                 # kitty
