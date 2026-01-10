@@ -37,6 +37,7 @@ in
         ./modules/sysctl.nix
         ./modules/user.nix
         ./modules/wg-quick.nix
+        ./modules/theme.nix
         ./home-manager/btop.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
