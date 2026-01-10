@@ -66,7 +66,7 @@ in
                     args = {
                         commands = {
                             nextsong = {
-                                icon = "gnome-music";
+                                icon = "juk";
                                 exec = "bash -c '${pkgs.mpc}/bin/mpc next'";
                                 search_string = "next";
                             };
@@ -78,13 +78,13 @@ in
 
                 {
                     name = "supertux2";
-                    alias = "supertux";
+                    alias = "supertux2";
                     type = "command";
                     args = {
                         tux = {
-                            icon = "supertux2";
+                            icon = "supertux";
                             exec = "${pkgs.superTux}/bin/supertux2";
-                            search_string = "tux";
+                            search_string = "supertux2";
                         };
                     };
                     priority = 4;
@@ -99,7 +99,7 @@ in
                         tux = {
                             icon = "pcsx2";
                             exec = "${pkgs.pcsx2}/bin/pcsx2-qt";
-                            search_string = "pcsx";
+                            search_string = "pcsx2";
                         };
                     };
                     priority = 5;
