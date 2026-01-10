@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from dasbus.connection import SessionMessageBus
 
 
@@ -8,9 +6,7 @@ __all__ = [
 ]
 
 
-def send_notify(message: str) -> None:
-    f = Path.home() / "picture" / "icon" / "network.png"
-    icon = f"{f.absolute()}" if f.exists() else ""
+def send_notify(message: str, icon: str = "preferences-desktop-notification-bell") -> None:
     proxy = SessionMessageBus().get_proxy(
         "org.freedesktop.Notifications",
         "/org/freedesktop/Notifications"

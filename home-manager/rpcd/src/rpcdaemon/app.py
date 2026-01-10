@@ -133,7 +133,7 @@ def subprocess_swayipcerror_hander(request: Request, exc: SwayIpcError):
 
 @app.post("/notify")
 def notify(msg: Message):
-    send_notify(msg.message)
+    send_notify(message=msg.message, icon="transmission")
     return {"status": "success"}
 
 
@@ -144,9 +144,15 @@ def youtube_download_song(video: Youtube, tasks: BackgroundTasks):
             download_song_from_youtube(url)
         except Exception:
             logger.exception("download_song_from_youtube:\n")
-            send_notify("download song from youtube failed")
+            send_notify(
+                message="download song from youtube failed",
+                icon="youtube-music"
+            )
         else:
-            send_notify("finished song downloading from youtube")
+            send_notify(
+                message="finished song downloading from youtube",
+                icon="youtube-music"
+            )
 
     url = str(video.url)
     logger.info(f"download song from youtube[{url}]")
