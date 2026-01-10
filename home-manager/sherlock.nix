@@ -22,7 +22,11 @@ in
 
             aliases = {
                 "Volume Control" = {
-                    icon = "media-optical";
+                    icon = "pavucontrol";
+                };
+
+                ranger = {
+                    icon = "file-manager";
                 };
             };
 
