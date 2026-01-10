@@ -28,15 +28,10 @@ let
             VPS="${vpsName}"
             SOURCE="10.0.0.1::movie"
             DEST="$HOME/movie/.rsync/"
-            ICON="$HOME/picture/icon/network.png"
 
 
             function notify {
-                if [[ -f "$ICON" ]]; then
-                    $NOTIFY --icon="$ICON" "downmovie" "$1"
-                else
-                    $NOTIFY "downmovie" "$1"
-                fi
+                $NOTIFY --icon="media-downloader" "downmovie" "$1"
             }
 
 
