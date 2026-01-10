@@ -22,7 +22,7 @@
         gtkFontName = "Roboto Condensed";
         gtkFontSize = 10;
         /* qt */
-        qtThemeName = "breeze";
+        qtThemeName = "adwaita";
         qtStyleName = "breeze";
     };
 }
