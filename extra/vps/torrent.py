@@ -35,7 +35,7 @@ if enable_download:
         try:
             requests.post(
                 "http://10.0.0.2:8080/notify",
-                json={'message': 'transmission finished movies downloading'}
+                json={'message': 'transmission finished movies downloading','icon': 'transmission'}
             )
         except Exception:
             logging.error("connect 10.0.0.2 error")
