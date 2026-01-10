@@ -62,6 +62,7 @@ __all__ = [
 
 class Message(BaseModel):
     message: str
+    icon: str
 
 
 class Youtube(BaseModel):
@@ -133,7 +134,7 @@ def subprocess_swayipcerror_hander(request: Request, exc: SwayIpcError):
 
 @app.post("/notify")
 def notify(msg: Message):
-    send_notify(message=msg.message, icon="transmission")
+    send_notify(message=msg.message, icon=msg.icon)
     return {"status": "success"}
 
 
