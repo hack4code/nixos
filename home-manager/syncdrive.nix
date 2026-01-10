@@ -33,7 +33,6 @@ let
 
             NFS_SPIDER="10.0.0.2:/export/spider"
             MOUNT_OPT="vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto"
-            ICON="$HOME/picture/icon/network.png"
 
             ROOT=$($SSH -T $VPS pwd)
             R_MEMOS_DB="$ROOT/memos/memos_prod.db"
@@ -48,11 +47,7 @@ let
 
 
             function notify {
-                if [[ -f "$ICON" ]]; then
-                    $NOTIFY --icon="$ICON" "syncdrive" "$1"
-                else
-                    $NOTIFY "syncdrive" "$1"
-                fi
+                $NOTIFY --icon="google-drive" "syncdrive" "$1"
             }
 
 
