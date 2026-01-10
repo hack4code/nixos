@@ -23,7 +23,7 @@ in
                 fit-to-screen = true;
                 layer = "overlay";
                 cssPriority = "user";
-                notification-icon-size = 48;
+                notification-icon-size = 24;
                 timeout = 16;
                 timeout-low = 8;
                 timeout-critical = 0;
