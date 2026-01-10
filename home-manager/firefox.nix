@@ -90,6 +90,8 @@ in
                         "https://monkeytype.com"
                         /* linode */
                         "https://linode.com"
+                        "https://cloud.linode.com"
+                        "https://login.linode.com"
                         /* stackoverflow */
                         "https://stackoverflow.com"
                         /* reddit */
