@@ -229,6 +229,8 @@ in
             tetris
             superTux
             pcsx2
+            mame
+            mame-tools
         ];
     };
 }
