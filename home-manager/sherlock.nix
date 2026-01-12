@@ -111,6 +111,70 @@ in
                 }
 
                 {
+                    name = "mame";
+                    alias = "mame";
+                    type = "command";
+                    args = {
+                        mame = {
+                            icon = "mame";
+                            exec = "${pkgs.mame}/bin/mame";
+                            search_string = "mame";
+                        };
+                    };
+                    priority = 6;
+                    home = "Home";
+                }
+
+                {
+                    name = "rpcs3";
+                    alias = "rpcs3";
+                    type = "command";
+                    args = {
+                        rpcs3 = {
+                            icon = "rpcs3";
+                            exec = "${pkgs.rpcs3}/bin/rpcs3";
+                            search_string = "rpcs3";
+                        };
+                    };
+                    priority = 7;
+                    home = "Home";
+                }
+
+                {
+                    name = "syncdrive";
+                    alias = "syncdrive";
+                    type = "command";
+                    args = {
+                        commands = {
+                            syncdrive = {
+                                icon = "google-drive";
+                                exec = "bash -c syncdrive.sh";
+                                search_string = "syncdrive";
+                            };
+                        };
+                    };
+                    priority = 8;
+                    home = "Home";
+                }
+
+                {
+                    name = "downmovie";
+                    alias = "downmovie";
+                    type = "command";
+                    args = {
+                        commands = {
+                            downmovie = {
+                                icon = "media-downloader";
+                                exec = "bash -c downmovie.sh";
+                                search_string = "downmovie";
+                            };
+                        };
+                    };
+                    priority = 9;
+                    home = "Home";
+                }
+
+                {
                     name = "Kill Process";
                     alias = "kill";
                     type = "process";
@@ -128,13 +192,12 @@ in
                         search_engine = "google";
                         icon = "searchmonkey";
                     };
-                    priority = 8;
+                    priority = 100;
                     home = "Home";
                 }
             ];
 
             settings = {
-                theme = "light";
                 default_apps = {
                     terminal = "kitty";
                     browser = "firefox --new-tab %u";
@@ -162,7 +225,7 @@ in
                 };
 
                 appearance = {
-                    width = 400;
+                    width = 320;
                     height = 600;
                     gsk_renderer = "vulkan";
                     opacity = 0.98;
