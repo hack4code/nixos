@@ -7,8 +7,8 @@
     };
 
     config = {
-        kernelVersion = "6.18.4";
-        kernelSha256 = "f850139ca5f79c1bf6bb8b32f92e212aadca97bdaef8a83a7cf4ac4d6a525fab";
+        kernelVersion = "6.18.5";
+        kernelSha256 = "189d1f409cef8d0d234210e04595172df392f8cb297e14b447ed95720e2fd940";
     };
 }
 
