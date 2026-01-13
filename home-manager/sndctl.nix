@@ -42,6 +42,10 @@ let
             }
 
             case "$1" in
+                connect)
+                    connect_sony
+                    ;;
+
                 setup)
                     connect_sony
                     sleep 8s
