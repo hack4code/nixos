@@ -288,7 +288,7 @@ in
                 exec swayidle \
                     timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
                     timeout 3600 "bluetoothctl power off; swayctl suspend" resume "swayctl resume suspend" \
-                    after-resume "swayctl resume sleep; bluetoothctl power on; sndctl setup"
+                    after-resume "swayctl resume sleep; bluetoothctl power on; sndctl connect"
 
                 exec_always --no-startup-id rpcd
 
