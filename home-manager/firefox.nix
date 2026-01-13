@@ -82,6 +82,7 @@ in
                         "https://mail.google.com"
                         "https://drive.google.com"
                         "https://youtube.com"
+                        "https://www.youtube.com"
                         /* douban */
                         "https://douban.com"
                         /* zhihu */
@@ -102,17 +103,6 @@ in
                         "http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion"
                     ];
                 };
-
-                /* search engines */
-                SearchEngines = {
-                    Remove = [
-                        "ebay"
-                        "Bing"
-                        "Perplexity"
-                    ];
-                    Default = "Google";
-                };
-                SearchSuggestEnabled = false;
             };
 
             profiles = {
@@ -121,15 +111,20 @@ in
                     id = 0;
                     name = "KISS";
                     search = {
-                        default = "google";
+                        enable = true;
                         force = true;
                         engines = {
-                            google= {
+                            google = {
                                 metaData = {
                                     alias = "@g";
                                 };
                             };
                         };
+                        order = [
+                            "google"
+                        ];
+                        default = "google";
+                        privateDefault = "google";
                     };
 
                     # containers = {
@@ -163,7 +158,8 @@ in
                         user_pref("browser.compactmode.show", true);
 
                         /* translations */
-                        user_pref("browser.translations.enable", true);
+                        user_pref("browser.translations.enable", false);
+                        user_pref("browser.translations.automaticallyPopup", false);
 
                         /* wayland */
                         user_pref("widget.wayland.fractional-scale.enabled", true);
@@ -461,14 +457,6 @@ in
                                 min-width: 16px !important;
                             }
 
-                            .tabbrowser-tab[selected][fadein]:not([pinned]) {
-                                min-width: 16px !important;
-                            }
-
-                            .tabbrowser-tab[selected][fadein]:not([pinned]) .tab-text {
-                                margin-left: 2px !important;
-                            }
-
                             .tab-icon-image {
                                 margin-inline-end: 2px !important;
                             }
@@ -478,7 +466,7 @@ in
                             }
 
                             .tabbrowser-tab {
-                                min-width: initial;
+                                min-width: 24px;
                             }
 
                             .toolbar-items {
@@ -529,7 +517,7 @@ in
                             }
 
                             .tabbrowser-tab .tab-label {
-                                font-family: Roboto Flex, MiSans !important;
+                                font-family: MiSans !important;
                                 font-size: 12px;
                             }
                         }
@@ -651,8 +639,10 @@ in
                     name = "TOR";
                     id = 1;
                     search = {
-                        default = "ddg";
+                        enable = true;
                         force = true;
+                        default = "ddg";
+                        privateDefault = "ddg";
                     };
                 };
             };
