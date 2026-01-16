@@ -229,9 +229,9 @@ in
             tetris
             superTux
             pcsx2
-            rpcs3
-            mame
-            mame-tools
+            # rpcs3
+            # mame
+            # mame-tools
         ];
     };
 }
