@@ -110,6 +110,11 @@ in
                             curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/toggle/btop'
                         }
 
+                        function camer_pid {
+                            # shellcheck disable=SC2009
+                            ps -elf | grep -E '[f]fmpeg -f pulse' | awk '{print $4}'
+                        }
+
 
                         case "$1" in
                             reboot)
@@ -210,26 +215,24 @@ in
                                 ;;
 
                             camer)
-                                # shellcheck disable=SC2009
-                                PID=$(ps -elf | grep -E '[f]fmpeg -f pulse' | awk '{print $4}')
                                 case "$2" in
                                     on)
-                                        if [[ -z "$PID" ]]; then
+                                        if [[ -z "$(camer_pid)" ]]; then
                                             start_camer
                                         fi
                                         ;;
 
                                     off)
-                                        if [[ -n "$PID" ]]; then
-                                            kill "$PID"
+                                        if [[ -n "$(camer_pid)" ]]; then
+                                            kill "$(camer_pid)"
                                         fi
                                         ;;
 
                                     toggle)
-                                        if [[ -z "$PID" ]]; then
+                                        if [[ -z "$(camer_pid)" ]]; then
                                             start_camer
                                         else
-                                            kill "$PID"
+                                            kill "$(camer_pid)"
                                         fi
                                         ;;
 
