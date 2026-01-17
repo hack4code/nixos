@@ -199,6 +199,8 @@ in
             rclone
             # tcptrace
             wget
+            /* transmission */
+            transmission_4
             /* tpm2 */
             tpm2-tools
             /* firmware */
