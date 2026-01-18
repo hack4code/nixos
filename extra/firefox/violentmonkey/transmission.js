@@ -12,7 +12,7 @@
 // @match           https://www.xl720.com/*
 // @icon            https://transmissionbt.com/favicon.ico
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
-// @require         https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
+// @require         https://code.jquery.com/jquery-4.0.0.min.js
 // @run-at          document-end
 // @inject-into     auto
 // @grant           GM_xmlhttpRequest

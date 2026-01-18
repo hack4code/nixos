@@ -6,7 +6,7 @@
 // @author         Liu Wei
 // @match          https://*.zhihu.com/*
 // @icon           https://zhihu.com/favicon.ico
-// @require        https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
+// @require        https://code.jquery.com/jquery-4.0.0.min.js
 // @inject-into    auto
 // @grant          none
 // @run-at         document-end

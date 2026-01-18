@@ -6,7 +6,7 @@
 // @author           Liu Wei
 // @match            https://cn.nytimes.com/*
 // @icon             https://cn.nytimes.com/favicon.ico
-// @require          https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
+// @require          https://code.jquery.com/jquery-4.0.0.min.js
 // @grant            none
 // @run-at           document-end
 // ==/UserScript==
