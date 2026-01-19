@@ -91,9 +91,11 @@ in
                   background: transparent;
                 }
 
+                /*
                 .close-button {
                   display: none;
                 }
+                */
 
                 .notification-row {
                   background: none;
@@ -180,9 +182,11 @@ in
                 }
 
 
+                /*
                 .notification-group .notification-group-close-button .close-button {
                   display: none;
                 }
+                */
 
                 .notification-group .notification-group-buttons, .notification-group .notification-group-headers {
                   margin: 0 16px;
