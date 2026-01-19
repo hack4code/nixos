@@ -56,6 +56,7 @@ in
         ./home-manager/podman.nix
         ./home-manager/ranger.nix
         ./home-manager/rime.nix
+        ./home-manager/rtorrent.nix
         ./home-manager/scripts.nix
         ./home-manager/sherlock.nix
         ./home-manager/sndctl.nix
