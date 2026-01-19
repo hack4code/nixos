@@ -48,7 +48,7 @@ let
 
                 setup)
                     connect_sony
-                    sleep 8s
+                    sleep 32s
                     set_sound_volume
                     ;;
 
