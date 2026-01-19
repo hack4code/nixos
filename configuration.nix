@@ -142,9 +142,10 @@ in
                 neomutt
                 zathura
                 sherlock-launcher
-                slurp
                 wl-kbptr
                 wlr-randr
+                slurp
+                xdg-desktop-portal-termfilechooser
             ];
         };
     };
