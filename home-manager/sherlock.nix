@@ -64,12 +64,12 @@ in
                 }
 
                 {
-                    name = "Mpd Daemon Command";
-                    alias = "mpc";
+                    name = "Mpd Command";
+                    alias = "mpd";
                     type = "command";
                     args = {
                         commands = {
-                            nextsong = {
+                            "MPD Next Song" = {
                                 icon = "juk";
                                 exec = "bash -c '${pkgs.mpc}/bin/mpc next'";
                                 search_string = "next";
