@@ -17,6 +17,8 @@ let
                 local sony="20:64:DE:85:A4:E3"
                 local n=0
 
+                bluetoothctl power on
+
                 while [[ "$(bluetoothctl info "$sony" | awk -F : '/Connected/ {print $2; exit}' | tr -d ' \n')" != "yes" ]]; do
                     n=$((n + 1))
                     if ((n > 60)); then
