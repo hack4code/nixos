@@ -18,6 +18,10 @@ in
                 Avahi*
                 qt*
                 userfeedback*
+                Keyboard*
+                Fcitx 5
+                Fcitx 5 Migration*
+                Neovim*
             '';
 
             aliases = {
@@ -69,7 +73,7 @@ in
                     type = "command";
                     args = {
                         commands = {
-                            "MPD Next Song" = {
+                            "Next Song" = {
                                 icon = "juk";
                                 exec = "bash -c '${pkgs.mpc}/bin/mpc next'";
                                 search_string = "next";
@@ -146,7 +150,7 @@ in
                     type = "command";
                     args = {
                         commands = {
-                            syncdrive = {
+                            SyncDrive = {
                                 icon = "google-drive";
                                 exec = "bash -c syncdrive.sh";
                                 search_string = "syncdrive";
@@ -163,7 +167,7 @@ in
                     type = "command";
                     args = {
                         commands = {
-                            downmovie = {
+                            DownMovie = {
                                 icon = "media-downloader";
                                 exec = "bash -c downmovie.sh";
                                 search_string = "downmovie";
