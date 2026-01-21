@@ -489,11 +489,6 @@ function setup_dnscrypt {
     local ROOT
 
     ROOT=$(sshcmd pwd)
-    local ZONE="$ROOT/.config/dnscrypt/zones"
-
-    sshcmd "test -d $ZONE || mkdir -p $ZONE"
-    scpcmd -q vps.conf "linode:$ZONE/"
-
     sshcmd "cd $ROOT/docker/dnscrypt; ./start-container"
 
     enable_dnscrypt_proxy
