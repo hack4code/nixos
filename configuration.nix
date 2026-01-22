@@ -222,6 +222,8 @@ in
             ifuse
             /* usb */
             usbutils
+            /* camer */
+            snapshot
             /* develop */
             glibcInfo
             gnumake
