@@ -449,6 +449,11 @@ in
 
                         /* file picker */
                         user_pref("widget.use-xdg-desktop-portal.file-picker", 0);
+
+                        /* security level */
+                        user_pref("security.sandbox.content.level", 9);
+                        user_pref("security.sandbox.socket.process.level", 2);
+                        user_pref("security.sandbox.gpu.level", 2);
                     '';
 
                     userChrome = ''
