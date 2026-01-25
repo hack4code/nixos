@@ -75,7 +75,7 @@ in
                         function start_camer {
                             local T
 
-                            local CAMER_DEST="$HOME/movie/.camer/"
+                            local CAMER_DEST="$HOME/movie/Camera/"
 
                             if ! [[ -d "$CAMER_DEST" ]]; then
                                 mkdir -p "$CAMER_DEST"
