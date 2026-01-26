@@ -22,6 +22,7 @@ in
                 Fcitx 5
                 Fcitx 5 Migration*
                 Neovim*
+                NixOS Manual
             '';
 
             aliases = {
@@ -68,8 +69,8 @@ in
                 }
 
                 {
-                    name = "Mpd Command";
-                    alias = "mpd";
+                    name = "Mpc Command";
+                    alias = "mpc";
                     type = "command";
                     args = {
                         commands = {
@@ -77,6 +78,18 @@ in
                                 icon = "juk";
                                 exec = "bash -c '${pkgs.mpc}/bin/mpc next'";
                                 search_string = "next";
+                            };
+
+                            "Sound Volume 32" = {
+                                icon = "juk";
+                                exec = "bash -c '${pkgs.mpc}/bin/mpc volume 32'";
+                                search_string = "32";
+                            };
+
+                            "Sound Volume 48" = {
+                                icon = "juk";
+                                exec = "bash -c '${pkgs.mpc}/bin/mpc volume 48'";
+                                search_string = "48";
                             };
                         };
                     };
@@ -114,20 +127,20 @@ in
                     home = "Home";
                 }
 
-                {
-                    name = "mame";
-                    alias = "mame";
-                    type = "command";
-                    args = {
-                        mame = {
-                            icon = "mame";
-                            exec = "${pkgs.mame}/bin/mame";
-                            search_string = "mame";
-                        };
-                    };
-                    priority = 6;
-                    home = "Home";
-                }
+                # {
+                #     name = "mame";
+                #     alias = "mame";
+                #     type = "command";
+                #     args = {
+                #         mame = {
+                #             icon = "mame";
+                #             exec = "${pkgs.mame}/bin/mame";
+                #             search_string = "mame";
+                #         };
+                #     };
+                #     priority = 6;
+                #     home = "Home";
+                # }
 
                 {
                     name = "rpcs3";
@@ -220,7 +233,7 @@ in
 
                 caching = {
                     enable = true;
-                    cache = "~/.cache/sherlock/sherlock-cache.json";
+                    cache = "~/.cache/sherlock/cache.json";
                 };
 
                 behavior = {
