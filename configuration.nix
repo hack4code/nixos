@@ -235,7 +235,7 @@ in
             tetris
             superTux
             pcsx2
-            # rpcs3
+            rpcs3
             # mame
             # mame-tools
         ];
