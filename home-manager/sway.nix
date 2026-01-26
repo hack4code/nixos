@@ -225,6 +225,14 @@ in
                 bars = [
                     {
                         command = "waybar";
+                        mode = "dock";
+                        position = "top";
+                        fonts = {
+                            names = [
+                                "Fira Mono"
+                            ];
+                            size = 16.0;
+                        };
                     }
                 ];
             };
@@ -289,7 +297,7 @@ in
 
                 exec swayidle \
                     timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
-                    timeout 3600 "bluetoothctl power off; swayctl suspend" resume "swayctl resume suspend" \
+                    timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
                     after-resume "swayctl resume sleep; sndctl setup"
 
                 exec_always --no-startup-id rpcd
