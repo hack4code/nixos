@@ -21,7 +21,7 @@ in
                     exclusive = true;
                     ipc = true;
                     margin = "24px 24px 0px 24px";
-                    passthrough = false;
+                    passthrough = true;
 
                     output = [
                         "!${monitorThinkpad}"
