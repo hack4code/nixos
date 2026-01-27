@@ -210,15 +210,6 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                             is_remap = true;
                             break;
 
-                        case KEY_N:
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_DOWN,
-                                    ev.value);
-                            is_remap = true;
-                            break;
-
                         case KEY_H:
                             libevdev_uinput_write_event(
                                     uidev,
