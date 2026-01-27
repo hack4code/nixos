@@ -223,6 +223,11 @@ function setup_v6range {
 }
 
 
+function sync-portage {
+    sshcmd "emerge --sync"
+}
+
+
 function test_wireguard {
     while ! ping -q -c 1 $WGIP; do
         echo 'waiting wireguard online...'
@@ -691,6 +696,8 @@ function create_node {
     setup_sshd
     echo 'test ssh'
     test_ssh
+    echo 'sync-portage'
+    sync-portage
     echo 'setup portage-util'
     setup_portage_utils
     echo 'setup v6range'
