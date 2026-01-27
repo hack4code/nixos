@@ -26,12 +26,7 @@ in
             text = ''
                 patch:
                     "key_binder/bindings":
-                        - { when: paging, accept: bracketright, send: Page_Up }
-                        - { when: has_menu, accept: bracketleft, send: Page_Down }
-                        - { when: has_menu, accept: "Control+p", send: Page_Up }
                         - { when: has_menu, accept: "Control+semicolon", send: Page_Down }
-                        - { when: has_menu, accept: "Control+h", send: Left }
-                        - { when: has_menu, accept: "Control+l", send: Right }
             '';
         };
     };
