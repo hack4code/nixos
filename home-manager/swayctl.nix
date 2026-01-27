@@ -61,7 +61,7 @@ in
 
 
                         function check_before_sleep {
-                            while pgrep downmovie || pgrep syncdrive || pgrep vps || pgrep ffmpeg || pgrep nixos-rebuild || pgrep axel; do
+                            while pgrep downmovie || pgrep syncdrive || pgrep vps || pgrep rtorrent || pgrep ffmpeg || pgrep nixos-rebuild || pgrep axel; do
                                 sleep 300s
                             done
                         }
