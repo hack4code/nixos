@@ -25,6 +25,10 @@ from .transmission import (
     add_torrent_to_transmission,
     TransmissionError
 )
+from .rtorrent import (
+    JSONRpcError,
+    add_torrent_to_rtorrent
+)
 from .sway import (
     set_ncmpcpp_fullscreen,
     set_ncmpcpp_display_time,
@@ -77,6 +81,10 @@ class Transmission(BaseModel):
     magnet: str
 
 
+class RTorrent(BaseModel):
+    magnet: str
+
+
 class Fullscreen(BaseModel):
     app_id: str
 
@@ -96,7 +104,7 @@ def http_exception_handler(request: Request, exc: HTTPException):
 
 
 @app.exception_handler(CalledProcessError)
-def subprocess_calledprocesserror_hander(request: Request,
+def subprocess_calledprocesserror_handler(request: Request,
                                          exc: CalledProcessError):
     logger.error(f"CalledProcessError:\n{exc.stderr.decode('utf-8')}")
     return JSONResponse(
@@ -109,7 +117,7 @@ def subprocess_calledprocesserror_hander(request: Request,
 
 
 @app.exception_handler(OSError)
-def subprocess_oserror_hander(request: Request, exc: OSError):
+def subprocess_oserror_handler(request: Request, exc: OSError):
     logger.error(f"OSError:\n{exc}")
     return JSONResponse(
         status_code=500,
@@ -121,13 +129,39 @@ def subprocess_oserror_hander(request: Request, exc: OSError):
 
 
 @app.exception_handler(SwayIpcError)
-def subprocess_swayipcerror_hander(request: Request, exc: SwayIpcError):
+def subprocess_swayipcerror_handler(request: Request, exc: SwayIpcError):
     logger.error(f"SwayIpcError[{exc.func}]:\n{exc.msg}")
     return JSONResponse(
         status_code=500,
         content={
             "status": "error",
             "detail": "SwayIpcError"
+        }
+    )
+
+
+@app.exception_handler(JSONRpcError)
+def jsonrpcerror_handler(request: Request, exc: JSONRpcError):
+    logger.error(f"JSONRpcError:h[code={exc.code}]:\n{exc.message}")
+    return JSONResponse(
+        status_code=500,
+        content={
+            "status": "error",
+            "detail": "JSONRpcError"
+        }
+    )
+
+
+@app.exception_handler(TransmissionError)
+def transmissionerror_handler(request: Request, exc: TransmissionError):
+    logger.error(
+        f"add_torrent_to_transmission[status_code={exc.status_code}]:\n{exc.msg}"
+    )
+    return JSONResponse(
+        status_code=500,
+        content={
+            "status": "error",
+            "detail": "TransmissionError"
         }
     )
 
@@ -219,18 +253,16 @@ def transmission_download_movie(tasks: BackgroundTasks):
 def transmission_add_torrent(transmission: Transmission):
     magnet = transmission.magnet
     logger.info(f"torrent [{magnet}]")
-    try:
-        add_torrent_to_transmission(magnet)
-    except TransmissionError as err:
-        logger.error(
-            (f"add_torrent_to_transmission[status_code={err.status_code}]:\n"
-             f"{err.msg}")
-        )
-        raise HTTPException(
-            status_code=500,
-            detail="add_torrent_to_transmission error"
-        )
+    add_torrent_to_transmission(magnet)
     open_url_remote("http://10.0.0.1:9091/transmission/web/")
+    return {"status": "success"}
+
+
+@app.post("/rtorrent/torrent")
+def rtorrent_add_torrent(rtorrent: RTorrent):
+    magnet = rtorrent.magnet
+    logger.info(f"torrent [{magnet}]")
+    add_torrent_to_rtorrent(magnet)
     return {"status": "success"}
 
 
