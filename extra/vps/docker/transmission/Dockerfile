@@ -25,6 +25,7 @@ RUN <<EOF
     set -e
     git clone --recurse-submodules https://github.com/transmission/transmission Transmission
     cd Transmission/
+    git checkout `git tag | grep -v 'beta' | sort -V | tail -1`
     cmake -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_DAEMON=ON -DENABLE_QT=OFF -DENABLE_UTILS=OFF -DENABLE_CLI=OFF
     cd build/
     cmake --build .
