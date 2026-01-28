@@ -1,91 +1,91 @@
 #vomnibar {
-    background-color: #44475A;
+    background-color: #44475A !important;
 }
 
 
 #vomnibar input {
-    font-family: Roboto Flex, Swei Gothic CJK SC;
-    font-weight: 400;
-    color: #f8f8f2;
-    background-color: #282828;
-    height: 36px;
-    width: 100%;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid #6272a4;
-    border-radius: 6px;
-    box-shadow: #bd93f9 0px 0px 1px;
+    font-family: Roboto Flex, Swei Gothic CJK SC !important;
+    font-weight: 400 !important;
+    color: #f8f8f2 !important;
+    background-color: #282828 !important;
+    height: 36px !important;
+    width: 100% !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    border: 1px solid #6272a4 !important;
+    border-radius: 6px !important;
+    box-shadow: #bd93f9 0px 0px 1px !important;
 }
 
 
 #vomnibar-search-area {
-    display: block;
-    background-color: #6272a4;
-    padding: 6px 12px;
-    border: 1px solid #6272a4;
+    display: block !important;
+    background-color: #6272a4 !important;
+    padding: 6px 12px !important;
+    border: 1px solid #6272a4 !important;
 }
 
 
 #vomnibar ul {
-    background-color: #44475a;
-    list-style: none;
-    margin-top: 1px;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
+    background-color: #44475a !important;
+    list-style: none !important;
+    margin-top: 1px !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
 }
 
 
 #vomnibar li {
-    font-family: MiSans;
-    font-size: 16px;
-    font-weight: 500;
-    color: #f8f8f2;
-    position: relative;
-    display: list-item;
-    border-bottom: 1px solid #6272a4;
+    font-family: MiSans !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: #f8f8f2 !important;
+    position: relative !important;
+    display: list-item !important;
+    border-bottom: 1px solid #6272a4 !important;
 }
 
 
 #vomnibar li .top-half {
-    font-weight: 400;
-    overflow: visible;
+    font-weight: 400 !important;
+    overflow: visible !important;
 }
 
 
 #vomnibar li .bottom-half {
-    font-size: 14px;
-    font-weight: 300;
-    margin-top: 5px;
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    margin-top: 5px !important;
 }
 
 
 #vomnibar li .source {
-    color: #bd93f9;
+    color: #bd93f9 !important;
 }
 
 
 #vomnibar li .url {
-    color: #50fa7b;
-    white-space: nowrap;
+    color: #50fa7b !important;
+    white-space: nowrap !important;
 }
 
 
 #vomnibar li .match {
-    font-weight: 300;
-    color: #ffb86c;
+    font-weight: 300 !important;
+    color: #ffb86c !important;
 }
 
 
 #vomnibar li em, #vomnibar li .title {
     font-weight: 300;
-    color: #f8f8f2;
+    color: #f8f8f2 !important;
 }
 
 
 #vomnibar li em {
-    font-style: italic;
+    font-style: italic !important;
 }
 
 
@@ -95,17 +95,37 @@
 
 
 #vomnibar li.selected {
-    background-color: #6272a4;
+    background-color: #6272a4 !important;
 }
 
 
 #vomnibar input::selection {
-    background-color: #8be9fd
+    background-color: #8be9fd !important;
 }
 
 
 .vimium-reset {
     font-family: JetBrains Mono !important;
+}
+
+
+#hud {
+    font-family: MiSans !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #ebdbb2 !important;
+    padding: 4px 4px !important;
+}
+
+
+#hud-container {
+    bottom: 20px !important;
+    background-color: #cc241d !important;
+}
+
+#hud.hud-find {
+    border: 0 !important;
+    background-color: #1d2021 !important;
 }
 
 
