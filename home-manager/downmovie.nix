@@ -3,6 +3,7 @@
 let
     userName = config.userName;
     vpsName = config.vpsName;
+    wgServerIp4Address = config.wgServerIp4Address;
     appName = "downmovie.sh";
 
     downmovie = pkgs.writeShellApplication {
@@ -21,17 +22,16 @@ let
             export TSS2_FAPICONF
 
 
-            SSH=$(command -v ssh)
-            RSYNC=$(command -v rsync)
-            NOTIFY=$(command -v notify-send)
+            SSH="${pkgs.openssh}/bin/ssh"
+            RSYNC="${pkgs.rsync}/bin/rsync"
 
             VPS="${vpsName}"
-            SOURCE="10.0.0.1::movie"
-            DEST="$HOME/movie/.rsync/"
+            SOURCE="${wgServerIp4Address}::movie"
+            DEST="$HOME/download/.rsync/"
 
 
             function notify {
-                $NOTIFY --icon="media-downloader" "downmovie" "$1"
+                ${pkgs.libnotify}/bin/notify-send --icon="media-downloader" "downmovie" "$1"
             }
 
 
@@ -71,7 +71,7 @@ let
                 fi
             done
 
-            if [[ -n "$(ls -A ~/movie/.rsync/)" ]]; then
+            if [[ -n "$(ls -A "$DEST")" ]]; then
                 notify "finished downloading"
                 echo "finished downloading" | systemd-cat --identifier downmovie
             fi
