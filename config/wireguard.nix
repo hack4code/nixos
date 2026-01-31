@@ -36,7 +36,7 @@
         wgMTU = 1200;
         # wgEndPoint = "${vpsIp4Address}:" + builtins.toString wgServerPort;
         # wgEndPoint = "[${vpsIp6Address}]:" + builtins.toString wgServerPort;
-        wgEndPoint = "[${wgServerIp6Address}]:" + builtins.toString wgServerPort;
+        wgEndPoint = "[${wgServerIp6Address}]:" + toString wgServerPort;
 
         vpsV6Range = "";
         vpsIp4Address = "";
