@@ -30,6 +30,7 @@ in
                         KERNELNIX="$HOME/source/nixos/config/kernel.nix"
                         CONFIG="$HOME/source/nixos/modules/kernel/config"
                         KERNEL="linux-$1.tar.xz"
+                        CURL="${pkgs.curl}/bin/curl"
 
                         DEST="$HOME/code/kernel/"
                         cd "$DEST/" || panic "$DEST not exist"
@@ -46,7 +47,7 @@ in
 
                         rm -rf linux*
 
-                        if (( $(curl -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
+                        if (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
                             axel -n 8 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
                         fi
 
@@ -56,7 +57,7 @@ in
 
                         tar xf "$KERNEL" && rm -f "$KERNEL"
 
-                        SHA256=$(curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                        SHA256=$($CURL -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
                         if [[ -z "$SHA256" ]]; then
                             panic 'no sha256 signature found'
                         fi
@@ -79,7 +80,7 @@ in
                     ];
                     text = ''
                         VPS="${vpsName}"
-                        SSH=$(command -v ssh)
+                        SSH="${pkgs.openssh}/bin/ssh"
                         TARGETS=("docker" "wireguard" "spider" "transmission")
 
 
@@ -152,7 +153,7 @@ in
                     ];
                     text = ''
                         VPS="${vpsName}"
-                        SSH=$(command -v ssh)
+                        SSH="${pkgs.openssh}/bin/ssh"
 
 
                         function vps_id {
@@ -249,7 +250,7 @@ in
                             panic 'no file found'
                         fi
 
-                        curl -F "\"file=@$1\"" https://0x0.st
+                        ${pkgs.curl}/bin/curl -F "\"file=@$1\"" https://0x0.st
                     '';
                 }
             )
@@ -264,8 +265,8 @@ in
                         COLORS=(green red blue yellow cyan magenta)
                         N=$((RANDOM % ''${#COLORS[@]}))
 
-                        cmatrix -a -C "''${COLORS[$N]}"
-                        # curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
+                        ${pkgs.cmatrix}/bin/cmatrix -a -C "''${COLORS[$N]}"
+                        # ${pkgs.curl}/bin/curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     '';
                 }
             )
@@ -276,7 +277,7 @@ in
                         curl
                     ];
                     text = ''
-                        curl -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
+                        ${pkgs.curl}/bin/curl -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
                     '';
                 }
             )
@@ -288,7 +289,7 @@ in
                     ];
                     text = ''
                         cd "$HOME/source/nixos/"
-                        make update
+                        ${pkgs.gnumake}/bin/make update
                         cd -
                     '';
                 }
@@ -419,7 +420,7 @@ in
                             panic "please give the color value!"
                         fi
 
-                        tput setaf "$1"
+                        ${pkgs.ncurses}/bin/tput setaf "$1"
                         echo "Hello World!"
                     '';
                 }
