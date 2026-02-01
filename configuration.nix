@@ -222,6 +222,8 @@ in
             ifuse
             /* usb */
             usbutils
+            /* lspci */
+            pciutils
             /* camer */
             snapshot
             /* develop */
