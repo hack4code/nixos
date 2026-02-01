@@ -24,10 +24,9 @@ let
             export TSS2_FAPICONF
 
 
-            SSH=$(command -v ssh)
-            SCP=$(command -v scp)
-            RCLONE=$(command -v rclone)
-            NOTIFY=$(command -v notify-send)
+            SSH="${pkgs.openssh}/bin/ssh"
+            SCP="${pkgs.openssh}/bin/scp"
+            RCLONE="${pkgs.rclone}/bin/rclone"
 
             VPS="${vpsName}"
 
@@ -47,7 +46,7 @@ let
 
 
             function notify {
-                $NOTIFY --icon="google-drive" "syncdrive" "$1"
+                ${pkgs.libnotify}/bin/notify-send --icon="google-drive" "syncdrive" "$1"
             }
 
 
