@@ -101,7 +101,7 @@ const SITE = window.location.href;
                 "font-size": "22px",
                 "font-weight": "500",
                 "text-align": "center",
-                "margin": "24px 0 32px 0"
+                "margin": "24px 0 16px 0"
             });
             return true;
         }
