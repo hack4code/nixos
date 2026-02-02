@@ -79,7 +79,6 @@
                     KernelExperimental = true;
                     DiscoverableTimeout = 180;
                     FastConnectable = true;
-                    UserspaceHID = true;
                 };
             };
         };
