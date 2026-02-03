@@ -16,7 +16,7 @@ in
             policies = {
                 BlockAboutConfig = false;
 
-                DisableFirefoxStudies = true;
+                # DisableFirefoxStudies = true;
                 DontCheckDefaultBrowser = true;
 
                 AutofillAddressEnabled = false;
@@ -30,7 +30,7 @@ in
                     Locked = true;
                 };
 
-                DisableTelemetry = true;
+                # DisableTelemetry = true;
                 EnableTrackingProtection = {
                     Locked = true;
                     Value = true;
@@ -66,7 +66,6 @@ in
                 /* cookies */
                 Cookies = {
                     Allow = [
-                        "http://127.0.0.1"
                         "http://10.0.0.1:9091"
                         "http://linode.me"
                         /* wikipedia */
