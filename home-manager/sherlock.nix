@@ -192,6 +192,23 @@ in
                 }
 
                 {
+                    name = "NixOS Update";
+                    alias = "NixOS Update";
+                    type = "command";
+                    args = {
+                        commands = {
+                            OSUpdate = {
+                                icon = "system-software-update";
+                                exec = "zsh -c nug";
+                                search_string = "nug";
+                            };
+                        };
+                    };
+                    priority = 10;
+                    home = "Home";
+                }
+
+                {
                     name = "Kill Process";
                     alias = "kill";
                     type = "process";
