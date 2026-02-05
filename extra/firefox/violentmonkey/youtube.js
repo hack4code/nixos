@@ -215,12 +215,14 @@ const SITE = window.location.href;
             });
         }
 
+        /*
         if (!hide_ai_comment()) {
             VM.observe(document.body, () => {
                 if (hide_ai_comment())
                     return true
             });
         }
+        */
 
         if (!adjust_css()) {
             VM.observe(document.body, () => {
