@@ -75,6 +75,7 @@ in
         ./home-manager/xdg.nix
         ./home-manager/zathura.nix
         ./home-manager/zsh.nix
+        ./home-manager/fzf.nix
     ];
 
 
