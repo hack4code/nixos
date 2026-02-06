@@ -231,6 +231,11 @@ in
             gnumake
             linux-manual
             man-pages
+            # zsh completions
+            nix-zsh-completions
+            zsh-autocomplete
+            zsh-completion-sync
+            zsh-completions
             /* game */
             # dwarf-fortress
             # nethack
