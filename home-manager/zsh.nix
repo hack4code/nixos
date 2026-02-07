@@ -56,6 +56,7 @@ in
                 ms = "make switch";
                 mu = "make update";
                 mn = "make nconfig";
+                mo = "make oldconfig";
                 vc = "kssh -T ${vpsName}";
                 vd = "kssh -T ${vpsName} docker container";
                 vl = "kssh -T ${vpsName} docker container list";
@@ -79,7 +80,8 @@ in
                 gwm = "git switch main";
                 gwe = "git switch e";
                 t = "date '+%F %H:%M %A'";
-                reboot = "systemctl reboot";
+                rt = "systemctl reboot";
+                st = "systemctl poweroff";
             };
 
             initContent = lib.mkOrder 1500 ''
