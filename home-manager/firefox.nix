@@ -67,7 +67,7 @@ in
                 Cookies = {
                     Allow = [
                         "http://10.0.0.1:9091"
-                        "http://linode.me"
+                        "http://memos.linode.me:5230"
                         /* wikipedia */
                         "https://wikipedia.org"
                         /* github */
