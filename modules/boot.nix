@@ -1,22 +1,26 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     kernelVersion = config.kernelVersion;
-    kernelSha256 = config.kernelSha256;
-    kernel = "linux-${kernelVersion}.tar.xz";
+    kernelUrl = config.kernelUrl;
+    kernelHash = config.kernelHash;
 in
 {
     boot = {
         kernelPackages = pkgs.linuxPackages_custom {
             version = kernelVersion;
-            src = pkgs.fetchurl {
-                urls = [
-                    "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/${kernel}"
-                    "https://mirrors.ustc.edu.cn/kernel.org/linux/kernel/v6.x/${kernel}"
-                    "https://cdn.kernel.org/pub/linux/kernel/v6.x/${kernel}"
-                ];
-                sha256 = kernelSha256;
-            };
+            src = if (lib.strings.hasInfix "github" kernelUrl) then
+                pkgs.fetchFromGitHub {
+                    owner = "torvalds";
+                    repo = "linux";
+                    tag = "v${kernelVersion}";
+                    hash = kernelHash;
+                }
+            else
+                pkgs.fetchurl {
+                    url = kernelUrl;
+                    sha256 = kernelHash;
+                };
             configfile = ./kernel/config;
         };
 
