@@ -11,10 +11,12 @@ in
                 writeShellApplication {
                     name = "setkernel.sh";
                     runtimeInputs = [
-                        axel
                         coreutils
                         curl
                         gnused
+                        gnutar
+                        gnugrep
+                        nix-direnv
                     ];
                     text = ''
                         function panic {
@@ -24,19 +26,18 @@ in
 
 
                         if (($# != 1)); then
-                            panic 'need kernel version number'
+                            panic 'kernel version not found'
                         fi
 
-                        KERNELNIX="$HOME/source/nixos/config/kernel.nix"
-                        CONFIG="$HOME/source/nixos/modules/kernel/config"
-                        KERNEL="linux-$1.tar.xz"
                         CURL="${pkgs.curl}/bin/curl"
 
-                        DEST="$HOME/code/kernel/"
-                        cd "$DEST/" || panic "$DEST not exist"
+                        kernel_nix_file="$HOME/source/nixos/config/kernel.nix"
+                        kernel_config_file="$HOME/source/nixos/modules/kernel/config"
 
-                        if [[ -d "$DEST/linux-$1" ]]; then
-                            echo "$KERNEL exist"
+                        dest="$HOME/code/kernel/"
+                        cd "$dest/" || panic "$dest not exist"
+
+                        if [[ -d "$dest/linux-$1" ]]; then
                             exit 0
                         fi
 
@@ -47,26 +48,38 @@ in
 
                         rm -rf linux*
 
-                        if (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL") == 200 )); then
-                            axel -n 8 "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$KERNEL"
+                        kernel="linux-$1.tar.gz"
+                        kernel_url="https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$kernel"
+                        if (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url") == 200 )); then
+                            $CURL -O -L "$kernel_url"
+                            if ! [[ -f $kernel ]]; then
+                                panic "$kernel not exist"
+                            fi
+
+                            tar xzf "$kernel" && rm -f "$kernel"
+
+                            kernel_hash=$($CURL -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            if [[ -z "$kernel_hash" ]]; then
+                                panic 'no sha256 signature found'
+                            fi
+                        else
+                            kernel="v$1.tar.gz"
+                            kernel_url="https://github.com/torvalds/linux/archive/refs/tags/$kernel"
+                            $CURL -O -L --proxy socks5h://10.0.0.1:1080 "$kernel_url"
+                            if ! [[ -f $kernel ]]; then
+                                panic "$kernel not exist"
+                            fi
+
+                            tar xzf "$kernel" && rm -f "$kernel"
+                            kernel_hash=$(nix hash path "linux-$1")
                         fi
 
-                        if ! [[ -f $KERNEL ]]; then
-                            panic "$KERNEL not exist"
-                        fi
-
-                        tar xf "$KERNEL" && rm -f "$KERNEL"
-
-                        SHA256=$($CURL -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
-                        if [[ -z "$SHA256" ]]; then
-                            panic 'no sha256 signature found'
-                        fi
-
-                        sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$KERNELNIX"
-                        sed -i -E "/kernelSha256/s/\".+\"/\"$SHA256\"/" "$KERNELNIX"
+                        sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$kernel_nix_file"
+                        sed -i -E "/kernelHash/s/\".+\"/\"$kernel_hash\"/" "$kernel_nix_file"
+                        sed -i -E "/kernelUrl/s;\".+\";\"$kernel_url\";" "$kernel_nix_file"
 
                         cd "linux-$1/" || panic "linux-$1/ not exist"
-                        cp "$CONFIG" .config
+                        cp "$kernel_config_file" .config
                     '';
                 }
             )
@@ -218,18 +231,23 @@ in
                         systemd
                     ];
                     text = ''
-                        TEMP='/tmp/dnscrypt-proxy'
-                        CONFIG="$HOME/source/nixos/extra/vps/dnscrypt-proxy.toml"
-                        PROXY="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
-                        LOG='/tmp/dnscrypt-proxy.log'
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
 
-                        [[ -x "$PROXY" ]] || exit 1
-                        [[ -f $CONFIG ]] || exit 1
-                        [[ -d $TEMP ]] || mkdir -p $TEMP
+                        temp='/tmp/dnscrypt-proxy'
+                        config="$HOME/source/nixos/extra/vps/dnscrypt-proxy.toml"
+                        proxy="$(nix-instantiate --eval-only --expr '(import <nixpkgs> {}).dnscrypt-proxy.outPath' | sed 's/"//g')/bin/dnscrypt-proxy"
+                        log='/tmp/dnscrypt-proxy.log'
 
-                        cp "$CONFIG" "$TEMP/"
+                        [[ -x "$proxy" ]] || panic "$proxy not found"
+                        [[ -f $config ]] || panic "$config not found"
+                        [[ -d $temp ]] || mkdir -p $temp
+
+                        cp "$config" "$temp/"
                         sudo systemctl stop dnscrypt-proxy.service
-                        nohup sudo "$PROXY" -config "$TEMP/dnscrypt-proxy.toml" -child &>"$LOG" &
+                        nohup sudo "$proxy" -config "$temp/dnscrypt-proxy.toml" -child &>"$log" &
                     '';
                 }
             )
@@ -272,7 +290,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "testmsg.sh";
+                    name = "testmsg";
                     runtimeInputs = [
                         curl
                     ];
@@ -283,7 +301,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "nug";
+                    name = "nu";
                     runtimeInputs = [
                         gnumake
                     ];
@@ -296,7 +314,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "nlg";
+                    name = "nl";
                     text = ''
                         nixos-rebuild list-generations
                     '';
@@ -304,7 +322,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "ngc";
+                    name = "ng";
                     text = ''
                         nix-collect-garbage -d
                     '';
@@ -312,7 +330,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "ndg";
+                    name = "nd";
                     runtimeInputs = [
                         coreutils
                         jq
