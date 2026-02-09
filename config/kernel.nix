@@ -3,12 +3,14 @@
 {
     options = with lib; with types; {
         kernelVersion = mkOption { type = str; };
-        kernelSha256 = mkOption { type = str; };
+        kernelHash = mkOption { type = str; };
+        kernelUrl = mkOption { type = str; };
     };
 
     config = {
-        kernelVersion = "6.18.9";
-        kernelSha256 = "030115ff8fb4cb536d8449dc40ebc3e314e86ba1b316a6ae21091a11cc930578";
+        kernelVersion = "6.19";
+        kernelHash = "2ddb2a3311b3899862e066db48208f0f1f4b9a0681576226b9c76b2cce66c2df";
+        kernelUrl = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-6.19.tar.gz";
     };
 }
 
