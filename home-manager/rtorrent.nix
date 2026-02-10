@@ -14,22 +14,7 @@ in
             enable = true;
 
             extraConfig = ''
-                ip = ${vpsIp4Address};
-
-                ratio.enable=
-                ratio.min.set=100
-                ratio.max.set=300
-                ratio.upload.set=2M
-                method.set = group.seeding.ratio.command, "d.close= ; d.erase="
-
-                method.insert = cfg.basedir,  private|const|string, (cat,"${rtorrentConfigDir}/")
-                method.insert = cfg.download, private|const|string, (cat,"${rtorrentDownloadDir}/", "downloading/")
-                method.insert = cfg.logs,     private|const|string, (cat,"${rtorrentDataDir}/","log/")
-                method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
-                method.insert = cfg.session,  private|const|string, (cat,"${rtorrentDataDir}/","session/")
-                method.insert = cfg.watch,    private|const|string, (cat,"${rtorrentDownloadDir}/","watch/")
-
-                execute.throw = sh, -c, (cat, "mkdir -p \"",(cfg.download),"\" ", "\"",(cfg.logs),"\" ", "\"",(cfg.session),"\" ", "\"",(cfg.watch),"/load\" ", "\"",(cfg.watch),"/start\" ")
+                ip = ${vpsIp4Address}
 
                 network.port_range.set = 50000-50000
                 network.port_random.set = no
@@ -39,7 +24,13 @@ in
                 protocol.pex.set = yes
                 trackers.use_udp.set = yes
 
-                throttle.up=slowupload,100
+                ratio.enable = true
+                ratio.min.set = 100
+                ratio.max.set = 300
+                ratio.upload.set = 2M
+                method.set = group.seeding.ratio.command, "d.close= ; d.erase="
+
+                throttle.up = slowupload,100
                 throttle.max_uploads.set = 100
                 throttle.max_uploads.global.set = 250
 
@@ -48,6 +39,15 @@ in
                 throttle.min_peers.seed.set = 30
                 throttle.max_peers.seed.set = 80
                 trackers.numwant.set = 80
+
+                method.insert = cfg.basedir,  private|const|string, (cat,"${rtorrentConfigDir}/")
+                method.insert = cfg.download, private|const|string, (cat,"${rtorrentDownloadDir}/", "downloading/")
+                method.insert = cfg.logs,     private|const|string, (cat,"${rtorrentDataDir}/","log/")
+                method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
+                method.insert = cfg.session,  private|const|string, (cat,"${rtorrentDataDir}/","session/")
+                method.insert = cfg.watch,    private|const|string, (cat,"${rtorrentDownloadDir}/","watch/")
+
+                execute.throw = sh, -c, (cat, "mkdir -p \"",(cfg.download),"\" ", "\"",(cfg.logs),"\" ", "\"",(cfg.session),"\" ", "\"",(cfg.watch),"/load\" ", "\"",(cfg.watch),"/start\" ")
 
                 protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
 
@@ -60,7 +60,7 @@ in
                 session.path.set = (cat, (cfg.session))
                 directory.default.set = (cat, (cfg.download))
                 log.execute = (cat, (cfg.logs), "execute.log")
-                log.xmlrpc = (cat, (cfg.logs), "xmlrpc.log")
+                log.xmlrpc = (cat, (cfg.logs), "rpc.log")
                 execute.nothrow = sh, -c, (cat, "echo >", (session.path), "rtorrent.pid", " ",(system.pid))
 
                 encoding.add = UTF-8
@@ -71,10 +71,6 @@ in
                 pieces.hash.on_completion.set = yes
                 view.sort_current = seeding, greater=d.ratio=
                 keys.layout.set = qwerty
-
-                # network.http.capath.set = "/etc/ssl/certs"
-                # network.http.ssl_verify_peer.set = 0
-                # network.http.ssl_verify_host.set = 0
 
                 network.rpc.use_xmlrpc.set = false
                 network.rpc.use_jsonrpc.set = true
@@ -98,36 +94,27 @@ in
                 method.insert = d.notify_message, simple, "cat=$d.name=, \": finished downloading\""
                 method.set_key = event.download.finished,notify_me,"execute2=${pkgs.libnotify}/bin/notify-send,--icon=media-downloader,rtorrent,$d.notify_message="
 
-                # move finished torrent to download
+                # move finished data to download
                 method.insert = d.get_finished_dir, simple, "cat=~/download/,$d.custom1="
                 method.insert = d.move_to_complete, simple, "d.directory.set=$argument.1=; execute=mkdir,-p,$argument.1=; execute=mv,-u,$argument.0=,$argument.1=; d.save_full_session="
                 method.set_key = event.download.finished,move_complete,"d.move_to_complete=$d.data_path=,$d.get_finished_dir="
 
+                # remove torrent after finishing
+                method.set_key = event.download.finished,rm_torrent,"execute2=rm,$d.get_tied_to_file="
+
                 # color
-                # Sets the title color
-                ui.color.title.set = "bold 141 on 237"
-                # Sets the footer color
-                ui.color.footer.set = "bold 141 on 237"
-                # Sets the focus color. The other color settings take precedence over this, so normally it's just an attribute
+                ui.color.title.set = "141 on 237"
+                ui.color.footer.set = "141 on 237"
                 ui.color.focus.set = "reverse"
-                # The default label color
                 ui.color.label.set = ""
-                # If the torrent is complete, active and not uploading data
                 ui.color.complete.set = "blue"
-                # If the torrent is complete, active and uploading data
                 ui.color.seeding.set = "green"
-                # If the torrent is complete and not active
                 ui.color.stopped.set = "red"
-                # If the torrent is incomplete, active and not downloading data
                 ui.color.queued.set = "cyan"
-                # If the torrent is incomplete, active and downloading data
                 ui.color.leeching.set = "yellow"
-                # If the torrent is incomplete and not active
                 ui.color.incomplete.set = "cyan"
-                # Colors the odd rows
                 ui.color.odd.set = "bold"
-                # Colors the even rows
-                ui.color.even.set = "green"
+                ui.color.even.set = "red"
             '';
         };
     };
