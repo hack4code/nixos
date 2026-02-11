@@ -10,6 +10,7 @@ in
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
         ./config/gmail.nix
+        ./config/gruvbox.nix
         ./config/input.nix
         ./config/kernel.nix
         ./config/ntp.nix
