@@ -2,6 +2,24 @@
 
 let
     userName = config.userName;
+    colorForeground = config.colorForeground;
+    colorBackground = config.colorBackground;
+    colorBlack = config.colorBlack;
+    colorLightBlack = config.colorLightBlack;
+    colorRed = config.colorRed;
+    colorLightRed = config.colorLightRed;
+    colorGreen = config.colorGreen;
+    colorLightGreen = config.colorLightGreen;
+    colorYellow = config.colorYellow;
+    colorLightYellow = config.colorLightYellow;
+    colorBlue = config.colorBlue;
+    colorLightBlue = config.colorLightBlue;
+    colorPurple = config.colorPurple;
+    colorLightPurple = config.colorLightPurple;
+    colorAqua = config.colorAqua;
+    colorLightAqua = config.colorLightAqua;
+    colorWhite = config.colorWhite;
+    colorLightWhite = config.colorLightWhite;
 in
 {
     # environment.variables.QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
@@ -90,44 +108,44 @@ in
                 inactive_tab_font_style italic
                 active_tab_font_style   bold-italic
 
-                foreground              #ebdbb2
-                background              #1d2021
+                foreground              ${colorForeground}
+                background              ${colorBackground}
                 background_opacity      1.0
 
                 selection_foreground    #928374
                 selection_background    #ebdbb2
 
                 #: black
-                color0                  #665c54
-                color8                  #7c6f64
+                color0                  ${colorBlack}
+                color8                  ${colorLightBlack}
 
                 #: red
-                color1                  #cc241d
-                color9                  #fb4934
+                color1                  ${colorRed}
+                color9                  ${colorLightRed}
 
                 #: green
-                color2                  #98971a
-                color10                 #b8bb26
+                color2                  ${colorGreen}
+                color10                 ${colorLightGreen}
 
                 #: yellow
-                color3                  #d79921
-                color11                 #fabd2f
+                color3                  ${colorYellow}
+                color11                 ${colorLightYellow}
 
                 #: blue
-                color4                  #458588
-                color12                 #83a598
+                color4                  ${colorBlue}
+                color12                 ${colorLightBlue}
 
                 #: purple
-                color5                  #b16286
-                color13                 #d3869b
+                color5                  ${colorPurple}
+                color13                 ${colorLightPurple}
 
                 #: aqua
-                color6                  #689d6a
-                color14                 #8ec07c
+                color6                  ${colorAqua}
+                color14                 ${colorLightAqua}
 
                 #: white
-                color7                  #a89984
-                color15                 #bdae93
+                color7                  ${colorWhite}
+                color15                 ${colorLightWhite}
             '';
         };
 
