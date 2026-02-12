@@ -37,9 +37,11 @@ const SITE = window.location.href;
         $node = $('#ads');
         if ($node.length) {
             $node.hide();
-            return true;
         }
-        /*
+        else {
+            return false;
+        }
+
         $node = $('#ads + div');
         $node.find('a').each(function () {
             const txt = $(this).text();
@@ -48,8 +50,7 @@ const SITE = window.location.href;
                 return true;
             };
         });
-        */
-        return false;
+        return true;
     }
 
     function hide_header() {
