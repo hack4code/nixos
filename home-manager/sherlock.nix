@@ -47,7 +47,6 @@ in
 
                 {
                     name = "Sound Volume Control";
-                    alias = "snd";
                     type = "command";
                     args = {
                         commands = {
@@ -70,7 +69,6 @@ in
 
                 {
                     name = "Mpc Command";
-                    alias = "mpc";
                     type = "command";
                     args = {
                         commands = {
@@ -98,68 +96,7 @@ in
                 }
 
                 {
-                    name = "supertux2";
-                    alias = "supertux2";
-                    type = "command";
-                    args = {
-                        tux = {
-                            icon = "supertux";
-                            exec = "${pkgs.superTux}/bin/supertux2";
-                            search_string = "supertux2";
-                        };
-                    };
-                    priority = 4;
-                    home = "Home";
-                }
-
-                {
-                    name = "pcsx2";
-                    alias = "pcsx2";
-                    type = "command";
-                    args = {
-                        tux = {
-                            icon = "pcsx2";
-                            exec = "${pkgs.pcsx2}/bin/pcsx2-qt";
-                            search_string = "pcsx2";
-                        };
-                    };
-                    priority = 5;
-                    home = "Home";
-                }
-
-                # {
-                #     name = "mame";
-                #     alias = "mame";
-                #     type = "command";
-                #     args = {
-                #         mame = {
-                #             icon = "mame";
-                #             exec = "${pkgs.mame}/bin/mame";
-                #             search_string = "mame";
-                #         };
-                #     };
-                #     priority = 6;
-                #     home = "Home";
-                # }
-
-                {
-                    name = "rpcs3";
-                    alias = "rpcs3";
-                    type = "command";
-                    args = {
-                        rpcs3 = {
-                            icon = "rpcs3";
-                            exec = "${pkgs.rpcs3}/bin/rpcs3";
-                            search_string = "rpcs3";
-                        };
-                    };
-                    priority = 7;
-                    home = "Home";
-                }
-
-                {
                     name = "syncdrive";
-                    alias = "syncdrive";
                     type = "command";
                     args = {
                         commands = {
@@ -176,7 +113,6 @@ in
 
                 {
                     name = "downmovie";
-                    alias = "downmovie";
                     type = "command";
                     args = {
                         commands = {
@@ -199,8 +135,8 @@ in
                         commands = {
                             OSUpdate = {
                                 icon = "system-software-update";
-                                exec = "zsh -c nug";
-                                search_string = "nug";
+                                exec = "zsh -c nu";
+                                search_string = "nu";
                             };
                         };
                     };
