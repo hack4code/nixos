@@ -160,10 +160,11 @@ in
         ];
 
         systemPackages = with pkgs; [
-            /* compress */
+            /******************
+                tool
+            *******************/
             p7zip
             unrar
-            /* tool */
             bat
             bc
             binutils
@@ -181,15 +182,18 @@ in
             procps
             qrencode
             sysstat
-            /* git */
+            /******************
+                git
+            *******************/
             gh
             git
-            /* video */
-            ffmpeg
-            libvpl
-            /* podman */
+            /******************
+                docker
+            *******************/
             podman-compose
-            /* net */
+            /******************
+                net
+            *******************/
             axel
             conntrack-tools
             curl
@@ -205,48 +209,71 @@ in
             wget
             /* transmission */
             transmission_4
-            /* tpm2 */
-            tpm2-tools
-            /* firmware */
-            linux-firmware
-            sof-firmware
-            /* bluetooth */
-            pavucontrol
-            pulseaudio
-            /* console font */
+            /******************
+                font
+            *******************/
             kbd
-            /* secure boot */
+            /******************
+                secure boot
+            *******************/
             sbctl
-            /* bluetooth */
-            bluez-tools
-            /* ifuse */
-            libimobiledevice
-            ifuse
+            /******************
+                hardware
+            *******************/
             /* usb */
             usbutils
-            /* lspci */
+            /* lscpi */
             pciutils
             /* camer */
             snapshot
-            /* develop */
-            glibcInfo
+            /* ifuse */
+            libimobiledevice
+            ifuse
+            /* bluetooth */
+            bluez-tools
+            pavucontrol
+            pulseaudio
+            /* video */
+            ffmpeg
+            libvpl
+            /* firmware */
+            linux-firmware
+            sof-firmware
+            /* tpm2 */
+            tpm2-tools
+            /******************
+            develop
+            *******************/
             gnumake
-            linux-manual
             man-pages
-            # zsh completions
+            # glibcInfo
+            # linux-manual
+            /******************
+                zsh
+            *******************/
             nix-zsh-completions
             zsh-autocomplete
             zsh-completion-sync
             zsh-completions
-            /* game */
+            /******************
+                game
+            *******************/
+            tetris
+            /* ps2 */
+            pcsx2
+            /* ps3 */
+            rpcs3
+            /* ps4 */
+            # shadps4
+            /* Wii U */
+            cemu
+            /* switch */
+            nsz
+            ryubing
+            /* pc */
             # dwarf-fortress
             # nethack
-            tetris
-            superTux
-            pcsx2
-            rpcs3
-            # mame
-            # mame-tools
+            # superTux
         ];
     };
 }
