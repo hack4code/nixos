@@ -282,6 +282,12 @@ in
                 for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 95 ppt 96 ppt
                 for_window [title="^PCSX2 v2"] floating disable
 
+                # cemu
+                for_window [app_id="Cemu" title="Title Manager"] floating enable, border pixel 1, resize width 80 ppt, move position center
+                for_window [app_id="Cemu" title="Graphic packs"] floating enable, border pixel 1, resize set 75 ppt 90 ppt, move position center
+                # ryujinx
+                for_window [title="Ryujinx.+Settings"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
+
                 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
