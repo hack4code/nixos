@@ -100,6 +100,8 @@ in
                         "https://srtku.com"
                         /* zlib */
                         "http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion"
+                        /* rutracker */
+                        "https://rutracker.org"
                     ];
                 };
             };
