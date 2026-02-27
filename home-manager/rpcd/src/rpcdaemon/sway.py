@@ -440,12 +440,11 @@ def set_ncmpcpp_toggle_fullscreen() -> None:
 
 
 def set_ncmpcpp_after_boot() -> None:
-    if get_mpd_state() != "playing":
-        return
-    set_ncmpcpp_for_playing()
-    time.sleep(0.8)
-    set_mpd_volume(36)
-    play_mpd()
+    if get_mpd_state() == "playing":
+        set_ncmpcpp_for_playing()
+        time.sleep(0.8)
+        play_mpd()
+    set_mpd_volume(48)
 
 
 def set_ncmpcpp_for_mpv() -> None:
