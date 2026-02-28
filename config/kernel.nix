@@ -8,9 +8,9 @@
     };
 
     config = {
-        kernelVersion = "6.19.3";
-        kernelHash = "cb44ae35c6f4dc8e75fa8fc67ff033e36fe2465cad8ed1710e05f73a125c9171";
-        kernelUrl = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-6.19.3.tar.gz";
+        kernelVersion = "6.19.5";
+        kernelHash = "5a0f40a61650642bb4556e8dbf44051ed3592cc1583959c81e0daa471ba59e9c";
+        kernelUrl = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-6.19.5.tar.gz";
     };
 }
 
