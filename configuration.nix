@@ -142,6 +142,11 @@ in
                 wl-clipboard
                 kitty
                 weechat
+                # weechatScripts.autosort
+                # weechatScripts.colorize_nicks
+                # weechatScripts.url_hint
+                # weechatScripts.buffer_autoset
+                # weechatScripts.weechat-go
                 ranger
                 w3m
                 neomutt

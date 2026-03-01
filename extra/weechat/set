@@ -4,15 +4,6 @@
 /set buflist.format.buffer_current "${color:green,default}${format_buffer}"
 
 
-# autosort
-/set irc.look.server_buffer independent
-/set buflist.format.indent "${color:237}${if:${buffer.nextbuffer.localvariables.type}=~^(channel|private)$?├─:└─}"
-
-
-# trigger
-/trigger add msg_disconnect modifier weechat_print "${tg_message_nocolor} =~ ^irc: disconnected from server$" "/(.*)/${color:red}^-_-^${color:reset}" ""
-
-
 # server
 /server add oftc irc.oftc.net/6697 -autoconnect
 /server add libera irc.libera.chat/6697 -autoconnect
@@ -24,10 +15,9 @@
 /set irc.server.oftc.autojoin "#linode,#tor,"
 
 
-# script
-/script install autosort.py
-/script install go.py
+# bar
 /bar hide nicklist
+
 
 # key
 /key bind ctrl-q /quit
@@ -35,12 +25,13 @@
 /key bind ctrl-j /buffer +1
 /key unbind ctrl-k
 /key bind ctrl-k /buffer -1
-/key unbind ctrl-s
-/key bind ctrl-s /go
-/key unbind ctrl-d
-/key bind ctrl-d /window scroll_down
-/key unbind ctrl-u
-/key bind ctrl-u /window scroll_up
+/key unbind alt-s
+/key bind alt-s /go
+/key unbind ctrl-n
+/key bind ctrl-n /window scroll_down
+/key unbind ctrl-p
+/key bind ctrl-p /window scroll_up
+
 
 #
 /set weechat.color.separator black
@@ -48,3 +39,45 @@
 /set weechat.bar.title.size 2
 /set weechat.bar.title.separator on
 /set logger.look.backlog 0
+
+
+# trigger
+/trigger add msg_disconnect modifier weechat_print "${tg_message_nocolor} =~ ^irc: disconnected from server$" "/(.*)/${color:red}^-_-^${color:reset}" ""
+
+
+
+# go
+/script install go.py
+
+
+# autosort
+/script install autosort.py
+/set irc.look.server_buffer independent
+/set buflist.format.indent "${color:237}${if:${buffer.nextbuffer.localvariables.type}=~^(channel|private)$?├─:└─}"
+
+
+# buffer_autoset
+/script install buffer_autoset.py
+/buffer_autoset add irc.libera.NickServ hidden 1
+
+
+# colorize_nicks
+/script install colorize_nicks.py
+
+
+# buffer_autoset
+/script install buffer_autoset.py
+/buffer_autoset add irc.libera.NickServ hidden 1
+
+
+# url_hint
+/alias add open_url /url_hint_replace /exec -bg firefox --new-tab {url$1}
+/key bind f1 /open_url 1
+/key bind f2 /open_url 2
+/key bind f3 /open_url 3
+/key bind f4 /open_url 4
+/key bind f5 /open_url 5
+/key bind f6 /open_url 6
+/key bind f7 /open_url 7
+/key bind f8 /open_url 8
+/key bind f9 /open_url 9
