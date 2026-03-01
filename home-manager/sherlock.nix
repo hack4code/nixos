@@ -195,7 +195,7 @@ in
                 };
 
                 appearance = {
-                    width = 320;
+                    width = 400;
                     height = 600;
                     gsk_renderer = "vulkan";
                     opacity = 0.98;
