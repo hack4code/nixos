@@ -76,6 +76,7 @@ in
         ./home-manager/zathura.nix
         ./home-manager/zsh.nix
         ./home-manager/fzf.nix
+        ./home-manager/ripgrep.nix
     ];
 
 
@@ -181,6 +182,7 @@ in
             libnotify
             procps
             qrencode
+            ripgrep
             sysstat
             /******************
                 git
