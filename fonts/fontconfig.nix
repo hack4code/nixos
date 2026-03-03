@@ -105,6 +105,13 @@
                         <family>Swei Gothic CJK SC</family>
                     </prefer>
                 </alias>
+
+                <alias>
+                    <family>ico-c</family>
+                    <prefer>
+                        <family>Font Awesome 7 Free</family>
+                    </prefer>
+                </alias>
             '';
         };
     };
