@@ -31,14 +31,19 @@ const RE_TORRENT_GALAXY = /torrentgalaxy.mx/i;
 const RE_NYAA = /nyaa.si/i;
 const RE_THUNDER = /xl720.com/i;
 
-const CSS_BUTTON = {
-    "margin": "2px 8px",
+const CSS_BUTTON_TRANSMISSION = {
+    "margin": "1px 2px",
     "display": "inline-block",
     "font-family": "Twitter Color Emoji"
 };
 
+const CSS_BUTTON_RTORRENT = {
+    "margin": "1px 4px",
+    "display": "inline-block",
+    "font-family": "Noto Color Emoji"
+};
 
-function send_torrent(button, magnet) {
+function send_torrent(button, app, magnet) {
     function ok() {
         button.text("✔️");
     }
@@ -49,7 +54,7 @@ function send_torrent(button, magnet) {
 
     GM_xmlhttpRequest({
         method: "POST",
-        url: "http://127.0.0.1:8080/transmission/torrent",
+        url: "http://127.0.0.1:8080/" + app + "/torrent",
         data: JSON.stringify({"magnet": magnet}),
         headers: {"Content-Type": "application/json"},
         timeout: 8000,
@@ -63,14 +68,42 @@ function send_torrent(button, magnet) {
                 default:
                     error();
                     const result = JSON.parse(response.responseText);
-                    console.log("transmission: status_code=", code, "\n", result.detail);
+                    console.log(app + ": status_code=", code, "\n", result.detail);
             }
         },
         ontimeout: function (response) {
-            console.log("transmission: timeout");
+            console.log(app + ": timeout");
             error();
         }
     });
+}
+
+
+function add_app_button(app, e, ind, magnet) {
+    const button = $("<a>", {
+        "id": app + "_" + ind,
+        "data-magnet": magnet
+    });
+
+    button.click(function() {
+        const magnet = $(this).data("magnet");
+        send_torrent($(this), app, magnet);
+    });
+
+    if (app === "transmission") {
+        button.text("🕷️");
+        button.css(CSS_BUTTON_TRANSMISSION);
+        if (e.parent().find('a[id^="transmission_"]').length === 0) {
+            e.parent().append(button);
+        };
+    }
+    else if (app === "rtorrent") {
+        button.text("🐝");
+        button.css(CSS_BUTTON_RTORRENT);
+        if (e.parent().find('a[id^="rtorrent_"]').length === 0) {
+            e.parent().append(button);
+        };
+    }
 }
 
 
@@ -122,19 +155,9 @@ function add_download_button() {
         if (magnet == null || !magnet.startsWith("magnet:")) {
             return;
         }
-        const button = $("<a>", {
-            "id": "transmission_" + ind,
-            "text": "🕷️",
-            "data-magnet": magnet
-        });
-        button.css(CSS_BUTTON);
-        button.click(function() {
-            const magnet = $(this).data("magnet");
-            send_torrent($(this), magnet);
-        });
-        if (e.parent().find('a[id^="transmission_"]').length === 0) {
-            e.parent().append(button);
-        };
+
+        add_app_button("transmission", e, ind, magnet);
+        add_app_button("rtorrent", e, ind, magnet);
     });
 }
 
