@@ -77,6 +77,7 @@ in
         ./home-manager/zsh.nix
         ./home-manager/fzf.nix
         ./home-manager/ripgrep.nix
+        ./home-manager/fd.nix
     ];
 
 
