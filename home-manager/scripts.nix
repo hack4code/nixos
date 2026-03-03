@@ -314,6 +314,19 @@ in
             )
             (
                 writeShellApplication {
+                    name = "ns";
+                    runtimeInputs = [
+                        gnumake
+                    ];
+                    text = ''
+                        cd "$HOME/source/nixos/"
+                        ${pkgs.gnumake}/bin/make switch
+                        cd -
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
                     name = "nl";
                     text = ''
                         nixos-rebuild list-generations
