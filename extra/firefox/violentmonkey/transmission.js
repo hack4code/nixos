@@ -32,13 +32,13 @@ const RE_NYAA = /nyaa.si/i;
 const RE_THUNDER = /xl720.com/i;
 
 const CSS_BUTTON_TRANSMISSION = {
-    "margin": "1px 2px",
+    "margin": "1px 4px 1px 4px",
     "display": "inline-block",
     "font-family": "Twitter Color Emoji"
 };
 
 const CSS_BUTTON_RTORRENT = {
-    "margin": "1px 4px",
+    "margin": "1px 4px 1px 4px",
     "display": "inline-block",
     "font-family": "Noto Color Emoji"
 };
@@ -80,34 +80,29 @@ function send_torrent(button, app, magnet) {
 
 
 function add_app_button(app, e, ind, magnet) {
+    const id = app + "_" + ind;
+    const text = app === "transmission" ? "🕷️" : "🐝";
+    const css = app === "transmission" ? CSS_BUTTON_TRANSMISSION : CSS_BUTTON_RTORRENT;
+    const selector = 'a[id^="' + app + '_"]';
+
     const button = $("<a>", {
-        "id": app + "_" + ind,
+        "id": id,
+        "text": text,
         "data-magnet": magnet
     });
-
+    button.css(css);
     button.click(function() {
         const magnet = $(this).data("magnet");
         send_torrent($(this), app, magnet);
     });
 
-    if (app === "transmission") {
-        button.text("🕷️");
-        button.css(CSS_BUTTON_TRANSMISSION);
-        if (e.parent().find('a[id^="transmission_"]').length === 0) {
-            e.parent().append(button);
-        };
-    }
-    else if (app === "rtorrent") {
-        button.text("🐝");
-        button.css(CSS_BUTTON_RTORRENT);
-        if (e.parent().find('a[id^="rtorrent_"]').length === 0) {
-            e.parent().append(button);
-        };
-    }
+    if (e.parent().find(selector).length === 0) {
+        e.parent().append(button);
+    };
 }
 
 
-function add_download_button() {
+function add_buttons() {
     var is_anybt = false;
     var elements = null;
     if (RE_ANYBT.test(SITE)) {
@@ -165,11 +160,11 @@ function add_download_button() {
 (function () {
     if (RE_THUNDER.test(SITE)) {
         $('div.down_btn_xl').hide();
-        add_download_button();
+        add_buttons();
     }
     else {
         VM.observe(document.body, () => {
-            add_download_button();
+            add_buttons();
         });
     };
 })();
