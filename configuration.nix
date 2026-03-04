@@ -315,7 +315,6 @@ in
             # dwarf-fortress
             # nethack
             # superTux
-            foot
         ];
     };
 }
