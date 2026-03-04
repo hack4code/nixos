@@ -92,6 +92,34 @@ in
         backupFileExtension = "backup";
     };
 
+    documentation = {
+        enable = true;
+
+        doc = {
+            enable = true;
+        };
+
+        info = {
+            enable = false;
+        };
+
+        nixos = {
+            enable = true;
+        };
+
+        dev = {
+            enable = true;
+        };
+
+        man = {
+            enable = true;
+            generateCaches = false;
+            man-db = {
+                enable = true;
+            };
+        };
+    };
+
     programs = {
         appimage = {
             enable = true;
@@ -250,12 +278,17 @@ in
             /* tpm2 */
             tpm2-tools
             /******************
-            develop
+                develop
             *******************/
             gnumake
+            /******************
+                man
+            *******************/
+            linux-manual
+            man-db
             man-pages
+            man-pages-posix
             # glibcInfo
-            # linux-manual
             /******************
                 zsh
             *******************/
@@ -282,6 +315,7 @@ in
             # dwarf-fortress
             # nethack
             # superTux
+            foot
         ];
     };
 }
