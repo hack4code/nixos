@@ -111,11 +111,12 @@ in
                     "fzf"
                     "gh"
                     "kitty"
-                    "uv"
                     "podman"
-                    "sudo"
                     "ssh"
+                    "sudo"
                     "systemd"
+                    "uv"
+                    "zsh-interactive-cd"
                 ];
 
                 extraConfig = ''
