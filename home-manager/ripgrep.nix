@@ -9,7 +9,7 @@ in
             enable = true;
 
             arguments = [
-                "--max-columns-preview"
+                # "--max-columns-preview"
                 "--colors=line:style:bold"
             ];
         };
