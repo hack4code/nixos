@@ -289,6 +289,10 @@ in
                 for_window [class="Ryujinx" title=".+Settings$"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
                 for_window [class="Ryujinx" title="^Settings.+"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
 
+                # rpcs3
+                for_window [floating workspace="9" shell="xdg_shell" title="^Settings$"] border pixel 1, resize set 64 ppt 96 ppt, move position center
+
+
                 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
