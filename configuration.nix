@@ -246,7 +246,6 @@ in
             pwru
             rclone
             # tcptrace
-            wget
             /* transmission */
             transmission_4
             /******************
