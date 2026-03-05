@@ -71,7 +71,7 @@
 
 
 # url_hint
-/alias add open_url /url_hint_replace /exec -bg firefox --new-tab {url$1}
+/alias add open_url /url_hint_replace /exec -bg open_url_from_kitty.sh {url$1}
 /key bind f1 /open_url 1
 /key bind f2 /open_url 2
 /key bind f3 /open_url 3
