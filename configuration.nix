@@ -80,7 +80,6 @@ in
         ./home-manager/ripgrep.nix
         ./home-manager/fd.nix
         ./home-manager/man.nix
-        ./home-manager/less.nix
     ];
 
 
@@ -193,7 +192,8 @@ in
             bashInteractive
         ];
 
-        defaultPacakages = [];
+        defaultPackages = [];
+        # corePackages = with pkgs; [ ];
 
         systemPackages = with pkgs; [
             /******************
@@ -285,7 +285,6 @@ in
             /******************
                 man
             *******************/
-            less
             man-db
             linux-manual
             man-pages

@@ -92,8 +92,8 @@ in
                 bindkey -s '^[j' "journalctl --boot --follow\n"
 
                 # man
-                less_termcap[md]="''${fg_bold[blue]}"
-                less_termcap[so]="''${fg_bold[red]}''${bg[darkgrey]}"
+                less_termcap[md]="''${fg_bold[yellow]}"
+                less_termcap[so]="''${fg_bold[red]}''${bg[grey]}"
             '';
 
             zsh-abbr = {
