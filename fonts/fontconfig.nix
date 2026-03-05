@@ -99,19 +99,23 @@
             useEmbeddedBitmaps = true;
 
             localConf = ''
-                <alias>
-                    <family>Microsoft YaHei</family>
-                    <prefer>
-                        <family>Swei Gothic CJK SC</family>
-                    </prefer>
-                </alias>
+                <?xml version='1.0'?>
+                <!DOCTYPE fontconfig SYSTEM 'urn:fontconfig:fonts.dtd'>
+                <fontconfig>
+                    <alias>
+                        <family>Microsoft YaHei</family>
+                        <prefer>
+                            <family>Swei Gothic CJK SC</family>
+                        </prefer>
+                    </alias>
 
-                <alias>
-                    <family>ico-c</family>
-                    <prefer>
-                        <family>Font Awesome 7 Free</family>
-                    </prefer>
-                </alias>
+                    <alias>
+                        <family>ico-c</family>
+                        <prefer>
+                            <family>Font Awesome 7 Free</family>
+                        </prefer>
+                    </alias>
+                </fontconfig>
             '';
         };
     };
