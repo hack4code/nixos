@@ -456,6 +456,61 @@ in
                     '';
                 }
             )
+            (
+                writeShellApplication {
+                    name = "open_url_from_kitty.sh";
+                    runtimeInputs = [
+                        coreutils
+                        gnugrep
+                        gawk
+                        curl
+                        firefox
+                        swayimg
+                    ];
+                    text = ''
+
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
+                        function get_extention {
+                            local file_name
+
+                            file_name=$(basename -- "$1")
+                            echo "''${file_name##*.}" | tr -d '\s\t\n' | tr '[:upper:]' '[:lower:]'
+                        }
+
+                        function is_image {
+                            local ext
+                            local image_ext=("jpg" "bmp" "png" "jpeg" "gif" "webp")
+
+                            ext="$(get_extention "$1")"
+                            if echo "''${image_ext[@]}" | grep -q -F -w "$ext"; then
+                                return 0
+                            fi
+
+                            if ${pkgs.curl}/bin/curl -Ils "$1" | awk 'BEGIN{IGNORECASE=1}/content-type/ {print $2}' | grep -q -i -F image; then
+                                return 0
+                            fi
+
+                            return 1
+                        }
+
+
+                        if (($# != 1)); then
+                            panic "please give the url!"
+                        fi
+
+                        if is_image "$1"; then
+                            ${pkgs.swayimg}/bin/swayimg "exec://${pkgs.curl}/bin/curl -s -o - \"$1\""
+                        else
+                            firefox --new-tab "$1"
+                        fi
+                    '';
+                }
+            )
         ];
     };
 }
