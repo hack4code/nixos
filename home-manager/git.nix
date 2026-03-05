@@ -2,11 +2,13 @@
 
 let
     userName = config.userName;
+    gitUser = config.gitUser;
+    gitEmail = config.gitEmail;
 in
 {
     home-manager.users.${userName} = {
         programs.diff-highlight = {
-            enable = true;
+            enable = false;
             enableGitIntegration = true;
             pagerOpts = [
                 "--tabs=4"
@@ -19,8 +21,8 @@ in
 
             settings = {
                 user = {
-                    name = "code4hack";
-                    email = "code4hack+github@gmail.com";
+                    name = gitUser;
+                    email = gitEmail;
                 };
 
                 init = {

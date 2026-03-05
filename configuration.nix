@@ -9,6 +9,7 @@ in
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
+        ./config/git.nix
         ./config/gmail.nix
         ./config/gruvbox.nix
         ./config/input.nix
