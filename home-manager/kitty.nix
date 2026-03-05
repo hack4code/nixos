@@ -155,7 +155,7 @@ in
             text = ''
                 protocol http, https
                 mime     image/*
-                action   launch --type=overlay swayimg "exec://wget -qO- ''${URL}"
+                action   launch --type=overlay swayimg "exec://${pkgs.curl}/bin/curl -s -o - \"''${URL}\""
             '';
         };
     };
