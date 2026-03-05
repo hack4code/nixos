@@ -219,6 +219,7 @@ in
             qrencode
             ripgrep
             sysstat
+            moor
             /******************
                 git
             *******************/
