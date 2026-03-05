@@ -192,6 +192,8 @@ in
             bashInteractive
         ];
 
+        defaultPacakages = [];
+
         systemPackages = with pkgs; [
             /******************
                 tool
