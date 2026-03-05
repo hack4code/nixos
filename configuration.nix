@@ -78,6 +78,8 @@ in
         ./home-manager/fzf.nix
         ./home-manager/ripgrep.nix
         ./home-manager/fd.nix
+        ./home-manager/man.nix
+        ./home-manager/less.nix
     ];
 
 
@@ -97,10 +99,6 @@ in
 
         doc = {
             enable = true;
-        };
-
-        info = {
-            enable = false;
         };
 
         nixos = {
@@ -283,8 +281,9 @@ in
             /******************
                 man
             *******************/
-            linux-manual
+            less
             man-db
+            linux-manual
             man-pages
             man-pages-posix
             # glibcInfo
