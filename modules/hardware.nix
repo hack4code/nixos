@@ -82,6 +82,10 @@
                 };
             };
         };
+
+        acpilight = {
+            enable = true;
+        };
     };
 }
 

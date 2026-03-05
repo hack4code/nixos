@@ -134,10 +134,6 @@ in
             enable = true;
         };
 
-        light = {
-            enable = true;
-        };
-
         neovim = {
             enable = true;
             defaultEditor = true;
