@@ -128,6 +128,15 @@ in
                         privateDefault = "google";
                     };
 
+                    settings = {
+                        "browser.ai.control.default" = "blocked";
+                        "browser.ai.control.linkPreviewKeyPoints" = "blocked";
+                        "browser.ai.control.pdfjsAltText" = "blocked";
+                        "browser.ai.control.sidebarChatbot" = "blocked";
+                        "browser.ai.control.smartTabGroups" = "blocked";
+                        "browser.ai.control.translations" = "blocked";
+                    };
+
                     # containers = {
                     #     self = {
                     #         color = "purple";
@@ -242,7 +251,7 @@ in
                         user_pref("network.dns.preferIPv6", true);
 
                         /* onion */
-                        user_pref("network.dns.blockDotOnion",	false);
+                        user_pref("network.dns.blockDotOnion", false);
                         user_pref("dom.security.https_only_mode.upgrade_onion", false);
                         user_pref("dom.securecontext.allowlist_onions", false);
 
@@ -253,7 +262,7 @@ in
                         user_pref("app.update.enabled", false);
 
                         /* blocklist update */
-                        user_pref("extensions.blocklist.enabled",	true);
+                        user_pref("extensions.blocklist.enabled", true);
                         user_pref("services.blocklist.update_enabled", true);
 
                         /* safe browsing */
@@ -295,7 +304,7 @@ in
                         user_pref("privacy.resistFingerprinting", false);
                         user_pref("privacy.firstparty.isolate", true);
                         user_pref("privacy.userContext.enabled", true);
-                        user_pref("privacy.trackingprotection.enabled",	true);
+                        user_pref("privacy.trackingprotection.enabled", true);
                         user_pref("privacy.trackingprotection.pbmode.enabled", true);
                         user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
                         user_pref("privacy.trackingprotection.cryptomining.enabled", true);
