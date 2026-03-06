@@ -35,7 +35,7 @@
         };
 
         lanzaboote = {
-            url = "github:nix-community/lanzaboote/v0.4.3";
+            url = "github:nix-community/lanzaboote/v1.0.0";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
@@ -65,16 +65,13 @@
                     home-manager.nixosModules.home-manager
                     nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
                     lanzaboote.nixosModules.lanzaboote
-                    (
-                        { lib, ... }:
-                        {
-                            boot.loader.systemd-boot.enable = lib.mkForce false;
-                            boot.lanzaboote = {
-                                enable = true;
-                                pkiBundle = "/var/lib/sbctl";
-                            };
-                        }
-                    )
+                    ({ lib, ... }: {
+                        boot.loader.systemd-boot.enable = lib.mkForce false;
+                        boot.lanzaboote = {
+                            enable = true;
+                            pkiBundle = "/var/lib/sbctl";
+                        };
+                    })
                     ./configuration.nix
                 ];
             };
