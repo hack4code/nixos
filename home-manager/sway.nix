@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -152,6 +152,13 @@ in
                 keybindings =
                 let
                     modifier = "Mod4";
+                    swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
+                    firefox = "${pkgs.firefox}/bin/firefox";
+                    grim = "${pkgs.grim}/bin/grim";
+                    swaylock = "${pkgs.swaylock}/bin/swaylock";
+                    sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
+                    wl-kbptr = "${pkgs.wl-kbptr}/bin/wl-kbptr";
+                    zathura = "${pkgs.zathura}/bin/zathura";
                 in
                 {
                     "${modifier}+left" = "focus left";
@@ -165,27 +172,27 @@ in
                     "${modifier}+comma" = "workspace number 11";
                     "${modifier}+period" = "workspace number 12";
 
-                    "${modifier}+a" = "exec --no-startup-id swaync-client -t -sw";
+                    "${modifier}+a" = "exec --no-startup-id ${swaync-client} -t -sw";
                     "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
                     "${modifier}+g" = "exec --no-startup-id swayctl htop togglefullscreen";
-                    "${modifier}+i" = "exec firefox -P TOR";
+                    "${modifier}+i" = "exec ${firefox} -P TOR";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
-                    "${modifier}+m" = "exec wl-kbptr -o modes=floating','click -o mode_floating.source=detect";
-                    "${modifier}+n" = "exec wl-kbptr -o modes=tile','click";
+                    "${modifier}+m" = "exec ${wl-kbptr} -o modes=floating','click -o mode_floating.source=detect";
+                    "${modifier}+n" = "exec ${wl-kbptr} -o modes=tile','click";
 
-                    "${modifier}+o" = "exec sherlock";
+                    "${modifier}+o" = "exec ${sherlock}";
                     "${modifier}+q" = "kill";
                     "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
-                    "${modifier}+s" = "exec --no-startup-id swaync-client -C";
+                    "${modifier}+s" = "exec --no-startup-id ${swaync-client} -C";
                     "${modifier}+t" = "exec --no-startup-id swayctl ncmpcpp time";
                     "${modifier}+u" = "exec --no-startup-id swayctl mpd reload";
                     "${modifier}+w" = "exec --no-startup-id swayctl ncmpcpp toggle";
                     "${modifier}+x" = "exec --no-startup-id swaymsg 'seat - cursor set 1020 650'";
                     "${modifier}+y" = "exec --no-startup-id swayctl ncmpcpp lyrics";
-                    "${modifier}+z" = "exec zathura";
+                    "${modifier}+z" = "exec ${zathura}";
 
                     "${modifier}+0" = "workspace number 0";
                     "${modifier}+1" = "workspace number 1";
@@ -200,11 +207,11 @@ in
 
                     "${modifier}+alt+a" = "exec --no-startup-id swayctl camer toggle";
                     "${modifier}+alt+e" = "reload";
-                    "${modifier}+alt+f" = "exec swaylock -f";
+                    "${modifier}+alt+f" = "exec ${swaylock} -f";
                     "${modifier}+alt+q" = "exec sway exit";
                     "${modifier}+alt+r" = "exec --no-startup-id swayctl reboot";
                     "${modifier}+alt+s" = "exec --no-startup-id swayctl shutdown";
-                    "${modifier}+alt+t" = "exec --no-startup-id grim -o DP-3 ~/picture/screen/screenshot.png";
+                    "${modifier}+alt+t" = "exec --no-startup-id ${grim} -o DP-3 ~/picture/screen/screenshot.png";
                     "${modifier}+alt+j" = "exec --no-startup-id swayctl ncmpcpp lyricsdown";
                     "${modifier}+alt+k" = "exec --no-startup-id swayctl ncmpcpp lyricsup";
                     "${modifier}+alt+m" = "mode Mouse";
@@ -242,7 +249,19 @@ in
                 titlebar_border_thickness 1
             '';
 
-            extraConfig = ''
+            extraConfig =
+            let
+                xbacklight = "${pkgs.acpilight}/bin/xbacklight";
+                wpctl = "${pkgs.wireplumber}/bin/wpctl";
+                swaybg = "${pkgs.swaybg}/bin/swaybg";
+                wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+                sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
+                swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
+                swayidle = "${pkgs.swayidle}/bin/swayidle";
+                swaylock = "${pkgs.swaylock}/bin/swaylock";
+                # fcitx5 = "${pkgs.fcitx5}/bin/fcitx5";
+            in
+            ''
                 workspace 0  output "${monitorThinkpad}"
                 workspace 1  output "${monitorSamsung}"
                 workspace 2  output "${monitorSamsung}"
@@ -253,11 +272,11 @@ in
                 workspace 10 output "${monitorSamsung}"
                 workspace 11 output "${monitorThinkpad}"
 
-                bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel_backlight -U 10
-                bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel_backlight -A 10
-                bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 10%+
-                bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 10%-
-                bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle
+                bindsym XF86MonBrightnessDown exec --no-startup-id ${xbacklight} -dec 10
+                bindsym XF86MonBrightnessUp exec --no-startup-id ${xbacklight} -inc 10
+                bindsym XF86AudioRaiseVolume exec --no-startup-id ${wpctl} set-volume @DEFAULT_SINK@ 10%+
+                bindsym XF86AudioLowerVolume exec --no-startup-id ${wpctl} set-volume @DEFAULT_SINK@ 10%-
+                bindsym XF86AudioMute exec --no-startup-id ${wpctl} set-mute @DEFAULT_SINK@ toggle
 
                 for_window [window_type="dialog"] floating enable
                 for_window [window_role="dialog"] floating enable
@@ -297,19 +316,19 @@ in
                 exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
-                exec swaybg -o "${monitorSamsung}" -i "${bgSamsung}" -m fill
-                exec swaybg -o "${monitorThinkpad}" -i "${bgThinkpad}" -m fill
+                exec ${swaybg} -o "${monitorSamsung}" -i "${bgSamsung}" -m fill
+                exec ${swaybg} -o "${monitorThinkpad}" -i "${bgThinkpad}" -m fill
 
-                exec --no-startup-id wl-paste -t text --watch clipman store --no-persist
-                # exec ibus-daemon -rxRd
-                exec fcitx5 -d --replace
-                exec sherlock --daemonize
-                exec swaync
+                exec --no-startup-id ${wl-paste} -t text --watch clipman store --no-persist
+                exec ${sherlock} --daemonize
+                exec ${swaync}
 
-                exec swayidle \
-                    timeout 300 "swayctl lock; swaylock -f" resume "swayctl resume lock" \
+                exec ${swayidle} \
+                    timeout 300 "swayctl lock; ${swaylock} -f" resume "swayctl resume lock" \
                     timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
                     after-resume "swayctl resume sleep; sndctl setup"
+
+                exec fcitx5 -d --replace -s 4
 
                 exec_always --no-startup-id rpcd
 
