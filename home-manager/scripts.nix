@@ -257,7 +257,11 @@ in
                     runtimeInputs = [
                         curl
                     ];
-                    text = ''
+                    text =
+                    let
+                        curl = "${pkgs.curl}/bin/curl";
+                    in
+                    ''
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -268,7 +272,7 @@ in
                             panic 'no file found'
                         fi
 
-                        ${pkgs.curl}/bin/curl -F "\"file=@$1\"" https://0x0.st
+                        ${curl} -F "\"file=@$1\"" https://0x0.st
                     '';
                 }
             )
@@ -279,12 +283,17 @@ in
                         cmatrix
                         curl
                     ];
-                    text = ''
+                    text =
+                    let
+                        curl = "${pkgs.curl}/bin/curl";
+                        cmatrix = "${pkgs.cmatrix}/bin/cmatrix";
+                    in
+                    ''
                         COLORS=(green red blue yellow cyan magenta)
                         N=$((RANDOM % ''${#COLORS[@]}))
 
-                        ${pkgs.cmatrix}/bin/cmatrix -a -C "''${COLORS[$N]}"
-                        # ${pkgs.curl}/bin/curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
+                        ${cmatrix} -a -C "''${COLORS[$N]}"
+                        # ${curl} -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     '';
                 }
             )
@@ -294,8 +303,12 @@ in
                     runtimeInputs = [
                         curl
                     ];
-                    text = ''
-                        ${pkgs.curl}/bin/curl -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
+                    text =
+                    let
+                        curl = "${pkgs.curl}/bin/curl";
+                    in
+                    ''
+                        ${curl} -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
                     '';
                 }
             )
@@ -305,9 +318,13 @@ in
                     runtimeInputs = [
                         gnumake
                     ];
-                    text = ''
+                    text =
+                    let
+                        make = "${pkgs.gnumake}/bin/make";
+                    in
+                    ''
                         cd "$HOME/source/nixos/"
-                        ${pkgs.gnumake}/bin/make update
+                        ${make} update
                         cd -
                     '';
                 }
@@ -318,9 +335,13 @@ in
                     runtimeInputs = [
                         gnumake
                     ];
-                    text = ''
+                    text =
+                    let
+                        make = "${pkgs.gnumake}/bin/make";
+                    in
+                    ''
                         cd "$HOME/source/nixos/"
-                        ${pkgs.gnumake}/bin/make switch
+                        ${make} switch
                         cd -
                     '';
                 }
@@ -440,7 +461,11 @@ in
                         coreutils
                         ncurses
                     ];
-                    text = ''
+                    text =
+                    let
+                        tput = "${pkgs.ncurses}/bin/tput";
+                    in
+                    ''
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -451,7 +476,7 @@ in
                             panic "please give the color value!"
                         fi
 
-                        ${pkgs.ncurses}/bin/tput setaf "$1"
+                        ${tput} setaf "$1"
                         echo "Hello World!"
                     '';
                 }
@@ -461,14 +486,21 @@ in
                     name = "open_url_from_kitty.sh";
                     runtimeInputs = [
                         coreutils
-                        gnugrep
-                        gawk
                         curl
                         firefox
+                        gawk
+                        gnugrep
                         swayimg
                     ];
-                    text = ''
-
+                    text =
+                    let
+                        awk = "${pkgs.gawk}/bin/awk";
+                        curl = "${pkgs.curl}/bin/curl";
+                        grep = "${pkgs.gnugrep}/bin/grep";
+                        swayimg = "${pkgs.swayimg}/bin/swayimg";
+                        firefox = "${pkgs.firefox}/bin/firefox";
+                    in
+                    ''
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -477,7 +509,6 @@ in
 
                         function get_extention {
                             local file_name
-
                             file_name=$(basename -- "$1")
                             echo "''${file_name##*.}" | tr -d '\s\t\n' | tr '[:upper:]' '[:lower:]'
                         }
@@ -487,11 +518,11 @@ in
                             local image_ext=("jpg" "bmp" "png" "jpeg" "gif" "webp")
 
                             ext="$(get_extention "$1")"
-                            if echo "''${image_ext[@]}" | grep -q -F -w "$ext"; then
+                            if echo "''${image_ext[@]}" | ${grep} -q -F -w "$ext"; then
                                 return 0
                             fi
 
-                            if ${pkgs.curl}/bin/curl -Ils "$1" | awk 'BEGIN{IGNORECASE=1}/content-type/ {print $2}' | grep -q -i -F image; then
+                            if ${curl} -Ils "$1" | ${awk} 'BEGIN{IGNORECASE=1}/content-type/ {print $2}' | ${grep} -q -i -F image; then
                                 return 0
                             fi
 
@@ -504,9 +535,9 @@ in
                         fi
 
                         if is_image "$1"; then
-                            ${pkgs.swayimg}/bin/swayimg "exec://${pkgs.curl}/bin/curl -s -o - \"$1\""
+                            ${swayimg} "exec://${curl} -s -o - \"$1\""
                         else
-                            firefox --new-tab "$1"
+                            ${firefox} --new-tab "$1"
                         fi
                     '';
                 }
