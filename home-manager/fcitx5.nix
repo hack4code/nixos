@@ -80,7 +80,7 @@ in
                         clipboard.globalSection = {
                             # TriggerKey = "Control+;";
                             # PastePrimaryKey = "Super+V";
-                            "Number of entries" = 8;
+                            "Number of entries" = 5;
                         };
                     };
                 };
