@@ -13,9 +13,9 @@ __all__ = [
 ]
 
 
-NULL = b'\x00'
-RTORRENT_DOWNLOAD_DIRECTORY = f'{Path.home()}/download/.rtorrent/'
 RTORRENT_RPC_SOCK = f'{Path.home()}/.local/share/rtorrent/session/rpc.socket'
+
+NULL = b'\x00'
 
 
 def encode_request(body: bytes, content_type: str | None = None) -> Iterator[bytes]:
@@ -148,7 +148,7 @@ class RTorrent:
             '',
             f'd10:magnet-uri{len(magnet)}:{magnet}e',
             'd.tied_to_file.set=""',
-            f'd.directory_base.set="{RTORRENT_DOWNLOAD_DIRECTORY}"',
+            f'd.directory_base.set=""',
             ''
         ]
         self.jsonrpc.call('load.raw_start_verbose', params)
