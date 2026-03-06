@@ -63,6 +63,7 @@ in
                 cursor_shape = "underline";
                 focus_follows_mouse = "no";
                 close_on_child_death = "yes";
+                open_url_with = "open_url_from_kitty.sh";
             };
 
             extraConfig = ''
