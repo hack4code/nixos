@@ -23,6 +23,7 @@ in
         ./config/vps.nix
         ./config/wifi.nix
         ./config/wireguard.nix
+        ./input/fcitx5.nix
         ./modules/boot.nix
         ./modules/dnscrypt-proxy.nix
         ./modules/hardware.nix
