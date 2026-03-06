@@ -20,9 +20,11 @@ in
                 linger = true;
                 extraGroups = [
                     "wheel"
-                    "networkmanager"
-                    "podman"
                     "tss"
+                    "networkmanager"
+                    "audio"
+                    "video"
+                    "podman"
                     "wireshark"
                 ];
             };
