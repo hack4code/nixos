@@ -33,6 +33,13 @@
             enable = true;
         };
 
+        udev = {
+            enable = true;
+            extraRules = ''
+                ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", GROUP="video", MODE="0664"
+            '';
+        };
+
         usbmuxd = {
             enable = true;
             package = pkgs.usbmuxd2;
