@@ -180,7 +180,6 @@ in
                 zathura
                 sherlock-launcher
                 wl-kbptr
-                wlr-randr
                 slurp
                 xdg-desktop-portal-termfilechooser
             ];
