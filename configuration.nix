@@ -178,6 +178,7 @@ in
                 ranger
                 w3m
                 neomutt
+                urlscan
                 zathura
                 sherlock-launcher
                 wl-kbptr

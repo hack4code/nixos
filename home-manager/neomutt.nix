@@ -100,6 +100,12 @@ in
                     action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>";
                     map = [ "index" ];
                 }
+
+                {
+                    key = "\\Cb";
+                    action = "<pipe-message>urlscan --nohelp --run 'open_url_from_kitty.py {}'<enter>";
+                    map = [ "index" "pager" ];
+                }
             ];
 
             settings = {
@@ -186,6 +192,129 @@ in
             force = true;
             text = ''
                 text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput;
+            '';
+        };
+
+        home.file.".config/urlscan/config.json" = {
+            executable = false;
+            force = true;
+            text = ''
+                {
+                    "palettes": {
+                        "default": [
+                            [
+                                "header",
+                                "white",
+                                "dark gray",
+                                "bold",
+                                "#ffffff",
+                                "#0000aa"
+                            ],
+                            [
+                                "footer",
+                                "white",
+                                "light red",
+                                "standout",
+                                "#ffffff",
+                                "#aa0000"
+                            ],
+                            [
+                                "search",
+                                "white",
+                                "dark green",
+                                "standout",
+                                "#ffffff",
+                                "#00aa00"
+                            ],
+                            [
+                                "msgtext",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
+                            ],
+                            [
+                                "msgtext:ellipses",
+                                "yellow",
+                                "default",
+                                "",
+                                "#aaaaaa",
+                                "#000000"
+                            ],
+                            [
+                                "urlref:number:braces",
+                                "yellow",
+                                "default",
+                                "",
+                                "#aaaaaa",
+                                "#000000"
+                            ],
+                            [
+                                "urlref:number",
+                                "light red",
+                                "default",
+                                "standout",
+                                "#ffff00",
+                                "#000000"
+                            ],
+                            [
+                                "urlref:url",
+                                "dark green",
+                                "default",
+                                "standout",
+                                "#ffffff",
+                                "#000000"
+                            ],
+                            [
+                                "url:sel",
+                                "light green",
+                                "dark blue",
+                                "bold",
+                                "#ffffff",
+                                "#0000aa"
+                            ]
+                        ]
+                    },
+                    "keys": {
+                        "/": "search_key",
+                        "0": "digits",
+                        "1": "digits",
+                        "2": "digits",
+                        "3": "digits",
+                        "4": "digits",
+                        "5": "digits",
+                        "6": "digits",
+                        "7": "digits",
+                        "8": "digits",
+                        "9": "digits",
+                        "a": "add_url",
+                        "C": "clipboard",
+                        "c": "context",
+                        "ctrl l": "clear_screen",
+                        "f": "page_down",
+                        "b": "page_up",
+                        "d": "del_url",
+                        "f1": "help_menu",
+                        "G": "bottom",
+                        "g": "top",
+                        "j": "down",
+                        "k": "up",
+                        "J": "next",
+                        "K": "previous",
+                        "P": "clipboard_pri",
+                        "l": "link_handler",
+                        "o": "open_queue",
+                        "O": "open_queue_win",
+                        "p": "palette",
+                        "Q": "quit",
+                        "q": "quit",
+                        "R": "reverse",
+                        "S": "all_shorten",
+                        "s": "shorten",
+                        "u": "all_escape"
+                    }
+                }
             '';
         };
     };
