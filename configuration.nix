@@ -81,6 +81,7 @@ in
         ./home-manager/ripgrep.nix
         ./home-manager/fd.nix
         ./home-manager/man.nix
+        ./home-manager/fontconfig.nix
     ];
 
 
