@@ -201,8 +201,6 @@ in
             /******************
                 tool
             *******************/
-            p7zip
-            unrar
             bat
             bc
             binutils
@@ -210,18 +208,22 @@ in
             dosfstools
             duf
             eza
-            fastfetch
+            # fastfetch
             fd
             file
             fzf
+            glow
             iotop
             jq
             libnotify
+            moor
+            mpc
+            p7zip
             procps
             qrencode
             ripgrep
             sysstat
-            moor
+            unrar
             /******************
                 git
             *******************/
@@ -299,6 +301,14 @@ in
             zsh-autocomplete
             zsh-completion-sync
             zsh-completions
+            /******************
+                icon
+            *******************/
+            adwaita-icon-theme
+            adwaita-qt
+            candy-icons
+            kdePackages.breeze
+            morewaita-icon-theme
             /******************
                 game
             *******************/
