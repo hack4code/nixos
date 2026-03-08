@@ -68,15 +68,19 @@ in
                 frogmouth
                 linode-cli
                 mpc
-                (
-                    callPackage ./rpcd/rpcd.nix { }
-                )
                 /* icon theme */
                 adwaita-icon-theme
                 adwaita-qt
                 candy-icons
                 kdePackages.breeze
                 morewaita-icon-theme
+                /* */
+                (
+                    callPackage ./rpcd/rpcd.nix { }
+                )
+                (
+                    callPackage ./openurl/openurl.nix { }
+                )
             ];
 
             pointerCursor = {
