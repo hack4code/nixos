@@ -115,7 +115,7 @@ in
             enable = true;
 
             cache = {
-                enable = false;
+                enable = true;
             };
 
             man-db = {
