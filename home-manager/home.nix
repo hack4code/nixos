@@ -65,15 +65,7 @@ in
 
             packages = with pkgs; [
                 bitwarden-cli
-                frogmouth
                 linode-cli
-                mpc
-                /* icon theme */
-                adwaita-icon-theme
-                adwaita-qt
-                candy-icons
-                kdePackages.breeze
-                morewaita-icon-theme
                 /* */
                 (
                     callPackage ./rpcd/rpcd.nix { }
