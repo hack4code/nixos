@@ -348,6 +348,14 @@ in
             )
             (
                 writeShellApplication {
+                    name = "nr";
+                    text = ''
+                        nix-store --verify --check-contents --repair
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
                     name = "nl";
                     text = ''
                         nixos-rebuild list-generations
