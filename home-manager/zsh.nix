@@ -32,19 +32,65 @@ in
             autosuggestion = {
                 enable = true;
                 # highlight = "bold";
-                strategy = [ "history" ];
+                strategy = [
+                    "completion"
+                ];
             };
 
             history = {
                 size = 100000;
+                expireDuplicatesFirst = true;
+                extended = true;
                 ignoreAllDups = true;
+                ignoreDups = true;
                 ignoreSpace = true;
                 saveNoDups = true;
-                path = "$HOME/.config/zsh/history";
+                share = false;
+                path = "$HOME/.local/share/zsh/history";
+                ignorePatterns = [
+                    "rm *"
+                    "pkill *"
+                    "cd *"
+                    "mkdir *"
+                    "nl"
+                    "ng"
+                    "nr"
+                    "nu"
+                    "mu"
+                    "ms"
+                    "mo"
+                    "gp"
+                    "gP"
+                    "gPf"
+                    "gd"
+                    "gcm"
+                    "gcam"
+                    "gcaa"
+                    "gl"
+                    "glp"
+                    "gln"
+                    "gs"
+                    "grc"
+                    "gwm"
+                    "gwe"
+                    "jf"
+                    "jfi"
+                    "jb"
+                    "jbi"
+                    "rt"
+                    "st"
+                ];
             };
 
-            sessionVariables = {
-            };
+            siteFunctions = {
+                mkcd = ''
+                    mkdir --parents "$1" && cd "$1"
+                '';
+           };
+
+            sessionVariables = { };
+
+            setOptions = [ ];
 
             shellAliases = {
                 ip = "ip -color";
@@ -82,6 +128,7 @@ in
                 t = "date '+%F %H:%M %A'";
                 rt = "systemctl reboot";
                 st = "systemctl poweroff";
+                icat = "kitten icat";
             };
 
             initContent = lib.mkOrder 1500 ''
@@ -92,8 +139,8 @@ in
                 bindkey -s '^[j' "journalctl --boot --follow\n"
 
                 # man
-                less_termcap[md]="''${fg_bold[yellow]}"
-                less_termcap[so]="''${fg_bold[red]}''${bg[grey]}"
+                less_termcap[md]="''${fg_bold[blue]}"
+                less_termcap[so]="''${fg_bold[red]}''${bg[dark grey]}"
             '';
 
             zsh-abbr = {
