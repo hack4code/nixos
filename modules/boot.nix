@@ -39,15 +39,14 @@ in
             "pti=on"
             # "nosmt"
             "hash_pointers=always"
-            "page_poison=1"
             "iommu.passthrough=0"
             "iommu.strict=1"
             "proc_mem.force_override=never"
             "mitigations=auto"
             "kfence.sample_interval=100"
-            "vsyscall=none"
             "vdso32=0"
-            "cfi=kcfi"
+            /* */
+            "ia32_emulation=on"
         ];
 
         kernelModules = [
