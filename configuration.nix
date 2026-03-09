@@ -334,6 +334,8 @@ in
             /* switch */
             nsz
             ryubing
+            /* windows */
+            bottles
             /* pc */
             # dwarf-fortress
             # nethack
