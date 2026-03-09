@@ -209,7 +209,6 @@ in
             duf
             eza
             # fastfetch
-            fd
             file
             fzf
             glow
@@ -221,7 +220,6 @@ in
             p7zip
             procps
             qrencode
-            ripgrep
             sysstat
             unrar
             /******************
@@ -301,6 +299,18 @@ in
             zsh-autocomplete
             zsh-completion-sync
             zsh-completions
+            /******************
+                neovim
+            *******************/
+            lua-language-server
+            clang-tools
+            pyright
+            fd
+            bash-language-server
+            shellcheck
+            shfmt
+            nixd
+            ripgrep
             /******************
                 icon
             *******************/
