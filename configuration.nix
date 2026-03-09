@@ -6,6 +6,7 @@ in
 {
     imports = [
         ./patch/tpm2-tss-fapi.nix
+        ./patch/bottles.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
@@ -83,7 +84,6 @@ in
         ./home-manager/man.nix
         ./home-manager/fontconfig.nix
     ];
-
 
     time = {
         timeZone = timeZone;
