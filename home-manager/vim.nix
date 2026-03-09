@@ -225,12 +225,14 @@ in
                 set wrap
                 set nobackup
                 set mouse=
+                set modeline
 
                 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
                 let g:netrw_winsize = 30
 
                 nnoremap <silent> ;s :noh<CR>
                 nnoremap <silent> ;e :Lexplore<CR>
+                nnoremap <silent> ;p :set paste<CR>"+p:set nopaste<CR>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
