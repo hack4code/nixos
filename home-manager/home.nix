@@ -32,6 +32,8 @@ in
                 PAGER = "${pkgs.moor}/bin/moor";
                 MANPAGER = "${pkgs.moor}/bin/moor";
                 # MANPAGER = "vim +Man!";
+                SYSTEMD_PAGER = "${pkgs.moor}/bin/moor";
+                SYSTEMD_PAGERSECURE = "true";
 
                 /* moor */
                 MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap";
