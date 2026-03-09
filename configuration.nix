@@ -114,9 +114,10 @@ in
         man = {
             enable = true;
 
-            cache = {
-                enable = true;
-            };
+            # cache = {
+            #     enable = false;
+            #     generateAtRuntime = true;
+            # };
 
             man-db = {
                 enable = true;
