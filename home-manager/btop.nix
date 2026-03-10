@@ -14,7 +14,7 @@ in
                 theme_background = false;
                 truecolor = true;
                 force_tty = false;
-                presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
+                presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,nexpandtab:0:default cpu:0:block,net:0:tty";
                 vim_keys = true;
                 rounded_corners = true;
                 graph_symbol = "braille";
@@ -94,4 +94,4 @@ in
 }
 
 
-# vim: ts=4 sw=4 sts=4 ft=nix et:
+/* vim: set tabstop=4 shiftwidth=4 filetype=nix expandtab: */

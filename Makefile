@@ -8,3 +8,6 @@ switch:
 
 offline:
 	nixos-rebuild switch --sudo --offline --impure --show-trace --print-build-logs --verbose --flake ".#KISS"
+
+
+# vim: set filetype=make :
