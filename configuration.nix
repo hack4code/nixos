@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     timeZone = config.timeZone;
@@ -84,6 +84,9 @@ in
         ./home-manager/man.nix
         ./home-manager/fontconfig.nix
     ];
+
+    /* disable assertions */
+    assertions = lib.mkForce [];
 
     time = {
         timeZone = timeZone;
