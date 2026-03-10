@@ -127,22 +127,22 @@ in
                     home = "Home";
                 }
 
-                {
-                    name = "NixOS Update";
-                    alias = "NixOS Update";
-                    type = "command";
-                    args = {
-                        commands = {
-                            OSUpdate = {
-                                icon = "system-software-update";
-                                exec = "zsh -c nu";
-                                search_string = "nu";
-                            };
-                        };
-                    };
-                    priority = 10;
-                    home = "Home";
-                }
+                # {
+                #     name = "NixOS Update";
+                #     alias = "NixOS Update";
+                #     type = "command";
+                #     args = {
+                #         commands = {
+                #             OSUpdate = {
+                #                 icon = "system-software-update";
+                #                 exec = "zsh -c nu";
+                #                 search_string = "nu";
+                #             };
+                #         };
+                #     };
+                #     priority = 10;
+                #     home = "Home";
+                # }
 
                 {
                     name = "Kill Process";
