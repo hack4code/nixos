@@ -133,7 +133,7 @@ in
 
             initContent = lib.mkOrder 1500 ''
                 # keymap
-                bindkey -s '^[x' "cd ~ && clear\n"
+                bindkey -s '^[x' "cd ~ && reset\n"
                 bindkey -s '^[m' "matrix.sh\n"
                 bindkey -s '^[s' "sway\n"
                 bindkey -s '^[j' "journalctl --boot --follow\n"
