@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stable, ... }:
 
 let
     timeZone = config.timeZone;
@@ -114,18 +114,21 @@ in
             enable = true;
         };
 
-        man = {
-            enable = true;
-
-            # cache = {
-            #     enable = false;
-            #     generateAtRuntime = true;
-            # };
-
-            man-db = {
+        man = lib.mkMerge [
+            {
                 enable = true;
-            };
-        };
+                man-db = {
+                    enable = true;
+                };
+            }
+
+            (lib.mkIf (! stable) {
+                cache = {
+                    enable = false;
+                    generateAtRuntime = true;
+                };
+            })
+        ];
     };
 
     programs = {
