@@ -57,8 +57,11 @@ in
                     "nr"
                     "nu"
                     "mu"
+                    "mus"
                     "ms"
+                    "mss"
                     "mo"
+                    "mn"
                     "gp"
                     "gP"
                     "gPf"
@@ -100,7 +103,9 @@ in
                 lg = "lazygit";
                 li = "linode-cli --suppress-warnings";
                 ms = "make switch";
+                mss = "make switch-stable";
                 mu = "make update";
+                mus = "make update-stable";
                 mn = "make nconfig";
                 mo = "make oldconfig";
                 vc = "kssh -T ${vpsName}";
@@ -179,12 +184,16 @@ in
 
                     autoload compinit
                     zstyle ':completion:*' menu select
-                    zstyle ':completion:*' add-space false
+                    zstyle ':completion:*' add-space no
                     zmodload zsh/complist
                     bindkey -M menuselect 'h' vi-backward-char
                     bindkey -M menuselect 'l' vi-forward-char
                     bindkey -M menuselect 'j' vi-down-line-or-history
                     bindkey -M menuselect 'k' vi-up-line-or-history
+
+                    zstyle ':omz:plugins:eza' 'icons' yes
+                    zstyle ':omz:plugins:eza' 'time-style' '+%Y-%m-%d %H:%M'
+
 
                     SWAY=$(command -v sway)
                     function sway {
