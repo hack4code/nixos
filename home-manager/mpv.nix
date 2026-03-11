@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -62,6 +62,11 @@ in
                 log-file = "~/.local/share/mpv/log";
                 term-status-msg = "\"\${time-pos} \${duration}\"";
             };
+
+            scripts = with pkgs.mpvScripts; [
+                modernx
+                # mpris
+            ];
 
             scriptOpts = {
                 console = {
