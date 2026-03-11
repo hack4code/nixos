@@ -114,21 +114,21 @@ in
             enable = true;
         };
 
-        man = lib.mkMerge [
-            {
+        man = {
+            enable = true;
+            man-db = {
                 enable = true;
-                man-db = {
-                    enable = true;
-                };
-            }
-
-            (lib.mkIf (! stable) {
+            };
+        } // (if (!stable) then
+            {
                 cache = {
                     enable = false;
                     generateAtRuntime = true;
                 };
-            })
-        ];
+            }
+            else
+            { }
+        );
     };
 
     programs = {
