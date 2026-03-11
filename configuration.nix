@@ -7,6 +7,7 @@ in
     imports = [
         ./patch/tpm2-tss-fapi.nix
         ./patch/bottles.nix
+        ./patch/weechat.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
@@ -24,6 +25,7 @@ in
         ./config/vps.nix
         ./config/wifi.nix
         ./config/wireguard.nix
+        ./config/weechat.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
         ./modules/dnscrypt-proxy.nix
