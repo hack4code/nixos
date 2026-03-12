@@ -329,6 +329,11 @@ in
             kdePackages.breeze
             morewaita-icon-theme
             /******************
+                graphics
+            *******************/
+            mesa
+            mesa_glu
+            /******************
                 game
             *******************/
             tetris
