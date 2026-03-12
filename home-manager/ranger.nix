@@ -44,6 +44,10 @@ in
                 save_tabs_on_exit = false;
             };
 
+            extraConfig = ''
+                default_linemode  unicode_icons
+            '';
+
             rifle = [
                 { condition = "mime ^video, has mpv, X, flag f"; command = "mpv -- \"$@\""; }
                 { condition = "ext mkv, has mpv, X, flag f"; command = "mpv -- \"$@\""; }
