@@ -45,43 +45,16 @@ in
                 ignoreDups = true;
                 ignoreSpace = true;
                 saveNoDups = true;
-                share = false;
+                share = true;
                 path = "$HOME/.local/share/zsh/history";
-                ignorePatterns = [
+                ignorePatterns = (builtins.attrNames shellAliases) ++ [
                     "rm *"
                     "pkill *"
                     "cd *"
                     "mkdir *"
-                    "nl"
-                    "ng"
-                    "nr"
-                    "nu"
-                    "mu"
-                    "mus"
-                    "ms"
-                    "mss"
-                    "mo"
-                    "mn"
-                    "gp"
-                    "gP"
-                    "gPf"
-                    "gd"
-                    "gcm"
-                    "gcam"
-                    "gcaa"
-                    "gl"
-                    "glp"
-                    "gln"
-                    "gs"
-                    "grc"
-                    "gwm"
-                    "gwe"
-                    "jf"
-                    "jfi"
-                    "jb"
-                    "jbi"
-                    "rt"
-                    "st"
+                    "mkcd *"
+                    "ls *"
+                    "la *"
                 ];
             };
 
@@ -96,44 +69,45 @@ in
             setOptions = [ ];
 
             shellAliases = {
-                ip = "ip -color";
+                gcaa = "git commit --all --amend";
+                gcam = "git commit --all --message";
+                gcm = "git commit --message";
+                gd = "git diff";
+                gl = "git log";
+                gln = "git log --name-only";
+                glp = "git log --patch";
+                gPf = "git push --force";
+                gp = "git pull";
+                gP = "git push";
+                grc = "git rebase --continue";
+                gs = "git status";
+                gwe = "git switch e";
+                gwm = "git switch main";
+                icat = "kitten icat";
                 ip6 = "ip -color -6";
-                wp = "wl-copy";
-                tp = "cd \"$(mktemp -d)\"";
+                ip = "ip -color";
+                jbi = "journalctl --boot --identifier";
+                jb = "journalctl --boot";
+                jfi = "journalctl --follow --identifier";
+                jf = "journalctl --follow";
                 lg = "lazygit";
-                li = "linode-cli --suppress-warnings";
+                li = "linode";
+                lp = "lsof -iTCP -sTCP:listen -P -n";
+                mn = "make nconfig";
+                mo = "make oldconfig";
                 ms = "make switch";
                 mss = "make switch-stable";
                 mu = "make update";
                 mus = "make update-stable";
-                mn = "make nconfig";
-                mo = "make oldconfig";
-                vc = "kssh -T ${vpsName}";
-                vd = "kssh -T ${vpsName} docker container";
-                vl = "kssh -T ${vpsName} docker container list";
-                vg = "kssh -T ${vpsName} docker container logs";
-                jf = "journalctl --follow";
-                jfi = "journalctl --follow --identifier";
-                jb = "journalctl --boot";
-                jbi = "journalctl --boot --identifier";
-                gp = "git pull";
-                gP = "git push";
-                gPf = "git push --force";
-                gd = "git diff";
-                gcm = "git commit --message";
-                gcam = "git commit --all --message";
-                gcaa = "git commit --all --amend";
-                gl = "git log";
-                glp = "git log --patch";
-                gln = "git log --name-only";
-                gs = "git status";
-                grc = "git rebase --continue";
-                gwm = "git switch main";
-                gwe = "git switch e";
-                t = "date '+%F %H:%M %A'";
                 rt = "systemctl reboot";
                 st = "systemctl poweroff";
-                icat = "kitten icat";
+                t = "date '+%F %H:%M %A'";
+                tp = "cd \"$(mktemp -d)\"";
+                vc = "kssh -T ${vpsName}";
+                vd = "kssh -T ${vpsName} docker container";
+                vg = "kssh -T ${vpsName} docker container logs";
+                vl = "kssh -T ${vpsName} docker container list";
+                wp = "wl-copy";
             };
 
             initContent = lib.mkOrder 1500 ''
@@ -150,6 +124,7 @@ in
 
             zsh-abbr = {
                 enable = true;
+
                 abbreviations = shellAliases;
             };
 
@@ -191,9 +166,13 @@ in
                     bindkey -M menuselect 'j' vi-down-line-or-history
                     bindkey -M menuselect 'k' vi-up-line-or-history
 
-                    zstyle ':omz:plugins:eza' 'icons' yes
+                    # eza
+                    if [[ $TERM == "xterm-kitty" ]]; then
+                        zstyle ':omz:plugins:eza' 'icons' yes
+                    else
+                        zstyle ':omz:plugins:eza' 'icons' no
+                    fi
                     zstyle ':omz:plugins:eza' 'time-style' '+%Y-%m-%d %H:%M'
-
 
                     SWAY=$(command -v sway)
                     function sway {
