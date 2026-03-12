@@ -32,13 +32,13 @@ const RE_NYAA = /nyaa.si/i;
 const RE_THUNDER = /xl720.com/i;
 
 const CSS_BUTTON_TRANSMISSION = {
-    "margin": "1px 4px 1px 4px",
+    "margin": "1px 2px 1px 4px",
     "display": "inline-block",
     "font-family": "Twitter Color Emoji"
 };
 
 const CSS_BUTTON_RTORRENT = {
-    "margin": "1px 4px 1px 4px",
+    "margin": "1px 2px 1px 2px",
     "display": "inline-block",
     "font-family": "Noto Color Emoji"
 };
