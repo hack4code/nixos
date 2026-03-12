@@ -26,18 +26,16 @@
             # /* fira */
             # fira
             # fira-code
+            /* iosevka */
+            iosevka
             /* source han */
             source-han-serif
             source-han-sans
             source-han-mono
             /* nerd */
             nerd-fonts.symbols-only
-            /* awesome */
-            font-awesome
             /* twitter */
             twemoji-color-font
-            /* iosevka */
-            iosevka
             /* swei-gothic */
             (
                 callPackage ./swei-gothic.nix {}

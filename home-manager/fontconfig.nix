@@ -37,7 +37,7 @@ in
             configFile = {
                 ico = {
                     enable = true;
-                    label = "ico-family-alias";
+                    label = "ico-font-alias";
                     priority = 60;
                     text = ''
                         <?xml version="1.0"?>
@@ -46,7 +46,7 @@ in
                             <alias>
                                 <family>ico-c</family>
                                 <prefer>
-                                    <family>Font Awesome 7 Free</family>
+                                    <family>Symbols Nerd Font</family>
                                 </prefer>
                             </alias>
                         </fontconfig>
