@@ -9,7 +9,7 @@ import httpx
 
 
 def is_image(url: str) -> bool:
-    exts = [ '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp' ]
+    exts = [ '.svg', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp' ]
     for ext in exts:
         if url.endswith(ext):
             return True
