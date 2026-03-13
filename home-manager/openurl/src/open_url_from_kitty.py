@@ -14,8 +14,12 @@ def is_image(url: str) -> bool:
         if url.endswith(ext):
             return True
 
-    response = httpx.head(url)
-    if 'image' in response.headers['Content-Type'].lower():
+    try:
+        headers = httpx.head(url).headers
+    except Exception:
+        return False
+
+    if 'content-type' in headers and 'image' in headers['content-type'].lower():
         return True
 
     return False
