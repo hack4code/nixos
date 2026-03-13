@@ -56,6 +56,28 @@ in
                 /* download */
                 DefaultDownloadDirectory = "$HOME/download";
 
+                Permissions = {
+                    Notifications = {
+                        Allow = [
+                            "https://youtube.com"
+                            "https://www.youtube.com"
+                            "https://reddit.com"
+                            "https://www.reddit.com"
+                            "https://github.com"
+                            "https://www.github.com"
+                            "https://mail.google.com"
+                            "https://cloud.linode.com"
+                            "https://douban.com"
+                            "https://www.douban.com"
+                            "https://zhihu.com"
+                            "https://www.zhihu.com"
+                        ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+                };
+
                 HttpAllowlist = [
                     "http://localhost"
                     "http://127.0.0.1"
@@ -131,6 +153,17 @@ in
                     };
 
                     settings = {
+                        /******************
+                            notification
+                        *******************/
+                        /* desktop notification */
+                        "permissions.default.desktop-notification" = 1;
+                        "dom.push.enabled" = true;
+                        /* background notification */
+                        "dom.webnotifications.enabled" = true;
+                        /******************
+                            ai
+                        *******************/
                         "browser.ai.control.default" = "blocked";
                         "browser.ai.control.linkPreviewKeyPoints" = "blocked";
                         "browser.ai.control.pdfjsAltText" = "blocked";
@@ -466,6 +499,9 @@ in
                         user_pref("security.sandbox.content.level", 9);
                         user_pref("security.sandbox.socket.process.level", 2);
                         user_pref("security.sandbox.gpu.level", 2);
+
+                        /* split view */
+                        user_pref("browser.tabs.splitView.enabled", true);
                     '';
 
                     userChrome = ''
@@ -660,6 +696,14 @@ in
                         force = true;
                         default = "ddg";
                         privateDefault = "ddg";
+                    };
+                    settings = {
+                        "browser.ai.control.default" = "blocked";
+                        "browser.ai.control.linkPreviewKeyPoints" = "blocked";
+                        "browser.ai.control.pdfjsAltText" = "blocked";
+                        "browser.ai.control.sidebarChatbot" = "blocked";
+                        "browser.ai.control.smartTabGroups" = "blocked";
+                        "browser.ai.control.translations" = "blocked";
                     };
                 };
             };
