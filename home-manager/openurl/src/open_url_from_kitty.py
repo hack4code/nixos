@@ -19,8 +19,11 @@ def is_image(url: str) -> bool:
     except Exception:
         return False
 
-    if 'content-type' in headers and 'image' in headers['content-type'].lower():
-        return True
+    try:
+        if 'image' in headers['content-type'].lower():
+            return True
+    except KeyError:
+        return False
 
     return False
 
