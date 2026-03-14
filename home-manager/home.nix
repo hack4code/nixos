@@ -68,7 +68,6 @@ in
             packages = with pkgs; [
                 bitwarden-cli
                 linode-cli
-                /* */
                 (
                     callPackage ./rpcd/rpcd.nix { }
                 )

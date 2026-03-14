@@ -75,7 +75,7 @@ in
         ./home-manager/syncdrive.nix
         ./home-manager/theme.nix
         ./home-manager/uv.nix
-        ./home-manager/vim.nix
+        ./home-manager/neovim.nix
         ./home-manager/waybar.nix
         ./home-manager/xdg.nix
         ./home-manager/zathura.nix

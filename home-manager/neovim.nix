@@ -7,13 +7,33 @@ in
     home-manager.users.${userName} = {
         programs.neovim = {
             enable = true;
+
             viAlias = true;
             vimAlias = true;
 
+            withNodeJs = false;
+            withPython3 = true;
+            withRuby = false;
+
+            extraPackages = with pkgs; [
+                lua-language-server
+                clang-tools
+                pyright
+                fd
+                bash-language-server
+                shellcheck
+                shfmt
+                nixd
+                ripgrep
+            ];
+
             plugins = with pkgs.vimPlugins; [
                 vim-airline-themes
+                kitty-scrollback-nvim
+                plenary-nvim
                 {
                     plugin = vim-airline;
+                    type = "viml";
                     config = ''
                         let g:airline_theme='base16_gruvbox_dark_hard'
                     '';
@@ -217,15 +237,14 @@ in
                         vim.lsp.enable('nixd')
                     '';
                 }
-                kitty-scrollback-nvim
             ];
 
             extraConfig = ''
-                set number
-                set wrap
-                set nobackup
-                set mouse=
+                set relativenumber
                 set modeline
+                set nobackup
+                set wrap
+                set mouse=
 
                 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
                 let g:netrw_winsize = 30
@@ -242,20 +261,6 @@ in
 
                 vim.opt.winborder = 'single'
             '';
-        };
-
-        home = {
-            packages = with pkgs; [
-                lua-language-server
-                clang-tools
-                pyright
-                fd
-                bash-language-server
-                shellcheck
-                shfmt
-                nixd
-                ripgrep
-            ];
         };
     };
 }
