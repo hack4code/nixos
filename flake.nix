@@ -26,6 +26,11 @@
         };
 
         home-manager = {
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        home-manager-stable = {
             url = "github:nix-community/home-manager/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
@@ -40,7 +45,7 @@
         };
     };
 
-    outputs = { nixpkgs-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
+    outputs = { nixpkgs-stable, home-manager-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
     {
         nixosConfigurations = rec {
             system = "x86_64-linux";
@@ -59,8 +64,7 @@
                 };
             };
 
-            modules = [
-                home-manager.nixosModules.home-manager
+            modules-base = [
                 nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
                 lanzaboote.nixosModules.lanzaboote
                 ({ lib, ... }: {
@@ -73,13 +77,21 @@
                 ./configuration.nix
             ];
 
+            modules-stable = modules-base ++ [
+                home-manager-stable.nixosModules.home-manager
+            ];
+
+            modules-unstable = modules-base ++ [
+                home-manager.nixosModules.home-manager
+            ];
+
             KISS-STABLE = nixpkgs-stable.lib.nixosSystem {
                 specialArgs = {
                     inherit pkgs-stable;
                     inherit pkgs-unstable;
                     stable = true;
                 };
-                inherit modules;
+                modules = modules-stable;
             };
 
             KISS-UNSTABLE = nixpkgs.lib.nixosSystem {
@@ -88,7 +100,7 @@
                     inherit pkgs-unstable;
                     stable = false;
                 };
-                inherit modules;
+                modules = modules-unstable;
             };
         };
     };
