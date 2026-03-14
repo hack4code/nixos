@@ -1,20 +1,15 @@
-# This file is part of ranger, the console file manager.
-# License: GNU GPL version 3, see the file "AUTHORS" for details.
-# This theme was greatly inspired by "RougarouTheme" for ranger
-# It can be found in: `https://github.com/RougarouTheme/ranger`
-
 from __future__ import absolute_import, division, print_function
 
 from ranger.gui.colorscheme import ColorScheme
 from ranger.gui.color import (
-    black,
-    blue,
-    cyan,
-    green,
-    magenta,
-    red,
-    white,
-    yellow,
+    # black,
+    # blue,
+    # cyan,
+    # green,
+    # magenta,
+    # red,
+    # white,
+    # yellow,
     default,
     normal,
     bold,
@@ -50,8 +45,8 @@ class Dracula(ColorScheme):
             else:
                 fg = 10
         if context.container:
-            attr |= bold
-            fg = 9
+            # attr |= bold
+            fg = 123
         if context.directory:
             # attr |= bold
             # fg = 30
@@ -72,10 +67,10 @@ class Dracula(ColorScheme):
             fg = 6 if context.good else 13
         if context.tag_marker and not context.selected:
             attr |= bold
-            if fg in (red, magenta):
-                fg = 1
-            else:
-                fg = 15
+            # if fg in (red, magenta):
+            #     fg = 1
+            # else:
+            #     fg = 15
         if not context.selected and (context.cut or context.copied):
             fg = 8
             attr |= bold
