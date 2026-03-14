@@ -72,9 +72,8 @@ in
                             "https://zhihu.com"
                             "https://www.zhihu.com"
                         ];
-                        Block = [ ];
                         BlockNewRequests = true;
-                        Locked = true;
+                        Locked = false;
                     };
                 };
 
@@ -153,17 +152,6 @@ in
                     };
 
                     settings = {
-                        /******************
-                            notification
-                        *******************/
-                        /* desktop notification */
-                        "permissions.default.desktop-notification" = 1;
-                        "dom.push.enabled" = true;
-                        /* background notification */
-                        "dom.webnotifications.enabled" = true;
-                        /******************
-                            ai
-                        *******************/
                         "browser.ai.control.default" = "blocked";
                         "browser.ai.control.linkPreviewKeyPoints" = "blocked";
                         "browser.ai.control.pdfjsAltText" = "blocked";
@@ -232,10 +220,6 @@ in
                         /* local */
                         user_pref("dom.security.https_only_mode.upgrade_local", false);
 
-                        /* libnotify */
-                        user_pref("content.notify.interval", 100000);
-                        user_pref("dom.webnotifications.enabled", true);
-                        user_pref("alerts.useSystemBackend", true);
 
                         /* ctrl+q */
                         user_pref("browser.quitShortcut.disabled", true);
@@ -502,6 +486,13 @@ in
 
                         /* split view */
                         user_pref("browser.tabs.splitView.enabled", true);
+
+                        /* notification */
+                        user_pref("content.notify.interval", 100000);
+                        user_pref("dom.webnotifications.enabled", true);
+                        user_pref("alerts.useSystemBackend", true);
+                        user_pref("dom.push.enabled", true);
+
                     '';
 
                     userChrome = ''
