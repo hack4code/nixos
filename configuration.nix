@@ -217,13 +217,13 @@ in
             dosfstools
             duf
             eza
-            # fastfetch
             file
             fzf
             glow
             iotop
             jq
             libnotify
+            lsof
             moor
             mpc
             p7zip
