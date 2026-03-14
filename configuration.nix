@@ -121,16 +121,13 @@ in
             man-db = {
                 enable = true;
             };
-        } // (if (!stable) then
-            {
-                cache = {
-                    enable = false;
-                    generateAtRuntime = true;
-                };
-            }
-            else
-            { }
-        );
+        } // (if stable then { } else
+        {
+            cache = {
+                enable = false;
+                generateAtRuntime = true;
+            };
+        });
     };
 
     programs = {
