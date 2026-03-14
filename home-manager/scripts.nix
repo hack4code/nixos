@@ -29,6 +29,8 @@ in
                             panic 'kernel version not found'
                         fi
 
+                        v_major=$(echo "$1" | cut -d '.' -f 1)
+
                         CURL="${pkgs.curl}/bin/curl"
 
                         kernel_nix_file="$HOME/source/nixos/config/kernel.nix"
@@ -48,30 +50,53 @@ in
 
                         rm -rf linux*
 
-                        kernel="linux-$1.tar.gz"
-                        kernel_url="https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/$kernel"
-                        if (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url") == 200 )); then
-                            $CURL -O -L "$kernel_url"
-                            if ! [[ -f $kernel ]]; then
-                                panic "$kernel not exist"
+                        kernel_tuna="linux-$1.tar.gz"
+                        kernel_url_tuna="https://mirrors.tuna.tsinghua.edu.cn/kernel/v''${v_major}.x/$kernel_tuna"
+
+                        kernel_github="v$1.tar.gz"
+                        kernel_url_github="https://github.com/torvalds/linux/archive/refs/tags/$kernel_github"
+
+                        kernel_cdn="linux-$1.tar.xz"
+                        kernel_url_cdn="https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/$kernel_cdn"
+
+                        if (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_tuna") == 200 )); then
+                            $CURL -O -L --retry 8 "$kernel_url_tuna"
+                            if ! [[ -f $kernel_tuna ]]; then
+                                panic "$kernel_tuna not exist"
                             fi
 
-                            tar xzf "$kernel" && rm -f "$kernel"
+                            tar xzf "$kernel_tuna" && rm -f "$kernel_tuna"
 
-                            kernel_hash=$($CURL -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc | grep -F "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            kernel_hash=$($CURL -s "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
                             if [[ -z "$kernel_hash" ]]; then
                                 panic 'no sha256 signature found'
                             fi
-                        else
-                            kernel="v$1.tar.gz"
-                            kernel_url="https://github.com/torvalds/linux/archive/refs/tags/$kernel"
-                            $CURL -O -L --proxy socks5h://10.0.0.1:1080 "$kernel_url"
-                            if ! [[ -f $kernel ]]; then
-                                panic "$kernel not exist"
+                            kernel_url="$kernel_url_tuna"
+                        elif (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
+                            $CURL -O -L --retry 8 "$kernel_url_cdn"
+                            if ! [[ -f $kernel_cdn ]]; then
+                                panic "$kernel_cdn not exist"
                             fi
 
-                            tar xzf "$kernel" && rm -f "$kernel"
+                            tar xJf "$kernel_cdn" && rm -f "$kernel_cdn"
+
+                            kernel_hash=$($CURL -s "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            if [[ -z "$kernel_hash" ]]; then
+                                panic 'no sha256 signature found'
+                            fi
+                            kernel_url="$kernel_url_cdn"
+                        elif (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
+                            $CURL -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
+                            if ! [[ -f $kernel_github ]]; then
+                                panic "$kernel_github not exist"
+                            fi
+
+                            tar xzf "$kernel_github" && rm -f "$kernel_github"
+
+                            kernel_url="$kernel_url_github"
                             kernel_hash=$(nix hash path "linux-$1")
+                        else
+                            panic "kernel $1 not found"
                         fi
 
                         sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$kernel_nix_file"
