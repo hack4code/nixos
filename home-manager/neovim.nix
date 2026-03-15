@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, stable, ... }:
 
 let
     userName = config.userName;
@@ -257,11 +257,20 @@ in
                 autocmd InsertLeave * set nocursorline
             '';
 
-            extraLuaConfig = ''
+        } // (if stable then
+        {
+           extraLuaConfig = ''
 
                 vim.opt.winborder = 'single'
             '';
-        };
+        }
+        else
+        {
+            initLua = ''
+
+                vim.opt.winborder = 'single'
+            '';
+        });
     };
 }
 
