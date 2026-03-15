@@ -6,13 +6,15 @@
         uid = mkOption { type = int; };
         userPassWord = mkOption { type = str; };
         userHome = mkOption { type = str; };
+        userLocation = mkOption { type = str; };
     };
 
     config = rec {
-        userName = "e";
+        userName = "x";
         uid = 1000;
         userPassWord = "123456";
         userHome = "/home/${userName}";
+        userLocation = "Marseille, France";
     };
 }
 
