@@ -47,14 +47,17 @@ in
                 saveNoDups = true;
                 share = true;
                 path = "$HOME/.local/share/zsh/history";
-                ignorePatterns = (builtins.attrNames shellAliases) ++ [
+
+                ignorePatterns = (map (x: x + " *") (builtins.attrNames shellAliases)) ++ [
                     "rm *"
                     "pkill *"
+                    "kill *"
                     "cd *"
                     "mkdir *"
                     "mkcd *"
                     "ls *"
                     "la *"
+                    "ll *"
                 ];
             };
 

@@ -65,19 +65,15 @@ in
         ./home-manager/rime.nix
         ./home-manager/rtorrent.nix
         ./home-manager/scripts.nix
-        ./home-manager/sherlock.nix
         ./home-manager/sndctl.nix
         ./home-manager/ssh.nix
         ./home-manager/swayctl.nix
         ./home-manager/swayimg.nix
-        ./home-manager/swaylock.nix
-        ./home-manager/swaync.nix
         ./home-manager/sway.nix
         ./home-manager/syncdrive.nix
         ./home-manager/theme.nix
         ./home-manager/uv.nix
         ./home-manager/neovim.nix
-        ./home-manager/waybar.nix
         ./home-manager/xdg.nix
         ./home-manager/zathura.nix
         ./home-manager/zsh.nix
@@ -170,12 +166,7 @@ in
             };
 
             extraPackages = with pkgs; [
-                swaybg
-                swaylock
                 swayimg
-                swayidle
-                swaynotificationcenter
-                waybar
                 clipman
                 wl-clipboard
                 kitty
@@ -185,7 +176,6 @@ in
                 neomutt
                 urlscan
                 zathura
-                sherlock-launcher
                 wl-kbptr
                 slurp
                 xdg-desktop-portal-termfilechooser
@@ -227,6 +217,7 @@ in
             qrencode
             sysstat
             unrar
+            wtype
             /******************
                 docker
             *******************/

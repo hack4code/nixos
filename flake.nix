@@ -32,7 +32,18 @@
 
         home-manager-stable = {
             url = "github:nix-community/home-manager/release-25.11";
+            inputs.nixpkgs.follows = "nixpkgs-stable";
+        };
+
+        noctalia-qs = {
+            url = "github:noctalia-dev/noctalia-qs";
             inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        noctalia = {
+            url = "github:noctalia-dev/noctalia-shell";
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.noctalia-qs.follows = "noctalia-qs";
         };
 
         nixos-hardware = {
@@ -45,7 +56,7 @@
         };
     };
 
-    outputs = { nixpkgs-stable, home-manager-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
+    outputs = inputs@{ nixpkgs-stable, home-manager-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
     {
         nixosConfigurations = rec {
             system = "x86_64-linux";
@@ -89,6 +100,7 @@
                 specialArgs = {
                     inherit pkgs-stable;
                     inherit pkgs-unstable;
+                    inherit inputs;
                     stable = true;
                 };
                 modules = modules-stable;
@@ -98,6 +110,7 @@
                 specialArgs = {
                     inherit pkgs-stable;
                     inherit pkgs-unstable;
+                    inherit inputs;
                     stable = false;
                 };
                 modules = modules-unstable;
