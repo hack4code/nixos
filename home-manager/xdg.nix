@@ -25,9 +25,6 @@ in
                 publicShare = "${userHome}/temp";
                 templates = "${userHome}/temp";
                 videos = "${userHome}/movie";
-                extraConfig = {
-                    XDG_MISC_DIR = "${userHome}/temp";
-                };
             };
 
             portal = {
