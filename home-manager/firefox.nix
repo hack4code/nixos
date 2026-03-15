@@ -2,6 +2,9 @@
 
 let
     userName = config.userName;
+    ffNoticationsAllow = config.ffNoticationsAllow;
+    ffHttpAllow = config.ffHttpAllow;
+    ffCookiesAllow = config.ffCookiesAllow;
 in
 {
     home-manager.users.${userName} = {
@@ -58,74 +61,17 @@ in
 
                 Permissions = {
                     Notifications = {
-                        Allow = [
-                            "https://youtube.com"
-                            "https://www.youtube.com"
-                            "https://reddit.com"
-                            "https://www.reddit.com"
-                            "https://github.com"
-                            "https://www.github.com"
-                            "https://mail.google.com"
-                            "https://cloud.linode.com"
-                            "https://douban.com"
-                            "https://www.douban.com"
-                            "https://zhihu.com"
-                            "https://www.zhihu.com"
-                        ];
+                        Allow = ffNoticationsAllow;
                         BlockNewRequests = true;
                         Locked = false;
                     };
                 };
 
-                HttpAllowlist = [
-                    "http://localhost"
-                    "http://127.0.0.1"
-                    "http://10.0.0.1"
-                    "http://linode.me"
-                ];
+                HttpAllowlist = ffHttpAllow;
 
                 /* cookies */
                 Cookies = {
-                    Allow = [
-                        "http://10.0.0.1:9091"
-                        "http://memos.linode.me:5230"
-                        /* wikipedia */
-                        "https://wikipedia.org"
-                        /* github */
-                        "https://github.com"
-                        /* lwn */
-                        "https://lwn.net"
-                        /* google */
-                        "https://google.com"
-                        "https://www.google.com"
-                        "https://accounts.google.com"
-                        "https://mail.google.com"
-                        "https://drive.google.com"
-                        "https://youtube.com"
-                        "https://www.youtube.com"
-                        /* douban */
-                        "https://douban.com"
-                        /* zhihu */
-                        "https://zhihu.com"
-                        /* monkeytype */
-                        "https://monkeytype.com"
-                        /* linode */
-                        "https://linode.com"
-                        "https://cloud.linode.com"
-                        "https://login.linode.com"
-                        /* stackoverflow */
-                        "https://stackoverflow.com"
-                        /* reddit */
-                        "https://reddit.com"
-                        /* srt */
-                        "https://srtku.com"
-                        /* zlib */
-                        "http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion"
-                        /* rutracker */
-                        "https://rutracker.org"
-                        /* stackoverflow */
-                        "https://superuser.com"
-                    ];
+                    Allow = ffCookiesAllow;
                 };
             };
 
@@ -151,14 +97,7 @@ in
                         privateDefault = "google";
                     };
 
-                    settings = {
-                        "browser.ai.control.default" = "blocked";
-                        "browser.ai.control.linkPreviewKeyPoints" = "blocked";
-                        "browser.ai.control.pdfjsAltText" = "blocked";
-                        "browser.ai.control.sidebarChatbot" = "blocked";
-                        "browser.ai.control.smartTabGroups" = "blocked";
-                        "browser.ai.control.translations" = "blocked";
-                    };
+                    settings = { };
 
                     # containers = {
                     #     self = {
@@ -216,10 +155,7 @@ in
                         /* https */
                         user_pref("dom.security.https_only_mode", false);
                         user_pref("dom.security.https_first", true);
-
-                        /* local */
                         user_pref("dom.security.https_only_mode.upgrade_local", false);
-
 
                         /* ctrl+q */
                         user_pref("browser.quitShortcut.disabled", true);
@@ -473,9 +409,6 @@ in
                         /* mkv */
                         user_pref("media.mkv.enabled", true);
 
-                        /* ai */
-                        user_pref("browser.ml.enable", false);
-
                         /* file picker */
                         user_pref("widget.use-xdg-desktop-portal.file-picker", 0);
 
@@ -493,6 +426,14 @@ in
                         user_pref("alerts.useSystemBackend", true);
                         user_pref("dom.push.enabled", true);
 
+                        /* ai */
+                        user_pref("browser.ai.control.default", "blocked");
+                        user_pref("browser.ai.control.linkPreviewKeyPoints", "blocked");
+                        user_pref("browser.ai.control.pdfjsAltText", "blocked");
+                        user_pref("browser.ai.control.sidebarChatbot", "blocked");
+                        user_pref("browser.ai.control.smartTabGroups", "blocked");
+                        user_pref("browser.ai.control.translations", "blocked");
+                        user_pref("browser.ml.enable", false);
                     '';
 
                     userChrome = ''
@@ -688,14 +629,7 @@ in
                         default = "ddg";
                         privateDefault = "ddg";
                     };
-                    settings = {
-                        "browser.ai.control.default" = "blocked";
-                        "browser.ai.control.linkPreviewKeyPoints" = "blocked";
-                        "browser.ai.control.pdfjsAltText" = "blocked";
-                        "browser.ai.control.sidebarChatbot" = "blocked";
-                        "browser.ai.control.smartTabGroups" = "blocked";
-                        "browser.ai.control.translations" = "blocked";
-                    };
+                    settings = { };
                 };
             };
         };

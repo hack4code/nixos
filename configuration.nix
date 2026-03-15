@@ -26,6 +26,7 @@ in
         ./config/wifi.nix
         ./config/wireguard.nix
         ./config/weechat.nix
+        ./config/firefox.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
         ./modules/dnscrypt-proxy.nix
