@@ -5,8 +5,6 @@ let
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
-    bgThinkpad = config.bgThinkpad;
-    bgSamsung = config.bgSamsung;
 
     keyboard = config.keyboard;
     cherry = config.cherry;
@@ -152,13 +150,12 @@ in
                 keybindings =
                 let
                     modifier = "Mod4";
-                    swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
                     firefox = "${pkgs.firefox}/bin/firefox";
                     grim = "${pkgs.grim}/bin/grim";
-                    swaylock = "${pkgs.swaylock}/bin/swaylock";
-                    sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
                     wl-kbptr = "${pkgs.wl-kbptr}/bin/wl-kbptr";
+                    sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
                     zathura = "${pkgs.zathura}/bin/zathura";
+                    noctalia-ipc = "noctalia-shell ipc call";
                 in
                 {
                     "${modifier}+left" = "focus left";
@@ -167,12 +164,12 @@ in
                     "${modifier}+down" = "focus down";
 
                     "${modifier}+return" = "exec kitty";
-                    "${modifier}+semicolon" = "exec swayctl kitty";
+                    "${modifier}+semicolon" = "exec ${noctalia-ipc} launcher clipboard";
                     "${modifier}+apostrophe" = "workspace number 10";
                     "${modifier}+comma" = "workspace number 11";
                     "${modifier}+period" = "workspace number 12";
 
-                    "${modifier}+a" = "exec --no-startup-id ${swaync-client} -t -sw";
+                    "${modifier}+a" = "exec --no-startup-id ${noctalia-ipc} notifications toggleHistory";
                     "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
@@ -183,10 +180,10 @@ in
                     "${modifier}+m" = "exec ${wl-kbptr} -o modes=floating','click -o mode_floating.source=detect";
                     "${modifier}+n" = "exec ${wl-kbptr} -o modes=tile','click";
 
-                    "${modifier}+o" = "exec ${sherlock}";
+                    # "${modifier}+o" = "exec --no-startup-id ${noctalia-ipc} launcher toggle";
+                    "${modifier}+o" = "exec --no-startup-id ${sherlock}";
                     "${modifier}+q" = "kill";
                     "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
-                    "${modifier}+s" = "exec --no-startup-id ${swaync-client} -C";
                     "${modifier}+t" = "exec --no-startup-id swayctl ncmpcpp time";
                     "${modifier}+u" = "exec --no-startup-id swayctl mpd reload";
                     "${modifier}+w" = "exec --no-startup-id swayctl ncmpcpp toggle";
@@ -205,12 +202,15 @@ in
                     "${modifier}+8" = "workspace number 8";
                     "${modifier}+9" = "workspace number 9";
 
+                    "${modifier}+alt+semicolon" = "exec swayctl kitty";
                     "${modifier}+alt+a" = "exec --no-startup-id swayctl camer toggle";
                     "${modifier}+alt+e" = "reload";
-                    "${modifier}+alt+f" = "exec ${swaylock} -f";
+                    "${modifier}+alt+f" = "exec ${noctalia-ipc} lockScreen lock";
+                    "${modifier}+alt+h" = "exec ${noctalia-ipc} idleInhibitor toggle";
                     "${modifier}+alt+q" = "exec sway exit";
                     "${modifier}+alt+r" = "exec --no-startup-id swayctl reboot";
                     "${modifier}+alt+s" = "exec --no-startup-id swayctl shutdown";
+                    "${modifier}+alt+c" = "exec --no-startup-id ${noctalia-ipc} notifications clear";
                     "${modifier}+alt+t" = "exec --no-startup-id ${grim} -o DP-3 ~/picture/screen/screenshot.png";
                     "${modifier}+alt+j" = "exec --no-startup-id swayctl ncmpcpp lyricsdown";
                     "${modifier}+alt+k" = "exec --no-startup-id swayctl ncmpcpp lyricsup";
@@ -229,19 +229,7 @@ in
                     };
                 };
 
-                bars = [
-                    {
-                        command = "waybar";
-                        mode = "dock";
-                        position = "top";
-                        fonts = {
-                            names = [
-                                "Fira Mono"
-                            ];
-                            size = 16.0;
-                        };
-                    }
-                ];
+                bars = [ ];
             };
 
             extraConfigEarly = ''
@@ -253,13 +241,7 @@ in
             let
                 xbacklight = "${pkgs.acpilight}/bin/xbacklight";
                 wpctl = "${pkgs.wireplumber}/bin/wpctl";
-                swaybg = "${pkgs.swaybg}/bin/swaybg";
-                wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
                 sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
-                swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
-                swayidle = "${pkgs.swayidle}/bin/swayidle";
-                swaylock = "${pkgs.swaylock}/bin/swaylock";
-                # fcitx5 = "${pkgs.fcitx5}/bin/fcitx5";
             in
             ''
                 workspace 0  output "${monitorThinkpad}"
@@ -280,58 +262,31 @@ in
 
                 for_window [window_type="dialog"] floating enable
                 for_window [window_role="dialog"] floating enable
-
-                # firefox
                 for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
                 for_window [app_id="firefox" title="^File Upload$"] floating enable, border pixel 2, move position center, resize set 60 ppt 90 ppt
                 for_window [app_id="firefox" title="^Page Info"] floating enable, border pixel 1,  move position center
                 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 70 ppt 69 ppt, resize set 30 ppt 30 ppt
-
-                # fcitx5
                 for_window [app_id="org.fcitx."] floating enable, border pixel 1, move position center, resize set 50 ppt 80 ppt
                 for_window [app_id="org.fcitx." title="^Fcitx Configuration$"] floating enable, border pixel 1, move position center, resize set 60 ppt 96 ppt
-
-                # kitty
                 for_window [app_id="floatkitty"] floating enable, border pixel 1, move position center, resize set 64 ppt 60 ppt, opacity 0.95
-
-                # wireshark
                 for_window [app_id="org.wireshark.Wireshark" title=".+Capture.Options$"] floating enable, move position center, resize set 80 ppt 96 ppt
-
-                # pcsx2
                 for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 95 ppt 96 ppt
                 for_window [title="^PCSX2 v2"] floating disable
-
-                # cemu
                 for_window [app_id="Cemu" title="Title Manager"] floating enable, border pixel 1, resize width 80 ppt, move position center
                 for_window [app_id="Cemu" title="Graphic packs"] floating enable, border pixel 1, resize set 75 ppt 90 ppt, move position center
-                # ryujinx
                 for_window [class="Ryujinx" title=".+Settings$"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
                 for_window [class="Ryujinx" title="^Settings.+"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
-
-                # rpcs3
                 for_window [floating workspace="9" shell="xdg_shell" title="^Settings$"] border pixel 1, resize set 64 ppt 96 ppt, move position center
 
+                exec --no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
+                exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+                exec --no-startup-id hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
-                exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
-                exec systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-                exec hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
-
-                exec ${swaybg} -o "${monitorSamsung}" -i "${bgSamsung}" -m fill
-                exec ${swaybg} -o "${monitorThinkpad}" -i "${bgThinkpad}" -m fill
-
-                exec --no-startup-id ${wl-paste} -t text --watch clipman store --no-persist
-                exec ${sherlock} --daemonize
-                exec ${swaync}
-
-                exec ${swayidle} \
-                    timeout 300 "swayctl lock; ${swaylock} -f" resume "swayctl resume lock" \
-                    timeout 3600 "swayctl suspend" resume "swayctl resume suspend" \
-                    after-resume "swayctl resume sleep; sndctl setup"
-
-                exec fcitx5 -d --replace -s 4
-
+                exec_always --no-startup-id systemctl --user restart cliphist.service
+                exec_always --no-startup-id runshell
                 exec_always --no-startup-id rpcd
-
+                exec --no-startup-id fcitx5 -d --replace --disable Clipboard -s 4
+                exec --no-startup-id ${sherlock} --daemonize
                 exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
         };
