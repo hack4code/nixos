@@ -26,6 +26,16 @@ in
                         }
 
 
+                        function disable_idleinhibitor {
+                            noctalia-shell ipc call idleInhibitor disable
+                        }
+
+
+                        function enable_idleinhibitor {
+                            noctalia-shell ipc call idleInhibitor enable
+                        }
+
+
                         function resume_ncmpcpp {
                             curl -s -o /dev/null -X GET "http://127.0.0.1:8080/ncmpcpp/resume"
                         }
@@ -231,8 +241,10 @@ in
                                     toggle)
                                         if [[ -z "$(camer_pid)" ]]; then
                                             start_camer
+                                            enable_idleinhibitor
                                         else
                                             kill "$(camer_pid)"
+                                            disable_idleinhibitor
                                         fi
                                         ;;
 
