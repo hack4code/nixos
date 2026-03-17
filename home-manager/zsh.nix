@@ -99,6 +99,7 @@ in
                 mss = "make switch-stable";
                 mu = "make update";
                 mus = "make update-stable";
+                mp = "glow --pager";
                 rt = "systemctl reboot";
                 st = "systemctl poweroff";
                 t = "date '+%F %H:%M %A'";
