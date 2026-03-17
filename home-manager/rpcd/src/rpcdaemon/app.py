@@ -65,6 +65,7 @@ __all__ = [
 
 
 class Message(BaseModel):
+    title: str = "rpcd"
     message: str
     icon: str
 
@@ -168,7 +169,11 @@ def transmissionerror_handler(request: Request, exc: TransmissionError):
 
 @app.post("/notify")
 def notify(msg: Message):
-    send_notify(message=msg.message, icon=msg.icon)
+    send_notify(
+        message=msg.message,
+        icon=msg.icon,
+        title=msg.title
+    )
     return {"status": "success"}
 
 
@@ -181,12 +186,14 @@ def youtube_download_song(video: Youtube, tasks: BackgroundTasks):
             logger.exception("download_song_from_youtube:\n")
             send_notify(
                 message="download song from youtube failed",
-                icon="youtube-music"
+                icon="youtube-music",
+                title="rpcd"
             )
         else:
             send_notify(
                 message="finished song downloading from youtube",
-                icon="youtube-music"
+                icon="youtube-music",
+                title="rpcd"
             )
 
     url = str(video.url)
@@ -202,9 +209,17 @@ def youtube_download_video(video: Youtube, tasks: BackgroundTasks):
             download_video_from_youtube(url)
         except Exception:
             logger.exception("download_video_from_youtube:\n")
-            send_notify("download video from youtube failed")
+            send_notify(
+                message="download video from youtube failed",
+                icon="youtube",
+                title="rpcd"
+            )
         else:
-            send_notify("finished video downloading from youtube")
+            send_notify(
+                message="finished video downloading from youtube",
+                icon="youtube",
+                title="rpcd"
+            )
 
     url = str(video.url)
     tasks.add_task(download, url)

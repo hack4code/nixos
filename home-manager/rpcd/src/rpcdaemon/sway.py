@@ -98,7 +98,6 @@ command_htop = (
 command_btop = (
     "exec kitty "
     "--class btop "
-    "--title btop "
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@btop "
@@ -129,8 +128,7 @@ command_ncmpcpp = (
 
 command_ranger = (
     "exec kitty "
-    "--class ranger "
-    "--title ranger "
+    "--class file-manager "
     f"{kitty_config_ranger} "
     "--override allow_remote_control=no "
     "zsh -c 'ranger ~/movie/'"
@@ -140,7 +138,6 @@ command_ranger = (
 command_weechat = (
     "exec kitty "
     "--class weechat "
-    "--title weechat "
     f"{kitty_config_weechat} "
     "--override allow_remote_control=no "
     "zsh -c weechat"
@@ -149,8 +146,7 @@ command_weechat = (
 
 command_mutt = (
     "exec kitty "
-    "--class mutt "
-    "--title mutt "
+    "--class gmail "
     f"{kitty_config_mutt} "
     "--override allow_remote_control=no "
     "zsh -c 'neomutt -f ~/mail/inbox'"
@@ -159,17 +155,14 @@ command_mutt = (
 
 command_kitty = (
     "exec kitty "
-    "--class shell "
-    "--title shell "
+    "--class kitty "
     "--listen-on=unix:@kitty "
-    # "--session ~/.config/sway/kitty/kitty.session"
 )
 
 
 command_floating_kitty = (
     "exec kitty "
     "--class floatkitty "
-    "--title floatkitty "
     "zsh -i"
 )
 
