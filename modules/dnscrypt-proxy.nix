@@ -6,8 +6,14 @@ let
 in
 {
     systemd.services.dnscrypt-proxy = {
+        wants = [
+            "iwd.service"
+            "network-online.target"
+        ];
+
         after = [
-            "wg-quick-wg0.service"
+            "iwd.service"
+            "network-online.target"
         ];
     };
 
