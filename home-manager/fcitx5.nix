@@ -78,8 +78,8 @@ in
                         };
 
                         clipboard.globalSection = {
-                            # TriggerKey = "Control+;";
-                            # PastePrimaryKey = "Super+V";
+                            TriggerKey = "";
+                            PastePrimaryKey = "";
                             "Number of entries" = 5;
                         };
                     };
