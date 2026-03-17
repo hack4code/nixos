@@ -32,6 +32,7 @@ in
             shellIntegration = {
                 enableBashIntegration = true;
                 enableZshIntegration = true;
+                mode = "no-title";
             };
 
              font = {
