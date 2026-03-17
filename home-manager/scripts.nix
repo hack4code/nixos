@@ -575,6 +575,37 @@ in
                     '';
                 }
             )
+            (
+                writeShellApplication {
+                    name = "runshell";
+                    runtimeInputs = [
+                        coreutils
+                        gawk
+                        gnugrep
+                    ];
+                    text = ''
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
+                        if ! command -v noctalia-shell &>/dev/null; then
+                            panic 'noctalia-shell not exist'
+                        fi
+
+                        while true; do
+                            pid=$(noctalia-shell list --all | awk -F : '/Process ID/{print $2}' | tr -d '\s\n')
+                            if [[ -z "$pid" ]]; then
+                                break
+                            fi
+                            noctalia-shell kill --pid "$pid"
+                            sleep 0.2s
+                        done
+                        noctalia-shell
+                    '';
+                }
+            )
         ];
     };
 }
