@@ -40,7 +40,7 @@ const CSS_BUTTON_TRANSMISSION = {
 const CSS_BUTTON_RTORRENT = {
     "margin": "1px 2px 1px 2px",
     "display": "inline-block",
-    "font-family": "Noto Color Emoji"
+    "font-family": "Twitter Color Emoji"
 };
 
 function send_torrent(button, app, magnet) {
