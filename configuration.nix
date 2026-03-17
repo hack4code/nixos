@@ -86,6 +86,9 @@ in
         ./home-manager/fd.nix
         ./home-manager/man.nix
         ./home-manager/fontconfig.nix
+        ./home-manager/noctalia.nix
+        ./home-manager/sherlock.nix
+        ./home-manager/cliphist.nix
     ];
 
     /* disable assertions */
