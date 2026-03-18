@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     interface = config.wifiInterface;
@@ -19,7 +19,7 @@ let
 in
 {
     systemd.services."wg-quick-${wgInterface}" = {
-        after = [
+        after = lib.mkForce [
             "network-online.target"
         ];
     };
