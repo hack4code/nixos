@@ -35,7 +35,11 @@ in
                 };
             };
 
-            launchers = [
+            launchers =
+            let
+                noctalia-ipc = "noctalia-shell ipc call";
+            in
+            [
                 {
                     name = "App Launcher";
                     alias = "app";
@@ -127,6 +131,51 @@ in
                     home = "Home";
                 }
 
+                {
+                    name = "Noctalia Shell";
+                    type = "command";
+                    args = {
+                        commands = {
+                            "ControlCenter" = {
+                                icon = "preferences";
+                                exec = "bash -c '${noctalia-ipc} controlCenter toggle'";
+                                search_string = "controlCenter";
+                            };
+
+                            "Settings" = {
+                                icon = "gnome-settings";
+                                exec = "bash -c '${noctalia-ipc} settings toggle'";
+                                search_string = "setting";
+                            };
+
+                            "Windows" = {
+                                icon = "preferences-system-windows-move";
+                                exec = "bash -c '${noctalia-ipc} launcher windows'";
+                                search_string = "window";
+                            };
+
+                            "Enable DND" = {
+                                icon = "notification-active";
+                                exec = "bash -c '${noctalia-ipc} notifications enableDND'";
+                                search_string = "dnd";
+                            };
+
+                            "Disable DND" = {
+                                icon = "notification-disabled";
+                                exec = "bash -c '${noctalia-ipc} notifications disableDND'";
+                                search_string = "dnd";
+                            };
+
+                            "Clear All" = {
+                                icon = "notifyconf";
+                                exec = "bash -c '${noctalia-ipc} notifications clear'";
+                                search_string = "clear";
+                            };
+                        };
+                    };
+                    priority = 10;
+                    home = "Home";
+                }
                 # {
                 #     name = "NixOS Update";
                 #     alias = "NixOS Update";
