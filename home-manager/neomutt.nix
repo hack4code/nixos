@@ -111,6 +111,8 @@ in
             settings = {
                 folder="~/mail/";
                 tilde="yes";
+                ts_enabled="yes";
+                ts_status_format="%B";
                 mark_old="no";
                 move="no";
                 pager_stop = "yes";
