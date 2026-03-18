@@ -228,11 +228,6 @@ in
             sysstat
             unrar
             /******************
-                git
-            *******************/
-            gh
-            git
-            /******************
                 docker
             *******************/
             podman-compose
@@ -251,6 +246,7 @@ in
             pwru
             rclone
             # tcptrace
+            termscp
             /* transmission */
             transmission_4
             /******************
@@ -288,15 +284,17 @@ in
             /******************
                 develop
             *******************/
+            bcc
+            gh
+            git
             gnumake
             /******************
                 man
             *******************/
-            man-db
             linux-manual
+            man-db
             man-pages
             man-pages-posix
-            # glibcInfo
             /******************
                 zsh
             *******************/
