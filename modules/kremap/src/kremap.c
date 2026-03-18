@@ -178,6 +178,20 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                         is_alt_pressed = false;
                     break;
             }
+
+            if (is_ctrl_pressed && !is_alt_pressed && !is_shift_pressed) {
+                switch (ev.code) {
+                    case KEY_LEFTBRACE:
+                        libevdev_uinput_write_event(
+                                uidev,
+                                EV_KEY,
+                                KEY_ESC,
+                                ev.value);
+                        is_remap = true;
+                        break;
+                }
+            }
+
             pthread_mutex_lock(&g_mutex_app_id);
             if (strncmp(g_focus_app_id, "firefox", 7) == 0) {
                 pthread_mutex_unlock(&g_mutex_app_id);
