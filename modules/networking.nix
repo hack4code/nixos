@@ -12,13 +12,14 @@ let
 in
 {
     systemd.services.NetworkManager-wait-online.environment = {
-        NM_ONLINE_TIMEOUT = "180";
+        NM_ONLINE_TIMEOUT = "240";
     };
 
     networking = {
         useDHCP = false;
 
         hostName = hostName;
+
 
         dhcpcd = {
             enable = false;
@@ -39,7 +40,6 @@ in
 
         firewall = {
             enable = true;
-            package = pkgs.nftables;
             backend = "nftables";
             allowPing = false;
             checkReversePath = true;
@@ -76,7 +76,11 @@ in
 
         networkmanager = {
             enable = true;
+
             dns = "none";
+            unmanaged = [
+                wgInterface
+            ];
 
             wifi = {
                 backend = "iwd";
@@ -108,6 +112,7 @@ in
                     interface-name = wifiInterface;
                     type = "wifi";
                     autoconnect = true;
+                    auth-retries = 5;
                     permissions = "";
                     wait-device-timeout = 300000;
                     wait-activation-delay = 300000;
@@ -129,8 +134,8 @@ in
                 };
 
                 ipv6 = {
-                    addr-gen-mode = "default";
                     method = "auto";
+                    addr-gen-mode = "default";
                 };
             };
         };
