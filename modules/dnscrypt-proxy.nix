@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
     dnsServerName = config.dnsServerName;
@@ -6,12 +6,7 @@ let
 in
 {
     systemd.services.dnscrypt-proxy = {
-        wants = [
-            "iwd.service"
-            "network-online.target"
-        ];
-
-        after = [
+        after = lib.mkForce [
             "iwd.service"
             "network-online.target"
         ];
@@ -19,6 +14,8 @@ in
 
     environment.etc."dnscrypt-proxy/cloaking-rules.txt" = {
         text = ''
+            localhost 127.0.0.1
+            localhost ::1
             *.linode.me  10.0.0.1
         '';
 
@@ -28,13 +25,16 @@ in
     services = {
         dnscrypt-proxy = {
             enable = true;
+
+            upstreamDefaults = false;
+
             settings = {
                 listen_addresses = [
                     "[::1]:53"
                     "127.0.0.1:53"
                 ];
 
-                netprobe_address = "9.9.9.9:53";
+                netprobe_address = "8.8.8.8:53";
 
                 bootstrap_resolvers = [
                     "1.1.1.1:53"
@@ -53,7 +53,6 @@ in
                 cache_max_ttl = 172800;
                 cache_neg_min_ttl = 60;
                 cache_neg_max_ttl = 600;
-
 
                 cloaking_rules = "/etc/dnscrypt-proxy/cloaking-rules.txt";
 
