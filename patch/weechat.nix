@@ -48,9 +48,9 @@ in
                     /key unbind ctrl-q
                     /key bind ctrl-q /quit
                     /key unbind ctrl-j
-                    /key bind ctrl-j /buffer +1
+                    /key bind ctrl-j /buffer +1\;/window refresh
                     /key unbind ctrl-k
-                    /key bind ctrl-k /buffer -1
+                    /key bind ctrl-k /buffer -1\;/window refresh
                     /key unbind meta-s
                     /key bind meta-s /go
                     /key unbind ctrl-n
@@ -102,6 +102,9 @@ in
                     /set plugins.var.python.go.color_number "yellow,magenta"
                     /set plugins.var.python.go.color_number_selected "yellow,red"
                     /set plugins.var.python.go.fuzzy_search "on"
+
+                    /set plugins.var.python.url_hint.update_title "off"
+                    /set weechat.look.window_title "\''${name}"
                 '';
             };
         };

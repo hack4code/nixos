@@ -112,7 +112,7 @@ in
                 folder="~/mail/";
                 tilde="yes";
                 ts_enabled="yes";
-                ts_status_format="%B";
+                ts_status_format="%f";
                 mark_old="no";
                 move="no";
                 pager_stop = "yes";
