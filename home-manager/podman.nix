@@ -22,6 +22,10 @@ in
         services.podman = {
             enable = true;
 
+            autoUpdate = {
+                enable = false;
+            };
+
             settings = {
                 registries = {
                     search = [
@@ -42,10 +46,12 @@ in
                         Network = {
                             IPv6=true;
                         };
+
                         Service = {
-                            TimeoutStartSec = 900;
+                            TimeoutStartSec = 1800;
                         };
                     };
+
                     extraPodmanArgs = [
                         "--dns=1.1.1.1"
                         "--dns=2606:4700:4700::1111"
