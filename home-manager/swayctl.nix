@@ -240,11 +240,11 @@ in
 
                                     toggle)
                                         if [[ -z "$(camer_pid)" ]]; then
-                                            start_camer
                                             enable_idleinhibitor
+                                            start_camer
                                         else
-                                            kill "$(camer_pid)"
                                             disable_idleinhibitor
+                                            kill "$(camer_pid)"
                                         fi
                                         ;;
 
