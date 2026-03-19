@@ -45,7 +45,7 @@ in
             "mitigations=auto"
             "kfence.sample_interval=100"
             "vdso32=0"
-            /* */
+            /* wine */
             "ia32_emulation=on"
         ];
 
