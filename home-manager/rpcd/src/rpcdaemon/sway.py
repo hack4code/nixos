@@ -87,7 +87,7 @@ kitty_config_weechat = (
 command_htop = (
     "exec kitty "
     "--class htop "
-    "--title htop "
+    "--name htop "
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@htop "
@@ -98,6 +98,7 @@ command_htop = (
 command_btop = (
     "exec kitty "
     "--class btop "
+    "--name btop "
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@btop "
@@ -108,7 +109,7 @@ command_btop = (
 command_linode = (
     "exec kitty "
     "--class linode "
-    "--title linode "
+    "--name htop "
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@linode "
@@ -119,7 +120,7 @@ command_linode = (
 command_ncmpcpp = (
     "exec kitty "
     "--class ncmpcpp "
-    "--title ncmpcpp "
+    "--name audio-player "
     f"{kitty_config_ncmpcpp} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@ncmpcpp "
@@ -129,6 +130,7 @@ command_ncmpcpp = (
 command_ranger = (
     "exec kitty "
     "--class file-manager "
+    "--name ranger "
     f"{kitty_config_ranger} "
     "--override allow_remote_control=no "
     "zsh -c 'ranger ~/movie/'"
@@ -138,6 +140,7 @@ command_ranger = (
 command_weechat = (
     "exec kitty "
     "--class weechat "
+    "--name weechat "
     f"{kitty_config_weechat} "
     "--override allow_remote_control=no "
     "zsh -c weechat"
@@ -147,6 +150,7 @@ command_weechat = (
 command_mutt = (
     "exec kitty "
     "--class gmail "
+    "--name mutt "
     f"{kitty_config_mutt} "
     "--override allow_remote_control=no "
     "zsh -c 'neomutt -f ~/mail/inbox'"
@@ -156,6 +160,7 @@ command_mutt = (
 command_kitty = (
     "exec kitty "
     "--class kitty "
+    "--name terminal "
     "--listen-on=unix:@kitty "
 )
 
