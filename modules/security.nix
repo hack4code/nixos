@@ -27,6 +27,10 @@
         pam = {
             services = {
                 swaylock = {
+                    enable = true;
+                    name = "swaylock";
+                    fprintAuth = true;
+                    logFailures = false;
                     text = ''
                         auth sufficient ${pkgs.linux-pam}/lib/security/pam_unix.so try_first_pass likeauth nullok
                         auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
@@ -36,6 +40,7 @@
                 };
 
                 login = {
+                    unixAuth = true;
                     fprintAuth = false;
                 };
             };
