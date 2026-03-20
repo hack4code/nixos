@@ -138,13 +138,13 @@ in
                         commands = {
                             "ControlCenter" = {
                                 icon = "preferences";
-                                exec = "bash -c '${noctalia-ipc} controlCenter toggle'";
+                                exec = "bash -c '${noctalia-ipc} controlCenter open'";
                                 search_string = "controlCenter";
                             };
 
                             "Settings" = {
                                 icon = "gnome-settings";
-                                exec = "bash -c '${noctalia-ipc} settings toggle'";
+                                exec = "bash -c '${noctalia-ipc} settings open'";
                                 search_string = "setting";
                             };
 
