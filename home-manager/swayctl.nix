@@ -2,6 +2,9 @@
 
 let
     userName = config.userName;
+    bgThinkpad = config.bgThinkpad;
+    bgLock = config.bgLock;
+    monitorThinkpad = config.monitorThinkpad;
 in
 {
     home-manager.users.${userName} = {
@@ -20,24 +23,19 @@ in
                         systemd
                     ];
 
-                    text = ''
+                    text =
+                    let
+                        noctalia-ipc = "noctalia-shell ipc call";
+                    in
+                    ''
                         function lock {
+                            ${noctalia-ipc} wallpaper set "${bgLock}" ${monitorThinkpad}
                             pkill cmatrix
                         }
 
 
-                        function disable_idleinhibitor {
-                            noctalia-shell ipc call idleInhibitor disable
-                        }
-
-
-                        function enable_idleinhibitor {
-                            noctalia-shell ipc call idleInhibitor enable
-                        }
-
-
                         function resume_ncmpcpp {
-                            curl -s -o /dev/null -X GET "http://127.0.0.1:8080/ncmpcpp/resume"
+                            curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/ncmpcpp/resume'
                         }
 
 
@@ -51,12 +49,14 @@ in
                         }
 
 
-                        function stop_suspend {
-                            # shellcheck disable=SC2009
-                            PID=$(ps aux | grep -v swayidle | grep -E '[s]wayctl suspend' | awk '{print $2}')
-                            if [[ -n "$PID" ]]; then
-                                kill -9 "$PID"
-                            fi
+                        function resume_lock {
+                            ${noctalia-ipc} wallpaper set "${bgThinkpad}" ${monitorThinkpad}
+                            resume_ncmpcpp
+                        }
+
+
+                        function resume_suspend {
+                            resume_system
                         }
 
 
@@ -142,16 +142,14 @@ in
                             resume)
                                 case "$2" in
                                     lock)
-                                        resume_ncmpcpp
+                                        resume_lock
                                         ;;
 
                                     sleep)
-                                        resume_kremap
-                                        resume_system
                                         ;;
 
                                     suspend)
-                                        stop_suspend
+                                        resume_suspend
                                         ;;
 
                                     *)
@@ -240,10 +238,10 @@ in
 
                                     toggle)
                                         if [[ -z "$(camer_pid)" ]]; then
-                                            enable_idleinhibitor
+                                            ${noctalia-ipc} idleInhibitor enable
                                             start_camer
                                         else
-                                            disable_idleinhibitor
+                                            ${noctalia-ipc} idleInhibitor disable
                                             kill "$(camer_pid)"
                                         fi
                                         ;;

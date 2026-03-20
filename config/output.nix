@@ -6,6 +6,7 @@
         monitorSamsung = mkOption { type = str; };
         bgThinkpad = mkOption { type = str; };
         bgSamsung = mkOption { type = str; };
+        bgLock = mkOption { type = str; };
     };
 
     config = {
