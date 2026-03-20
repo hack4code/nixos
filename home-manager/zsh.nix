@@ -52,7 +52,6 @@ in
                     "rm *"
                     "pkill *"
                     "kill *"
-                    "cd *"
                     "mkdir *"
                     "mkcd *"
                     "ls *"
