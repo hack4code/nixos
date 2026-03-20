@@ -6,6 +6,8 @@ let
     userLocation = config.userLocation;
     monitorSamsung = config.monitorSamsung;
     monitorThinkpad = config.monitorThinkpad;
+    bgThinkpad = config.bgThinkpad;
+    bgSamsung = config.bgSamsung;
 in
 {
     home-manager.users.${userName} = {
@@ -126,16 +128,16 @@ in
                 };
 
                 general = {
-                    avatarImage = "${userHome}/picture/avatar/fly.jpg";
+                    avatarImage = "${userHome}/.config/sway/avatar/fly.jpg";
                     dimmerOpacity = 0.2;
                     showScreenCorners = false;
                     forceBlackScreenCorners = false;
                     scaleRatio = 1;
-                    radiusRatio = 1.2;
+                    radiusRatio = 1.6;
                     iRadiusRatio = 1;
                     boxRadiusRatio = 1;
                     screenRadiusRatio = 1;
-                    animationSpeed = 1.5;
+                    animationSpeed = 3;
                     animationDisabled = false;
                     compactLockScreen = true;
                     lockScreenAnimations = true;
@@ -162,8 +164,8 @@ in
                     lockScreenMonitors = [
                         monitorThinkpad
                     ];
-                    lockScreenBlur = 0.2;
-                    lockScreenTint = 0.2;
+                    lockScreenBlur = 0;
+                    lockScreenTint = 0;
                     keybinds = {
                         keyUp = [
                             "Up"
@@ -219,10 +221,12 @@ in
                         {
                             directory = "${userHome}/.config/sway/wallpaper/dp-3";
                             name = "DP-3";
+                            wallpaper = "${bgSamsung}";
                         }
                         {
                             directory = "${userHome}/.config/sway/wallpaper/edp-1";
                             name = "eDP-1";
+                            wallpaper = "${bgThinkpad}";
                         }
                     ];
                     enableMultiMonitorDirectories = true;
@@ -365,16 +369,29 @@ in
                 idle = {
                     enabled = true;
                     lockTimeout = 600;
-                    suspendTimeout = 3600;
-                    screenOffTimeout = 3600;
                     fadeDuration = 5;
+                    suspendTimeout = 3600;
+                    screenOffTimeout = 0;
                     lockCommand = "";
-                    resumeLockCommand = "swayctl resume lock";
+                    resumeLockCommand = "";
                     suspendCommand = "";
-                    resumeSuspendCommand = "";
+                    resumeSuspendCommand = "swayctl resume suspend";
                     screenOffCommand = "";
                     resumeScreenOffCommand = "";
                     customCommands = [ ];
+                };
+
+                hooks = {
+                    enabled = true;
+                    wallpaperChange = "";
+                    darkModeChange = "";
+                    screenLock = "swayctl lock";
+                    screenUnlock = "swayctl resume lock";
+                    performanceModeEnabled = "";
+                    performanceModeDisabled = "";
+                    startup = "";
+                    session = "";
+                    colorGeneration = "";
                 };
             };
         };
