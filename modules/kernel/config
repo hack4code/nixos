@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 6.19.8 Kernel Configuration
+# Linux/x86 6.19.9 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 14.3.0"
 CONFIG_CC_IS_GCC=y
@@ -6676,7 +6676,7 @@ CONFIG_SECURITY_LANDLOCK=y
 # CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT is not set
 # CONFIG_DEFAULT_SECURITY_SELINUX is not set
 CONFIG_DEFAULT_SECURITY_DAC=y
-CONFIG_LSM="landlock,yama,lockdown"
+CONFIG_LSM="landlock,yama"
 
 #
 # Kernel hardening options
