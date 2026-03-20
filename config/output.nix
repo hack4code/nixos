@@ -9,10 +9,11 @@
     };
 
     config = {
-        monitorThinkpad = "eDP-1";
-        monitorSamsung = "Samsung Electric Company LS24A600U H4ZRB00248";
-        bgThinkpad = "$HOME/.config/sway/wallpaper/the-assassination-of-julius.webp";
-        bgSamsung = "$HOME/.config/sway/wallpaper/the-death-of-socrates.jpeg";
+        monitorThinkpad = "";
+        monitorSamsung = "";
+        bgThinkpad = "";
+        bgSamsung = "";
+        bgLock = "";
     };
 }
 
