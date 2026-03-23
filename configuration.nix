@@ -275,7 +275,6 @@ in
             /******************
                 develop
             *******************/
-            linuxKernel.packages.linux_6_19.bcc
             gh
             git
             gnumake
