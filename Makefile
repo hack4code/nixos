@@ -1,5 +1,12 @@
-update: flake switch
-update-stable: flake switch-stable
+update: enable_idleInhibitor flake switch disable_idleInhibitor
+update-stable: enable_idleInhibitor flake switch-stable disable_idleInhibitor
+
+
+enable_idleInhibitor:
+	noctalia-shell ipc call idleInhibitor enable
+
+disable_idleInhibitor:
+	noctalia-shell ipc call idleInhibitor disable
 
 flake:
 	env https_proxy=socks5h://10.0.0.1:1080 nix flake update
