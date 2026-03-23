@@ -127,6 +127,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
     bool is_ctrl_pressed = false;
     bool is_shift_pressed = false;
     bool is_alt_pressed = false;
+    unsigned int last_key = 0;
 
     while (true) {
         struct input_event ev = {0};
@@ -150,6 +151,18 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                             EV_KEY,
                             KEY_LEFTCTRL,
                             ev.value);
+                    if (ev.value == 0 && last_key == KEY_CAPSLOCK) {
+                        libevdev_uinput_write_event(
+                                uidev,
+                                EV_KEY,
+                                KEY_ESC,
+                                1);
+                        libevdev_uinput_write_event(
+                                uidev,
+                                EV_KEY,
+                                KEY_ESC,
+                                0);
+                    }
                     is_remap = true;
                     break;
 
@@ -179,6 +192,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                     break;
             }
 
+            /*
             if (is_ctrl_pressed && !is_alt_pressed && !is_shift_pressed) {
                 switch (ev.code) {
                     case KEY_LEFTBRACE:
@@ -191,6 +205,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                         break;
                 }
             }
+            */
 
             pthread_mutex_lock(&g_mutex_app_id);
             if (strncmp(g_focus_app_id, "firefox", 7) == 0) {
@@ -256,6 +271,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
             } else {
                 pthread_mutex_unlock(&g_mutex_app_id);
             }
+            last_key = ev.code;
         }
 
         if (!is_remap)
