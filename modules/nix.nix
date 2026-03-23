@@ -1,8 +1,5 @@
-{ config, ... }:
+{ stable, ... }:
 
-let
-    nixosVersion = config.nixosVersion;
-in
 {
     nix = {
         channel = {
@@ -59,7 +56,7 @@ in
             };
         };
 
-        stateVersion = nixosVersion;
+        stateVersion = if stable then "25.11" else "26.05";
     };
 }
 

@@ -2,15 +2,11 @@
 
 {
     options = with lib; with types; {
-        nixosVersion = mkOption { type = str; };
-        homeManagerVersion = mkOption { type = str; };
         hostName = mkOption { type = str; };
         timeZone = mkOption { type = str; };
     };
 
     config = {
-        nixosVersion = "26.05";
-        homeManagerVersion = "26.05";
         hostName = "KISS";
         timeZone = "Asia/Shanghai";
     };
