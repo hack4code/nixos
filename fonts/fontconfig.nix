@@ -2,8 +2,8 @@
 
 {
     fonts = {
-        enableGhostscriptFonts = true;
-
+        enableDefaultPackages = false;
+        enableGhostscriptFonts = false;
         fontDir = {
             enable = true;
         };
@@ -57,6 +57,8 @@
 
         fontconfig = {
             enable = true;
+
+            includeUserConf = true;
 
             defaultFonts = {
                 serif = [
