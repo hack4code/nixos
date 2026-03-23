@@ -29,6 +29,11 @@ in
             "rootfstype=ext4"
             "efi=runtime"
             "rw"
+            /* logo */
+            "vga=788"
+            "xmodule=fbdev"
+            /* linux security module */
+            "lsm=lockdown,capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
             /* kernel harden */
             "hardened_usercopy=1"
             "init_on_alloc=1"
