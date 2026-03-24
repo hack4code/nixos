@@ -6,6 +6,7 @@
 #vomnibar input {
     font-family: Roboto Flex, Swei Gothic CJK SC !important;
     font-weight: 400 !important;
+    font-size: 15px !important;
     color: #f8f8f2 !important;
     background-color: #282828 !important;
     height: 36px !important;
@@ -39,7 +40,7 @@
 
 #vomnibar li {
     font-family: MiSans !important;
-    font-size: 16px !important;
+    font-size: 13px !important;
     font-weight: 500 !important;
     color: #f8f8f2 !important;
     position: relative !important;
@@ -55,7 +56,7 @@
 
 
 #vomnibar li .bottom-half {
-    font-size: 14px !important;
+    font-size: 13px !important;
     font-weight: 300 !important;
     margin-top: 5px !important;
 }
@@ -111,7 +112,7 @@
 
 #hud {
     font-family: MiSans !important;
-    font-size: 16px !important;
+    font-size: 13px !important;
     font-weight: 400 !important;
     color: #ebdbb2 !important;
     padding: 4px 4px !important;
