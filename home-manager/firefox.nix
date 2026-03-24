@@ -26,6 +26,56 @@ in
                 AutofillCreditCardEnabled = false;
                 PostQuantumKeyAgreementEnabled = true;
 
+                Preferences = {
+                    font = {
+                        name = {
+                            serif = {
+                                x-western = "Noto Serif";
+                                zh-CN = "Noto Serif SC";
+                                zh-HK = "Source Han Serif HC";
+                                zh-TW = "Source Han Serif TC";
+                            };
+
+                            sans-serif = {
+                                x-western = "Noto Sans";
+                                zh-CN = "MiSans";
+                                zh-HK = "Source Han Sans HC";
+                                zh-TW = "Source Han Sans TC";
+                            };
+
+                            monospace = {
+                                x-western = "Googe Sans Code";
+                                zh-CN = "MiSans";
+                                zh-HK = "Source Han Mono HC";
+                                zh-TW = "Source Han Mono TC";
+                            };
+                        };
+
+                        size = {
+                            monospace = {
+                                x-western = 12;
+                                zh-CN = 15;
+                                zh-HK = 15;
+                                zh-TW = 15;
+                            };
+
+                            variable = {
+                                x-western = 16;
+                                zh-CN = 15;
+                                zh-HK = 15;
+                                zh-TW = 15;
+                            };
+                        };
+
+                        minimum-size = {
+                            x-western = 11;
+                            zh-CN = 11;
+                            zh-HK = 11;
+                            zh-TW = 11;
+                        };
+                    };
+                };
+
                 FirefoxSuggest = {
                     WebSuggestions = false;
                     SponsoredSuggestions = false;
