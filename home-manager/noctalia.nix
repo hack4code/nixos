@@ -88,9 +88,11 @@ in
                             }
                             {
                                 id = "Tray";
-                                pinned = [
-                                    "Fcitx"
-                                ];
+                                colorizeIcons = true;
+                                drawerEnabled = false;
+                                hidePassive = false;
+                                pinned = [ ];
+                                blacklist = [ ];
                             }
                         ];
                     };
@@ -141,12 +143,12 @@ in
                     animationDisabled = false;
                     compactLockScreen = true;
                     lockScreenAnimations = true;
-                    lockOnSuspend = true;
+                    lockOnSuspend = false;
                     showSessionButtonsOnLockScreen = false;
                     showHibernateOnLockScreen = false;
                     enableLockScreenMediaControls = false;
                     enableShadows = true;
-                    enableBlurBehind = true;
+                    enableBlurBehind = false;
                     shadowDirection = "bottom";
                     shadowOffsetX = 2;
                     shadowOffsetY = 3;
@@ -192,7 +194,7 @@ in
                         ];
                         keyRemove = [
                             "Del"
-                            "Ctrl+X"
+                            "Ctrl+D"
                         ];
                     };
                     reverseScroll = false;
@@ -220,12 +222,12 @@ in
                     monitorDirectories = [
                         {
                             directory = "${userHome}/.config/sway/wallpaper/dp-3";
-                            name = "DP-3";
+                            name = monitorSamsung;
                             wallpaper = "${bgSamsung}";
                         }
                         {
                             directory = "${userHome}/.config/sway/wallpaper/edp-1";
-                            name = "eDP-1";
+                            name = monitorThinkpad;
                             wallpaper = "${bgThinkpad}";
                         }
                     ];
@@ -334,17 +336,17 @@ in
 
                 notifications = {
                     enabled = true;
-                    enableMarkdown = false;
-                    density = "default";
+                    enableMarkdown = true;
+                    density = "compact";
                     monitors = [
                         monitorSamsung
                     ];
-                    location = "top_center";
+                    location = "top";
                     overlayLayer = true;
                     backgroundOpacity = 0.8;
                     respectExpireTimeout = false;
-                    lowUrgencyDuration = 6;
-                    normalUrgencyDuration = 8;
+                    lowUrgencyDuration = 5;
+                    normalUrgencyDuration = 7;
                     criticalUrgencyDuration = 12;
                     clearDismissed = false;
                     saveToHistory = {
@@ -368,10 +370,10 @@ in
 
                 idle = {
                     enabled = true;
-                    lockTimeout = 600;
+                    lockTimeout = 300;
                     fadeDuration = 5;
                     suspendTimeout = 3600;
-                    screenOffTimeout = 0;
+                    screenOffTimeout = 7200;
                     lockCommand = "";
                     resumeLockCommand = "";
                     suspendCommand = "";
