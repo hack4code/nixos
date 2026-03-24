@@ -13,7 +13,7 @@ in
                 column_ratios = "1,2,4";
                 show_hidden = false;
                 update_title = true;
-                shorten_title = true;
+                shorten_title = 0;
                 show_selection_in_titlebar = true;
                 confirm_on_delete = "never";
                 automatically_count_files = true;
