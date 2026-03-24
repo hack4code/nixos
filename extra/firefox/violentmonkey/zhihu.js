@@ -34,6 +34,8 @@ const SITE = window.location.href;
         $('div.WriteArea').hide();
     }
     else if (SITE.includes("question/")) {
+        /* header */
+        $('.AppHeader').hide();
         /* sidebar */
         $('div.Question-main').children(':nth-child(2)').hide();
         /* screen width */
