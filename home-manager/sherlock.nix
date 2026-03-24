@@ -2,6 +2,15 @@
 
 let
     userName = config.userName;
+    colorBackground = config.colorBackground;
+    colorBackground1 = config.colorBackground1;
+    colorBackground2 = config.colorBackground2;
+    colorAqua = config.colorAqua;
+    colorGreen = config.colorGreen;
+    colorYellow = config.colorYellow;
+    colorRed = config.colorRed;
+    colorBlue = config.colorBlue;
+    colorOrange = config.colorOrange;
 in
 {
     home-manager.users.${userName} = {
@@ -50,7 +59,7 @@ in
                 }
 
                 {
-                    name = "Sound Volume Control";
+                    name = "Sound Volume";
                     type = "command";
                     args = {
                         commands = {
@@ -72,7 +81,7 @@ in
                 }
 
                 {
-                    name = "Mpc Command";
+                    name = "Mpd";
                     type = "command";
                     args = {
                         commands = {
@@ -136,7 +145,7 @@ in
                     type = "command";
                     args = {
                         commands = {
-                            "ControlCenter" = {
+                            "Control Center" = {
                                 icon = "preferences";
                                 exec = "bash -c '${noctalia-ipc} controlCenter open'";
                                 search_string = "controlCenter";
@@ -154,19 +163,19 @@ in
                                 search_string = "window";
                             };
 
-                            "Enable DND" = {
+                            "Notification Enable DND" = {
                                 icon = "notification-active";
                                 exec = "bash -c '${noctalia-ipc} notifications enableDND'";
                                 search_string = "dnd";
                             };
 
-                            "Disable DND" = {
+                            "Notification Disable DND" = {
                                 icon = "notification-disabled";
                                 exec = "bash -c '${noctalia-ipc} notifications disableDND'";
                                 search_string = "dnd";
                             };
 
-                            "Clear All" = {
+                            "Notification Clear All" = {
                                 icon = "notifyconf";
                                 exec = "bash -c '${noctalia-ipc} notifications clear'";
                                 search_string = "clear";
@@ -176,22 +185,6 @@ in
                     priority = 10;
                     home = "Home";
                 }
-                # {
-                #     name = "NixOS Update";
-                #     alias = "NixOS Update";
-                #     type = "command";
-                #     args = {
-                #         commands = {
-                #             OSUpdate = {
-                #                 icon = "system-software-update";
-                #                 exec = "zsh -c nu";
-                #                 search_string = "nu";
-                #             };
-                #         };
-                #     };
-                #     priority = 10;
-                #     home = "Home";
-                # }
 
                 {
                     name = "Kill Process";
@@ -202,7 +195,7 @@ in
                 }
 
                 {
-                    name = "Web Search";
+                    name = "Google";
                     display_name = "Google";
                     tag_start = "{keyword}";
                     alias = "gg";
@@ -229,6 +222,8 @@ in
                 binds = {
                     up = "control-p";
                     down = "control-n";
+                    left = "control-h";
+                    right = "control-l";
                     context = "control-i";
                     modifier = "alt";
                 };
@@ -246,8 +241,10 @@ in
                 appearance = {
                     width = 400;
                     height = 600;
+                    icon_size = 24;
+                    use_base_css = true;
                     gsk_renderer = "vulkan";
-                    opacity = 0.98;
+                    opacity = 1.0;
                     mod_key_ascii = [
                         "⇧"
                         "⇧"
@@ -260,17 +257,208 @@ in
                     ];
                 };
 
+                files = {
+                    css = "~/.config/sherlock/themes/gruvbox.css";
+                };
+
                 backdrop = {
                     enable = false;
                     opacity = 0.9;
                     edge = "top";
                 };
             };
+        };
 
-            style = ''
-                * {
-                    font-family: Roboto Flex;
+        home.file.".config/sherlock/themes/gruvbox.css" = {
+            executable = false;
+            force = true;
+            text = ''
+                :root {
+                    --foreground: ${colorBackground2};
+                    --button-background: ${colorBackground1};
+                    --background: ${colorBackground};
+                    --border: ${colorBlue};
+                    --text: ${colorGreen};
+                    --text-button: ${colorYellow};
+                    --text-selected: ${colorRed};
+                    --launcher-type: ${colorAqua};
+                    --status-label: ${colorOrange};
                 }
+
+                window {
+                    border-radius: 12px;
+                    border: 1px solid var(--border);
+                    background: var(--background);
+                    opcity: 1.0;
+                }
+
+                label {
+                    color: var(--text);
+                }
+
+                #overlay spinner {
+                    color: var(--text);
+                }
+
+                #launcher-type {
+                    font-size: 10px;
+                    color: var(--launcher-type);
+                    margin-left: 0px;
+                }
+
+                #shortcut-holder {
+                    background: var(--button-background);
+                    opcity: 0.5;
+                    margin-right: 25px;
+                    padding: 5px 10px;
+                    border-radius: 6px;
+                    border: 1px solid hsl(from var(--border) h s l / 10%);
+                    box-shadow: 0px 0px 6px 0px rgba(15, 15, 15, 1);
+                }
+
+                #search-bar {
+                    outline: none;
+                    border: none;
+                    background: var(--background);
+                    min-height: 40px;
+                    color: var(--text);
+                    font-size: 16px;
+                    font-weight: 400;
+                    padding-left: 20px;
+                }
+
+                #search-bar-holder {
+                    border-bottom: 1px solid var(--border);
+                    padding: 5px 10px 4px 10px;
+                }
+
+                #search-icon-holder image {
+                    transition: 0.1s ease;
+                }
+
+                #search-icon {
+                    margin-left: 10px;
+                }
+
+                #search-bar placeholder {
+                    background: transparent;
+                    color: hsl(from var(--text) h s l / 30%);
+                    font-weight: 500;
+                }
+
+                #category-type {
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: var(--text);
+                    padding: 10px 20px 0px 20px;
+                }
+
+                scrollbar {
+                    display: none;
+                }
+
+                image {
+                    color: white;
+                }
+
+                .tile {
+                    outline: none;
+                    min-height: 50px;
+                    padding: 0px 10px;
+                    margin-bottom: 5px;
+                    border: 1px solid transparent;
+                    border-radius: 4px;
+                }
+
+                .tile #title {
+                    font-size: 15px;
+                    color: var(--text);
+                }
+
+                .tile #icon {
+                    margin: 0px;
+                    padding: 0px;
+                }
+
+                #color-icon-holder {
+                    border-radius: 50px;
+                }
+
+                #shortcut-holder {
+                    margin-right: 16px;
+                    padding: 5px 10px;
+                    background: var(--button-background);
+                    border-radius: 5px;
+                    border: 1px solid var(--border);
+                    box-shadow: 0px 0px 6px 0px rgba(15, 15, 15, 1);
+                }
+
+                #shortcut,
+                #shortcut-modkey {
+                    background: transparent;
+                    font-weight: bold;
+                    color: var(--text-button);
+                    font-size: 12px;
+                }
+
+                .status-bar {
+                    background: var(--background);
+                    border-top: 1px solid var(--border);
+                    padding: 4px 10px 4px 20px;
+                }
+
+                .status-bar label {
+                    color: var(--status-label);
+                }
+
+                .status-bar #shortcut-key,
+                .status-bar #shortcut-modifier {
+                    background: var(--button-background);
+                    margin: 2px;
+                    padding: 1px 5px;
+                    border-radius: 3px;
+                    font-size: 12px;
+                }
+
+                .status-bar #shortcut-description {
+                    font-size: 12px;
+                    margin-right: 10px;
+                }
+
+                #context-menu {
+                    min-width: 50px;
+                    padding: 5px;
+                    margin: 4px;
+                    background: var(--background);
+                    border: 1px solid var(--border);
+                    border-radius: 5px;
+                }
+
+                #context-menu row {
+                    color: var(--text);
+                    transition: 0.1s ease;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                }
+
+                #context-menu label {
+                    color: var(--text-button);
+                    font-size: 13px;
+                }
+
+                row:selected #title {
+                    color: var(--text-selected);
+                    font-weight: 700;
+                }
+
+                #context-menu row:selected {
+                    color: var(--text-selected);
+                }
+
+                .tile:selected #shortcut-holder {
+                    box-shadow: 0px 0px 6px 0px rgba(22, 22, 22, 1);
+                }
+
             '';
         };
     };

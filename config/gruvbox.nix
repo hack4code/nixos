@@ -3,6 +3,10 @@
 {
     options = with lib; with types; {
          colorBackground = mkOption { type = str; };
+         colorBackground1 = mkOption { type = str; };
+         colorBackground2 = mkOption { type = str; };
+         colorBackground3 = mkOption { type = str; };
+         colorBackground4 = mkOption { type = str; };
          colorForeground = mkOption { type = str; };
          colorBlack = mkOption { type = str; };
          colorLightBlack = mkOption { type = str; };
@@ -20,11 +24,19 @@
          colorLightAqua = mkOption { type = str; };
          colorWhite = mkOption { type = str; };
          colorLightWhite = mkOption { type = str; };
+         colorGray = mkOption { type = str; };
+         colorOrange = mkOption { type = str; };
+         colorLightOrange = mkOption { type = str; };
     };
 
     config = {
         colorForeground = "#ebdbb2";
         colorBackground = "#1d2021";
+        colorBackground1 = "#3c3836";
+        colorBackground2 = "#504945";
+        colorBackground3 = "#665c54";
+        colorBackground4 = "#7c6f64";
+        colorGray = "#a89984";
         colorBlack = "#665c54";
         colorLightBlack = "#7c6f64";
         colorRed = "#cc241d";
@@ -41,6 +53,8 @@
         colorLightAqua = "#8ec07c";
         colorWhite = "#a89984";
         colorLightWhite = "#bdae93";
+        colorOrange = "#d65d0e";
+        colorLightOrange = "#fe8019";
     };
 }
 
