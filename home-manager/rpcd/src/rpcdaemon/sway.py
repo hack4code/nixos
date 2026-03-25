@@ -71,6 +71,7 @@ kitty_config_mutt = (
 
 kitty_config_ranger = (
     "--override font_family='Iosevka' "
+    "--override font_size=13 "
     "--override symbol_map='U+4E00-U+9FFF Swei Gothic CJK SC' "
     "--override modify_font='cell_height +16px'"
 )
