@@ -98,7 +98,7 @@ const SITE = window.location.href;
         if ($node.length) {
             $node.css({
                 "font-family": "Swei Gothic CJK SC",
-                "font-size": "20px",
+                "font-size": "16px",
                 "font-weight": "400",
                 "text-align": "center",
                 "margin": "24px 0 32px 0"
