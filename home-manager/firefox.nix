@@ -53,25 +53,25 @@ in
 
                         size = {
                             monospace = {
-                                x-western = 12;
-                                zh-CN = 15;
-                                zh-HK = 15;
-                                zh-TW = 15;
+                                x-western = 13;
+                                zh-CN = 13;
+                                zh-HK = 13;
+                                zh-TW = 13;
                             };
 
                             variable = {
-                                x-western = 16;
-                                zh-CN = 15;
-                                zh-HK = 15;
-                                zh-TW = 15;
+                                x-western = 13;
+                                zh-CN = 13;
+                                zh-HK = 13;
+                                zh-TW = 13;
                             };
                         };
 
                         minimum-size = {
-                            x-western = 11;
-                            zh-CN = 11;
-                            zh-HK = 11;
-                            zh-TW = 11;
+                            x-western = 10;
+                            zh-CN = 10;
+                            zh-HK = 10;
+                            zh-TW = 10;
                         };
                     };
                 };
@@ -106,7 +106,6 @@ in
                     Downloads = false;
                 };
 
-                /* download */
                 DefaultDownloadDirectory = "$HOME/download";
 
                 Permissions = {
@@ -119,7 +118,6 @@ in
 
                 HttpAllowlist = ffHttpAllow;
 
-                /* cookies */
                 Cookies = {
                     Allow = ffCookiesAllow;
                 };
