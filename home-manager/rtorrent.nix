@@ -97,10 +97,10 @@ in
                 # move finished data to download
                 method.insert = d.get_finished_dir, simple, "cat=~/download/,$d.custom1="
                 method.insert = d.move_to_complete, simple, "d.directory.set=$argument.1=; execute=mkdir,-p,$argument.1=; execute=mv,-u,$argument.0=,$argument.1=; d.save_full_session="
-                method.set_key = event.download.finished,move_complete,"d.move_to_complete=$d.data_path=,$d.get_finished_dir="
+                method.set_key = event.download.finished,move_finished_file,"d.move_to_complete=$d.data_path=,$d.get_finished_dir="
 
                 # remove torrent after finishing
-                method.set_key = event.download.finished,rm_torrent,"execute2=rm,$d.get_tied_to_file="
+                method.set_key = event.download.finished,remove_torrent,"d.erase="
 
                 # color
                 ui.color.title.set = "141 on 237"
