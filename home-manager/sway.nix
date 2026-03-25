@@ -270,7 +270,7 @@ in
                 for_window [app_id="org.fcitx." title="^Fcitx Configuration$"] floating enable, border pixel 1, move position center, resize set 60 ppt 96 ppt
                 for_window [app_id="floatkitty"] floating enable, border pixel 1, move position center, resize set 64 ppt 60 ppt, opacity 0.95
                 for_window [app_id="org.wireshark.Wireshark" title=".+Capture.Options$"] floating enable, move position center, resize set 80 ppt 96 ppt
-                for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 95 ppt 96 ppt
+                for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
                 for_window [title="^PCSX2 v2"] floating disable
                 for_window [app_id="Cemu" title="Title Manager"] floating enable, border pixel 1, resize width 80 ppt, move position center
                 for_window [app_id="Cemu" title="Graphic packs"] floating enable, border pixel 1, resize set 75 ppt 90 ppt, move position center
