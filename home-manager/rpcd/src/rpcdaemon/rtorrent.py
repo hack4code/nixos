@@ -157,6 +157,12 @@ class RTorrent:
         params: list[str | bytes] = []
         return self.jsonrpc.call('download_list', params)
 
+    def remove_torrent(self, torrent: str):
+        params: list[str | bytes] = [
+            torrent
+        ]
+        return self.jsonrpc.call('d.erase', params)
+
 
 def add_torrent_to_rtorrent(magnet: str) -> None:
     r = RTorrent()
