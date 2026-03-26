@@ -37,36 +37,40 @@ in
             configFile = {
                 ico = {
                     enable = true;
-                    label = "ico-font-alias";
+                    label = "ico-font";
                     priority = 60;
                     text = ''
                         <?xml version="1.0"?>
-                        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+                        <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
                         <fontconfig>
-                            <alias>
-                                <family>ico-c</family>
-                                <prefer>
-                                    <family>Symbols Nerd Font</family>
-                                </prefer>
-                            </alias>
+                          <match target="pattern">
+                            <test qual="any" compare="contains" name="family">
+                              <string>ico</string>
+                            </test>
+                            <edit name="family" mode="assign" binding="same">
+                              <string>Symbols Nerd Font</string>
+                            </edit>
+                          </match>
                         </fontconfig>
                     '';
                 };
 
                 YaHei = {
                     enable = true;
-                    label = "yahei-family-alias";
+                    label = "yahei";
                     priority = 60;
                     text = ''
                         <?xml version="1.0"?>
-                        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+                        <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
                         <fontconfig>
-                            <alias>
-                                <family>Microsoft YaHei</family>
-                                <prefer>
-                                    <family>Swei Gothic CJK SC</family>
-                                </prefer>
-                            </alias>
+                          <match target="pattern">
+                            <test qual="any" compare="contains" name="family">
+                              <string>yahei</string>
+                            </test>
+                            <edit name="family" mode="assign" binding="same">
+                              <string>Swei Gothic CJK SC</string>
+                            </edit>
+                          </match>
                         </fontconfig>
                     '';
                 };
