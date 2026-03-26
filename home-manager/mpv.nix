@@ -64,8 +64,8 @@ in
             };
 
             scripts = with pkgs.mpvScripts; [
-                modernx
-                # mpris
+                # modernx
+                mpris
             ];
 
             scriptOpts = {
