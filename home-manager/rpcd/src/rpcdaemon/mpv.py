@@ -70,7 +70,7 @@ def play_youtube_video_with_mpv(url: str, *, sub: bool = True) -> None:
         "--cache=yes "
         "--demuxer-max-bytes=1024MiB "
         "--demuxer-readahead-secs=60 "
-        "--ytdl-format='bestvideo[height<=?1080]+bestaudio/best' "
+        "--ytdl-format='bestvideo[height<=720]+bestaudio[ext=m4a]/best[height<=720]' "
         "--ytdl-raw-options='ignore-config=,"
         "cookies-from-browser=\"firefox::self\",mark-watched=,"
         f"{options_ytdlp}' "
