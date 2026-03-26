@@ -134,6 +134,8 @@ in
                         scale = "1.5";
                         scale_filter = "smart";
                         subpixel = "rgb";
+                        adaptive_sync = "on";
+                        allow_tearing = "no";
                     };
 
                    ${monitorSamsung} = {
@@ -142,7 +144,7 @@ in
                         scale = "1.5";
                         scale_filter = "smart";
                         subpixel = "rgb";
-                        adaptive_sync = "on";
+                        adaptive_sync = "off";
                         allow_tearing = "no";
                     };
                 };
