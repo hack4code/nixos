@@ -360,13 +360,12 @@ in
                         user_pref("cookiebanners.service.mode.privateBrowsing", 1);
 
                         /* Smooth Scroll */
-                        /* user_pref("general.smoothScroll", true); */
-                        /* user_pref("general.smoothScroll.msdPhysics.enabled", true); */
+                         user_pref("general.smoothScroll", true);
+                        user_pref("general.smoothScroll.msdPhysics.enabled", true);
 
                         /* disable onboarding junk */
                         user_pref("browser.onboarding.enabled", false);
 
-                        /* */
                         user_pref("browser.contentblocking.category", "strict");
 
                         /* cache */
@@ -399,7 +398,7 @@ in
                         user_pref("layers.acceleration.force-enabled", true);
                         user_pref("image.mem.decode_bytes_at_a_time", 65536);
                         user_pref("media.wmf.zero-copy-nv12-textures-force-enabled", true);
-                        user_pref("media.av1.enabled", false);
+                        user_pref("media.av1.enabled", true);
 
                         /* network */
                         user_pref("network.http.max-connections", 900);
@@ -420,7 +419,6 @@ in
                         user_pref("network.predictor.prefetch-rolling-load-count", 120);
                         user_pref("network.predictor.preresolve-min-confidence", 10);
 
-                        /* */
                         user_pref("fission.autostart", false);
                         user_pref("privacy.partition.network_state", false);
                         user_pref("content.notify.backoffcount", 0);
