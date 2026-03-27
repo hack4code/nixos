@@ -47,6 +47,7 @@ in
             launchers =
             let
                 noctalia-ipc = "noctalia-shell ipc call";
+                cliphist = "${pkgs.cliphist}/bin/cliphist";
             in
             [
                 {
@@ -178,33 +179,17 @@ in
                             "Notification Clear All" = {
                                 icon = "notifyconf";
                                 exec = "bash -c '${noctalia-ipc} notifications clear'";
-                                search_string = "clear";
+                                search_string = "notification";
+                            };
+
+                            "Clipboard Clear All" = {
+                                icon = "xclipboard";
+                                exec = "bash -c '${cliphist} wipe'";
+                                search_string = "clip";
                             };
                         };
                     };
                     priority = 10;
-                    home = "Home";
-                }
-
-                {
-                    name = "Kill Process";
-                    alias = "kill";
-                    type = "process";
-                    args = {};
-                    priority = 0;
-                }
-
-                {
-                    name = "Google";
-                    display_name = "Google";
-                    tag_start = "{keyword}";
-                    alias = "gg";
-                    type = "web_launcher";
-                    args = {
-                        search_engine = "google";
-                        icon = "searchmonkey";
-                    };
-                    priority = 100;
                     home = "Home";
                 }
             ];
@@ -216,7 +201,19 @@ in
                 };
 
                 search_bar_icon = {
-                    enable = false;
+                    enable = true;
+                    icon = "searchmonkey";
+                    icon_back = "sherlock-back";
+                    size = 20;
+                };
+
+                status_bar = {
+                    enable = true;
+                };
+
+                runtime = {
+                    center = true;
+                    daemonize = true;
                 };
 
                 binds = {

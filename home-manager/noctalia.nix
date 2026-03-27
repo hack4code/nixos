@@ -283,8 +283,8 @@ in
                     clipboardWrapText = true;
                     enableClipboardSmartIcons = true;
                     enableClipboardChips = true;
-                    clipboardWatchTextCommand = "${wl-paste} --type text --watch cliphist store --no-persist";
-                    clipboardWatchImageCommand = "${wl-paste} --type image --watch cliphist store --no-persist";
+                    clipboardWatchTextCommand = "${wl-paste} --type text --watch cliphist store";
+                    clipboardWatchImageCommand = "${wl-paste} --type image --watch cliphist store";
                     position = "center";
                     pinnedApps = [ ];
                     sortByMostUsed = true;
@@ -297,7 +297,7 @@ in
                     showIconBackground = false;
                     enableSettingsSearch = false;
                     enableWindowsSearch = true;
-                    enableSessionSearch = true;
+                    enableSessionSearch = false;
                     ignoreMouseInput = true;
                     screenshotAnnotationTool = "";
                     overviewLayer = true;
