@@ -400,9 +400,17 @@ in
                     name = "nd";
                     runtimeInputs = [
                         coreutils
+                        gawk
+                        gnugrep
                         jq
                     ];
                     text = ''
+                        function panic {
+                            echo "$*" 1>&2
+                            exit 1
+                        }
+
+
                         if (($# == 1)); then
                             sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
                             exit
@@ -414,18 +422,32 @@ in
                             exit
                         fi
 
+                        if (($# > 2)); then
+                            panic "argument error"
+                        fi
+
                         N=$(nixos-rebuild list-generations --json | jq 'length')
                         if ((N < 3)); then
                             exit
                         fi
 
-                        BEGIN=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n 1)
-                        END=$(nixos-rebuild list-generations --json | jq -r '.[].generation' | sort -n | head -n -2 | tail -n 1)
-                        if ((BEGIN == END)); then
-                            sudo nix-env --delete-generations "$BEGIN" --profile /nix/var/nix/profiles/system
-                        else
-                            sudo nix-env --delete-generations $(seq --separator=' ' "$BEGIN" "$END") --profile /nix/var/nix/profiles/system
+                        VERSIONS=$(sudo nixos-rebuild list-generations --json | jq -r '.[] | .nixosVersion' | awk -F . '{print $1 "." $2}' | sort -V | uniq)
+                        if (( $(echo "$VERSIONS" | wc -l) != 2 )); then
+                            panic "version error"
                         fi
+
+                        OLD=$(echo "$VERSIONS" | head -1 | tr -d '\s\n')
+                        NEW=$(echo "$VERSIONS" | tail -1 | tr -d '\s\n')
+                        OLDGEN=$(sudo nixos-rebuild list-generations --json | jq -r '.[] | [.nixosVersion, .generation|tostring] | join(" ")' | grep -F "$OLD" | sort -V -k 1 | tail -1 | cut -d ' ' -f 2 | tr -d '\s\n')
+                        NEWGEN=$(sudo nixos-rebuild list-generations --json | jq -r '.[] | [.nixosVersion, .generation|tostring] | join(" ")' | grep -F "$NEW" | sort -V -k 1 | tail -1 | cut -d ' ' -f 2 | tr -d '\s\n')
+                        if [[ -z "$OLDGEN" ]] || [[ -z "$NEWGEN" ]]; then
+                            panic "generation error"
+                        fi
+                        for generation in $(sudo nixos-rebuild list-generations --json | jq -r '.[].generation'); do
+                            if [[ "$generation" != "$OLDGEN" ]] && [[ "$generation" != "$NEWGEN" ]]; then
+                                sudo nix-env --delete-generations "$generation" --profile /nix/var/nix/profiles/system
+                            fi
+                        done
                     '';
                 }
             )
