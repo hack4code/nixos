@@ -8,13 +8,12 @@ in
         services.cliphist = {
             enable = true;
 
-            allowImages = true;
-
+            allowImages = false;
             extraOptions = [
                 "-max-dedupe-search"
-                "10"
+                "32"
                 "-max-items"
-                "500"
+                "32"
             ];
 
             systemdTargets = [
