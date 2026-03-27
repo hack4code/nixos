@@ -17,6 +17,7 @@ in
                 userName = gmailAccount;
                 realName = gmailAccount;
                 address = "${gmailAccount}@gmail.com";
+                flavor = "gmail.com";
 
                 passwordCommand = "bw list items --search fetchmail | jq -r '.[].login.password'";
                 imap = {
@@ -63,6 +64,7 @@ in
             enable = true;
 
             editor = "vim";
+            vimKeys = true;
             checkStatsInterval = 120;
 
             sidebar = {
@@ -72,26 +74,40 @@ in
                 format = "%B(%N|%S)";
             };
 
-            sort = "date-received";
+            sort = "date";
 
             binds = [
                 { key = "\\Ck"; action = "sidebar-prev"; map = [ "index" "pager" ]; }
                 { key = "\\Cj"; action = "sidebar-next"; map = [ "index" "pager" ]; }
                 { key = "\\Co"; action = "sidebar-open"; map = [ "index" "pager" ]; }
                 { key = "\\C0"; action = "sidebar-first"; map = [ "index" "pager" ]; }
+                { key = "\\Cn"; action = "sidebar-next-new"; map = [ "index" "pager" ]; }
+                { key = "\\Cp"; action = "sidebar-prev-new"; map = [ "index" "pager" ]; }
+                { key = "B"; action = "sidebar-toggle-visible"; map = [ "index" "pager" ]; }
 
-                { key = "g"; action = "first-entry"; map = [ "index" ]; }
+                { key = "j"; action = "next-entry"; map = [ "index" ]; }
+                { key = "k"; action = "previous-entry"; map = [ "index" ]; }
+                { key = "gg"; action = "first-entry"; map = [ "index" ]; }
                 { key = "G"; action = "last-entry"; map = [ "index" ]; }
+                { key = "l"; action = "display-message"; map = [ "index" ]; }
                 { key = "zt"; action = "current-top"; map = [ "index" ]; }
                 { key = "zz"; action = "current-middle"; map = [ "index" ]; }
                 { key = "zb"; action = "current-bottom"; map = [ "index" ]; }
 
                 { key = "<Tab>"; action = "next-unread"; map = [ "index" "pager" ]; }
+                { key = "\\Cu"; action = "half-up"; map = [ "index" "pager" "browser" ]; }
+                { key = "\\Cd"; action = "half-down"; map = [ "index" "pager" "browser" ]; }
 
-                { key = "["; action = "half-up"; map = [ "pager" ]; }
-                { key = "]"; action = "half-down"; map = [ "pager" ]; }
                 { key = "H"; action = "top"; map = [ "pager" ]; }
                 { key = "L"; action = "bottom"; map = [ "pager" ]; }
+                { key = "h"; action = "exit"; map = [ "pager" "attach" ]; }
+                { key = "j"; action = "next-line"; map = [ "pager" ]; }
+                { key = "k"; action = "previous-line"; map = [ "pager" ]; }
+                { key = "l"; action = "view-attachments"; map = [ "pager" ]; }
+                { key = "gg"; action = "top-page"; map = [ "pager" "browser" ]; }
+                { key = "G"; action = "bottom-page"; map = [ "pager" "browser" ]; }
+                { key = "J"; action = "next-entry"; map = [ "pager" ]; }
+                { key = "K"; action = "previous-entry"; map = [ "pager" ]; }
             ];
 
             macros = [
@@ -103,7 +119,7 @@ in
 
                 {
                     key = "\\Cb";
-                    action = "<pipe-message>urlscan --nohelp --run 'open_url_from_kitty.py {}'<enter>";
+                    action = "<pipe-message>${pkgs.urlscan}/bin/urlscan --nohelp --run 'open_url_from_kitty.py {}'<enter>";
                     map = [ "index" "pager" ];
                 }
             ];
@@ -137,13 +153,27 @@ in
                 status_on_top="no";
                 pager_index_lines = "5";
                 read_inc = "25";
-                mailcap_path = "~/.config/neomutt/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap:";
+                mailcap_path = "~/.config/neomutt/mailcap";
                 beep = "yes";
                 collapse_unread = "yes";
             };
 
             extraConfig = ''
                 # set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\"";
+
+                set send_charset="us-ascii:utf-8"
+                set date_format="%y/%m/%d %I:%M%p"
+                set index_format="%4C %Z %{%Y-%m-%d} %-15.15L %s"
+                set sidebar_next_new_wrap = yes
+
+                set mime_forward = yes
+                set mime_forward_rest = yes
+                set mime_type_query_command = "file --mime-type -b %s"
+                auto_view text/html
+                # auto_view application/pgp-encrypted
+                unalternative_order *
+                alternative_order text/enriched text/html text/plain
+                set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac"
 
                 ignore *
                 unignore Subject
@@ -193,7 +223,11 @@ in
             executable = false;
             force = true;
             text = ''
-                text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput;
+                text/html; ${pkgs.w3m}/bin/w3m -dump -T text/html -cols 80 -o display_borders=1 -o display_link=0 -s; nametemplate=%s.html; copiousoutput
+                application/*; xdg-open %s &; test=test -n "$DISPLAY"
+                image/*; xdg-open %s &; test=test -n "$DISPLAY"
+                video/*; xdg-open %s &; test=test -n "$DISPLAY"
+                audio/*; xdg-open %s &; test=test -n "$DISPLAY"
             '';
         };
 
@@ -293,7 +327,6 @@ in
                         "a": "add_url",
                         "C": "clipboard",
                         "c": "context",
-                        "ctrl l": "clear_screen",
                         "f": "page_down",
                         "b": "page_up",
                         "d": "del_url",
@@ -315,6 +348,9 @@ in
                         "S": "all_shorten",
                         "s": "shorten",
                         "u": "all_escape"
+                        "ctrl l": "clear_screen",
+                        "ctrl d": "page_down",
+                        "ctrl u": "page_up"
                     }
                 }
             '';
