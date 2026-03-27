@@ -54,7 +54,7 @@ def download_video_from_youtube(url: str) -> None:
         'writesubtitles': True,
         'subtitleslangs': ['^en.*'],
         'cookiesfrombrowser': ('firefox', 'KISS', None, 'self'),
-        'format': 'bestvideo[height<=?1080]+bestaudio/best',
+        'format': 'bestvideo[height<1080]+bestaudio/best[height<1080]',
         'paths': {
             'home': str(path.absolute())
         },
