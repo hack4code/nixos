@@ -37,7 +37,7 @@ in
 
              font = {
                  name = "Google Sans Code";
-                 size = 14.0;
+                 size = 15.0;
              };
 
             actionAliases = {
