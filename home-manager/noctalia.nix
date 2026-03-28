@@ -116,7 +116,7 @@ in
 
                 ui = {
                     fontDefault = "Fira Sans";
-                    fontFixed = "Fira Mono";
+                    fontFixed = "JetBrains Mono";
                     fontDefaultScale = 1;
                     fontFixedScale = 1;
                     tooltipsEnabled = true;
@@ -337,15 +337,15 @@ in
                 notifications = {
                     enabled = true;
                     enableMarkdown = true;
-                    density = "compact";
+                    density = "default";
                     monitors = [
                         monitorSamsung
                     ];
                     location = "top";
                     overlayLayer = true;
-                    backgroundOpacity = 0.8;
+                    backgroundOpacity = 0.98;
                     respectExpireTimeout = false;
-                    lowUrgencyDuration = 5;
+                    lowUrgencyDuration = 4;
                     normalUrgencyDuration = 7;
                     criticalUrgencyDuration = 12;
                     clearDismissed = false;
@@ -361,7 +361,7 @@ in
                         criticalSoundFile = "";
                         normalSoundFile = "";
                         lowSoundFile = "";
-                        excludedApps = "firefox,";
+                        excludedApps = "";
                     };
                     enableMediaToast = false;
                     enableBatteryToast = false;
