@@ -105,7 +105,7 @@ in
                 mu = "make update";
                 mus = "make update-stable";
                 mp = "glow --pager";
-                mm = "glow --pages README.md";
+                mm = "glow --pager README.md";
                 rt = "systemctl reboot";
                 st = "systemctl poweroff";
                 t = "date '+%F %H:%M %A'";
