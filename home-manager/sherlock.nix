@@ -203,12 +203,11 @@ in
                 search_bar_icon = {
                     enable = true;
                     icon = "searchmonkey";
-                    icon_back = "sherlock-back";
                     size = 20;
                 };
 
                 status_bar = {
-                    enable = true;
+                    enable = false;
                 };
 
                 runtime = {
@@ -242,6 +241,10 @@ in
                     use_base_css = true;
                     gsk_renderer = "vulkan";
                     opacity = 1.0;
+                    icon_paths = [
+                        "${pkgs.candy-icons}/share/icons/candy-icons"
+                        "${pkgs.gruvbox-plus-icons}/share/icons/gruvbox-plus-icons"
+                    ];
                     mod_key_ascii = [
                         "⇧"
                         "⇧"
