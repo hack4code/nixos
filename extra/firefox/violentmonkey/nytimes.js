@@ -30,27 +30,37 @@ const $ = window.jQuery;
         window.open(url, "_self");
     }
 
-    function hide_header() {
+
+    function set_header() {
         $('header.title-bar').hide();
-        $('div.setting-bar').hide();
-        $('header small').hide();
+        $('header h1').css({
+            "text-align": "center"
+        });
+        $('.byline-row').hide();
+        $('.setting-bar').hide();
     }
 
-    function set_article_font() {
+
+    function set_article() {
         $('div.article-paragraph').css({
-            "font-family": "Roboto Flex, Swei Gothic CJK SC, Swei Gothic CJK TC",
-            "font-weight": "500"
+            "font-family": "Roboto Flex, vivo Sans",
+            "font-weight": "500",
+            "font-size": "18px"
         });
     }
 
-    function hide_cite() {
+
+    function set_figcaption() {
+        $('figcaption').css({
+            "text-align": "center"
+        });
         $('figcaption cite').hide();
     }
 
     select_dual_language();
-    set_article_font();
-    hide_header();
-    hide_cite();
+    set_article();
+    set_header();
+    set_figcaption();
 })();
 
 
