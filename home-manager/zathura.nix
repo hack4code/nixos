@@ -9,7 +9,7 @@ in
             enable = true;
 
             options = {
-                render-loading = true;
+                render-loading = false;
                 adjust-open = "width";
                 recolor = true;
                 scroll-step = 50;
