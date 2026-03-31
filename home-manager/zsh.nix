@@ -135,6 +135,8 @@ in
                 abbreviations = shellAliases;
             };
 
+            completionInit = "autoload -U compinit && compinit";
+
             oh-my-zsh = {
                 enable = true;
 
@@ -164,10 +166,12 @@ in
 
                     umask 077
 
-                    autoload compinit
+                    # autoload compinit
+                    zmodload zsh/zpty
+                    zmodload zsh/complist
+
                     zstyle ':completion:*' menu select
                     zstyle ':completion:*' add-space no
-                    zmodload zsh/complist
                     bindkey -M menuselect 'h' vi-backward-char
                     bindkey -M menuselect 'l' vi-forward-char
                     bindkey -M menuselect 'j' vi-down-line-or-history
