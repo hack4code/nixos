@@ -310,10 +310,10 @@ in
             *******************/
             adwaita-icon-theme
             adwaita-qt
+            adwaita-qt6
             kdePackages.breeze
             morewaita-icon-theme
             candy-icons
-            gruvbox-plus-icons
             /******************
                 graphics
             *******************/
