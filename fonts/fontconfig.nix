@@ -26,6 +26,8 @@
             # /* fira */
             # fira
             # fira-code
+            /* gtk */
+            adwaita-fonts
             /* iosevka */
             iosevka
             /* source han */
