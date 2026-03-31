@@ -243,7 +243,8 @@ in
                     opacity = 1.0;
                     icon_paths = [
                         "${pkgs.candy-icons}/share/icons/candy-icons"
-                        "${pkgs.gruvbox-plus-icons}/share/icons/gruvbox-plus-icons"
+                        "${pkgs.adwaita-icon-theme}/share/icons/Adwaita"
+
                     ];
                     mod_key_ascii = [
                         "⇧"
