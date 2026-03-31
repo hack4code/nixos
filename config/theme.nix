@@ -17,8 +17,7 @@
         cursorSize = 18;
         /* gtk */
         gtkColorScheme = "light";
-        # gtkIconTheme = "Adwaita";
-        gtkIconTheme = "candy-icons";
+        gtkIconTheme = "Adwaita";
         gtkFontName = "Roboto Condensed";
         gtkFontSize = 10;
         /* qt */
