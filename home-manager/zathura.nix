@@ -12,7 +12,7 @@ in
                 render-loading = false;
                 adjust-open = "width";
                 recolor = true;
-                scroll-step = 50;
+                scroll-step = 30;
                 selection-clipboard = "clipboard";
                 statusbar-home-tilde = true;
                 font = "JetBrains Mono 16";
@@ -53,6 +53,7 @@ in
                 "d" = "scroll half-down";
                 "=" = "zoom in";
                 ";" = "nohlsearch";
+                "<C-o>" = "file_chooser";
             };
         };
     };
