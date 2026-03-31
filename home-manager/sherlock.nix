@@ -280,10 +280,10 @@ in
                     --background: ${colorBackground};
                     --border: ${colorBlue};
                     --text: ${colorGreen};
-                    --text-button: ${colorYellow};
-                    --text-selected: ${colorRed};
-                    --launcher-type: ${colorAqua};
-                    --status-label: ${colorOrange};
+                    --text-button: ${colorOrange};
+                    --text-selected: ${colorAqua};
+                    --launcher-type: ${colorYellow};
+                    --status-label: ${colorRed};
                 }
 
                 window {
@@ -303,6 +303,7 @@ in
 
                 #launcher-type {
                     font-size: 10px;
+                    font-weight: 400;
                     color: var(--launcher-type);
                     margin-left: 0px;
                 }
