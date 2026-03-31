@@ -617,7 +617,7 @@ in
                         fi
 
                         while true; do
-                            pid=$(noctalia-shell list --all | awk -F : '/Process ID/{print $2}' | tr -d '\s\n')
+                            pid=$(noctalia-shell list --any-display | awk -F : '/Process ID/{print $2}' | tr -d '\s\n')
                             if [[ -z "$pid" ]]; then
                                 break
                             fi
