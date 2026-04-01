@@ -290,10 +290,10 @@ in
                     border-radius: 12px;
                     border: 1px solid var(--border);
                     background: var(--background);
-                    opcity: 1.0;
                 }
 
                 label {
+                    font-family: Roboto Flex;
                     color: var(--text);
                 }
 
@@ -310,7 +310,6 @@ in
 
                 #shortcut-holder {
                     background: var(--button-background);
-                    opcity: 0.5;
                     margin-right: 25px;
                     padding: 5px 10px;
                     border-radius: 6px;
@@ -356,7 +355,6 @@ in
                 }
 
                 scrollbar {
-                    display: none;
                 }
 
                 image {
@@ -450,7 +448,7 @@ in
 
                 row:selected #title {
                     color: var(--text-selected);
-                    font-weight: 700;
+                    font-weight: 500;
                 }
 
                 #context-menu row:selected {
