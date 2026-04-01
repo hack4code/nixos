@@ -19,7 +19,7 @@ for extensions, icon in [
     ('epub', ''),
     ('nsp', ''),
     ('md', ''),
-    ('ass srt', ''),
+    ('ass srt', ''),
 ]:
     EXTENSIONS.update(dict(zip(extensions.split(), repeat(icon))))
 
