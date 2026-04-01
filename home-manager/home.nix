@@ -1,16 +1,17 @@
-{ config, pkgs, stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
     cursorName = config.cursorName;
     gmailMailBoxes = config.gmailMailBoxes;
     bwSession = config.bwSession;
+    nixOSVersion = config.nixOSVersion;
 in
 {
     home-manager.users.${userName} = { lib, ... }:
     {
         home = {
-            stateVersion = if stable then "25.11" else "26.05";
+            stateVersion = nixOSVersion;
             enableNixpkgsReleaseCheck = false;
             preferXdgDirectories = true;
 
