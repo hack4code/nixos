@@ -44,7 +44,7 @@ in
                         <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
                         <fontconfig>
                           <match target="pattern">
-                            <test qual="any" compare="contains" name="family">
+                            <test name="family" qual="any" compare="contains">
                               <string>ico</string>
                             </test>
                             <edit name="family" mode="assign" binding="same">
@@ -64,11 +64,11 @@ in
                         <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
                         <fontconfig>
                           <match target="pattern">
-                            <test qual="any" compare="contains" name="family">
-                              <string>yahei</string>
+                            <test name="family" qual="any" compare="eq">
+                              <string>Microsoft YaHei</string>
                             </test>
                             <edit name="family" mode="assign" binding="same">
-                              <string>Swei Gothic CJK SC</string>
+                              <string>MiSans</string>
                             </edit>
                           </match>
                         </fontconfig>
