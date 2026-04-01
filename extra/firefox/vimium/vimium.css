@@ -111,10 +111,10 @@
 
 
 #hud {
-    font-family: MiSans !important;
+    font-family: Fira Code !important;
     font-size: 12px !important;
-    font-weight: 300 !important;
-    color: #ebdbb2 !important;
+    font-weight: 600 !important;
+    color: #d65d0e !important;
     padding: 4px 4px !important;
 }
 
