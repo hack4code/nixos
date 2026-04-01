@@ -281,7 +281,7 @@ in
                 for_window [class="Ryujinx" title=".+Settings$"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
                 for_window [class="Ryujinx" title="^Settings.+"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
                 for_window [floating workspace="9" shell="xdg_shell" title="^Settings$"] border pixel 1, resize set 64 ppt 96 ppt, move position center
-                for_window [app_id="kitty" title="termfilechooser"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
+                for_window [app_id="file_chooser" title="termfilechooser"] floating enable, border pixel 2, move position center, resize set 80 ppt 72 ppt, opacity 0.99
 
                 exec --no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

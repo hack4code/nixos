@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     userName = config.userName;
@@ -22,8 +22,9 @@ let
     colorLightWhite = config.colorLightWhite;
 in
 {
-    # environment.variables.QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
-    # environment.variables.GTK_USE_PORTAL = 1;
+    /* termfilechooser */
+    environment.variables.GTK_USE_PORTAL = "1";
+    environment.variables.GDK_DEBUG = "portals";
 
     home-manager.users.${userName} = {
         programs.kitty = {
