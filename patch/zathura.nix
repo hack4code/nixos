@@ -1,6 +1,8 @@
 {
     nixpkgs.config.packageOverrides = pkgs: {
-        zathura = pkgs.zathura.override { useMupdf = false; };
+        zathura = pkgs.zathura.override {
+            useMupdf = false;
+        };
     };
 }
 

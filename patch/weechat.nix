@@ -12,8 +12,7 @@ in
 {
     nixpkgs.config.packageOverrides = pkgs: {
         weechat = pkgs.weechat.override {
-            configure = { ... }:
-            {
+            configure = { ... }: {
                 scripts = with pkgs.weechatScripts; [
                     autosort
                     buffer_autoset
