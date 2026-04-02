@@ -20,7 +20,6 @@ in
                 "sway-session.target"
             ];
         };
-
     };
 }
 

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     userName = config.userName;
@@ -14,6 +14,8 @@ let
     cursorName = config.cursorName;
 in
 {
+    systemd.user.services.cliphist.wantedBy = lib.mkForce [];
+
     home-manager.users.${userName} = {
         services = {
             gnome-keyring = {
@@ -288,6 +290,7 @@ in
                 exec --no-startup-id hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
                 exec_always --no-startup-id systemctl --user restart cliphist.service
+
                 exec_always --no-startup-id runshell
                 exec_always --no-startup-id rpcd
                 exec --no-startup-id fcitx5 -d --replace --disable Clipboard -s 4
