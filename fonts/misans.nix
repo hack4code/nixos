@@ -2,7 +2,7 @@
 
 pkgs.stdenv.mkDerivation {
     pname = "misans";
-    version = "1.0";
+    version = "1.2";
     dontConfigue = true;
 
     src = pkgs.fetchurl {
@@ -13,19 +13,13 @@ pkgs.stdenv.mkDerivation {
 
     unpackPhase = ''
         ${pkgs.unzip}/bin/unzip $src
-        ${pkgs.unzip}/bin/unzip 'MiSans Global _ALL/MiSans.zip'
-        ${pkgs.unzip}/bin/unzip 'MiSans Global _ALL/MiSans Latin.zip'
-        ${pkgs.unzip}/bin/unzip 'MiSans Global _ALL/MiSans TC.zip'
-        ${pkgs.unzip}/bin/unzip 'MiSans Global _ALL/MiSans L3.zip'
+        ${pkgs.findutils}/bin/find "MiSans Global _ALL/" -iname '*.zip' -exec ${pkgs.unzip}/bin/unzip {} \;
     '';
 
     installPhase = ''
         runHook preInstall
         mkdir -p $out/share/fonts/
-        cp -r MiSans $out/share/fonts/
-        cp -r 'MiSans Latin' $out/share/fonts/
-        cp -r 'MiSans TC' $out/share/fonts/
-        cp -r 'MiSans L3' $out/share/fonts/
+        ${pkgs.findutils}/bin/find . -type d -iname '*MiSans*' -exec cp -r {} $out/share/fonts/ \;
         runHook postInstall
     '';
 
