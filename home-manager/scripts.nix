@@ -621,10 +621,11 @@ in
                             if [[ -z "$pid" ]]; then
                                 break
                             fi
-                            noctalia-shell kill --pid "$pid"
+                            noctalia-shell kill --any-display
                             sleep 0.2s
                         done
-                        noctalia-shell
+
+                        noctalia-shell --no-duplicate --daemonize
                     '';
                 }
             )
