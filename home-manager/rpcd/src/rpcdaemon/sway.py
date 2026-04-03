@@ -492,7 +492,10 @@ def setup_workspace_5() -> None:
 
 
 def setup_workspaces_for_books() -> None:
-    def open_book(book: Path, workspace: int) -> None:
+    workspace = 6
+
+    def open_book(book: Path) -> None:
+        nonlocal workspace
         file_name = str(book.absolute())
         if "'" in file_name:
             I3.command(
@@ -503,46 +506,23 @@ def setup_workspaces_for_books() -> None:
                 f"workspace {workspace};exec zathura '{book.absolute()}'"
             )
 
+    def open_dir(p: Path):
+        nonlocal workspace
+        if workspace > 8:
+            return
+        for book in p.iterdir():
+            if book.is_file() and book.suffix in (".pdf", ".epub"):
+                open_book(book)
+                workspace += 1
+
     reading = Path.home() / "book" / ".reading"
     if not reading.exists():
         return
-
-    study = reading / "study"
-    if not study.exists():
-        return
-    workspace = 6
-    for book in study.iterdir():
-        if workspace > 8:
-            break
-        if not book.is_file():
+    for d in ("study", "fiction", "non-fiction"):
+        p = reading / d
+        if not p.exists():
             continue
-        if book.suffix in (".pdf", ".epub"):
-            open_book(book, workspace)
-            workspace += 1
-
-    fiction = reading / "fiction"
-    if not fiction.exists():
-        return
-    for book in fiction.iterdir():
-        if not book.is_file():
-            continue
-        if workspace > 8:
-            break
-        if book.suffix in (".pdf", ".epub"):
-            open_book(book, workspace)
-            workspace += 1
-
-    nonfiction = reading / "non-fiction"
-    if not nonfiction.exists():
-        return
-    for book in nonfiction.iterdir():
-        if not book.is_file():
-            continue
-        if workspace > 8:
-            break
-        if book.suffix in (".pdf", ".epub"):
-            open_book(book, workspace)
-            workspace += 1
+        open_dir(p)
 
 
 def move_cursor_to_workspace_0() -> None:
