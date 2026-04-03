@@ -204,6 +204,7 @@ in
             dosfstools
             duf
             eza
+            fastfetch
             file
             fzf
             glow
