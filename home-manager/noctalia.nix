@@ -52,10 +52,34 @@ in
                     widgets = {
                         left = [
                             {
+                                colorizeSystemIcon = "tertiary";
+                                customIconPath = "";
+                                enableColorization = true;
+                                icon = "rocket";
+                                iconColor = "none";
                                 id = "Launcher";
+                                useDistroLogo = true;
                             }
                             {
+                                characterCount = 2;
+                                colorizeIcons = false;
+                                emptyColor = "none";
+                                enableScrollWheel = false;
+                                focusedColor = "primary";
+                                followFocusedScreen = true;
+                                fontWeight = "bold";
+                                groupedBorderOpacity = 1;
+                                hideUnoccupied = false;
+                                iconScale = 0.8;
                                 id = "Workspace";
+                                labelMode = "index";
+                                occupiedColor = "secondary";
+                                pillSize = 0.62;
+                                showApplications = false;
+                                showApplicationsHover = false;
+                                showBadge = false;
+                                showLabelsOnlyWhenOccupied = false;
+                                unfocusedIconsOpacity = 1;
                             }
                         ];
                         center = [
@@ -84,7 +108,13 @@ in
                                 id = "NotificationHistory";
                             }
                             {
+                                clockColor = "none";
+                                customFont = "Fira Sans Medium";
+                                formatHorizontal = "HH:mm ddd; MMM dd";
+                                formatVertical = "HH mm - dd MM";
                                 id = "Clock";
+                                tooltipFormat = "HH:mm ddd; MMM dd";
+                                useCustomFont = true;
                             }
                             {
                                 id = "Tray";
@@ -115,14 +145,14 @@ in
                 };
 
                 ui = {
-                    fontDefault = "Fira Sans";
-                    fontFixed = "JetBrains Mono";
+                    fontDefault = "Adwaita Sans";
+                    fontFixed = "Adwaita Mono";
                     fontDefaultScale = 1;
                     fontFixedScale = 1;
                     tooltipsEnabled = true;
                     scrollbarAlwaysVisible = false;
                     boxBorderEnabled = false;
-                    panelBackgroundOpacity = 0.9;
+                    panelBackgroundOpacity = 0.98;
                     translucentWidgets = false;
                     panelsAttachedToBar = true;
                     settingsPanelMode = "attached";
@@ -155,7 +185,7 @@ in
                     language = "en";
                     allowPanelsOnScreenWithoutBar = true;
                     showChangelogOnStartup = true;
-                    telemetryEnabled = false;
+                    telemetryEnabled = true;
                     enableLockScreenCountdown = false;
                     lockScreenCountdownDuration = 10000;
                     autoStartAuth = true;
