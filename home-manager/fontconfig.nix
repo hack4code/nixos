@@ -15,12 +15,12 @@ in
                 ];
 
                 sansSerif = [
-                    "Roboto Flex"
-                    "Noto Sans"
+                    "Adwaita Sans"
+                    "MiSans"
                 ];
 
                 monospace = [
-                    "JetBrains Mono"
+                    "Adwaita Mono"
                     "MiSans"
                 ];
 
@@ -31,7 +31,7 @@ in
             };
 
             antialiasing = true;
-            hinting = "medium";
+            hinting = "full";
             subpixelRendering = "rgb";
 
             configFile = {
