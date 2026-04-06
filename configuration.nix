@@ -216,6 +216,7 @@ in
             mpc
             ncdu
             p7zip
+            perf
             procps
             pv
             qrencode
