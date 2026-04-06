@@ -242,9 +242,10 @@ in
             pwru
             rclone
             # tcptrace
-            termscp
-            /* transmission */
-            transmission_4
+            /******************
+                transmission
+            *******************/
+            stig
             /******************
                 font
             *******************/
@@ -339,10 +340,6 @@ in
             ryubing
             /* windows */
             bottles
-            /* pc */
-            # dwarf-fortress
-            # nethack
-            # superTux
         ];
     };
 }
