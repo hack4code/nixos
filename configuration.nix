@@ -214,6 +214,7 @@ in
             lsof
             moor
             mpc
+            ncdu
             p7zip
             procps
             qrencode
