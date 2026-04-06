@@ -110,10 +110,10 @@ in
                             {
                                 clockColor = "none";
                                 customFont = "Fira Sans Medium";
-                                formatHorizontal = "HH:mm ddd; MMM dd";
-                                formatVertical = "HH mm - dd MM";
+                                formatHorizontal = "HH:mm ddd MMM d";
+                                formatVertical = "";
                                 id = "Clock";
-                                tooltipFormat = "HH:mm ddd; MMM dd";
+                                tooltipFormat = "HH:mm:ss yyyy-MM-dd";
                                 useCustomFont = true;
                             }
                             {
@@ -234,16 +234,16 @@ in
                     name = userLocation;
                     weatherEnabled = true;
                     weatherShowEffects = true;
-                    weatherTaliaMascotAlways = true;
+                    weatherTaliaMascotAlways = false;
                     useFahrenheit = false;
                     use12hourFormat = false;
-                    showWeekNumberInCalendar = false;
-                    showCalendarEvents = true;
+                    showWeekNumberInCalendar = true;
+                    showCalendarEvents = false;
                     showCalendarWeather = true;
                     analogClockInCalendar = false;
-                    firstDayOfWeek = -1;
-                    hideWeatherTimezone = false;
-                    hideWeatherCityName = false;
+                    firstDayOfWeek = 1;
+                    hideWeatherTimezone = true;
+                    hideWeatherCityName = true;
                     autoLocate = false;
                 };
 
@@ -317,23 +317,23 @@ in
                     enableClipboardChips = true;
                     clipboardWatchTextCommand = "${wl-paste} --type text --watch cliphist store";
                     clipboardWatchImageCommand = "${wl-paste} --type image --watch cliphist store";
-                    position = "center";
+                    position = "follow_bar";
                     pinnedApps = [ ];
-                    sortByMostUsed = true;
-                    terminalCommand = "kitty";
+                    sortByMostUsed = false;
+                    terminalCommand = "${pkgs.kitty}/bin/kitty";
                     customLaunchPrefixEnabled = false;
                     customLaunchPrefix = "";
-                    viewMode = "list";
+                    viewMode = "grid";
                     showCategories = true;
                     iconMode = "native";
                     showIconBackground = false;
                     enableSettingsSearch = false;
-                    enableWindowsSearch = true;
+                    enableWindowsSearch = false;
                     enableSessionSearch = false;
                     ignoreMouseInput = true;
                     screenshotAnnotationTool = "";
                     overviewLayer = true;
-                    density = "comfortable";
+                    density = "compact";
                 };
 
                 dock = {
