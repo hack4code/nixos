@@ -313,10 +313,9 @@ in
             *******************/
             adwaita-icon-theme
             adwaita-qt
-            adwaita-qt6
-            kdePackages.breeze
-            morewaita-icon-theme
             candy-icons
+            kdePackages.breeze
+            kdePackages.breeze-icons
             /******************
                 graphics
             *******************/
