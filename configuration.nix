@@ -217,6 +217,7 @@ in
             ncdu
             p7zip
             procps
+            pv
             qrencode
             sysstat
             unrar
