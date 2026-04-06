@@ -42,6 +42,10 @@ in
                 ranger = {
                     icon = "file-manager";
                 };
+
+                Cemu = {
+                    exec = "${pkgs.cemu}/bin/Cemu";
+                };
             };
 
             launchers =
@@ -146,22 +150,10 @@ in
                     type = "command";
                     args = {
                         commands = {
-                            "Control Center" = {
-                                icon = "preferences";
-                                exec = "bash -c '${noctalia-ipc} controlCenter open'";
-                                search_string = "controlCenter";
-                            };
-
                             "Settings" = {
                                 icon = "gnome-settings";
                                 exec = "bash -c '${noctalia-ipc} settings open'";
                                 search_string = "setting";
-                            };
-
-                            "Windows" = {
-                                icon = "preferences-system-windows-move";
-                                exec = "bash -c '${noctalia-ipc} launcher windows'";
-                                search_string = "window";
                             };
 
                             "Notification Enable DND" = {
@@ -196,14 +188,14 @@ in
 
             settings = {
                 default_apps = {
-                    terminal = "kitty";
+                    terminal = "${pkgs.kitty}/bin/kitty";
                     browser = "firefox --new-tab %u";
                 };
 
                 search_bar_icon = {
                     enable = true;
                     icon = "searchmonkey";
-                    size = 20;
+                    icon_back = "searchmonkey";
                 };
 
                 status_bar = {
@@ -232,6 +224,7 @@ in
                 behavior = {
                     use_xdg_data_dir_icons = false;
                     animate = true;
+                    remember_query = false;
                 };
 
                 appearance = {
@@ -244,7 +237,6 @@ in
                     icon_paths = [
                         "${pkgs.candy-icons}/share/icons/candy-icons"
                         "${pkgs.adwaita-icon-theme}/share/icons/Adwaita"
-
                     ];
                     mod_key_ascii = [
                         "⇧"
@@ -264,7 +256,7 @@ in
 
                 backdrop = {
                     enable = false;
-                    opacity = 0.9;
+                    opacity = 0.98;
                     edge = "top";
                 };
             };
