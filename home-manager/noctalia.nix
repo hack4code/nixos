@@ -234,6 +234,7 @@ in
                     name = userLocation;
                     weatherEnabled = true;
                     weatherShowEffects = true;
+                    weatherTaliaMascotAlways = true;
                     useFahrenheit = false;
                     use12hourFormat = false;
                     showWeekNumberInCalendar = false;
@@ -243,6 +244,7 @@ in
                     firstDayOfWeek = -1;
                     hideWeatherTimezone = false;
                     hideWeatherCityName = false;
+                    autoLocate = false;
                 };
 
                 wallpaper = {
