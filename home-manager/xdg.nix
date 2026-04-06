@@ -68,12 +68,10 @@ in
                 executable = false;
                 text = ''
                     [filechooser]
-                    cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/ranger-wrapper.sh
-                    default_dir=$HOME/book/
                     env=PATH=/run/current-system/sw/bin/:$PATH:
                         TERMCMD="kitty --title termfilechooser --class file_chooser --override font_family=Iosevka --override font_size=13 --override modify_font='cell_height +16px'"
-                    open_mode=suggested
-                    save_mode=last
+                    default_dir=$HOME/book/
+                    cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/ranger-wrapper.sh
                 '';
             };
         };
