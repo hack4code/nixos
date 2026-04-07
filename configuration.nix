@@ -208,6 +208,7 @@ in
             file
             fzf
             glow
+            # googleearth-pro
             iotop
             jq
             libnotify
