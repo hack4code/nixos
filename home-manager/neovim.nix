@@ -2,6 +2,22 @@
 
 let
     userName = config.userName;
+    initLua = ''
+
+        vim.opt.modeline = true
+        vim.opt.wrap = true
+        vim.opt.mouse = ""
+        vim.opt.backup = false
+        vim.g.mapleader = ";"
+        vim.opt.number = true
+        vim.opt.relativenumber = true
+        vim.opt.timeoutlen = 500
+        vim.opt.updatetime = 4000
+        vim.opt.termguicolors = true
+        vim.opt.completeopt = "menu,menuone,noselect,popup"
+        vim.opt.shortmess:append("c")
+        require("vim._core.ui2").enable({})
+    '';
 in
 {
     home-manager.users.${userName} = {
@@ -156,7 +172,6 @@ in
                         vim.keymap.set('n', ';b', builtin.buffers, { desc = 'Telescope buffers' })
                         vim.keymap.set('n', ';g', builtin.live_grep, { desc = 'Telescope live grep' })
                         vim.keymap.set('n', ';a', builtin.diagnostics, { desc = 'Telescope diagnostics' })
-                        vim.keymap.set('n', ';d', ':lua vim.diagnostic.disable()<CR>', { desc = 'Disable diagnostics' })
                     '';
                 }
                 {
@@ -240,11 +255,6 @@ in
             ];
 
             extraConfig = ''
-                set relativenumber
-                set modeline
-                set nobackup
-                set wrap
-                set mouse=
 
                 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
                 let g:netrw_winsize = 30
@@ -252,6 +262,7 @@ in
                 nnoremap <silent> ;s :noh<CR>
                 nnoremap <silent> ;e :Lexplore<CR>
                 nnoremap <silent> ;p :set paste<CR>"+p:set nopaste<CR>
+                nnoremap <silent> ;d :lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>
 
                 autocmd InsertEnter * set cursorline
                 autocmd InsertLeave * set nocursorline
@@ -262,12 +273,10 @@ in
                extraLuaConfig = initLua;
             }
         else
-        {
-            initLua = ''
-
-                vim.opt.winborder = 'single'
-            '';
-        });
+            {
+                initLua = initLua;
+            }
+        );
     };
 }
 
