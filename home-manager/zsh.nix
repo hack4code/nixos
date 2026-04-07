@@ -4,6 +4,7 @@ let
     userName = config.userName;
     userHome = config.userHome;
     vpsName = config.vpsName;
+    wgServerIp4Address = config.wgServerIp4Address;
 in
 {
     home-manager.users.${userName} = {
@@ -74,6 +75,7 @@ in
             setOptions = [ ];
 
             shellAliases = {
+                /* git */
                 gcaa = "git commit --all --amend";
                 gcam = "git commit --all --message";
                 gcm = "git commit --message";
@@ -88,33 +90,43 @@ in
                 gs = "git status";
                 gwe = "git switch e";
                 gwm = "git switch main";
+                lg = "lazygit";
+                /* kitty */
                 icat = "kitten icat";
+                /* iproute */
                 ip6 = "ip -color -6";
                 ip = "ip -color";
+                /* systemd */
                 jbi = "journalctl --boot --identifier";
                 jb = "journalctl --boot";
                 jfi = "journalctl --follow --identifier";
                 jf = "journalctl --follow";
-                lg = "lazygit";
-                li = "linode";
-                lp = "lsof -iTCP -sTCP:listen -P -n";
+                rt = "systemctl reboot";
+                st = "systemctl poweroff";
+                /* make */
                 mn = "make nconfig";
                 mo = "make oldconfig";
                 ms = "make switch";
                 mss = "make switch-stable";
                 mu = "make update";
                 mus = "make update-stable";
+                /* glow */
                 mp = "glow --pager";
                 mm = "glow --pager README.md";
-                rt = "systemctl reboot";
-                st = "systemctl poweroff";
-                t = "date '+%F %H:%M %A'";
-                tp = "cd \"$(mktemp -d)\"";
+                /* openssh */
                 vc = "kssh -T ${vpsName}";
                 vd = "kssh -T ${vpsName} docker container";
                 vg = "kssh -T ${vpsName} docker container logs";
                 vl = "kssh -T ${vpsName} docker container list";
+                /* lsof */
+                lp = "lsof -iTCP -sTCP:listen -P -n";
+                /* transmission */
+                tl = "stig set connect.host ${wgServerIp4Address} \; ls -c id,name,size,status,%downloaded";
+                /* */
+                t = "date '+%F %H:%M %A'";
+                tp = "cd \"$(mktemp -d)\"";
                 wp = "wl-copy";
+                li = "linode";
             };
 
             initContent = lib.mkOrder 1500 ''
