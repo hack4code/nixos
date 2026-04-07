@@ -21,6 +21,7 @@
 #include <linux/sched/types.h>
 
 #include <pthread.h>
+#include <sched.h>
 #include <systemd/sd-journal.h>
 #include <json-c/json.h>
 #include <libevdev/libevdev.h>
@@ -192,21 +193,6 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                     break;
             }
 
-            /*
-            if (is_ctrl_pressed && !is_alt_pressed && !is_shift_pressed) {
-                switch (ev.code) {
-                    case KEY_LEFTBRACE:
-                        libevdev_uinput_write_event(
-                                uidev,
-                                EV_KEY,
-                                KEY_ESC,
-                                ev.value);
-                        is_remap = true;
-                        break;
-                }
-            }
-            */
-
             pthread_mutex_lock(&g_mutex_app_id);
             if (strncmp(g_focus_app_id, "firefox", 7) == 0) {
                 pthread_mutex_unlock(&g_mutex_app_id);
@@ -286,6 +272,11 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
 
 void *
 thread_key_remap(void *name) {
+    struct sched_param params = {};
+    pthread_t self = pthread_self();
+    params.sched_priority = sched_get_priority_max(SCHED_FIFO);
+    pthread_setschedparam(self, SCHED_FIFO, &params);
+
     struct libevdev *dev = NULL;
     while (true) {
         dev = find_dev_by_name((const char *)name);
@@ -672,11 +663,6 @@ run_thread_remap() {
                 "pthread_create error: thread_key_remap\n");
         exit(1);
     }
-
-    if (set_thread_priority(g_thread_remap, SCHED_FIFO, 99) == false)
-        sd_journal_print(
-                LOG_WARNING,
-                "can't set priority for thread_key_remap\n");
 }
 
 
