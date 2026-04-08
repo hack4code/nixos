@@ -20,6 +20,8 @@ for extensions, icon in [
     ('nsp', ''),
     ('md', ''),
     ('ass srt', ''),
+    ('sh', ' '),
+    ('csv', ''),
 ]:
     EXTENSIONS.update(dict(zip(extensions.split(), repeat(icon))))
 
