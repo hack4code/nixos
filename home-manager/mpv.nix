@@ -92,12 +92,11 @@ in
                 RIGHT = "seek 10";
                 LEFT = "seek -10";
                 "9" = "add sub-scale +0.1";
-                "=" = "add sub-scale +0.1";
                 "0" = "add sub-scale -0.1";
-                "-" = "add sub-scale -0.1";
                 "k" = "cycle audio";
                 "K" = "cycle audio down";
                 "HOME" = "seek 0 absolute";
+                ":" = "script-binding commands/open";
             };
 
             extraInput = ''
