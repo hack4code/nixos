@@ -186,7 +186,6 @@ in
                     "${modifier}+m" = "exec ${wl-kbptr} -o modes=floating','click -o mode_floating.source=detect";
                     "${modifier}+n" = "exec ${wl-kbptr} -o modes=tile','click";
 
-                    # "${modifier}+o" = "exec --no-startup-id ${noctalia-ipc} launcher toggle";
                     "${modifier}+o" = "exec --no-startup-id ${sherlock}";
                     "${modifier}+q" = "kill";
                     "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
@@ -289,7 +288,7 @@ in
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec --no-startup-id hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
-                exec_always --no-startup-id systemctl --user restart cliphist.service
+                exec --no-startup-id systemctl --user restart cliphist.service
 
                 exec_always --no-startup-id runshell
                 exec_always --no-startup-id rpcd
