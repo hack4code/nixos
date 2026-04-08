@@ -29,7 +29,7 @@ in
                     in
                     ''
                         function lock {
-                            ${noctalia-ipc} wallpaper set "${bgLock}" ${monitorThinkpad}
+                            # ${noctalia-ipc} wallpaper set "${bgLock}" ${monitorThinkpad}
                             pkill cmatrix
                         }
 
@@ -50,12 +50,13 @@ in
 
 
                         function resume_lock {
-                            ${noctalia-ipc} wallpaper set "${bgThinkpad}" ${monitorThinkpad}
+                            # ${noctalia-ipc} wallpaper set "${bgThinkpad}" ${monitorThinkpad}
                             resume_ncmpcpp
                         }
 
 
                         function resume_suspend {
+                            resume_kremap
                             resume_system
                         }
 
