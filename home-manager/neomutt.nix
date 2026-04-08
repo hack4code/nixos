@@ -159,8 +159,6 @@ in
             };
 
             extraConfig = ''
-                # set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %F %H:%M:%S,%A' -d '\\1'/e\"";
-
                 set send_charset="us-ascii:utf-8"
                 set date_format="%y/%m/%d %I:%M%p"
                 set index_format="%4C %Z %{%Y-%m-%d} %-15.15L %s"
@@ -169,16 +167,12 @@ in
                 set mime_forward = yes
                 set mime_forward_rest = yes
                 set mime_type_query_command = "file --mime-type -b %s"
+
                 auto_view text/html
-                # auto_view application/pgp-encrypted
-                unalternative_order *
                 alternative_order text/enriched text/html text/plain
-                set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac"
 
                 ignore *
                 unignore Subject
-                # unhdr_order *
-                # hdr_order Subject
 
                 color        attachment             color109        default
                 color        bold                   color229        default
