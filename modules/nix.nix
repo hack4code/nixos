@@ -1,8 +1,5 @@
-{ config, ... }:
+{ nixOSVersion, ... }:
 
-let
-    nixOSVersion = config.nixOSVersion;
-in
 {
     nix = {
         channel = {

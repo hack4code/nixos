@@ -101,7 +101,7 @@
                     inherit pkgs-stable;
                     inherit pkgs-unstable;
                     inherit inputs;
-                    stable = true;
+                    nixOSVersion = "25.11";
                 };
                 modules = modules-stable;
             };
@@ -111,7 +111,7 @@
                     inherit pkgs-stable;
                     inherit pkgs-unstable;
                     inherit inputs;
-                    stable = false;
+                    nixOSVersion = "26.05";
                 };
                 modules = modules-unstable;
             };

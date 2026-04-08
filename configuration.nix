@@ -1,4 +1,4 @@
-{ config, pkgs, lib, stable, ... }:
+{ config, pkgs, lib, nixOSVersion, ... }:
 
 let
     timeZone = config.timeZone;
@@ -122,13 +122,16 @@ in
             man-db = {
                 enable = true;
             };
-        } // (if stable then { } else
-        {
-            cache = {
-                enable = false;
-                generateAtRuntime = true;
-            };
-        });
+        } // (if nixOSVersion == "25.11" then
+            { }
+        else
+            {
+                cache = {
+                    enable = false;
+                    generateAtRuntime = true;
+                };
+            }
+        );
     };
 
     programs = {

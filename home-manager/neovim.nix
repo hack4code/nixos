@@ -1,4 +1,4 @@
-{ config, pkgs, stable, ... }:
+{ config, pkgs, nixOSVersion, ... }:
 
 let
     userName = config.userName;
@@ -257,13 +257,10 @@ in
                 autocmd InsertLeave * set nocursorline
             '';
 
-        } // (if stable then
-        {
-           extraLuaConfig = ''
-
-                vim.opt.winborder = 'single'
-            '';
-        }
+        } // (if nixOSVersion == "25.11" then
+            {
+               extraLuaConfig = initLua;
+            }
         else
         {
             initLua = ''

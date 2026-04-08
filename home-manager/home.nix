@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixOSVersion, ... }:
 
 let
     userName = config.userName;
     cursorName = config.cursorName;
     gmailMailBoxes = config.gmailMailBoxes;
     bwSession = config.bwSession;
-    nixOSVersion = config.nixOSVersion;
 in
 {
     home-manager.users.${userName} = { lib, ... }:
