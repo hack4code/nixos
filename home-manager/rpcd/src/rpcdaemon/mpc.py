@@ -105,14 +105,19 @@ def resume_mpd() -> bool:
 
 
 def toggle_mpd() -> None:
+    global mpd_state_pre
+
     match get_mpd_state():
         case "playing":
+            mpd_state_pre = "paused"
             stop_mpd()
 
         case "paused":
+            mpd_state_pre = "playing"
             play_mpd()
 
         case "stopped":
+            mpd_state_pre = "playing"
             start_mpd()
 
 

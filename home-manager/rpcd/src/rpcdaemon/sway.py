@@ -56,15 +56,16 @@ kitty_config_top = (
 
 
 kitty_config_ncmpcpp = (
-    "--override font_family='Fira Mono' "
-    "--override symbol_map='U+4E00-U+9FFF Swei Gothic CJK SC' "
-    "--override symbol_map='U+3400-U+4DBF Swei Gothic CJK TC' "
+    "--override font_family='Iosevka' "
+    "--override symbol_map='U+4E00-U+9FFF MiSans' "
+    "--override symbol_map='U+3400-U+4DBF MiSans TC' "
     "--override modify_font='cell_height +8px'"
 )
 
 
 kitty_config_mutt = (
-    "--override font_family='Fira Code' "
+    "--override font_family='Source Code Pro' "
+    "--override symbol_map='U+4E00-U+9FFF Source Han Mono SC' "
     "--override modify_font='cell_height +8px'"
 )
 
@@ -72,15 +73,14 @@ kitty_config_mutt = (
 kitty_config_ranger = (
     "--override font_family='Iosevka' "
     "--override font_size=13 "
-    "--override symbol_map='U+4E00-U+9FFF Swei Gothic CJK SC' "
+    "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override modify_font='cell_height +16px'"
 )
 
 
 kitty_config_weechat = (
-    "--override font_family='JetBrains Mono' "
-    "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
-    "--override symbol_map='U+3400-U+4DBF MiSans TC VF' "
+    "--override font_family='Source Code Pro' "
+    "--override symbol_map='U+4E00-U+9FFF Source Han Mono SC' "
     "--override modify_font='cell_height +12px'"
 )
 
