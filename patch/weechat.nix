@@ -66,7 +66,7 @@ in
                     /trigger addreplace msg_disconnect modifier weechat_print "\''${tg_message_nocolor} =~ ^irc: disconnected from server$" "/(.*)/\''${color:red}^-_-^\''${color:reset}" ""
 
                     /set irc.look.server_buffer independent
-                    /set weechat.bar.buflist.size 24
+                    /set weechat.bar.buflist.size 30
 
                     /buffer_autoset add irc.libera.NickServ hidden 1
 
