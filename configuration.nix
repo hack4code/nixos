@@ -88,7 +88,6 @@ in
         ./home-manager/cliphist.nix
     ];
 
-    /* disable assertions */
     assertions = lib.mkForce [];
 
     time = {
@@ -149,7 +148,7 @@ in
             defaultEditor = true;
         };
 
-        # uv
+        /* uv */
         nix-ld = {
             enable = true;
         };
@@ -188,13 +187,31 @@ in
     };
 
     environment = {
+        sessionVariables = {
+            LANG = "en_US.UTF-8";
+
+            /* editor */
+            EDITOR = "vim";
+
+            /* pager */
+            PAGER = "${pkgs.moor}/bin/moor";
+            MANPAGER = "${pkgs.moor}/bin/moor";
+            SYSTEMD_PAGER = "${pkgs.moor}/bin/moor";
+            SYSTEMD_PAGERSECURE = "true";
+
+            /* moor */
+            MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap";
+
+            /* qemu */
+            LIBVIRT_DEFAULT_URI = "qemu:///system";
+        };
+
         shells = with pkgs; [
             zsh
             bashInteractive
         ];
 
         defaultPackages = [];
-        # corePackages = with pkgs; [ ];
 
         systemPackages = with pkgs; [
             /******************
