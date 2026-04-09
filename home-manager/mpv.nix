@@ -27,7 +27,7 @@ in
                 demuxer-max-back-bytes = "128M";
                 cache-pause = false;
                 sub-auto = "all";
-                sub-font = "Swei Gothic CJK SC";
+                sub-font = "MiSans";
                 sub-font-size = 36;
                 sub-border-size = 1;
                 sub-border-color = "0/0/0/0.5";
@@ -49,7 +49,7 @@ in
                 osd-color = "1/1/1/1";
                 osd-duration = 3000;
                 osd-font-size = 36;
-                osd-font = "Iosevka";
+                osd-font = "IosevkaTerm Nerd Font Mono";
                 msg-module = false;
                 msg-color = true;
                 slang = "chi,en,eng,en-orig";
@@ -64,20 +64,19 @@ in
             };
 
             scripts = with pkgs.mpvScripts; [
-                # modernx
                 mpris
             ];
 
             scriptOpts = {
                 console = {
-                    monospace_font = "JetBrains Mono";
+                    monospace_font = "IosevkaTerm Nerd Font Mono";
                     font_size = 16;
                     border_size = 0;
                 };
 
                 stats = {
-                    font = "Iosevka Term";
-                    font_mono = "JetBrains Mono";
+                    font = "IosevkaTerm Nerd Font";
+                    font_mono = "IosevkaTerm Nerd Font Mono";
                     font_size = 18;
                     font_color = "FFFFFF";
                     alpha = 0.6;
@@ -91,11 +90,11 @@ in
                 DOWN = "add volume -2";
                 RIGHT = "seek 10";
                 LEFT = "seek -10";
+                HOME = "seek 0 absolute";
+                k = "cycle audio";
+                K = "cycle audio down";
                 "9" = "add sub-scale +0.1";
                 "0" = "add sub-scale -0.1";
-                "k" = "cycle audio";
-                "K" = "cycle audio down";
-                "HOME" = "seek 0 absolute";
                 ":" = "script-binding commands/open";
             };
 
