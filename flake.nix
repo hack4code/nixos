@@ -88,14 +88,6 @@
                 ./configuration.nix
             ];
 
-            modules-stable = modules-base ++ [
-                home-manager-stable.nixosModules.home-manager
-            ];
-
-            modules-unstable = modules-base ++ [
-                home-manager.nixosModules.home-manager
-            ];
-
             KISS-STABLE = nixpkgs-stable.lib.nixosSystem {
                 specialArgs = {
                     inherit pkgs-stable;
@@ -103,7 +95,10 @@
                     inherit inputs;
                     nixOSVersion = "25.11";
                 };
-                modules = modules-stable;
+
+                modules = modules-base ++ [
+                    home-manager-stable.nixosModules.home-manager
+                ];
             };
 
             KISS-UNSTABLE = nixpkgs.lib.nixosSystem {
@@ -113,7 +108,10 @@
                     inherit inputs;
                     nixOSVersion = "26.05";
                 };
-                modules = modules-unstable;
+
+                modules = modules-base ++ [
+                    home-manager.nixosModules.home-manager
+                ];
             };
         };
     };
