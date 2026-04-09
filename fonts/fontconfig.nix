@@ -29,11 +29,16 @@
             /* gtk */
             adwaita-fonts
             /* iosevka */
-            iosevka
+            nerd-fonts.iosevka-term
             /* source han */
             source-han-serif
+            source-han-serif-vf-otf
+            source-han-serif-vf-ttf
             source-han-sans
+            source-han-sans-vf-otf
+            source-han-sans-vf-ttf
             source-han-mono
+            source-han-code-jp
             /* nerd */
             nerd-fonts.symbols-only
             /* twitter */
