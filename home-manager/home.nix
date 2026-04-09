@@ -11,6 +11,7 @@ in
     {
         home = {
             stateVersion = nixOSVersion;
+
             enableNixpkgsReleaseCheck = false;
             preferXdgDirectories = true;
 
@@ -23,20 +24,6 @@ in
             ];
 
             sessionVariables = {
-                EDITOR = "vim";
-                LANG = "en_US.UTF-8";
-                LIBVIRT_DEFAULT_URI = "qemu:///system";
-
-                /* pager */
-                PAGER = "${pkgs.moor}/bin/moor";
-                MANPAGER = "${pkgs.moor}/bin/moor";
-                # MANPAGER = "vim +Man!";
-                SYSTEMD_PAGER = "${pkgs.moor}/bin/moor";
-                SYSTEMD_PAGERSECURE = "true";
-
-                /* moor */
-                MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap";
-
                 # GNUPGHOME = "$HOME/.config/gpg";
                 # GOPATH = "$HOME/.local/share/go";
                 # GPG_TTY = "$(tty)";
