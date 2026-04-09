@@ -178,7 +178,6 @@ in
 
                     umask 077
 
-                    # autoload compinit
                     zmodload zsh/zpty
                     zmodload zsh/complist
 
@@ -196,6 +195,7 @@ in
                         zstyle ':omz:plugins:eza' 'icons' no
                     fi
                     zstyle ':omz:plugins:eza' 'time-style' '+%Y-%m-%d %H:%M'
+                    zstyle ':omz:plugins:eza' 'color-scale-mode' fixed
 
                     SWAY=$(command -v sway)
                     function sway {
