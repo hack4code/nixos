@@ -22,6 +22,8 @@ pkgs.stdenv.mkDerivation {
         cp -r ofl/notoserif ofl/notoserifsc ofl/notoseriftc $out/share/fonts/
         cp -r ofl/jetbrainsmono $out/share/fonts/
         cp -r ofl/intelonemono $out/share/fonts/
+        cp -r ofl/happymonkey $out/share/fonts/
+        cp -r ufl/ubuntu* $out/share/fonts/
         runHook postInstall
     '';
 
