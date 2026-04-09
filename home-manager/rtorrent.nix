@@ -100,7 +100,7 @@ in
                 method.set_key = event.download.finished,move_finished_file,"d.move_to_complete=$d.data_path=,$d.get_finished_dir="
 
                 # remove torrent after finishing
-                method.set_key = event.download.finished,remove_torrent,"d.erase="
+                method.set_key = event.download.finished,remove_torrent,"execute=sleep,8; d.erase="
 
                 # color
                 ui.color.title.set = "141 on 237"
