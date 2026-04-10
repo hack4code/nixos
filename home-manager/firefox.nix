@@ -45,7 +45,7 @@ in
                             };
 
                             monospace = {
-                                x-western = "Googe Sans Code";
+                                x-western = "JetBrains Mono";
                                 zh-CN = "MiSans";
                                 zh-HK = "Source Han Mono HC";
                                 zh-TW = "Source Han Mono TC";
