@@ -10,6 +10,7 @@ in
             "/home"
         ];
         device = "${userHome}/source/nixos/extra/vps/wireguard";
+        fsType = "ext4";
         options = [
             "bind"
             "nfsvers=4.2"
@@ -22,6 +23,7 @@ in
             "/home"
         ];
         device = "${userHome}/source/nixos/extra/vps/docker";
+        fsType = "ext4";
         options = [
             "bind"
             "nfsvers=4.2"
@@ -34,6 +36,7 @@ in
             "/home"
         ];
         device = "${userHome}/source/spider";
+        fsType = "ext4";
         options = [
             "bind"
             "nfsvers=4.2"
