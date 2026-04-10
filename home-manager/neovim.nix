@@ -62,6 +62,7 @@ in
                 vim-airline-themes
                 kitty-scrollback-nvim
                 plenary-nvim
+                nvim-treesitter
                 {
                     plugin = vim-airline;
                     type = "viml";
