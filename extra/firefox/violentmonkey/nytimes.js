@@ -43,7 +43,7 @@ const $ = window.jQuery;
 
     function set_article() {
         $('div.article-paragraph').css({
-            "font-family": "Roboto Flex, vivo Sans",
+            "font-family": "Roboto, MiSans",
             "font-weight": "500",
             "font-size": "18px"
         });

@@ -4,7 +4,7 @@
 
 
 #vomnibar input {
-    font-family: Roboto, Swei Gothic CJK SC !important;
+    font-family: MiSans VF !important;
     font-weight: 400 !important;
     font-size: 18px !important;
     color: #f8f8f2 !important;
@@ -41,7 +41,7 @@
 #vomnibar li {
     font-family: MiSans !important;
     font-size: 15px !important;
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     color: #f8f8f2 !important;
     position: relative !important;
     display: list-item !important;
@@ -106,7 +106,7 @@
 
 
 .vimium-reset {
-    font-family: JetBrains Mono !important;
+    font-family:  JetBrains Mono !important;
 }
 
 
@@ -114,19 +114,22 @@
     font-family: Fira Code !important;
     font-size: 12px !important;
     font-weight: 600 !important;
-    color: #d65d0e !important;
+    color: #fbf1c7 !important;
     padding: 4px 4px !important;
+    border: none;
 }
 
 
 #hud-container {
     bottom: 20px !important;
-    background-color: #cc241d !important;
+    background-color: #fb4934 !important;
+    border: none;
 }
 
 #hud.hud-find {
     border: 0 !important;
     background-color: #1d2021 !important;
+    border: none;
 }
 
 

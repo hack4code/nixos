@@ -97,8 +97,8 @@ const SITE = window.location.href;
         const $node = $("#title h1");
         if ($node.length) {
             $node.css({
-                "font-family": "Swei Gothic CJK SC",
-                "font-size": "16px",
+                "font-family": "MiSans",
+                "font-size": "22px",
                 "font-weight": "400",
                 "text-align": "center",
                 "margin": "24px 0 32px 0"
