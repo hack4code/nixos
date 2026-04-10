@@ -43,22 +43,22 @@
             nerd-fonts.symbols-only
             /* twitter */
             twemoji-color-font
-            /* swei-gothic */
-            (
-                callPackage ./swei-gothic.nix {}
-            )
             /* google fonts */
             (
                 callPackage ./google-fonts.nix {}
-            )
-            /* vivo sans */
-            (
-                callPackage ./vivo-sans.nix {}
             )
             /* MiSans */
             (
                 callPackage ./misans.nix {}
             )
+            /* vivo sans */
+            # (
+            #     callPackage ./vivo-sans.nix {}
+            # )
+            /* swei-gothic */
+            # (
+            #     callPackage ./swei-gothic.nix {}
+            # )
         ];
 
 
