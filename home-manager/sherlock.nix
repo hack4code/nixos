@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -41,10 +41,6 @@ in
 
                 ranger = {
                     icon = "file-manager";
-                };
-
-                Cemu = {
-                    exec = "${pkgs-stable.cemu}/bin/Cemu";
                 };
             };
 
@@ -217,7 +213,7 @@ in
                 };
 
                 caching = {
-                    enable = true;
+                    enable = false;
                     cache = "~/.cache/sherlock/cache.json";
                 };
 
