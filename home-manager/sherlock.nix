@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 let
     userName = config.userName;
@@ -44,7 +44,7 @@ in
                 };
 
                 Cemu = {
-                    exec = "${pkgs.cemu}/bin/Cemu";
+                    exec = "${pkgs-stable.cemu}/bin/Cemu";
                 };
             };
 
