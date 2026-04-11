@@ -101,12 +101,57 @@ in
                     '';
                 }
                 {
+                    plugin = nvim-web-devicons;
+                    type = "lua";
+                    config = ''
+                        require('nvim-web-devicons').setup {
+                            override = {
+                                zsh = {
+                                    icon = "",
+                                    color = "#428850",
+                                    cterm_color = "65",
+                                    name = "Zsh"
+                                }
+                            };
+                            color_icons = true;
+                            default = true;
+                            strict = true;
+                            variant = "light|dark";
+                            blend = 0;
+                            override_by_filename = {
+                                [".gitignore"] = {
+                                    icon = "",
+                                    color = "#f1502f",
+                                    name = "Gitignore"
+                                }
+                            };
+                            override_by_extension = {
+                                ["log"] = {
+                                    icon = "",
+                                    color = "#81e043",
+                                    name = "Log"
+                                }
+                            };
+                            override_by_operating_system = {
+                                ["apple"] = {
+                                    icon = "",
+                                    color = "#A2AAAD",
+                                    cterm_color = "248",
+                                    name = "Apple",
+                                },
+                            };
+                        }
+                    '';
+                }
+                {
                     plugin = telescope-nvim;
                     type = "lua";
                     config = ''
-                        require('telescope').setup({
+                        require("telescope").setup({
                             defaults = {
-                                layout_strategy = 'flex',
+                                color_devicons = false,
+                                prompt_prefix = " > ",
+                                layout_strategy = "flex",
                                 layout_config = {
                                     flex = {
                                         height = 0.5,
@@ -162,10 +207,12 @@ in
 
                                 live_grep = {
                                     previewer = true,
+                                    layout_strategy = "horizontal",
+                                    vimgrep_arguments = {  "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--trim", },
                                     layout_config = {
-                                        flex = {
-                                            height = 0.8,
-                                            width = 0.96,
+                                        horizontal = {
+                                            width = 0.98,
+                                            previewer_width = 100,
                                         },
                                     },
                                 },
@@ -224,6 +271,23 @@ in
                         }
                         require("telescope").load_extension "file_browser"
                         vim.keymap.set("n", "<leader>o", "<Cmd>Telescope file_browser<CR>", { desc = 'Telescope file browser' })
+                    '';
+                }
+                {
+                    plugin = telescope-fzf-native-nvim;
+                    type = "lua";
+                    config = ''
+                        require('telescope').setup {
+                            extensions = {
+                                fzf = {
+                                    fuzzy = true,
+                                    override_generic_sorter = true,
+                                    override_file_sorter = true,
+                                    case_mode = "smart_case",
+                                }
+                            }
+                        }
+                        require('telescope').load_extension('fzf')
                     '';
                 }
                 {
