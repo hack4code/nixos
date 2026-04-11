@@ -50,8 +50,15 @@ def download_video_from_youtube(url: str) -> None:
     options = {
         'quiet': True,
         'noplaylist': True,
+        'nocheckcertificate': True,
         'restrictfilenames': True,
         'writesubtitles': True,
+        'js_runtimes': {
+            'quickjs': {
+                'path': '/run/current-system/sw/bin/qjs'
+            }
+        },
+        'remote_components': ['ejs:github', 'ejs:npm'],
         'subtitleslangs': ['^en.*'],
         'cookiesfrombrowser': ('firefox', 'KISS', None, 'self'),
         'format': 'bestvideo[height<1080]+bestaudio/best[height<1080]',
