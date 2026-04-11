@@ -320,6 +320,10 @@ in
             zsh-completion-sync
             zsh-completions
             /******************
+                yt-dlp
+            *******************/
+            quickjs-ng
+            /******************
                 neovim
             *******************/
             lua-language-server
