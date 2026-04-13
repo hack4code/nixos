@@ -70,7 +70,7 @@ in
             sidebar = {
                 enable = true;
                 shortPath = true;
-                width = 36;
+                width = 32;
                 format = "%B(%N|%S)";
             };
 
@@ -217,7 +217,7 @@ in
             executable = false;
             force = true;
             text = ''
-                text/html; ${pkgs.w3m}/bin/w3m -dump -T text/html -cols 80 -o display_borders=1 -o display_link=0 -s; nametemplate=%s.html; copiousoutput
+                text/html; ${pkgs.w3m}/bin/w3m -dump -T text/html -cols 72 -o display_borders=1 -o display_link=0 -s; nametemplate=%s.html; copiousoutput
                 application/*; xdg-open %s &; test=test -n "$DISPLAY"
                 image/*; xdg-open %s &; test=test -n "$DISPLAY"
                 video/*; xdg-open %s &; test=test -n "$DISPLAY"
