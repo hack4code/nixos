@@ -52,10 +52,14 @@ in
                     /key bind ctrl-k /buffer -1\;/window refresh
                     /key unbind meta-s
                     /key bind meta-s /go
+                    /key unbind ctrl-d
+                    /key bind ctrl-d /window scroll_down
+                    /key unbind ctrl-u
+                    /key bind ctrl-u /window scroll_up
                     /key unbind ctrl-n
-                    /key bind ctrl-n /window scroll_down
-                    /key unbind ctrl-p
-                    /key bind ctrl-p /window scroll_up
+                    /key bind ctrl-n /buffer jump smart
+                    /key unbind ctrl-c
+                    /key bind ctrl-c /input delete_beginning_of_line
 
                     /set weechat.color.separator black
                     /set weechat.bar.title.color_bg default
