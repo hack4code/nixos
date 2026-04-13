@@ -24,16 +24,13 @@ in
             configfile = ./kernel/config;
         };
 
-        kernelParams = [
-            "loglevel=5"
+        kernelParams = lib.mkForce [
+            /* root */
+            "root=fstab"
             "rootfstype=ext4"
-            "efi=runtime"
             "rw"
-            /* logo */
-            "vga=788"
-            "xmodule=fbdev"
-            /* linux security module */
-            "lsm=lockdown,capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
+            /* efi */
+            "efi=runtime"
             /* kernel harden */
             "hardened_usercopy=1"
             "init_on_alloc=1"
@@ -42,7 +39,6 @@ in
             "page_alloc.shuffle=1"
             "slab_nomerge"
             "pti=on"
-            # "nosmt"
             "hash_pointers=always"
             "iommu.passthrough=0"
             "iommu.strict=1"
@@ -52,6 +48,8 @@ in
             "vdso32=0"
             /* wine */
             "ia32_emulation=on"
+            /* linux security module */
+            "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
         ];
 
         kernelModules = [
