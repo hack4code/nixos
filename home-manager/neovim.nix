@@ -21,7 +21,7 @@ let
         vim.opt.shortmess:append("c")
         vim.opt.icon = true
         vim.opt.iconstring = "%t"
-        vim.opt.guicursor="n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
+        -- vim.opt.guicursor="n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
 
         vim.keymap.set("n", "<leader>s", "<Cmd>noh<CR>", { silent = true, desc = "nohlsearch" })
         vim.keymap.set("n", "<leader>e", "<Cmd>32Lexplore<CR>", { silent = true, desc = "file explorer" })
@@ -62,14 +62,6 @@ in
                 vim-airline-themes
                 kitty-scrollback-nvim
                 plenary-nvim
-                nvim-treesitter
-                {
-                    plugin = vim-airline;
-                    type = "viml";
-                    config = ''
-                        let g:airline_theme='base16_gruvbox_dark_hard'
-                    '';
-                }
                 {
                     plugin = gruvbox-nvim;
                     type = "lua";
@@ -98,6 +90,13 @@ in
                             transparent_mode = false,
                         })
                         vim.cmd('colorscheme gruvbox')
+                    '';
+                }
+                {
+                    plugin = vim-airline;
+                    type = "viml";
+                    config = ''
+                        let g:airline_theme='base16_gruvbox_dark_hard'
                     '';
                 }
                 {
@@ -144,13 +143,93 @@ in
                     '';
                 }
                 {
+                    plugin = nvim-treesitter;
+                    type = "lua";
+                    config = ''
+                        require('nvim-treesitter').setup({
+                          install_dir = vim.fn.stdpath('data') .. '/site',
+                        })
+
+                        vim.treesitter.language.register('json', { 'jsonc' })
+
+                        local parsers = {
+                          'bash',
+                          'css',
+                          'diff',
+                          'editorconfig',
+                          'git_config',
+                          'git_rebase',
+                          'gitattributes',
+                          'gitcommit',
+                          'gitignore',
+                          'html',
+                          'html_tags',
+                          'javascript',
+                          'json',
+                          'lua',
+                          'make',
+                          'markdown',
+                          'python',
+                          'regex',
+                          'toml',
+                          'tsx',
+                          'typescript',
+                          'vim',
+                          'vimdoc',
+                          'xml',
+                          'yaml',
+                        }
+
+                        vim.schedule(function()
+                          require('nvim-treesitter').install(parsers)
+                        end)
+                    '';
+                }
+                {
+                    plugin = nvim-treesitter-textobjects;
+                    type = "lua";
+                    config = ''
+                        require('nvim-treesitter-textobjects').setup({
+                          move = {
+                            set_jumps = true,
+                          },
+                        })
+
+                        local map = vim.keymap.set
+                        map({ 'n', 'x', 'o' }, ']f', function()
+                          require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
+                        end, { desc = 'next function start' })
+                        map({ 'n', 'x', 'o' }, '[f', function()
+                          require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
+                        end, { desc = 'previous function start' })
+                        map({ 'n', 'x', 'o' }, ']F', function()
+                          require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
+                        end, { desc = 'next function end' })
+                        map({ 'n', 'x', 'o' }, '[F', function()
+                          require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
+                        end, { desc = 'previous function end' })
+                        map({ 'n', 'x', 'o' }, ']k', function()
+                          require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
+                        end, { desc = 'next class start' })
+                        map({ 'n', 'x', 'o' }, '[k', function()
+                          require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
+                        end, { desc = 'previous class start' })
+                        map({ 'n', 'x', 'o' }, ']K', function()
+                          require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects')
+                        end, { desc = 'next class end' })
+                        map({ 'n', 'x', 'o' }, '[K', function()
+                          require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
+                        end, { desc = 'previous class end' })
+                    '';
+                }
+                {
                     plugin = telescope-nvim;
                     type = "lua";
                     config = ''
                         require("telescope").setup({
                             defaults = {
                                 color_devicons = false,
-                                prompt_prefix = " > ",
+                                prompt_prefix = "> ",
                                 layout_strategy = "flex",
                                 layout_config = {
                                     flex = {
