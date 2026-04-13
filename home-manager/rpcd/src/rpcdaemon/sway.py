@@ -56,7 +56,7 @@ kitty_config_top = (
 
 
 kitty_config_ncmpcpp = (
-    "--override font_family='IosevkaTerm Nerd Font' "
+    "--override font_family='MiSans VF' "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override symbol_map='U+3400-U+4DBF Misans TC VF' "
     "--override modify_font='cell_height +8px'"
@@ -81,7 +81,7 @@ kitty_config_ranger = (
 
 
 kitty_config_weechat = (
-    "--override font_family='Source Code Pro' "
+    "--override font_family='Source Han Mono SC' "
     "--override symbol_map='U+4E00-U+9FFF Source Han Mono SC' "
     "--override symbol_map='U+3400-U+4DBF Source Han Mono TC' "
     "--override modify_font='cell_height +12px'"
