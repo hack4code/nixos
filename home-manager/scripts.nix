@@ -59,7 +59,7 @@ in
                         kernel_cdn="linux-$1.tar.xz"
                         kernel_url_cdn="https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/$kernel_cdn"
 
-                        if (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_tuna") == 200 )); then
+                        if (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_tuna") == 200 )); then
                             $CURL -O -L --retry 8 "$kernel_url_tuna"
                             if ! [[ -f $kernel_tuna ]]; then
                                 panic "$kernel_tuna not exist"
@@ -67,12 +67,12 @@ in
 
                             tar xzf "$kernel_tuna" && rm -f "$kernel_tuna"
 
-                            kernel_hash=$($CURL -s "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            kernel_hash=$($CURL -L -s "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
                             if [[ -z "$kernel_hash" ]]; then
                                 panic 'no sha256 signature found'
                             fi
                             kernel_url="$kernel_url_tuna"
-                        elif (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
+                        elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
                             $CURL -O -L --retry 8 "$kernel_url_cdn"
                             if ! [[ -f $kernel_cdn ]]; then
                                 panic "$kernel_cdn not exist"
@@ -80,12 +80,12 @@ in
 
                             tar xJf "$kernel_cdn" && rm -f "$kernel_cdn"
 
-                            kernel_hash=$($CURL -s "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            kernel_hash=$($CURL -L -s "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
                             if [[ -z "$kernel_hash" ]]; then
                                 panic 'no sha256 signature found'
                             fi
                             kernel_url="$kernel_url_cdn"
-                        elif (( $($CURL -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
+                        elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
                             $CURL -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
                             if ! [[ -f $kernel_github ]]; then
                                 panic "$kernel_github not exist"
