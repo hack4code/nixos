@@ -190,8 +190,8 @@ in
 
                 search_bar_icon = {
                     enable = true;
-                    icon = "searchmonkey";
-                    icon_back = "searchmonkey";
+                    icon = "edit-find";
+                    icon_back = "edit-find";
                 };
 
                 status_bar = {
