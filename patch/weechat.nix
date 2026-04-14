@@ -57,7 +57,7 @@ in
                     /key unbind ctrl-u
                     /key bind ctrl-u /window scroll_up
                     /key unbind ctrl-n
-                    /key bind ctrl-n /buffer jump smart
+                    /key bind ctrl-n /buffer jump smart\;/window refresh
                     /key unbind ctrl-c
                     /key bind ctrl-c /input delete_beginning_of_line
 
