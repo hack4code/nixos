@@ -128,7 +128,8 @@
 
 #hud.hud-find {
     border: 0 !important;
-    background-color: #1d2021 !important;
+    color:  #282828 !important;
+    /* background-color: #1d2021 !important; */
     border: none;
 }
 
