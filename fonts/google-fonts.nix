@@ -3,7 +3,8 @@
 pkgs.stdenv.mkDerivation {
     pname = "google-fonts";
     version = "1.0";
-    dontConfigue = true;
+    dontConfigure = true;
+    dontBuild = true;
 
     src = pkgs.fetchzip {
         url = "https://github.com/google/fonts/archive/main.zip";

@@ -3,7 +3,8 @@
 pkgs.stdenv.mkDerivation {
     pname = "misans";
     version = "1.2";
-    dontConfigue = true;
+    dontConfigure = true;
+    dontBuild = true;
 
     src = pkgs.fetchurl {
         url = "https://hyperos.mi.com/font-download/MiSans_Global_ALL.zip";

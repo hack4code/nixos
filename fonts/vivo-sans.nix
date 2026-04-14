@@ -3,7 +3,8 @@
 pkgs.stdenv.mkDerivation {
     pname = "vivo-sans";
     version = "1.0";
-    dontConfigue = true;
+    dontConfigure = true;
+    dontBuild = true;
 
     src = pkgs.fetchzip {
         url = "https://developersstatic.vivo.com/developers/1cdcaef3b39848f290bf90346642ed1d/20241022/vivo%20Sans.zip";
