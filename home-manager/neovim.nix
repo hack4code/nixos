@@ -142,86 +142,86 @@ in
                         }
                     '';
                 }
-                {
-                    plugin = nvim-treesitter;
-                    type = "lua";
-                    config = ''
-                        require('nvim-treesitter').setup({
-                          install_dir = vim.fn.stdpath('data') .. '/site',
-                        })
+                # {
+                #     plugin = nvim-treesitter;
+                #     type = "lua";
+                #     config = ''
+                #         require('nvim-treesitter').setup({
+                #           install_dir = vim.fn.stdpath('data') .. '/site',
+                #         })
 
-                        vim.treesitter.language.register('json', { 'jsonc' })
+                #         vim.treesitter.language.register('json', { 'jsonc' })
 
-                        local parsers = {
-                          'bash',
-                          'css',
-                          'diff',
-                          'editorconfig',
-                          'git_config',
-                          'git_rebase',
-                          'gitattributes',
-                          'gitcommit',
-                          'gitignore',
-                          'html',
-                          'html_tags',
-                          'javascript',
-                          'json',
-                          'lua',
-                          'make',
-                          'markdown',
-                          'python',
-                          'regex',
-                          'toml',
-                          'tsx',
-                          'typescript',
-                          'vim',
-                          'vimdoc',
-                          'xml',
-                          'yaml',
-                        }
+                #         local parsers = {
+                #           'bash',
+                #           'css',
+                #           'python',
+                #           -- 'diff',
+                #           -- 'editorconfig',
+                #           -- 'git_config',
+                #           -- 'git_rebase',
+                #           -- 'gitattributes',
+                #           -- 'gitcommit',
+                #           -- 'gitignore',
+                #           -- 'html',
+                #           -- 'html_tags',
+                #           -- 'javascript',
+                #           -- 'json',
+                #           -- 'lua',
+                #           -- 'make',
+                #           -- 'markdown',
+                #           -- 'regex',
+                #           -- 'toml',
+                #           -- 'tsx',
+                #           -- 'typescript',
+                #           -- 'vim',
+                #           -- 'vimdoc',
+                #           -- 'xml',
+                #           -- 'yaml',
+                #         }
 
-                        vim.schedule(function()
-                          require('nvim-treesitter').install(parsers)
-                        end)
-                    '';
-                }
-                {
-                    plugin = nvim-treesitter-textobjects;
-                    type = "lua";
-                    config = ''
-                        require('nvim-treesitter-textobjects').setup({
-                          move = {
-                            set_jumps = true,
-                          },
-                        })
+                #         vim.schedule(function()
+                #           require('nvim-treesitter').install(parsers)
+                #         end)
+                #     '';
+                # }
+                # {
+                #     plugin = nvim-treesitter-textobjects;
+                #     type = "lua";
+                #     config = ''
+                #         require('nvim-treesitter-textobjects').setup({
+                #           move = {
+                #             set_jumps = true,
+                #           },
+                #         })
 
-                        local map = vim.keymap.set
-                        map({ 'n', 'x', 'o' }, ']f', function()
-                          require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
-                        end, { desc = 'next function start' })
-                        map({ 'n', 'x', 'o' }, '[f', function()
-                          require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
-                        end, { desc = 'previous function start' })
-                        map({ 'n', 'x', 'o' }, ']F', function()
-                          require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
-                        end, { desc = 'next function end' })
-                        map({ 'n', 'x', 'o' }, '[F', function()
-                          require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
-                        end, { desc = 'previous function end' })
-                        map({ 'n', 'x', 'o' }, ']k', function()
-                          require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
-                        end, { desc = 'next class start' })
-                        map({ 'n', 'x', 'o' }, '[k', function()
-                          require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
-                        end, { desc = 'previous class start' })
-                        map({ 'n', 'x', 'o' }, ']K', function()
-                          require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects')
-                        end, { desc = 'next class end' })
-                        map({ 'n', 'x', 'o' }, '[K', function()
-                          require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
-                        end, { desc = 'previous class end' })
-                    '';
-                }
+                #         local map = vim.keymap.set
+                #         map({ 'n', 'x', 'o' }, ']f', function()
+                #           require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
+                #         end, { desc = 'next function start' })
+                #         map({ 'n', 'x', 'o' }, '[f', function()
+                #           require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
+                #         end, { desc = 'previous function start' })
+                #         map({ 'n', 'x', 'o' }, ']F', function()
+                #           require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
+                #         end, { desc = 'next function end' })
+                #         map({ 'n', 'x', 'o' }, '[F', function()
+                #           require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
+                #         end, { desc = 'previous function end' })
+                #         map({ 'n', 'x', 'o' }, ']k', function()
+                #           require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
+                #         end, { desc = 'next class start' })
+                #         map({ 'n', 'x', 'o' }, '[k', function()
+                #           require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
+                #         end, { desc = 'previous class start' })
+                #         map({ 'n', 'x', 'o' }, ']K', function()
+                #           require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects')
+                #         end, { desc = 'next class end' })
+                #         map({ 'n', 'x', 'o' }, '[K', function()
+                #           require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
+                #         end, { desc = 'previous class end' })
+                #     '';
+                # }
                 {
                     plugin = telescope-nvim;
                     type = "lua";
