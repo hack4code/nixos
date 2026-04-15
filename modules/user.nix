@@ -19,12 +19,13 @@ in
                 initialPassword = userPassWord;
                 linger = true;
                 extraGroups = [
-                    "wheel"
-                    "tss"
-                    "networkmanager"
                     "audio"
-                    "video"
+                    "input"
+                    "networkmanager"
                     "podman"
+                    "tss"
+                    "video"
+                    "wheel"
                     "wireshark"
                 ];
             };
