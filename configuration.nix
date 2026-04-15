@@ -223,6 +223,7 @@ in
             coreutils
             dosfstools
             duf
+            evtest
             eza
             fastfetch
             file
