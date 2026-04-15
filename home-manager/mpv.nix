@@ -100,6 +100,7 @@ in
 
             extraInput = ''
                 ESC ignore
+                ` ignore
             '';
         };
 
