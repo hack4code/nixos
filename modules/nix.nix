@@ -22,6 +22,9 @@
             experimental-features = [
                 "flakes"
                 "nix-command"
+                "ca-derivations"
+                "local-overlay-store"
+                "read-only-local-store"
             ];
         };
 
