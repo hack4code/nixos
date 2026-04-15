@@ -58,7 +58,7 @@ in
                                 icon = "rocket";
                                 iconColor = "none";
                                 id = "Launcher";
-                                useDistroLogo = true;
+                                useDistroLogo = false;
                             }
                             {
                                 characterCount = 2;
@@ -95,6 +95,12 @@ in
                             }
                         ];
                         right = [
+                            # {
+                            #   id = "plugin:slowbongo";
+                            # }
+                            {
+                              id = "plugin:privacy-indicator";
+                            }
                             {
                                 id = "Network";
                             }
@@ -426,6 +432,10 @@ in
                     startup = "";
                     session = "";
                     colorGeneration = "";
+                };
+                plugins = {
+                    autoUpdate = true;
+                    notifyUpdates = true;
                 };
             };
         };
