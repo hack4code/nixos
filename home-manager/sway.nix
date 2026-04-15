@@ -176,6 +176,7 @@ in
                     "${modifier}+period" = "workspace number 12";
 
                     "${modifier}+a" = "exec --no-startup-id ${noctalia-ipc} notifications toggleHistory";
+                    "${modifier}+s" = "exec --no-startup-id ${noctalia-ipc} plugin:translator toggle zh";
                     "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
