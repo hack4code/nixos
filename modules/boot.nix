@@ -49,7 +49,7 @@ in
             /* wine */
             "ia32_emulation=on"
             /* linux security module */
-            "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
+            "lsm=lockdown,capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
         ];
 
         kernelModules = [
