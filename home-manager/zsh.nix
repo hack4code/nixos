@@ -159,7 +159,6 @@ in
                     "fzf"
                     "gh"
                     "kitty"
-                    "podman"
                     "ssh"
                     "sudo"
                     "systemd"
