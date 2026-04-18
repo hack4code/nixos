@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixOSVersion, pkgs-stable, ... }:
+{ config, pkgs, lib, nixOSVersion, ... }:
 
 let
     timeZone = config.timeZone;
@@ -360,15 +360,13 @@ in
             /* ps4 */
             # shadps4
             /* Wii U */
-            # cemu
+            cemu
             /* switch */
             nsz
             ryubing
             /* windows */
             bottles
-        ] ++ (with pkgs-stable; [
-            cemu
-        ]);
+        ];
     };
 }
 
