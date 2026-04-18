@@ -25,6 +25,8 @@ in
         };
 
         kernelParams = lib.mkForce [
+            /* log */
+            "loglevel=5"
             /* root */
             "root=fstab"
             "rootfstype=ext4"
@@ -54,6 +56,11 @@ in
 
         kernelModules = [
         ];
+
+        extraModprobeConfig = ''
+            options i915 force_probe=22c7
+            options xe force_probe=!22c7
+        '';
 
         loader = {
             efi = {
@@ -96,7 +103,6 @@ in
         };
 
         blacklistedKernelModules = [
-            "xe"
             "i2c_i801"
         ];
 
@@ -105,8 +111,6 @@ in
             tmpfsSize = "60%";
             cleanOnBoot = true;
         };
-
-        consoleLogLevel = 3;
     };
 }
 
