@@ -11,8 +11,7 @@ in
             enable = false;
             enableGitIntegration = true;
             pagerOpts = [
-                "--tabs=4"
-                "-RFX"
+                "--tab-size=4"
             ];
         };
 
