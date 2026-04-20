@@ -6,8 +6,6 @@ let
 
         vim.g.mapleader = ";"
 
-        vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
-
         vim.opt.modeline = true
         vim.opt.wrap = true
         vim.opt.mouse = ""
@@ -23,8 +21,10 @@ let
         vim.opt.iconstring = "%t"
         -- vim.opt.guicursor="n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
 
+        -- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
+        -- vim.keymap.set("n", "<leader>e", "<Cmd>32Lexplore<CR>", { silent = true, desc = "file explorer" })
+
         vim.keymap.set("n", "<leader>s", "<Cmd>noh<CR>", { silent = true, desc = "nohlsearch" })
-        vim.keymap.set("n", "<leader>e", "<Cmd>32Lexplore<CR>", { silent = true, desc = "file explorer" })
         vim.keymap.set("n", "<leader>d", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { silent = true, desc = "disable diagnostics" })
         vim.keymap.set("n", "<leader>p", ':set paste<CR>"+p:set nopaste<CR>', { silent = true, desc = "paste from clipboard" })
 
@@ -351,7 +351,7 @@ in
                             },
                         }
                         require("telescope").load_extension "file_browser"
-                        vim.keymap.set("n", "<leader>o", "<Cmd>Telescope file_browser<CR>", { desc = 'Telescope file browser' })
+                        vim.keymap.set("n", "<leader>e", "<Cmd>Telescope file_browser<CR>", { desc = 'Telescope file browser' })
                     '';
                 }
                 {
