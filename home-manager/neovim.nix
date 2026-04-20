@@ -230,6 +230,8 @@ in
                             defaults = {
                                 color_devicons = false,
                                 prompt_prefix = "> ",
+                                entry_prefix = "  ",
+                                selection_caret = "◆ ",
                                 layout_strategy = "flex",
                                 layout_config = {
                                     flex = {
