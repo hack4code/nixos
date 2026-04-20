@@ -179,7 +179,7 @@ in
                     animationDisabled = false;
                     compactLockScreen = true;
                     lockScreenAnimations = true;
-                    lockOnSuspend = false;
+                    lockOnSuspend = true;
                     showSessionButtonsOnLockScreen = false;
                     showHibernateOnLockScreen = false;
                     enableLockScreenMediaControls = false;
@@ -408,25 +408,32 @@ in
 
                 idle = {
                     enabled = true;
+                    screenOffTimeout = 900;
                     lockTimeout = 300;
+                    suspendTimeout = 10800;
                     fadeDuration = 5;
-                    suspendTimeout = 3600;
-                    screenOffTimeout = 7200;
-                    lockCommand = "";
-                    resumeLockCommand = "";
-                    suspendCommand = "";
-                    resumeSuspendCommand = "swayctl resume suspend";
                     screenOffCommand = "";
+                    lockCommand = "swayctl lock";
+                    suspendCommand = "";
                     resumeScreenOffCommand = "";
-                    customCommands = [ ];
+                    resumeLockCommand = "swayctl resume lock";
+                    resumeSuspendCommand = "";
+                    customCommands = [
+                        {
+                            name = "sleep";
+                            timeout = 3600;
+                            command = "systemctl sleep";
+                            resumeCommand = "swayctl resume suspend";
+                        }
+                    ];
                 };
 
                 hooks = {
                     enabled = true;
                     wallpaperChange = "";
                     darkModeChange = "";
-                    screenLock = "swayctl lock";
-                    screenUnlock = "swayctl resume lock";
+                    screenLock = "";
+                    screenUnlock = "";
                     performanceModeEnabled = "";
                     performanceModeDisabled = "";
                     startup = "";
