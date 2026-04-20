@@ -8,32 +8,6 @@ in
         fonts.fontconfig = {
             enable = true;
 
-            defaultFonts = {
-                serif = [
-                    "Noto Serif"
-                    "Source Han Serif"
-                ];
-
-                sansSerif = [
-                    "Adwaita Sans"
-                    "MiSans"
-                ];
-
-                monospace = [
-                    "Adwaita Mono"
-                    "MiSans"
-                ];
-
-                emoji = [
-                    "Noto Color Emoji"
-                    "Twitter Color Emoji"
-                ];
-            };
-
-            antialiasing = true;
-            hinting = "full";
-            subpixelRendering = "rgb";
-
             configFile = {
                 ico = {
                     enable = true;

@@ -76,12 +76,12 @@
                 ];
 
                 sansSerif = [
-                    "Roboto Flex"
-                    "Noto Sans"
+                    "Adwaita Sans"
+                    "MiSans"
                 ];
 
                 monospace = [
-                    "JetBrains Mono"
+                    "Adwaita Mono"
                     "MiSans"
                 ];
 
