@@ -41,6 +41,8 @@
             source-han-code-jp
             /* nerd */
             nerd-fonts.symbols-only
+            /* console font */
+            terminus_font
             /* twitter */
             twemoji-color-font
             /* google fonts */
@@ -105,19 +107,6 @@
             /* firefox emoji */
             useEmbeddedBitmaps = true;
         };
-    };
-
-    i18n = {
-        defaultLocale = "en_US.UTF-8";
-    };
-
-    console = {
-        earlySetup = true;
-        keyMap = "us";
-        packages = with pkgs; [
-            terminus_font
-        ];
-        font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
     };
 }
 
