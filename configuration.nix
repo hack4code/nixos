@@ -30,6 +30,7 @@ in
         ./config/firefox.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
+        ./modules/console.nix
         ./modules/dnscrypt-proxy.nix
         ./modules/hardware.nix
         ./modules/kremap.nix
