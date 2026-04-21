@@ -2,6 +2,8 @@
 
 {
     console = {
+        /* disable console, system will hang at graphics.target */
+        enable = true;
         earlySetup = false;
         keyMap = "us";
         useXkbConfig = false;
