@@ -52,26 +52,26 @@ in
                     widgets = {
                         left = [
                             {
+                                id = "Launcher";
                                 colorizeSystemIcon = "tertiary";
                                 customIconPath = "";
                                 enableColorization = true;
                                 icon = "rocket";
                                 iconColor = "none";
-                                id = "Launcher";
                                 useDistroLogo = false;
                             }
                             {
+                                id = "Workspace";
                                 characterCount = 2;
                                 colorizeIcons = false;
                                 emptyColor = "none";
                                 enableScrollWheel = false;
                                 focusedColor = "primary";
-                                followFocusedScreen = true;
+                                followFocusedScreen = false;
                                 fontWeight = "bold";
                                 groupedBorderOpacity = 1;
                                 hideUnoccupied = false;
                                 iconScale = 0.8;
-                                id = "Workspace";
                                 labelMode = "index";
                                 occupiedColor = "secondary";
                                 pillSize = 0.62;
@@ -114,11 +114,11 @@ in
                                 id = "NotificationHistory";
                             }
                             {
+                                id = "Clock";
                                 clockColor = "none";
                                 customFont = "Fira Sans Medium";
                                 formatHorizontal = "HH:mm ddd MMM d";
                                 formatVertical = "";
-                                id = "Clock";
                                 tooltipFormat = "HH:mm:ss yyyy-MM-dd";
                                 useCustomFont = true;
                             }
