@@ -49,7 +49,7 @@ in
                 osd-color = "1/1/1/1";
                 osd-duration = 3000;
                 osd-font-size = 36;
-                osd-font = "IosevkaTerm Nerd Font Mono";
+                osd-font = "JetBrains Mono";
                 msg-module = false;
                 msg-color = true;
                 slang = "chi,en,eng,en-orig";
