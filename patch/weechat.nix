@@ -60,6 +60,16 @@ in
                     /key bind ctrl-n /buffer jump smart\;/window refresh
                     /key unbind ctrl-c
                     /key bind ctrl-c /input delete_beginning_of_line
+                    /key unbind meta-1
+                    /key bind meta-1 /buffer 1\;/window refresh
+                    /key unbind meta-2
+                    /key bind meta-2 /buffer 2\;/window refresh
+                    /key unbind meta-3
+                    /key bind meta-3 /buffer 3\;/window refresh
+                    /key unbind meta-4
+                    /key bind meta-4 /buffer 4\;/window refresh
+                    /key unbind meta-5
+                    /key bind meta-5 /buffer 5\;/window refresh
 
                     /set weechat.color.separator black
                     /set weechat.bar.title.color_bg default
