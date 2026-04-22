@@ -28,7 +28,7 @@ in
                 ratio.min.set = 100
                 ratio.max.set = 300
                 ratio.upload.set = 2M
-                method.set = group.seeding.ratio.command, "d.close= ; d.erase="
+                # method.set = group.seeding.ratio.command, "d.close= ; d.erase="
 
                 throttle.up = slowupload,100
                 throttle.max_uploads.set = 100
