@@ -33,7 +33,6 @@ in
                 };
 
                 "http \"https://github.com\"" = {
-                    proxy = "socks5h://10.0.0.1:1080";
                 };
 
                 "credential \"https://github.com\"" = {
