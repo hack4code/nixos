@@ -364,6 +364,7 @@ in
             cemu
             /* switch */
             nsz
+            eden
             ryubing
             /* windows */
             bottles
