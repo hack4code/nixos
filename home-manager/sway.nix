@@ -259,6 +259,7 @@ in
                 workspace 9  output "${monitorSamsung}"
                 workspace 10 output "${monitorSamsung}"
                 workspace 11 output "${monitorThinkpad}"
+                workspace 12 output "${monitorThinkpad}"
 
                 bindsym XF86MonBrightnessDown exec --no-startup-id ${xbacklight} -dec 10
                 bindsym XF86MonBrightnessUp exec --no-startup-id ${xbacklight} -inc 10
