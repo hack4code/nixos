@@ -364,11 +364,15 @@ in
             cemu
             /* switch */
             nsz
-            eden
             ryubing
             /* windows */
             bottles
-        ];
+        ] ++ (if nixOSVersion == "25.11" then
+            [ ]
+            else with pkgs; [
+                eden
+            ]
+        );
     };
 }
 
