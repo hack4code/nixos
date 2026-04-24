@@ -20,9 +20,9 @@
 
         fwupd = {
             enable = true;
-            uefiCapsuleSettings = {
-                DisableShimForSecureBoot = true;
-            };
+            # uefiCapsuleSettings = {
+            #     DisableShimForSecureBoot = true;
+            # };
         };
 
         acpid = {
