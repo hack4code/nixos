@@ -27,56 +27,6 @@ in
                 AutofillCreditCardEnabled = false;
                 PostQuantumKeyAgreementEnabled = true;
 
-                Preferences = {
-                    font = {
-                        name = {
-                            serif = {
-                                x-western = "Noto Serif";
-                                zh-CN = "Noto Serif SC";
-                                zh-HK = "Source Han Serif HC";
-                                zh-TW = "Source Han Serif TC";
-                            };
-
-                            sans-serif = {
-                                x-western = "Noto Sans";
-                                zh-CN = "MiSans";
-                                zh-HK = "Source Han Sans HC";
-                                zh-TW = "Source Han Sans TC";
-                            };
-
-                            monospace = {
-                                x-western = "JetBrains Mono";
-                                zh-CN = "MiSans";
-                                zh-HK = "Source Han Mono HC";
-                                zh-TW = "Source Han Mono TC";
-                            };
-                        };
-
-                        size = {
-                            monospace = {
-                                x-western = 13;
-                                zh-CN = 13;
-                                zh-HK = 13;
-                                zh-TW = 13;
-                            };
-
-                            variable = {
-                                x-western = 13;
-                                zh-CN = 13;
-                                zh-HK = 13;
-                                zh-TW = 13;
-                            };
-                        };
-
-                        minimum-size = {
-                            x-western = 10;
-                            zh-CN = 10;
-                            zh-HK = 10;
-                            zh-TW = 10;
-                        };
-                    };
-                };
-
                 FirefoxSuggest = {
                     WebSuggestions = false;
                     SponsoredSuggestions = false;
@@ -481,6 +431,43 @@ in
                         user_pref("browser.ai.control.smartTabGroups", "blocked");
                         user_pref("browser.ai.control.translations", "blocked");
                         user_pref("browser.ml.enable", false);
+
+                        /* font */
+                        user_pref("font.default.x-unicode", "sans-serif");
+                        user_pref("font.default.x-western", "sans-serif");
+                        user_pref("font.default.zh-CN", "Sans Serif");
+                        user_pref("font.default.zh-TW", "Sans Serif");
+                        user_pref("font.default.zh-HK", "Sans Serif");
+
+                        user_pref("font.name.sans-serif.x-western", "Noto Sans");
+                        user_pref("font.name.sans-serif.zh-CN", "MiSans");
+                        user_pref("font.name.sans-serif.zh-TW", "Source Han Sans TC");
+                        user_pref("font.name.sans-serif.zh-HK", "Source Han Sans HC");
+
+                        user_pref("font.name.serif.x-western", "Noto Serif");
+                        user_pref("font.name.serif.zh-CN", "Noto Serif SC");
+                        user_pref("font.name.serif.zh-TW", "Source Han Serif TC");
+                        user_pref("font.name.serif.zh-HK", "Source Han Serif HC");
+
+                        user_pref("font.name.monospace.x-western", "JetBrains Mono");
+                        user_pref("font.name.monospace.zh-CN", "MiSans");
+                        user_pref("font.name.monospace.zh-TW", "Source Han Mono TC");
+                        user_pref("font.name.monospace.zh-HK", "Source Han Mono HC");
+
+                        user_pref("font.minimum-size.x-western", 12);
+                        user_pref("font.minimum-size.zh-CN", 12);
+                        user_pref("font.minimum-size.zh-TW", 12);
+                        user_pref("font.minimum-size.zh-HK", 12);
+
+                        user_pref("font.size.monospace.x-western", 16);
+                        user_pref("font.size.monospace.zh-CN", 16);
+                        user_pref("font.size.monospace.zh-TW", 16);
+                        user_pref("font.size.monospace.zh-HK", 16);
+
+                        user_pref("font.size.variable.x-western", 16);
+                        user_pref("font.size.variable.zh-CN", 16);
+                        user_pref("font.size.variable.zh-TW", 16);
+                        user_pref("font.size.variable.zh-HK", 16);
                     '';
 
                     userChrome = ''
@@ -644,6 +631,10 @@ in
 
                         #navigator-toolbox #nav-bar {
                             order: 1 !important;
+                        }
+
+                        #sidebar-button {
+                            display: none;
                         }
 
                         #TabsToolbar {
