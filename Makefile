@@ -1,5 +1,5 @@
 update: enable_idleInhibitor flake switch disable_idleInhibitor
-update-stable: enable_idleInhibitor flake switch-stable disable_idleInhibitor
+update-stable: enable_idleInhibitor flake boot-stable disable_idleInhibitor
 
 
 enable_idleInhibitor:
@@ -10,6 +10,12 @@ disable_idleInhibitor:
 
 flake:
 	env https_proxy=socks5h://10.0.0.1:1080 nix flake update
+
+boot:
+	nixos-rebuild boot --sudo --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS-UNSTABLE"
+
+boot-stable:
+	nixos-rebuild boot --sudo --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS-STABLE"
 
 switch:
 	nixos-rebuild switch --sudo --impure --use-substitutes --show-trace --print-build-logs --verbose --flake ".#KISS-UNSTABLE"
