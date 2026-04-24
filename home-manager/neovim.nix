@@ -30,8 +30,6 @@ let
 
         vim.cmd[[autocmd InsertEnter * set cursorline]]
         vim.cmd[[autocmd InsertLeave * set nocursorline]]
-
-        require("vim._core.ui2").enable({})
     '';
 in
 {
@@ -459,7 +457,10 @@ in
             }
         else
             {
-                initLua = initLua;
+                initLua = initLua + ''
+                    --
+                    require("vim._core.ui2").enable({})
+                '';
             }
         );
     };
