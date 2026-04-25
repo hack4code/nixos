@@ -33,7 +33,7 @@ in
             defaultCommand = "fd --type f --hidden --follow --exclude .git";
 
             defaultOptions = [
-                "--border rounded"
+                "--border=rounded"
                 "--marker='>'"
                 "--pointer='◆'"
                 "--separator='─'"
@@ -41,6 +41,8 @@ in
             ];
 
             historyWidgetOptions = [
+                "--wrap=word"
+                "--wrap-sign='\t↳ '"
                 "--bind 'ctrl-y:execute-silent(echo -n {2..} | ${pkgs.wl-clipboard}/bin/wl-copy)+abort'"
             ];
         };
