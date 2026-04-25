@@ -1,6 +1,8 @@
+{pkgs-stable, ...}:
+
 {
     nixpkgs.config.packageOverrides = pkgs: {
-        bottles = pkgs.bottles.override {
+        bottles = pkgs-stable.bottles.override {
             removeWarningPopup = true;
         };
     };
