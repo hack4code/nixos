@@ -5,12 +5,14 @@
         ffNoticationsAllow = mkOption { type = listOf str; };
         ffHttpAllow = mkOption { type = listOf str; };
         ffCookiesAllow = mkOption { type = listOf str; };
+        ffProxyPort = mkOption { type = int; };
     };
 
     config = {
         ffNoticationsAllow = [ ];
         ffHttpAllow = [ ];
         ffCookiesAllow = [ ];
+        ffProxyPort = 0;
     };
 }
 

@@ -5,6 +5,8 @@ let
     ffNoticationsAllow = config.ffNoticationsAllow;
     ffHttpAllow = config.ffHttpAllow;
     ffCookiesAllow = config.ffCookiesAllow;
+    ffProxyPort = config.ffProxyPort;
+    wgServerIp4Address = config.wgServerIp4Address;
 in
 {
     home-manager.users.${userName} = {
@@ -660,13 +662,20 @@ in
                     isDefault = false;
                     name = "TOR";
                     id = 1;
+
                     search = {
                         enable = true;
                         force = true;
                         default = "ddg";
                         privateDefault = "ddg";
                     };
-                    settings = { };
+
+                    settings = {
+                        "network.proxy.socks" = wgServerIp4Address;
+                        "network.proxy.socks_port" = ffProxyPort;
+                        "network.proxy.socks_version" = 5;
+                        "network.proxy.socks5_remote_dns" = true;
+                    };
                 };
             };
         };
