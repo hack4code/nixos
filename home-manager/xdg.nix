@@ -71,7 +71,7 @@ in
                     env=PATH=/run/current-system/sw/bin/:$PATH:
                         TERMCMD="kitty --title termfilechooser --class file_chooser --override font_size=13 --override font_family='IosevkaTerm Nerd Font' --override modify_font='cell_height +16px' "
                     default_dir=$HOME/book/
-                    cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/ranger-wrapper.sh
+                    cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
                 '';
             };
         };
