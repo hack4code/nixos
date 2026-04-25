@@ -64,6 +64,7 @@ in
         ./home-manager/neomutt.nix
         ./home-manager/podman.nix
         ./home-manager/ranger.nix
+        ./home-manager/yazi.nix
         ./home-manager/rime.nix
         ./home-manager/rtorrent.nix
         ./home-manager/scripts.nix
@@ -170,7 +171,6 @@ in
             };
 
             extraPackages = with pkgs; [
-                swayimg
                 clipman
                 urlscan
                 w3m
@@ -178,15 +178,18 @@ in
                 # weechat-matrix-rs
                 wl-clipboard
                 kitty
-                weechat
-                ranger
-                w3m
                 neomutt
-                urlscan
-                zathura
-                wl-kbptr
+                ranger
                 slurp
+                swayimg
+                urlscan
+                w3m
+                weechat
+                wl-clipboard
+                wl-kbptr
                 xdg-desktop-portal-termfilechooser
+                yazi
+                zathura
             ];
         };
     };
