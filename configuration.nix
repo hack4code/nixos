@@ -8,7 +8,7 @@ in
         ./patch/tpm2-tss-fapi.nix
         ./patch/bottles.nix
         ./patch/weechat.nix
-        ./patch/firefox.nix
+        # ./patch/firefox.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
