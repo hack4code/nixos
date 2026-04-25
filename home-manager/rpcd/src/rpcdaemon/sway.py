@@ -71,7 +71,7 @@ kitty_config_mutt = (
 )
 
 
-kitty_config_ranger = (
+kitty_config_yazi = (
     "--override font_family='IosevkaTerm Nerd Font' "
     "--override font_size=13 "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
@@ -131,13 +131,13 @@ command_ncmpcpp = (
     "zsh -c 'ncmpcpp --quiet'"
 )
 
-command_ranger = (
+command_yazi = (
     "exec kitty "
     "--class file-manager "
-    "--name ranger "
-    f"{kitty_config_ranger} "
+    "--name yazi "
+    f"{kitty_config_yazi} "
     "--override allow_remote_control=no "
-    "zsh -c 'ranger ~/movie/'"
+    "zsh -c 'yazi ~/movie/'"
 )
 
 
@@ -483,7 +483,7 @@ def setup_workspace_2() -> None:
 
 
 def setup_workspace_3() -> None:
-    I3.command(f"workspace 3;{command_ranger}")
+    I3.command(f"workspace 3;{command_yazi}")
 
 
 def setup_workspace_4() -> None:
