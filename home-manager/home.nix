@@ -94,6 +94,7 @@ in
                     test -d .local/share/zsh || mkdir .local/share/zsh
                     test -d .local/share/fetchmail || mkdir .local/share/fetchmail
                     test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
+                    test -d .cache/yazi || mkdir .cache/yazi
                 '';
             };
         };
