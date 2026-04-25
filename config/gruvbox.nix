@@ -3,6 +3,7 @@
 {
     options = with lib; with types; {
          colorBackground = mkOption { type = str; };
+         colorBackground0 = mkOption { type = str; };
          colorBackground1 = mkOption { type = str; };
          colorBackground2 = mkOption { type = str; };
          colorBackground3 = mkOption { type = str; };
@@ -32,6 +33,7 @@
     config = {
         colorForeground = "#ebdbb2";
         colorBackground = "#1d2021";
+        colorBackground0 = "#282828";
         colorBackground1 = "#3c3836";
         colorBackground2 = "#504945";
         colorBackground3 = "#665c54";
