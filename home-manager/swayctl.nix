@@ -56,7 +56,7 @@ in
 
 
                         function resume_suspend {
-                            resume_kremap
+                            # resume_kremap
                             resume_system
                         }
 
