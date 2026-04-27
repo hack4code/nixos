@@ -98,6 +98,21 @@ in
                     '';
                 }
                 {
+                    plugin = yazi-nvim;
+                    type = "lua";
+                    config = ''
+                        vim.keymap.set("n", "<leader>e", function()
+                            require("yazi").yazi(
+                                {
+                                    yazi_floating_window_winblend = 0,
+                                    floating_window_scaling_factor = 0.75,
+                                    yazi_floating_window_border = "single"
+                                }
+                            )
+                        end, { silent = true, desc = "yazi file browser" })
+                    '';
+                }
+                {
                     plugin = nvim-web-devicons;
                     type = "lua";
                     config = ''
@@ -140,86 +155,6 @@ in
                         }
                     '';
                 }
-                # {
-                #     plugin = nvim-treesitter;
-                #     type = "lua";
-                #     config = ''
-                #         require('nvim-treesitter').setup({
-                #           install_dir = vim.fn.stdpath('data') .. '/site',
-                #         })
-
-                #         vim.treesitter.language.register('json', { 'jsonc' })
-
-                #         local parsers = {
-                #           'bash',
-                #           'css',
-                #           'python',
-                #           -- 'diff',
-                #           -- 'editorconfig',
-                #           -- 'git_config',
-                #           -- 'git_rebase',
-                #           -- 'gitattributes',
-                #           -- 'gitcommit',
-                #           -- 'gitignore',
-                #           -- 'html',
-                #           -- 'html_tags',
-                #           -- 'javascript',
-                #           -- 'json',
-                #           -- 'lua',
-                #           -- 'make',
-                #           -- 'markdown',
-                #           -- 'regex',
-                #           -- 'toml',
-                #           -- 'tsx',
-                #           -- 'typescript',
-                #           -- 'vim',
-                #           -- 'vimdoc',
-                #           -- 'xml',
-                #           -- 'yaml',
-                #         }
-
-                #         vim.schedule(function()
-                #           require('nvim-treesitter').install(parsers)
-                #         end)
-                #     '';
-                # }
-                # {
-                #     plugin = nvim-treesitter-textobjects;
-                #     type = "lua";
-                #     config = ''
-                #         require('nvim-treesitter-textobjects').setup({
-                #           move = {
-                #             set_jumps = true,
-                #           },
-                #         })
-
-                #         local map = vim.keymap.set
-                #         map({ 'n', 'x', 'o' }, ']f', function()
-                #           require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
-                #         end, { desc = 'next function start' })
-                #         map({ 'n', 'x', 'o' }, '[f', function()
-                #           require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
-                #         end, { desc = 'previous function start' })
-                #         map({ 'n', 'x', 'o' }, ']F', function()
-                #           require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
-                #         end, { desc = 'next function end' })
-                #         map({ 'n', 'x', 'o' }, '[F', function()
-                #           require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
-                #         end, { desc = 'previous function end' })
-                #         map({ 'n', 'x', 'o' }, ']k', function()
-                #           require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
-                #         end, { desc = 'next class start' })
-                #         map({ 'n', 'x', 'o' }, '[k', function()
-                #           require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
-                #         end, { desc = 'previous class start' })
-                #         map({ 'n', 'x', 'o' }, ']K', function()
-                #           require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects')
-                #         end, { desc = 'next class end' })
-                #         map({ 'n', 'x', 'o' }, '[K', function()
-                #           require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
-                #         end, { desc = 'previous class end' })
-                #     '';
-                # }
                 {
                     plugin = telescope-nvim;
                     type = "lua";
@@ -305,53 +240,53 @@ in
                         vim.keymap.set('n', '<leader>a', builtin.diagnostics, { desc = 'Telescope diagnostics' })
                     '';
                 }
-                {
-                    plugin = telescope-file-browser-nvim;
-                    type = "lua";
-                    config = ''
-                        local fb_actions = require "telescope".extensions.file_browser.actions
-                        require("telescope").setup {
-                            extensions = {
-                                file_browser = {
-                                    theme = 'dropdown',
-                                    previewer = false,
-                                    hijack_netrw = true,
-                                    quiet = true,
-                                    hide_parent_dir = true,
-                                    display_stat = { date = false, size = true, mode = true, },
-                                    dir_icon = "",
-                                    use_fd = true,
-                                    git_status = true,
-                                    -- initial_mode = "normal",
-                                    mappings = {
-                                        i = {
-                                            ["<C-h>"] = fb_actions.goto_parent_dir,
-                                            ["<C-l>"] = fb_actions.open_dir,
-                                            ["<C-g>"] = fb_actions.toggle_hidden,
-                                            ["<C-o>"] = false,
-                                        },
-                                        n = {
-                                            ["h"] = fb_actions.goto_parent_dir,
-                                            ["l"] = fb_actions.open_dir,
-                                            ["g"] = fb_actions.toggle_hidden,
-                                            ["o"] = false,
-                                        },
-                                    },
-                                    layout_config = {
-                                        flex = {
-                                            height = 0.8,
-                                            width = 0.5,
-                                        }
-                                    },
-                                    wrap_results = true,
-                                    scroll_strategy = "cycle",
-                                },
-                            },
-                        }
-                        require("telescope").load_extension "file_browser"
-                        vim.keymap.set("n", "<leader>e", "<Cmd>Telescope file_browser<CR>", { desc = 'Telescope file browser' })
-                    '';
-                }
+                # {
+                #     plugin = telescope-file-browser-nvim;
+                #     type = "lua";
+                #     config = ''
+                #         local fb_actions = require "telescope".extensions.file_browser.actions
+                #         require("telescope").setup {
+                #             extensions = {
+                #                 file_browser = {
+                #                     theme = 'dropdown',
+                #                     previewer = false,
+                #                     hijack_netrw = true,
+                #                     quiet = true,
+                #                     hide_parent_dir = true,
+                #                     display_stat = { date = false, size = true, mode = true, },
+                #                     dir_icon = "",
+                #                     use_fd = true,
+                #                     git_status = true,
+                #                     -- initial_mode = "normal",
+                #                     mappings = {
+                #                         i = {
+                #                             ["<C-h>"] = fb_actions.goto_parent_dir,
+                #                             ["<C-l>"] = fb_actions.open_dir,
+                #                             ["<C-g>"] = fb_actions.toggle_hidden,
+                #                             ["<C-o>"] = false,
+                #                         },
+                #                         n = {
+                #                             ["h"] = fb_actions.goto_parent_dir,
+                #                             ["l"] = fb_actions.open_dir,
+                #                             ["g"] = fb_actions.toggle_hidden,
+                #                             ["o"] = false,
+                #                         },
+                #                     },
+                #                     layout_config = {
+                #                         flex = {
+                #                             height = 0.8,
+                #                             width = 0.5,
+                #                         }
+                #                     },
+                #                     wrap_results = true,
+                #                     scroll_strategy = "cycle",
+                #                 },
+                #             },
+                #         }
+                #         require("telescope").load_extension "file_browser"
+                #         vim.keymap.set("n", "<leader>e", "<Cmd>Telescope file_browser<CR>", { desc = 'Telescope file browser' })
+                #     '';
+                # }
                 {
                     plugin = telescope-fzf-native-nvim;
                     type = "lua";
