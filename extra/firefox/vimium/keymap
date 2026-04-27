@@ -13,6 +13,9 @@ map b Vomnibar.activateBookmarksInNewTab
 unmap B
 map B Vomnibar.activateBookmarks
 
+unmap F
+map F LinkHints.activateModeToOpenInNewTab
+
 unmap R
 map R reload hard
 
