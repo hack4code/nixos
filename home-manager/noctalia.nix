@@ -145,9 +145,15 @@ in
                 };
 
                 colorSchemes = {
-                    darkMode = true;
                     useWallpaperColors = false;
                     predefinedScheme = "Gruvbox";
+                    darkMode = true;
+                    schedulingMode = "off";
+                    manualSunrise = "08:30";
+                    manualSunset = "18:30";
+                    generationMethod = "tonal-spot";
+                    monitorForColors = "";
+                    syncGsettings = true;
                 };
 
                 ui = {
@@ -426,6 +432,11 @@ in
                             resumeCommand = "swayctl resume suspend";
                         }
                     ];
+                };
+
+                noctaliaPerformance = {
+                    disableWallpaper = false;
+                    disableDesktopWidgets = false;
                 };
 
                 hooks = {
