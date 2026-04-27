@@ -172,6 +172,10 @@ in
             extraPackages = with pkgs; [
                 swayimg
                 clipman
+                urlscan
+                w3m
+                weechat
+                # weechat-matrix-rs
                 wl-clipboard
                 kitty
                 weechat
