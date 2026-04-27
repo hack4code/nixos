@@ -202,8 +202,9 @@ in
                             return
                         fi
 
-                        local T=$(date +'%F-%H-%M')
-                        exec "$SWAY" &> /var/log/sway/$T.log
+                        # local T=$(date +'%F-%H-%M')
+                        # exec "$SWAY" &> /var/log/sway/$T.log
+                        exec "$SWAY"
                     }
                 '';
             };
