@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixOSVersion, ... }:
+{ config, pkgs, lib, nixOSVersion, pkgs-unstable, ... }:
 
 let
     timeZone = config.timeZone;
@@ -374,12 +374,9 @@ in
             ryubing
             /* windows */
             bottles
-        ] ++ (if nixOSVersion == "25.11" then
-            [ ]
-            else with pkgs; [
-                eden
-            ]
-        );
+        ] ++ (with pkgs-unstable; [
+            eden
+        ]);
     };
 }
 
