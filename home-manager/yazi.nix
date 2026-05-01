@@ -155,6 +155,22 @@ in
                         }
                     ];
 
+                    unrar = [
+                        {
+                            run = "unrar e %s";
+                            block = true;
+                            for = "linux";
+                        }
+                    ];
+
+                    unzip = [
+                        {
+                            run = "${pkgs.p7zip}/bin/7z e %s";
+                            block = true;
+                            for = "linux";
+                        }
+                    ];
+
                     open = [
                         {
                             run = "xdg-open %s1";
@@ -170,6 +186,10 @@ in
                         { mime = "image/*"; use = "display"; }
                         { url = "*.pdf"; use = "read"; }
                         { url = "*.epub"; use = "read"; }
+                        { url = "*.rar"; use = "unrar"; }
+                        { url = "*.zip"; use = "unzip"; }
+                        { url = "*.7z"; use = "unzip"; }
+                        { url = "*.srt"; use = "edit"; }
                     ];
                 };
             };
