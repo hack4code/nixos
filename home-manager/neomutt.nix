@@ -84,6 +84,7 @@ in
                 { key = "\\Cn"; action = "sidebar-next-new"; map = [ "index" "pager" ]; }
                 { key = "\\Cp"; action = "sidebar-prev-new"; map = [ "index" "pager" ]; }
                 { key = "B"; action = "sidebar-toggle-visible"; map = [ "index" "pager" ]; }
+                { key = "<Tab>"; action = "next-unread"; map = [ "index" "pager" ]; }
 
                 { key = "j"; action = "next-entry"; map = [ "index" ]; }
                 { key = "k"; action = "previous-entry"; map = [ "index" ]; }
@@ -93,21 +94,20 @@ in
                 { key = "zt"; action = "current-top"; map = [ "index" ]; }
                 { key = "zz"; action = "current-middle"; map = [ "index" ]; }
                 { key = "zb"; action = "current-bottom"; map = [ "index" ]; }
+                { key = "\\Cl"; action = "show-limit"; map = [ "index" ]; }
 
-                { key = "<Tab>"; action = "next-unread"; map = [ "index" "pager" ]; }
                 { key = "\\Cu"; action = "half-up"; map = [ "index" "pager" "browser" ]; }
                 { key = "\\Cd"; action = "half-down"; map = [ "index" "pager" "browser" ]; }
+                { key = "<Esc>l"; action = "redraw-screen"; map = [ "index" "pager" "browser" ]; }
 
                 { key = "H"; action = "top"; map = [ "pager" ]; }
                 { key = "L"; action = "bottom"; map = [ "pager" ]; }
-                { key = "h"; action = "exit"; map = [ "pager" "attach" ]; }
+                { key = "J"; action = "next-entry"; map = [ "pager" ]; }
                 { key = "j"; action = "next-line"; map = [ "pager" ]; }
+                { key = "K"; action = "previous-entry"; map = [ "pager" ]; }
                 { key = "k"; action = "previous-line"; map = [ "pager" ]; }
                 { key = "l"; action = "view-attachments"; map = [ "pager" ]; }
-                { key = "gg"; action = "top-page"; map = [ "pager" "browser" ]; }
-                { key = "G"; action = "bottom-page"; map = [ "pager" "browser" ]; }
-                { key = "J"; action = "next-entry"; map = [ "pager" ]; }
-                { key = "K"; action = "previous-entry"; map = [ "pager" ]; }
+                { key = "h"; action = "exit"; map = [ "pager" "attach" ]; }
             ];
 
             macros = [
