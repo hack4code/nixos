@@ -197,20 +197,20 @@ in
     environment = {
         sessionVariables = {
             LANG = "en_US.UTF-8";
-
-            /* editor */
             EDITOR = "vim";
 
-            /* pager */
             PAGER = "${pkgs.moor}/bin/moor";
+            /* man pager */
             MANPAGER = "${pkgs.moor}/bin/moor";
+            /* systemd pager */
             SYSTEMD_PAGER = "${pkgs.moor}/bin/moor";
             SYSTEMD_PAGERSECURE = "true";
 
-            /* moor */
             MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap";
 
-            /* qemu */
+            /* termfilechooser */
+            GTK_USE_PORTAL = "1";
+
             LIBVIRT_DEFAULT_URI = "qemu:///system";
         };
 
