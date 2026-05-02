@@ -138,13 +138,6 @@ in
                         user_pref("widget.wayland.vsync.enabled", true);
                         user_pref("widget.gtk.global-menu.wayland.enabled", true);
 
-                        /* tab */
-                        user_pref("browser.tabs.closeTabByDblclick", true);
-                        user_pref("browser.tabs.loadBookmarksInTabs", true);
-                        user_pref("browser.urlbar.openintab", true);
-                        user_pref("browser.sessionstore.restore_on_demand", true);
-                        user_pref("browser.sessionstore.restore_tabs_lazily", false);
-
                         /* http3 */
                         user_pref("network.http.http3.enable", true);
                         user_pref("network.http.http3.enable_0rtt", true);
@@ -164,32 +157,37 @@ in
                         user_pref("ui.key.menuAccessKey", 0);
                         user_pref("ui.key.menuAccessKeyFocuses", false);
 
-                        /* tab focus */
-                        user_pref("accessibility.tabfocus", 1);
-
                         /* download popup menu */
                         user_pref("browser.download.alwaysOpenPanel", false);
 
                         /* pocket */
                         user_pref("extensions.pocket.enabled", false);
 
-                        /* tab animation */
-                        user_pref("ui.prefersReducedMotion", 0);
-
                         /* concurrency */
-                        user_pref("dom.maxHardwareConcurrency", 8);
+                        user_pref("dom.maxHardwareConcurrency", 6);
 
                         /* search */
                         user_pref("browser.search.countryCode", "CN");
                         user_pref("browser.search.region", "CN");
                         user_pref("browser.search.geoip.url", "");
 
-                        /* new tab */
+                        /* tab */
+                        user_pref("accessibility.tabfocus", 1);
+                        user_pref("ui.prefersReducedMotion", 0);
                         user_pref("browser.newtabpage.enabled", false);
+                        user_pref("browser.tabs.insertAfterCurrent", false);
+                        user_pref("browser.tabs.insertRelatedAfterCurrent", false);
                         user_pref("browser.newtab.url", "about:blank");
                         user_pref("browser.link.open_newwindow", 3);
                         user_pref("browser.link.open_newwindow.restriction", 0);
-                        user_pref("dom.disable_open_during_load", true);
+                        user_pref("dom.disable_open_during_load", false);
+                        user_pref("browser.tabs.closeTabByDblclick", true);
+                        user_pref("browser.tabs.loadBookmarksInTabs", true);
+                        user_pref("browser.tabs.loadBookmarksInBackground", true);
+                        user_pref("browser.tabs.loadDivertedInBackground", true);
+                        user_pref("browser.urlbar.openintab", true);
+                        user_pref("browser.sessionstore.restore_on_demand", true);
+                        user_pref("browser.sessionstore.restore_tabs_lazily", false);
 
                         /* home page */
                         user_pref("browser.startup.homepage", "about:blank");
@@ -297,7 +295,6 @@ in
                         user_pref("media.videocontrols.picture-in-picture.enabled", false);
                         user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", false);
 
-                        /* */
                         user_pref("devtools.f12_enabled", false);
                         user_pref("accessibility.force_disabled", 1);
 
