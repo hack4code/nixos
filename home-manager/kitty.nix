@@ -25,9 +25,6 @@ let
     colorGray = config.colorGray;
 in
 {
-    /* termfilechooser */
-    environment.variables.GTK_USE_PORTAL = "1";
-    environment.variables.GDK_DEBUG = "portals";
 
     home-manager.users.${userName} = {
         programs.kitty = {
