@@ -4,15 +4,18 @@ let
     userName = config.userName;
     colorWhite = config.colorWhite;
     colorGray = config.colorGray;
+    colorRed = config.colorRed;
+    colorYellow = config.colorYellow;
     colorBlack = config.colorBlack;
     colorGreen = config.colorGreen;
     colorBlue = config.colorBlue;
+    colorOrange = config.colorOrange;
+    colorPurple = config.colorPurple;
     colorForeground = config.colorForeground;
     colorLightWhite = config.colorLightWhite;
     colorLightBlue = config.colorLightBlue;
     colorLightGreen = config.colorLightGreen;
     colorLightOrange = config.colorLightOrange;
-    colorLightYellow = config.colorLightYellow;
     colorLightRed = config.colorLightRed;
     colorLightPurple = config.colorLightPurple;
     colorBackground0 = config.colorBackground0;
@@ -201,8 +204,8 @@ in
                     };
 
                     current = {
-                        fg = "${colorGreen}";
-                        bg = "${colorBackground2}";
+                        fg = "${colorLightGreen}";
+                        bg = "${colorBackground1}";
                     };
 
                     preview = {
@@ -415,24 +418,24 @@ in
 
                 filetype = {
                     rules = [
-                        { mime = "image/*"; fg = "${colorLightGreen}"; }
-                        { mime = "video/*"; fg = "${colorLightRed}"; }
-                        { mime = "audio/*"; fg = "${colorLightYellow}"; }
-                        { mime = "application/zip"; fg = "${colorLightOrange}"; }
-                        { mime = "application/gzip"; fg = "${colorLightOrange}"; }
-                        { mime = "application/x-tar"; fg = "${colorLightOrange}"; }
-                        { mime = "application/x-bzip"; fg = "${colorLightOrange}"; }
-                        { mime = "application/x-bzip2"; fg = "${colorLightOrange}"; }
-                        { mime = "application/x-7z-compressed"; fg = "${colorLightOrange}"; }
-                        { mime = "application/x-rar"; fg = "${colorLightOrange}"; }
+                        { mime = "image/*"; fg = "${colorGreen}"; }
+                        { mime = "video/*"; fg = "${colorRed}"; }
+                        { mime = "audio/*"; fg = "${colorYellow}"; }
+                        { mime = "application/zip"; fg = "${colorOrange}"; }
+                        { mime = "application/gzip"; fg = "${colorOrange}"; }
+                        { mime = "application/x-tar"; fg = "${colorOrange}"; }
+                        { mime = "application/x-bzip"; fg = "${colorOrange}"; }
+                        { mime = "application/x-bzip2"; fg = "${colorOrange}"; }
+                        { mime = "application/x-7z-compressed"; fg = "${colorOrange}"; }
+                        { mime = "application/x-rar"; fg = "${colorOrange}"; }
                         { name = "*"; fg = "${colorWhite}"; }
-                        { name = "*/"; fg = "${colorLightBlue}"; }
+                        { name = "*/"; fg = "${colorBlue}"; }
                     ];
                 };
 
                 icon = {
                     append_exts = [
-                        { name = "nsp"; text = "󰊖"; fg = "${colorLightPurple}"; }
+                        { name = "nsp"; text = "󰊖"; fg = "${colorPurple}"; }
                     ];
                 };
             };
