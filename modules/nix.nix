@@ -14,6 +14,7 @@
             sandbox-fallback = false;
             require-sigs = true;
             auto-optimise-store = true;
+            warn-dirty = false;
 
             trusted-users = [
                 "@wheel"
