@@ -73,7 +73,6 @@ kitty_config_mutt = (
 
 kitty_config_yazi = (
     "--override font_family='IosevkaTerm Nerd Font' "
-    "--override font_size=13 "
     "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
     "--override symbol_map='U+3400-U+4DBF Misans TC VF' "
     "--override modify_font='cell_height +16px'"
