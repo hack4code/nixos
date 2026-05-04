@@ -160,7 +160,7 @@ in
 
                     unrar = [
                         {
-                            run = "unrar e %s";
+                            run = "${pkgs.unrar}/bin/unrar e %s";
                             block = true;
                             for = "linux";
                         }
