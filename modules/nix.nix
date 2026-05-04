@@ -1,4 +1,4 @@
-{ nixOSVersion, ... }:
+{ lib, nixOSVersion, ... }:
 
 {
     nix = {
@@ -45,7 +45,13 @@
     nixpkgs = {
         hostPlatform = "x86_64-linux";
         config = {
-            allowUnfree = true;
+            allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+                "unrar"
+                "intel-ocl"
+                "zsh-abbr"
+                "rpcs3"
+                "broadcom-bt-firmware"
+            ];
         };
     };
 
