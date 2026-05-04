@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixOSVersion, pkgs-unstable, ... }:
+{ config, pkgs, lib, nixOSVersion, pkgs-unstable, pkgs-stable, ... }:
 
 let
     timeZone = config.timeZone;
@@ -157,7 +157,7 @@ in
 
         wireshark = {
             enable = true;
-            package = pkgs.wireshark;
+            package = pkgs-stable.wireshark;
             dumpcap = {
                 enable = true;
             };
