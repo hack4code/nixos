@@ -182,8 +182,6 @@ in
                         user_pref("browser.link.open_newwindow.restriction", 0);
                         user_pref("dom.disable_open_during_load", false);
                         user_pref("browser.tabs.closeTabByDblclick", true);
-                        user_pref("browser.tabs.loadBookmarksInTabs", true);
-                        user_pref("browser.tabs.loadBookmarksInBackground", true);
                         user_pref("browser.tabs.loadDivertedInBackground", true);
                         user_pref("browser.urlbar.openintab", true);
                         user_pref("browser.sessionstore.restore_on_demand", true);
