@@ -63,7 +63,6 @@ in
         ./home-manager/ncmpcpp.nix
         ./home-manager/neomutt.nix
         ./home-manager/podman.nix
-        ./home-manager/ranger.nix
         ./home-manager/yazi.nix
         ./home-manager/rime.nix
         ./home-manager/rtorrent.nix
@@ -179,7 +178,6 @@ in
                 wl-clipboard
                 kitty
                 neomutt
-                ranger
                 slurp
                 swayimg
                 urlscan
