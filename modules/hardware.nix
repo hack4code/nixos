@@ -41,7 +41,7 @@
     ];
 
     hardware = {
-        enableAllFirmware = true;
+        enableAllFirmware = false;
         enableRedistributableFirmware = true;
         firmwareCompression = "zstd";
 
