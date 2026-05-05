@@ -39,7 +39,7 @@ in
                     icon = "pavucontrol";
                 };
 
-                ranger = {
+                Yazi = {
                     icon = "file-manager";
                 };
             };
