@@ -40,8 +40,6 @@
 
 #vomnibar li {
     font-family: MiSans !important;
-    font-size: 15px !important;
-    font-weight: 400 !important;
     color: #f8f8f2 !important;
     position: relative !important;
     display: list-item !important;
@@ -50,6 +48,7 @@
 
 
 #vomnibar li .top-half {
+    font-size: 15px !important;
     font-weight: 400 !important;
     overflow: visible !important;
 }
@@ -58,7 +57,7 @@
 #vomnibar li .bottom-half {
     font-size: 13px !important;
     font-weight: 300 !important;
-    margin-top: 5px !important;
+    font-family: Roboto Flex !important;
 }
 
 
