@@ -361,8 +361,6 @@ in
             tetris
             /* ps2 */
             pcsx2
-            /* ps3 */
-            rpcs3
             /* ps4 */
             # shadps4
             /* Wii U */
@@ -373,7 +371,11 @@ in
             /* windows */
             bottles
         ] ++ (with pkgs-unstable; [
+            /* switch */
             eden
+        ]) ++ (with pkgs-stable; [
+            /* ps3 */
+            rpcs3
         ]);
     };
 }
