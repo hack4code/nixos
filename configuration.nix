@@ -249,6 +249,7 @@ in
             pv
             qrencode
             sysstat
+            sshfs
             unrar
             wtype
             /******************
