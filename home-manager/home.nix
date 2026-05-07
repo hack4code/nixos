@@ -86,7 +86,7 @@ in
                     test -d movie || mkdir movie movie/.rsync movie/.camer
                     test -d music || mkdir music music/lyrics music/playlist music/song music/youtube
                     test -d picture || mkdir picture picture/icon picture/mpv picture/screen picture/wallpaper
-                    test -d temp || mkdir temp temp/drive temp/test
+                    test -d temp || mkdir temp temp/drive temp/test temp/vps
                     test -d code || mkdir code
                     test -d document || mkdir document
                     test -d download || mkdir download
