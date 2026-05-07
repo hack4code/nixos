@@ -36,6 +36,7 @@ in
             plugins = {
                 full-border = pkgs.yaziPlugins.full-border;
                 no-status= pkgs.yaziPlugins.no-status;
+                sshfs = pkgs.yaziPlugins.sshfs;
             };
 
             initLua = ''
@@ -49,11 +50,22 @@ in
 
                 --- user name & host name
                 Header:children_add(function()
-                    if ya.target_family() ~= "unix" then
-                        return ""
-                    end
                     return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("${colorBlue}")
                 end, 500, Header.LEFT)
+
+                --- sshfs
+                require("sshfs").setup({
+                    mount_dir = os.getenv("HOME") .. "/temp/vps",
+                    default_mount_point = "home",
+                    default_user = "auto",
+                    sshfs_options = {
+                        "reconnect",                      -- Auto-reconnect on connection loss
+                        "ConnectTimeout=12",               -- Connection timeout in seconds
+                        "compression=yes",                -- Enable compression
+                        "ServerAliveInterval=30",         -- Keep-alive interval (15s × 3 = 45s timeout)
+                        "ServerAliveCountMax=3",          -- Keep-alive message count
+                    }
+                })
             '';
 
             keymap = {
@@ -90,6 +102,9 @@ in
                         { on = [ "8" "k" ]; run = "arrow -8"; }
                         { on = [ "9" "j" ]; run = "arrow 9"; }
                         { on = [ "9" "k" ]; run = "arrow -9"; }
+                        { on = ["M" "m"]; run = "plugin sshfs -- mount --jump"; }
+                        { on = ["M" "u"]; run = "plugin sshfs -- unmount"; }
+                        { on = ["M" "h"]; run = "plugin sshfs -- home"; }
                     ];
                 };
             };
