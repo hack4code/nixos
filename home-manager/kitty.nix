@@ -49,7 +49,7 @@ in
                 "kitty_mod+w" = "no_op";
                 "kitty_mod+r" = "no_op";
                 "kitty_mod+g" = "no_op";
-                "kitty_mod+o" = "new_tab";
+                "kitty_mod+n" = "new_tab";
                 "kitty_mod+q" = "close_tab";
                 "kitty_mod+k" = "next_tab";
                 "kitty_mod+j" = "previous_tab";
