@@ -52,6 +52,7 @@ in
                         function resume_lock {
                             # ${noctalia-ipc} wallpaper set "${bgThinkpad}" ${monitorThinkpad}
                             resume_ncmpcpp
+                            resume_kremap
                         }
 
 
