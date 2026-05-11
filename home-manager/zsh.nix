@@ -99,6 +99,7 @@ in
                 /* systemd */
                 jbi = "journalctl --boot --identifier";
                 jb = "journalctl --boot";
+                jb1 = "journalctl --boot -1";
                 jfi = "journalctl --follow --identifier";
                 jf = "journalctl --follow";
                 rt = "systemctl reboot";
@@ -121,7 +122,7 @@ in
                 /* lsof */
                 lp = "lsof -iTCP -sTCP:listen -P -n";
                 /* transmission */
-                tl = "stig set connect.host ${wgServerIp4Address} \; ls -c id,name,size,status,%downloaded";
+                tl = "stig set connect.host ${wgServerIp4Address} \\; ls -c id,name,size,status,%downloaded";
                 /* */
                 t = "date '+%F %H:%M %A'";
                 tp = "cd \"$(mktemp -d)\"";
