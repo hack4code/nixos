@@ -45,6 +45,20 @@ in
 
 
                         function resume_kremap {
+                            local n=0
+
+                            while true; do
+                                if ((n == 180)); then
+                                    return
+                                fi
+
+                                if lsusb | grep -q -F CHERRY; then
+                                    break
+                                fi
+
+                                sleep 2s
+                                n=$((n+1))
+                            done
                             sudo systemctl restart kremap.service
                         }
 
