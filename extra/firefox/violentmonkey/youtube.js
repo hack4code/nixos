@@ -133,7 +133,7 @@ const SITE = window.location.href;
 
     function click_like_button() {
         console.log("click_like_button");
-        $("button-view-model button[aria-label='赞'").click();
+        $("like-button-view-model button-view-model > button:nth-child(1)").click();
     }
 
 
