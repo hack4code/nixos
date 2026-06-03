@@ -1,36 +1,7 @@
-{ config, pkgs, nixOSVersion, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
-    initLua = ''
-
-        vim.g.mapleader = ";"
-
-        vim.opt.modeline = true
-        vim.opt.wrap = true
-        vim.opt.mouse = ""
-        vim.opt.backup = false
-        vim.opt.number = true
-        vim.opt.relativenumber = true
-        vim.opt.timeoutlen = 500
-        vim.opt.updatetime = 4000
-        vim.opt.termguicolors = true
-        vim.opt.completeopt = "menu,popup"
-        vim.opt.shortmess:append("c")
-        vim.opt.icon = true
-        vim.opt.iconstring = "%t"
-        -- vim.opt.guicursor="n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
-
-        -- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
-        -- vim.keymap.set("n", "<leader>e", "<Cmd>32Lexplore<CR>", { silent = true, desc = "file explorer" })
-
-        vim.keymap.set("n", "<leader>s", "<Cmd>noh<CR>", { silent = true, desc = "nohlsearch" })
-        vim.keymap.set("n", "<leader>d", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { silent = true, desc = "disable diagnostics" })
-        vim.keymap.set("n", "<leader>p", ':set paste<CR>"+p:set nopaste<CR>', { silent = true, desc = "paste from clipboard" })
-
-        vim.cmd[[autocmd InsertEnter * set cursorline]]
-        vim.cmd[[autocmd InsertLeave * set nocursorline]]
-    '';
 in
 {
     home-manager.users.${userName} = {
@@ -378,20 +349,38 @@ in
                 }
             ];
 
-            extraConfig = ''
+            initLua = ''
+
+                vim.g.mapleader = ";"
+
+                vim.opt.modeline = true
+                vim.opt.wrap = true
+                vim.opt.mouse = ""
+                vim.opt.backup = false
+                vim.opt.number = true
+                vim.opt.relativenumber = true
+                vim.opt.timeoutlen = 500
+                vim.opt.updatetime = 4000
+                vim.opt.termguicolors = true
+                vim.opt.completeopt = "menu,popup"
+                vim.opt.shortmess:append("c")
+                vim.opt.icon = true
+                vim.opt.iconstring = "%t"
+                -- vim.opt.guicursor="n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
+
+                -- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
+                -- vim.keymap.set("n", "<leader>e", "<Cmd>32Lexplore<CR>", { silent = true, desc = "file explorer" })
+
+                vim.keymap.set("n", "<leader>s", "<Cmd>noh<CR>", { silent = true, desc = "nohlsearch" })
+                vim.keymap.set("n", "<leader>d", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { silent = true, desc = "disable diagnostics" })
+                vim.keymap.set("n", "<leader>p", ':set paste<CR>"+p:set nopaste<CR>', { silent = true, desc = "paste from clipboard" })
+
+                vim.cmd[[autocmd InsertEnter * set cursorline]]
+                vim.cmd[[autocmd InsertLeave * set nocursorline]]
+
+                require("vim._core.ui2").enable({})
             '';
-        } // (if nixOSVersion == "25.11" then
-            {
-               extraLuaConfig = initLua;
-            }
-        else
-            {
-                initLua = initLua + ''
-                    --
-                    require("vim._core.ui2").enable({})
-                '';
-            }
-        );
+        };
     };
 }
 
