@@ -8,9 +8,9 @@
     };
 
     config = {
-        kernelVersion = "7.0.7";
-        kernelHash = "df40c720fea9a3f9b2058c0b1826ed9109949d44dffadd2eac9ef6d1847b4aac";
-        kernelUrl = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v7.x/linux-7.0.7.tar.gz";
+        kernelVersion = "7.0.11";
+        kernelHash = "97ff055a144c892edc3b3780a02ed060009b7e45b66d8b9d552bbac6b680bf00";
+        kernelUrl = "https://mirrors.tuna.tsinghua.edu.cn/kernel/v7.x/linux-7.0.11.tar.gz";
     };
 }
 
