@@ -73,8 +73,8 @@ in
                     prepend_keymap = [
                         { on = [ "q" ]; run = "quit"; }
                         { on = "T"; run = "shell --orphan --confirm \"${pkgs.kitty}/bin/kitty --class floatkitty --override font_size=13 --override modify_font='cell_height +10px'\""; }
-                        { on = [ "J" ]; run = "plugin parent-arrow 1"; }
-                        { on = [ "K" ]; run = "plugin parent-arrow -1"; }
+                        { on = [ "]" ]; run = "plugin parent-arrow 1"; }
+                        { on = [ "[" ]; run = "plugin parent-arrow -1"; }
                         { on = [ "H" ]; run = "arrow top"; }
                         { on = [ "L" ]; run = "arrow bot"; }
                         { on = [ "F" ]; run = "forward"; }
@@ -86,23 +86,8 @@ in
                         { on = [ "g" "g" ]; run = "cd ~/game/"; }
                         { on = [ "g" "p" ]; run = "cd ~/picture/"; }
                         { on = [ "g" "c" ]; run = "cd ~/movie/Camera/"; }
-                        { on = [ "2" "j" ]; run = "arrow 2"; }
-                        { on = [ "2" "k" ]; run = "arrow -2"; }
-                        { on = [ "3" "j" ]; run = "arrow 3"; }
-                        { on = [ "3" "k" ]; run = "arrow -3"; }
-                        { on = [ "4" "j" ]; run = "arrow 4"; }
-                        { on = [ "4" "k" ]; run = "arrow -4"; }
-                        { on = [ "5" "j" ]; run = "arrow 5"; }
-                        { on = [ "5" "k" ]; run = "arrow -5"; }
-                        { on = [ "6" "j" ]; run = "arrow 6"; }
-                        { on = [ "6" "k" ]; run = "arrow -6"; }
-                        { on = [ "7" "j" ]; run = "arrow 7"; }
-                        { on = [ "7" "k" ]; run = "arrow -7"; }
-                        { on = [ "8" "j" ]; run = "arrow 8"; }
-                        { on = [ "8" "k" ]; run = "arrow -8"; }
-                        { on = [ "9" "j" ]; run = "arrow 9"; }
-                        { on = [ "9" "k" ]; run = "arrow -9"; }
-                        { on = ["M" "m"]; run = "plugin sshfs -- mount --jump"; }
+                        { on = [ "g" "v" ]; run = "cd ~/temp/vps/linode/"; }
+                        { on = ["M" "m"]; run = "plugin sshfs -- mount"; }
                         { on = ["M" "u"]; run = "plugin sshfs -- unmount"; }
                         { on = ["M" "h"]; run = "plugin sshfs -- home"; }
                     ];
@@ -268,8 +253,6 @@ in
                         fg = "${colorGray}";
                         bg = "${colorBackground1}";
                     };
-
-                    tab_width = 1;
 
                     border_symbol = "│";
                     border_style  = {
@@ -443,8 +426,8 @@ in
                         { mime = "application/x-bzip2"; fg = "${colorOrange}"; }
                         { mime = "application/x-7z-compressed"; fg = "${colorOrange}"; }
                         { mime = "application/x-rar"; fg = "${colorOrange}"; }
-                        { name = "*"; fg = "${colorWhite}"; }
-                        { name = "*/"; fg = "${colorBlue}"; }
+                        { url = "*"; fg = "${colorWhite}"; }
+                        { url = "*/"; fg = "${colorBlue}"; }
                     ];
                 };
 
