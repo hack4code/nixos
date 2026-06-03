@@ -10,9 +10,9 @@ in
             enable = true;
             enableDefaultConfig = false;
 
-            matchBlocks = {
+            settings = {
                 "${vpsName}" = {
-                    host = "${vpsName}";
+                    host = vpsName;
                     hostname = "10.0.0.1";
                     port = 22;
                     user = "root";
@@ -23,13 +23,11 @@ in
                     hashKnownHosts = false;
                     serverAliveCountMax = 3;
                     serverAliveInterval = 16;
-                    extraOptions = {
-                        LogLevel = "QUIET";
-                        StrictHostKeyChecking = "no";
-                        EnableEscapeCommandline = "yes";
-                        UserKnownHostsFile = "/dev/null";
-                        PKCS11Provider = "/run/current-system/sw/lib/libtpm2_pkcs11.so";
-                    };
+                    LogLevel = "QUIET";
+                    StrictHostKeyChecking = "no";
+                    EnableEscapeCommandline = "yes";
+                    UserKnownHostsFile = "/dev/null";
+                    PKCS11Provider = "/run/current-system/sw/lib/libtpm2_pkcs11.so";
                 };
             };
         };
