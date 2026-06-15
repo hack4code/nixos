@@ -77,7 +77,7 @@ in
                     };
                 };
 
-                server_names = [ dnsServerName ];
+                server_names = [ "google" dnsServerName ];
             };
         };
     };
