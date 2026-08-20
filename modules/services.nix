@@ -1,6 +1,16 @@
 { pkgs, ... }:
 
 {
+    # environment.etc."thunderbolt/thunderbolt-rescan.sh" = {
+    #     text = ''
+    #     #!/usr/bin/env bash
+
+    #     echo 1 > /sys/bus/pci/rescan
+    #     '';
+
+    #     mode = "0700";
+    # };
+
     services = {
         hardware = {
             bolt = {
@@ -38,6 +48,7 @@
             extraRules = ''
                 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", GROUP="video", MODE="0664"
             '';
+            # ACTION=="change", SUBSYSTEM=="thunderbolt", RUN+="/etc/thunderbolt/thunderbolt-rescan.sh"
         };
 
         usbmuxd = {
