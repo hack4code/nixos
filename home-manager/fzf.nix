@@ -40,11 +40,13 @@ in
                 "--scrollbar=''"
             ];
 
-            historyWidgetOptions = [
-                "--wrap=word"
-                "--wrap-sign='\t↳ '"
-                "--bind 'ctrl-y:execute-silent(echo -n {2..} | ${pkgs.wl-clipboard}/bin/wl-copy)+abort'"
-            ];
+            historyWidget = {
+                options = [
+                    "--wrap=word"
+                    "--wrap-sign='\t↳ '"
+                    "--bind 'ctrl-y:execute-silent(echo -n {2..} | ${pkgs.wl-clipboard}/bin/wl-copy)+abort'"
+                ];
+            };
         };
     };
 }
