@@ -143,7 +143,7 @@ in
                     };
 
                    ${monitorSamsung} = {
-                        position = "1440,0";
+                        position = "3146,0";
                         mode = "2560x1440@75HZ";
                         scale = "1.5";
                         scale_filter = "smart";
@@ -154,7 +154,7 @@ in
                     };
 
                    ${monitorIntel} = {
-                        position = "3146,0";
+                        position = "1440,0";
                         mode = "2560x1440@75HZ";
                         scale = "1.5";
                         scale_filter = "smart";
@@ -265,14 +265,14 @@ in
             in
             ''
                 workspace 0  output "${monitorThinkpad}"
-                workspace 1  output "${monitorSamsung}"
-                workspace 2  output "${monitorSamsung}"
-                workspace 3  output "${monitorSamsung}"
-                workspace 4  output "${monitorSamsung}"
-                workspace 5  output "${monitorSamsung}"
-                workspace 6  output "${monitorSamsung}"
-                workspace 7  output "${monitorSamsung}"
-                workspace 8  output "${monitorSamsung}"
+                workspace 1  output "${monitorIntel}"
+                workspace 2  output "${monitorIntel}"
+                workspace 3  output "${monitorIntel}"
+                workspace 4  output "${monitorIntel}"
+                workspace 5  output "${monitorIntel}"
+                workspace 6  output "${monitorIntel}"
+                workspace 7  output "${monitorIntel}"
+                workspace 8  output "${monitorIntel}"
                 workspace 9  output "${monitorIntel}"
                 workspace 10 output "${monitorIntel}"
                 workspace 11 output "${monitorThinkpad}"
