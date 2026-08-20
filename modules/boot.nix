@@ -56,14 +56,19 @@ in
             /* pcie */
             "pcie_ports=native"
             "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G"
+            /* i915 xe */
+            "i915.force_probe=9a40,!56a0"
+            "xe.force_probe=56a0,!9a40"
         ];
 
         kernelModules = [
+            "i915"
+            "xe"
         ];
 
         extraModprobeConfig = ''
-            options i915 force_probe=22c7
-            options xe force_probe=!22c7
+            options i915 force_probe=9a40,!56a0
+            options xe force_probe=56a0,!9a40
         '';
 
         loader = {
