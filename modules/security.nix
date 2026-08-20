@@ -12,15 +12,23 @@
 
         tpm2 = {
             enable = true;
+
             pkcs11 = {
                 enable = true;
             };
+
             abrmd = {
                 enable = true;
             };
+
             tctiEnvironment = {
                 enable = true;
                 interface = "tabrmd";
+            };
+
+            fapi = {
+                ekCertLess = true;
+                profileName = "P_RSA2048SHA256";
             };
         };
 

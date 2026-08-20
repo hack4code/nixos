@@ -29,6 +29,7 @@ in
     in
     {
         environment.variables.TSS2_FAPICONF = fixedCfgFile;
+        environment.variables.TSS2_LOG = "fapi+NONE";
     });
 }
 

@@ -5,7 +5,6 @@ let
 in
 {
     imports = [
-        # ./patch/tpm2-tss-fapi.nix
         ./patch/bottles.nix
         ./patch/weechat.nix
         # ./patch/firefox.nix
