@@ -86,6 +86,7 @@ in
         ./home-manager/fontconfig.nix
         ./home-manager/noctalia.nix
         ./home-manager/sherlock.nix
+        ./home-manager/wofi.nix
         ./home-manager/cliphist.nix
     ];
 
