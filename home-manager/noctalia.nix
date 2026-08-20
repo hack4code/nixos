@@ -5,6 +5,7 @@ let
     userHome = config.userHome;
     userLocation = config.userLocation;
     monitorSamsung = config.monitorSamsung;
+    monitorIntel = config.monitorIntel;
     monitorThinkpad = config.monitorThinkpad;
     bgThinkpad = config.bgThinkpad;
     bgSamsung = config.bgSamsung;
@@ -278,6 +279,11 @@ in
                         {
                             directory = "${userHome}/.config/sway/wallpaper/dp-3";
                             name = monitorSamsung;
+                            wallpaper = "${bgSamsung}";
+                        }
+                        {
+                            directory = "${userHome}/.config/sway/wallpaper/dp-3";
+                            name = monitorIntel;
                             wallpaper = "${bgSamsung}";
                         }
                         {
