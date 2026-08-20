@@ -52,7 +52,7 @@ pkgs.python3Packages.buildPythonApplication {
         uvicorn
         yt-dlp
         i3ipc
-        mpd2
+        python-mpd2
         systemd-python
     ];
 }
