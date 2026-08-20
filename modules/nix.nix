@@ -51,6 +51,8 @@
                 "zsh-abbr"
                 "rpcs3"
                 "broadcom-bt-firmware"
+                "firefox-bin-unwrapped"
+                "firefox-bin"
             ];
         };
     };
