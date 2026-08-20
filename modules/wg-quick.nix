@@ -35,9 +35,10 @@ in
             mtu = wgMTU;
 
             postUp = ''
+                # qdisc
+                # ${pkgs.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
                 ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
                 ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-udp-gro-forwarding on
-                ${pkgs.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
                 ${pkgs.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
                 ${pkgs.procps}/bin/sysctl -q net.ipv4.conf.${wgInterface}.route_localnet=1
                 #
