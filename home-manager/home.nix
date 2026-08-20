@@ -52,6 +52,9 @@ in
 
                 /* bitwarden */
                 BW_SESSION = "${bwSession}";
+
+                /* tpm2 */
+                TSS2_LOG = "fapi+NONE";
             };
 
             packages = with pkgs; [
