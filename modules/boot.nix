@@ -53,6 +53,9 @@ in
             /* linux security module */
             # "lsm=lockdown,capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
             "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
+            /* pcie */
+            "pcie_ports=native"
+            "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G"
         ];
 
         kernelModules = [
