@@ -21,7 +21,7 @@ let
     colorBackground0 = config.colorBackground0;
     colorBackground1 = config.colorBackground1;
     colorBackground2 = config.colorBackground2;
-    wgServerIp4Address = config.wgServerIp4Address;
+    # wgServerIp4Address = config.wgServerIp4Address;
 in
 {
     home-manager.users.${userName} = {
@@ -438,16 +438,16 @@ in
                 };
             };
 
-            vfs = {
-                services = {
-                    linode = {
-                        host = wgServerIp4Address;
-                        port = 22;
-                        type = "sftp";
-                        user = "root";
-                    };
-                };
-            };
+            # vfs = {
+            #     services = {
+            #         linode = {
+            #             host = wgServerIp4Address;
+            #             port = 22;
+            #             type = "sftp";
+            #             user = "root";
+            #         };
+            #     };
+            # };
         };
 
         home.file.".config/yazi/plugins/parent-arrow.yazi/main.lua" = {
