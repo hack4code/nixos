@@ -5,6 +5,7 @@ let
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
+    monitorIntel = config.monitorIntel;
 
     keyboard = config.keyboard;
     cherry = config.cherry;
@@ -151,6 +152,17 @@ in
                         max_render_time = "off";
                         allow_tearing = "no";
                     };
+
+                   ${monitorIntel} = {
+                        position = "3146,0";
+                        mode = "2560x1440@75HZ";
+                        scale = "1.5";
+                        scale_filter = "smart";
+                        subpixel = "rgb";
+                        adaptive_sync = "off";
+                        max_render_time = "off";
+                        allow_tearing = "no";
+                    };
                 };
 
                 keybindings =
@@ -259,7 +271,7 @@ in
                 workspace 9  output "${monitorSamsung}"
                 workspace 10 output "${monitorSamsung}"
                 workspace 11 output "${monitorThinkpad}"
-                workspace 12 output "${monitorThinkpad}"
+                workspace 12 output "${monitorIntel}"
 
                 bindsym XF86MonBrightnessDown exec --no-startup-id ${xbacklight} -dec 10
                 bindsym XF86MonBrightnessUp exec --no-startup-id ${xbacklight} -inc 10
