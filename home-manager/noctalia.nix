@@ -27,6 +27,7 @@ in
                     position = "top";
                     monitors = [
                         monitorSamsung
+                        monitorIntel
                     ];
                     density = "comfortable";
                     showOutline = true;
