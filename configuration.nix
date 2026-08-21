@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-unstable, pkgs-stable, ... }:
+{ config, pkgs, lib, pkgs-stable, ... }:
 
 let
     timeZone = config.timeZone;
@@ -363,16 +363,15 @@ in
             cemu
             /* switch */
             nsz
-            ryubing
+            eden
             /* windows */
             bottles
-        ] ++ (with pkgs-unstable; [
-            /* switch */
-            eden
-        ]) ++ (with pkgs-stable; [
+        ] ++ (with pkgs-stable; [
             hello
             /* ps3 */
             rpcs3
+            /* switch */
+            ryubing
         ]);
     };
 }
