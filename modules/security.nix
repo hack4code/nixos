@@ -17,14 +17,14 @@
                 enable = true;
             };
 
-            abrmd = {
-                enable = true;
-            };
+            # abrmd = {
+            #     enable = true;
+            # };
 
-            tctiEnvironment = {
-                enable = true;
-                interface = "tabrmd";
-            };
+            # tctiEnvironment = {
+            #     enable = true;
+            #     interface = "tabrmd";
+            # };
 
             fapi = {
                 ekCertLess = true;
