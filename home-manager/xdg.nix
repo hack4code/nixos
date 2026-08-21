@@ -30,12 +30,12 @@ in
             portal = {
                 enable = true;
 
-                xdgOpenUsePortal = true;
+                xdgOpenUsePortal = false;
 
                 config = {
                     sway = {
                         default = [
-                            "wlr"
+                            "gtk"
                         ];
 
                         "org.freedesktop.impl.portal.Inhibit" = [
@@ -45,11 +45,24 @@ in
                         "org.freedesktop.impl.portal.FileChooser" = [
                             "termfilechooser"
                         ];
+
+                        "org.freedesktop.impl.portal.Secret" = [
+                            "gnome-keyring"
+                        ];
+
+                        "org.freedesktop.impl.portal.Screencast" = [
+                            "wlr"
+                        ];
+
+                        "org.freedesktop.impl.portal.Screenshot" = [
+                            "wlr"
+                        ];
                     };
                 };
 
                 extraPortals = with pkgs; [
                     xdg-desktop-portal-wlr
+                    xdg-desktop-portal-gtk
                     xdg-desktop-portal-termfilechooser
                 ];
             };
