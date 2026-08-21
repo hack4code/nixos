@@ -11,10 +11,10 @@ in
                 fs = true;
                 osc = false;
                 ontop = true;
-                # vo = "gpu-next,dmabuf-wayland";
+                vo = "gpu-next,dmabuf-wayland";
                 hwdec = "vaapi";
                 hwdec-codecs = "all";
-                # gpu-api = "vulkan";
+                gpu-api = "vulkan";
                 vo-vaapi-scaling = "hq";
                 vo-vaapi-scaled-osd = true;
                 wayland-internal-vsync = true;
