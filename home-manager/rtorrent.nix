@@ -14,21 +14,18 @@ in
             enable = true;
 
             extraConfig = ''
-                ip = ${vpsIp4Address}
-
-                network.port_range.set = 50000-50000
-                network.port_random.set = no
+                network.local_address.set = ${vpsIp4Address}
+                network.listen.port.range.set = 50000-50000
+                network.listen.port.random.set = no
 
                 dht.mode.set = auto
                 dht.override_port.set = 6881
                 protocol.pex.set = yes
-                trackers.use_udp.set = yes
 
                 ratio.enable = true
                 ratio.min.set = 100
                 ratio.max.set = 300
                 ratio.upload.set = 2M
-                # method.set = group.seeding.ratio.command, "d.close= ; d.erase="
 
                 throttle.up = slowupload,100
                 throttle.max_uploads.set = 100
@@ -49,12 +46,6 @@ in
 
                 execute.throw = sh, -c, (cat, "mkdir -p \"",(cfg.download),"\" ", "\"",(cfg.logs),"\" ", "\"",(cfg.session),"\" ", "\"",(cfg.watch),"/load\" ", "\"",(cfg.watch),"/start\" ")
 
-                protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
-
-                network.http.max_open.set = 50
-                network.max_open_files.set = 600
-                network.max_open_sockets.set = 300
-
                 pieces.memory.max.set = 1800M
 
                 session.path.set = (cat, (cfg.session))
@@ -63,11 +54,9 @@ in
                 log.xmlrpc = (cat, (cfg.logs), "rpc.log")
                 execute.nothrow = sh, -c, (cat, "echo >", (session.path), "rtorrent.pid", " ",(system.pid))
 
-                encoding.add = UTF-8
                 system.umask.set = 0027
                 system.cwd.set = (directory.default)
                 network.http.dns_cache_timeout.set = 25
-                schedule2 = monitor_diskspace, 15, 60, ((close_low_diskspace, 1000M))
                 pieces.hash.on_completion.set = yes
                 view.sort_current = seeding, greater=d.ratio=
                 keys.layout.set = qwerty
@@ -79,8 +68,9 @@ in
                 method.insert = d.data_path, simple, "if=(d.is_multi_file), (cat, (d.directory), /), (cat, (d.directory), /, (d.name))"
                 method.insert = d.session_file, simple, "cat=(session.path), (d.hash), .torrent"
 
-                schedule2 = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
-                schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
+                schedule = monitor_diskspace, 15, 60, ((close_low_diskspace, 1000M))
+                schedule = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
+                schedule = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
 
                 # system.daemon.set = true
                 network.scgi.open_local = (cat,(session.path),rpc.socket)
