@@ -5,7 +5,6 @@ let
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
-    monitorIntel = config.monitorIntel;
 
     keyboard = config.keyboard;
     cherry = config.cherry;
@@ -143,17 +142,6 @@ in
                     };
 
                    ${monitorSamsung} = {
-                        position = "3146,0";
-                        mode = "2560x1440@75HZ";
-                        scale = "1.5";
-                        scale_filter = "smart";
-                        subpixel = "rgb";
-                        adaptive_sync = "off";
-                        max_render_time = "off";
-                        allow_tearing = "no";
-                    };
-
-                   ${monitorIntel} = {
                         position = "1440,0";
                         mode = "2560x1440@75HZ";
                         scale = "1.5";
@@ -171,8 +159,8 @@ in
                     firefox = "${pkgs.firefox}/bin/firefox";
                     grim = "${pkgs.grim}/bin/grim";
                     wl-kbptr = "${pkgs.wl-kbptr}/bin/wl-kbptr";
-                    # sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
-                    wofi = "${pkgs.wofi}/bin/wofi";
+                    sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
+                    # wofi = "${pkgs.wofi}/bin/wofi";
                     zathura = "${pkgs.zathura}/bin/zathura";
                     noctalia-ipc = "noctalia-shell ipc call";
                 in
@@ -200,8 +188,8 @@ in
                     "${modifier}+m" = "exec ${wl-kbptr} -o modes=floating','click -o mode_floating.source=detect";
                     "${modifier}+n" = "exec ${wl-kbptr} -o modes=tile','click";
 
-                    # "${modifier}+o" = "exec --no-startup-id ${sherlock}";
-                    "${modifier}+o" = "exec --no-startup-id ${wofi}";
+                    "${modifier}+o" = "exec --no-startup-id ${sherlock}";
+                    # "${modifier}+o" = "exec --no-startup-id ${wofi}";
                     "${modifier}+q" = "kill";
                     "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
                     "${modifier}+t" = "exec --no-startup-id swayctl ncmpcpp time";
@@ -265,17 +253,18 @@ in
             in
             ''
                 workspace 0  output "${monitorThinkpad}"
-                workspace 1  output "${monitorIntel}"
-                workspace 2  output "${monitorIntel}"
-                workspace 3  output "${monitorIntel}"
-                workspace 4  output "${monitorIntel}"
-                workspace 5  output "${monitorIntel}"
-                workspace 6  output "${monitorIntel}"
-                workspace 7  output "${monitorIntel}"
-                workspace 8  output "${monitorIntel}"
-                workspace 9  output "${monitorIntel}"
-                workspace 10 output "${monitorIntel}"
+                workspace 1  output "${monitorSamsung}"
+                workspace 2  output "${monitorSamsung}"
+                workspace 3  output "${monitorSamsung}"
+                workspace 4  output "${monitorSamsung}"
+                workspace 5  output "${monitorSamsung}"
+                workspace 6  output "${monitorSamsung}"
+                workspace 7  output "${monitorSamsung}"
+                workspace 8  output "${monitorSamsung}"
+                workspace 9  output "${monitorSamsung}"
+                workspace 10 output "${monitorSamsung}"
                 workspace 11 output "${monitorThinkpad}"
+                workspace 12 output "${monitorThinkpad}"
 
                 bindsym XF86MonBrightnessDown exec --no-startup-id ${xbacklight} -dec 10
                 bindsym XF86MonBrightnessUp exec --no-startup-id ${xbacklight} -inc 10
