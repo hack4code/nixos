@@ -203,13 +203,12 @@ in
                     daemonize = true;
                 };
 
-                binds = {
-                    up = "control-p";
-                    down = "control-n";
-                    left = "control-h";
-                    right = "control-l";
-                    context = "control-i";
-                    modifier = "alt";
+                keybinds = {
+                    "ctrl-p" = "item_up";
+                    "ctrl-n" = "item_down";
+                    "ctrl-u" = "clear_bar";
+                    "ctrl-o" = "exec";
+                    "esc" = "exit";
                 };
 
                 caching = {
@@ -221,6 +220,7 @@ in
                     use_xdg_data_dir_icons = false;
                     animate = true;
                     remember_query = false;
+                    n_clicks = 1;
                 };
 
                 appearance = {
