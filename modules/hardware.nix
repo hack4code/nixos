@@ -56,14 +56,10 @@
             enable32Bit = true;
             extraPackages = with pkgs; [
                 intel-media-driver
+                vpl-gpu-rt
+                mesa
                 libva
                 libva-utils
-                libvpl
-                # intel-media-sdk
-                intel-vaapi-driver
-                libva-vdpau-driver
-                libvdpau-va-gl
-                vpl-gpu-rt
             ];
         };
 
