@@ -30,7 +30,7 @@ in
             portal = {
                 enable = true;
 
-                xdgOpenUsePortal = false;
+                xdgOpenUsePortal = true;
 
                 config = {
                     sway = {
