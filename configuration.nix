@@ -360,18 +360,17 @@ in
             /* ps4 */
             # shadps4
             /* Wii U */
-            cemu
+            # cemu
             /* switch */
             nsz
             eden
+            ryubing
             /* windows */
             bottles
         ] ++ (with pkgs-stable; [
             hello
             /* ps3 */
             rpcs3
-            /* switch */
-            ryubing
         ]);
     };
 }
