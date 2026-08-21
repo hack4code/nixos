@@ -54,21 +54,18 @@ in
             # "lsm=lockdown,capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
             "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
             /* pcie */
-            "pcie_ports=native"
-            "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G"
-            /* i915 xe */
-            "i915.force_probe=9a40,!56a0"
-            "xe.force_probe=56a0,!9a40"
+            # "pcie_ports=native"
+            /* touchpad bug */
+            # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G"
+            "i915.force_probe=9a40,56a0"
         ];
 
         kernelModules = [
             "i915"
-            "xe"
         ];
 
         extraModprobeConfig = ''
-            options i915 force_probe=9a40,!56a0
-            options xe force_probe=56a0,!9a40
+            options i915 force_probe=9a40,56a0
         '';
 
         loader = {
@@ -105,13 +102,14 @@ in
                 "erofs"
                 /* efi */
                 "efivarfs"
-                /* */
+                /* bridge */
                 "bridge"
                 "br_netfilter"
             ];
         };
 
         blacklistedKernelModules = [
+            "xe"
             "i2c_i801"
         ];
 
