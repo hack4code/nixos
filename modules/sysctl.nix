@@ -14,9 +14,11 @@
         "net.core.wmem_max" = 1006632960;
         "net.core.netdev_max_backlog" = 2000;
         "net.core.somaxconn" = 2048;
-        "net.core.netdev_budget" = 1000;
         "net.core.netdev_tstamp_prequeue" = 0;
         "net.core.default_qdisc" = "fq";
+        "net.core.dev_weight" = 256;
+        "net.core.netdev_budget" = 800;
+        "net.core.netdev_budget_usecs" = 5000;
 
         /* tcp */
         "net.ipv4.tcp_mem" = "65536 262144 1048576";
