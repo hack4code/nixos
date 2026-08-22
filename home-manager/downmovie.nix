@@ -46,7 +46,7 @@ let
             done
 
 
-            if ! $SSH -q -o ConnectTimeout=8 $VPS exit &>/dev/null; then
+            if ! $SSH -q -o ConnectTimeout=8 $VPS exit 2>/dev/null; then
                 panic "failed connecting $VPS"
             fi
 
@@ -55,14 +55,14 @@ let
             fi
 
             # shellcheck disable=SC2016
-            while ! $SSH -q -T $VPS 'test -z "$(ls -A ~/download/complete/)"'; do
-                if ! $RSYNC -aqz --perms --fsync --remove-source-files --partial-dir='.rsync-partial' --filter='- *.part' --bwlimit=0 --chmod='D0700,F600' --log-file='/dev/null' "$SOURCE" "$DEST"; then
+            while ! $SSH -q -T $VPS 'test -z "$(ls -A ~/download/complete/)"' 2>/dev/null; do
+                if ! $RSYNC -aqz --perms --fsync --remove-source-files --partial-dir='.rsync-partial' --filter='- *.part' --bwlimit=0 --chmod='D0700,F600' --log-file='/dev/null' "$SOURCE" "$DEST" 2>/dev/null; then
                     panic "rsync error"
                 fi
 
                 # shellcheck disable=SC2016
-                $SSH -q -T $VPS 'cd ~/download/complete/ && find . -type d -empty -delete'
-                if [[ -n "$($SSH -q -T $VPS 'cd ~/download/complete/ && find . -type f -name *.part')" ]]; then
+                $SSH -q -T $VPS 'cd ~/download/complete/ 2>/dev/null && find . -type d -empty -delete'
+                if [[ -n "$($SSH -q -T $VPS 'cd ~/download/complete/ 2>/dev/null && find . -type f -name *.part')" ]]; then
                     panic "found .part files"
                 fi
             done
