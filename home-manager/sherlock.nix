@@ -39,8 +39,12 @@ in
                     icon = "pavucontrol";
                 };
 
-                Yazi = {
+                "Yazi File Manager" = {
                     icon = "file-manager";
+                };
+
+                Bottles = {
+                    exec = "${pkgs.bottles}/bin/bottles";
                 };
             };
 
