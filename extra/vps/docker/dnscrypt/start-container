@@ -6,7 +6,8 @@ IMAGE='jedisct1/dnscrypt-server'
 PORT='6666'
 
 ZONE="$HOME/.config/dnscrypt/zones"
-IP6=$(ip -6 -oneline addr show dev wg0 scope global | awk '{print $4; exit}' | cut -d/ -f1)
+# IP6=$(ip -6 -oneline addr show dev wg0 scope global | awk '{print $4; exit}' | cut -d/ -f1)
+IP4=$(ip -4 -oneline addr show dev wg0 scope global | awk '{print $4; exit}' | cut -d/ -f1)
 
 
 echo 'rm container...'
@@ -32,7 +33,7 @@ docker container run \
     --volume "$ZONE:/opt/unbound/etc/unbound/zones" \
     --name $NAME \
     $IMAGE \
-    init -N 'dnscrypt.linode' -E "[$IP6]:$PORT"
+    init -N 'dnscrypt.linode' -E "[$IP4]:$PORT"
 
 
 # vim: ts=4 sw=4 sts=4 ft=bash et:
