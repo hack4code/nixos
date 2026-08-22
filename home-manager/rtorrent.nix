@@ -82,7 +82,7 @@ in
 
                 # notify
                 method.insert = d.notify_message, simple, "cat=$d.name=, \": finished downloading\""
-                method.set_key = event.download.finished,notify_me,"execute2=${pkgs.libnotify}/bin/notify-send,--icon=media-downloader,rtorrent,$d.notify_message="
+                method.set_key = event.download.finished,notify_me,"execute=${pkgs.libnotify}/bin/notify-send,--icon=media-downloader,rtorrent,$d.notify_message="
 
                 # move finished data to download
                 method.insert = d.get_finished_dir, simple, "cat=~/download/,$d.custom1="
