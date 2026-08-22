@@ -352,6 +352,11 @@ in
             mesa
             mesa_glu
             /******************
+                amd
+            *******************/
+            nvtopPackages.amd
+            nvtopPackages.intel
+            /******************
                 bios
             *******************/
             uefitool
