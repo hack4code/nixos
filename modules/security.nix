@@ -17,6 +17,11 @@
                 enable = true;
             };
 
+            fapi = {
+                ekCertLess = true;
+                profileName = "P_RSA2048SHA256";
+            };
+
             # abrmd = {
             #     enable = true;
             # };
@@ -25,11 +30,6 @@
             #     enable = true;
             #     interface = "tabrmd";
             # };
-
-            fapi = {
-                ekCertLess = true;
-                profileName = "P_RSA2048SHA256";
-            };
         };
 
         pam = {
