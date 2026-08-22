@@ -20,10 +20,6 @@ let
         ];
 
         text = ''
-            TSS2_FAPICONF=$(grep -F FAPICONF /etc/set-environment | cut -d = -f 2 | sed 's/"//g')
-            export TSS2_FAPICONF
-
-
             SSH="${pkgs.openssh}/bin/ssh"
             SCP="${pkgs.openssh}/bin/scp"
             RCLONE="${pkgs.rclone}/bin/rclone"
@@ -66,7 +62,7 @@ let
                 fi
             done
 
-            if ! $SSH -T -o ConnectTimeout=64 $VPS exit; then
+            if ! $SSH -T -o ConnectTimeout=64 $VPS exit &>/dev/null; then
                 notify "connecting $VPS failed"
                 exit 1
             fi
