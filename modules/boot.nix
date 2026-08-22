@@ -51,13 +51,10 @@ in
             /* wine */
             "ia32_emulation=on"
             /* linux security module */
-            # "lsm=lockdown,capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
             "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
-            /* pcie */
-            # "pcie_ports=native"
-            /* touchpad bug */
-            # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G"
-            "i915.force_probe=9a40,56a0"
+            # "pcie_ports=native" /* touchpad mouse bug */
+            # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G" /* touchpad mouse bug */
+
         ];
 
         kernelModules = [
@@ -66,6 +63,8 @@ in
 
         extraModprobeConfig = ''
             options i915 force_probe=9a40,56a0
+            options i915 enable_guc=3
+            options i915 lmem_bar_size=256
         '';
 
         loader = {
@@ -109,7 +108,6 @@ in
         };
 
         blacklistedKernelModules = [
-            "xe"
             "i2c_i801"
         ];
 
