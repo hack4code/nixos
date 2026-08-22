@@ -5,9 +5,7 @@ let
 in
 {
     imports = [
-        ./patch/bottles.nix
         ./patch/weechat.nix
-        # ./patch/firefox.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
