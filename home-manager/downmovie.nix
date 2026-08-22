@@ -18,10 +18,6 @@ let
             libnotify
         ];
         text = ''
-            TSS2_FAPICONF=$(grep -F FAPICONF /etc/set-environment | cut -d = -f 2 | sed 's/"//g')
-            export TSS2_FAPICONF
-
-
             SSH="${pkgs.openssh}/bin/ssh"
             RSYNC="${pkgs.rsync}/bin/rsync"
 
@@ -50,7 +46,7 @@ let
             done
 
 
-            if ! $SSH -q -o ConnectTimeout=8 $VPS exit; then
+            if ! $SSH -q -o ConnectTimeout=8 $VPS exit &>/dev/null; then
                 panic "failed connecting $VPS"
             fi
 
