@@ -43,6 +43,9 @@ in
                     "1.1.1.1:53"
                 ];
 
+                http3 = true;
+                http3_probe = true;
+
                 netprobe_timeout = -1;
                 timeout = 8000;
 
@@ -77,7 +80,7 @@ in
                     };
                 };
 
-                server_names = [ "google" dnsServerName ];
+                server_names = [ "google" "cloudflare" "cloudflare-ipv6" dnsServerName ];
             };
         };
     };
