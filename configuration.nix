@@ -5,7 +5,7 @@ let
 in
 {
     imports = [
-        ./patch/sherlock.nix
+        # ./patch/sherlock.nix
         ./patch/bottles.nix
         ./patch/weechat.nix
         ./fonts/fontconfig.nix
