@@ -370,12 +370,12 @@ in
             nsz
             eden
             ryubing
-            /* windows */
-            bottles
         ] ++ (with pkgs-stable; [
             hello
             /* ps3 */
             rpcs3
+            /* windows */
+            bottles
         ]);
     };
 }
