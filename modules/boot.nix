@@ -64,7 +64,6 @@ in
         extraModprobeConfig = ''
             options i915 force_probe=9a40,56a0
             options i915 enable_guc=3
-            options i915 lmem_bar_size=256
         '';
 
         loader = {
