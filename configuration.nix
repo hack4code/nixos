@@ -374,13 +374,13 @@ in
             /* switch */
             nsz
             eden
-            ryubing
-        ] ++ (with pkgs-stable; [
-            hello
-            /* ps3 */
-            rpcs3
             /* windows */
             bottles
+        ] ++ (with pkgs-stable; [
+            /* ps3 */
+            rpcs3
+            /* switch */
+            ryubing
         ]);
     };
 }
