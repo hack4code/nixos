@@ -54,6 +54,7 @@ in
                 BW_SESSION = "${bwSession}";
 
                 /* tpm2 */
+                TPM2_PKCS11_BACKEND = "esysdb";
                 TSS2_LOG = "fapi+NONE";
 
                 /* vaapi */
