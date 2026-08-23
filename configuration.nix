@@ -27,6 +27,7 @@ in
         ./config/wireguard.nix
         ./config/weechat.nix
         ./config/firefox.nix
+        ./config/gpu.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
         ./modules/console.nix
