@@ -2,6 +2,7 @@
 
 let
     userName = config.userName;
+    eGPU = config.eGPU;
 in
 {
     home-manager.users.${userName} = {
@@ -14,6 +15,7 @@ in
                 vo = "gpu-next,dmabuf-wayland";
                 hwdec = "vaapi";
                 hwdec-codecs = "all";
+                vulkan-device = "${eGPU}";
                 gpu-api = "vulkan";
                 vo-vaapi-scaling = "hq";
                 vo-vaapi-scaled-osd = true;
