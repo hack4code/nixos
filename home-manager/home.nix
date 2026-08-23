@@ -58,7 +58,7 @@ in
                 TSS2_LOG = "fapi+NONE";
 
                 /* vaapi */
-                LIBVA_DRIVER_NAME = "iHD";
+                # LIBVA_DRIVER_NAME = "iHD";
             };
 
             packages = with pkgs; [
