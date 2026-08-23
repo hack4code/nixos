@@ -33,6 +33,15 @@
         };
 
         pam = {
+            loginLimits = [
+                {
+                    domain = "*";
+                    type = "-";
+                    item = "memlock";
+                    value = "unlimited";
+                }
+            ];
+
             services = {
                 swaylock = {
                     enable = true;
