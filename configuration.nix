@@ -355,8 +355,7 @@ in
             /******************
                 amd
             *******************/
-            nvtopPackages.amd
-            nvtopPackages.intel
+            amdgpu_top
             /******************
                 bios
             *******************/
@@ -369,20 +368,18 @@ in
             /* ps2 */
             pcsx2
             /* ps4 */
-            # shadps4
+            shadps4
             /* Wii U */
             # cemu
             /* switch */
             nsz
             eden
+            # ryubing
             /* windows */
             bottles
-        ] ++ (with pkgs-stable; [
             /* ps3 */
             rpcs3
-            /* switch */
-            ryubing
-        ]);
+        ];
     };
 }
 
