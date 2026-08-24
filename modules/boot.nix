@@ -61,6 +61,7 @@ in
         kernelModules = [
             "amdgpu"
             "i915"
+            "ntsync" /* bottles */
         ];
 
         extraModprobeConfig = ''
