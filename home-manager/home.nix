@@ -59,6 +59,9 @@ in
 
                 /* vaapi */
                 # LIBVA_DRIVER_NAME = "iHD";
+
+                /* bottles */
+                PROTON_USE_NTSYNC = "1";
             };
 
             packages = with pkgs; [
