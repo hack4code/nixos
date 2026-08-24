@@ -54,15 +54,20 @@ in
             "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
             # "pcie_ports=native" /* touchpad mouse bug */
             # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G" /* touchpad mouse bug */
+            /* video */
+            "video=eDP-1:2160x1350@60"
+            "video=HDMI-A-4:2560x1440@75"
 
         ];
 
         kernelModules = [
+            "amdgpu"
             "i915"
         ];
 
         extraModprobeConfig = ''
-            options i915 force_probe=9a40,56a0
+            options ttm pages_limit=31457280
+            options ttm page_pool_size=15728640
             options i915 enable_guc=3
         '';
 
