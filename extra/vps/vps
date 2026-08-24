@@ -3,7 +3,6 @@
 
 WGIP='10.0.0.1'
 NIX_CONFIG="$HOME/source/nixos/configuration.nix"
-DNSCRYPT_NIX="$HOME/source/nixos/modules/dnscrypt-proxy.nix"
 NIXOS="$HOME/source/nixos"
 DNSCRYPT_CONFIG="$HOME/source/nixos/config/dnscrypt-proxy.nix"
 MOUNT_OPT='vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto'
@@ -39,11 +38,6 @@ function disable_wireguard_service {
 
 function enable_wireguard_service {
     sed -i -E '/wg-quick/s/^#+//' "$NIX_CONFIG"
-}
-
-
-function reset_dnscrypt_proxy {
-    sed -i -E '/server_names/s/^/#/' "$DNSCRYPT_NIX"
 }
 
 
@@ -775,9 +769,6 @@ case "$1" in
         stop_spider
         mount_docker
         eval "setup_$1"
-        if [[ "$1" == 'dnscrypt' ]]; then
-            rebuild_nixos
-        fi
         start_spider
         clear_docker
         ;;
