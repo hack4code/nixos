@@ -56,8 +56,6 @@ in
             # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G" /* touchpad mouse bug */
             /* video */
             "video=eDP-1:2160x1350@60"
-            "video=HDMI-A-4:2560x1440@75"
-
         ];
 
         kernelModules = [
