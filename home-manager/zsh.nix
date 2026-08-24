@@ -203,9 +203,14 @@ in
                             return
                         fi
 
+                        # eGPU
+                        if (($# == 1)) && [[ "$1" == "-g" ]] && [[ -e /dev/dri/card1 ]]; then
+                            export WLR_DRM_DEVICES="/dev/dri/card1"
+                        fi
+
                         local T=$(date +'%F-%H-%M')
-                        exec "$SWAY" &> /var/log/sway/$T.log
-                        # exec "$SWAY"
+                        # exec "$SWAY" &> /var/log/sway/$T.log
+                        exec "$SWAY"
                     }
                 '';
             };
