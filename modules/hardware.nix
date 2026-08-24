@@ -41,9 +41,12 @@
     ];
 
     hardware = {
-        enableAllFirmware = false;
+        firmware = [
+            pkgs.linux-firmware
+        ];
         enableRedistributableFirmware = true;
         firmwareCompression = "zstd";
+        # enableAllFirmware = false;
 
         cpu = {
             intel = {
