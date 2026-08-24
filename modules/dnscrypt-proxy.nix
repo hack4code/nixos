@@ -80,7 +80,10 @@ in
                     };
                 };
 
-                server_names = [ "google" "cloudflare" "cloudflare-ipv6" dnsServerName ];
+                server_names = [
+                    "google"
+                    "cloudflare"
+                ];
             };
         };
     };
