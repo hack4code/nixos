@@ -5,6 +5,7 @@ let
 
     monitorThinkpad = config.monitorThinkpad;
     monitorSamsung = config.monitorSamsung;
+    monitorExt = config.monitorExt;
 
     keyboard = config.keyboard;
     cherry = config.cherry;
@@ -253,16 +254,16 @@ in
             in
             ''
                 workspace 0  output "${monitorThinkpad}"
-                workspace 1  output "${monitorSamsung}"
-                workspace 2  output "${monitorSamsung}"
-                workspace 3  output "${monitorSamsung}"
-                workspace 4  output "${monitorSamsung}"
-                workspace 5  output "${monitorSamsung}"
-                workspace 6  output "${monitorSamsung}"
-                workspace 7  output "${monitorSamsung}"
-                workspace 8  output "${monitorSamsung}"
-                workspace 9  output "${monitorSamsung}"
-                workspace 10 output "${monitorSamsung}"
+                workspace 1  output "${monitorExt}"
+                workspace 2  output "${monitorExt}"
+                workspace 3  output "${monitorExt}"
+                workspace 4  output "${monitorExt}"
+                workspace 5  output "${monitorExt}"
+                workspace 6  output "${monitorExt}"
+                workspace 7  output "${monitorExt}"
+                workspace 8  output "${monitorExt}"
+                workspace 9  output "${monitorExt}"
+                workspace 10 output "${monitorExt}"
                 workspace 11 output "${monitorThinkpad}"
                 workspace 12 output "${monitorThinkpad}"
 
