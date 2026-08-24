@@ -367,6 +367,8 @@ in
             tetris
             /* ps2 */
             pcsx2
+            /* ps3 */
+            # rpcs3
             /* ps4 */
             shadps4
             /* Wii U */
@@ -377,8 +379,6 @@ in
             # ryubing
             /* windows */
             bottles
-            /* ps3 */
-            rpcs3
         ];
     };
 }
