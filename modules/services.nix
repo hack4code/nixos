@@ -63,6 +63,10 @@
         fprintd = {
             enable = true;
         };
+
+        xserver = {
+            videoDrivers = [ "modesetting" ];
+        };
     };
 }
 
