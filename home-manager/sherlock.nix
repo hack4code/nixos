@@ -22,9 +22,9 @@ in
             };
 
             ignore = ''
-                NetHack
                 wl-kbptr
                 Avahi*
+                AMDGPU*
                 qt*
                 userfeedback*
                 Keyboard*
