@@ -291,6 +291,7 @@ in
                 for_window [floating workspace="9" shell="xdg_shell" title="^Settings$"] border pixel 1, resize set 64 ppt 96 ppt, move position center
                 for_window [app_id="file_chooser" title="termfilechooser"] floating enable, border pixel 2, move position center, resize set 80 ppt 72 ppt, opacity 0.99
                 for_window [app_id="com.usebottles.bottles"] move workspace 9
+                for_window [app_id="net.lutris.Lutris"] move workspace 9
 
                 exec --no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
