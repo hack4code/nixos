@@ -378,6 +378,8 @@ in
             eden
             # ryubing
             /* windows */
+            # wine
+            wine64
             bottles
         ];
     };
