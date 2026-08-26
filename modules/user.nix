@@ -27,6 +27,7 @@ in
                     "video"
                     "wheel"
                     "wireshark"
+                    "gamemode"
                 ];
             };
         };
