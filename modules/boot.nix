@@ -42,12 +42,12 @@ in
             "slab_nomerge"
             "pti=on"
             "hash_pointers=always"
-            "iommu.passthrough=0"
-            "iommu.strict=1"
+            # "iommu.passthrough=0"
+            # "iommu.strict=1"
             "proc_mem.force_override=never"
             "mitigations=auto"
-            "kfence.sample_interval=100"
-            "vdso32=0"
+            # "kfence.sample_interval=100"
+            # "vdso32=0"
             /* wine */
             "ia32_emulation=on"
             /* linux security module */
