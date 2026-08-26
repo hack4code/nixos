@@ -40,6 +40,12 @@
                     item = "memlock";
                     value = "unlimited";
                 }
+                {
+                    domain = "*";
+                    type = "-";
+                    item = "nice";
+                    value = "-20";
+                }
             ];
 
             services = {
