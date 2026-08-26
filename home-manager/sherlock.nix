@@ -44,7 +44,7 @@ in
                 };
 
                 Bottles = {
-                    exec = "${pkgs.bottles}/bin/bottles";
+                    exec = "sh -c ${pkgs.bottles}/bin/bottles";
                 };
             };
 
@@ -70,13 +70,13 @@ in
                         commands = {
                             s8 = {
                                 icon = "audio-volume-high";
-                                exec = "bash -c '${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%'";
+                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%";
                                 search_string = "s8";
                             };
 
                             s6 = {
                                 icon = "audio-volume-low";
-                                exec = "bash -c '${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 60%'";
+                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 60%";
                                 search_string = "s6";
                             };
                         };
@@ -92,19 +92,19 @@ in
                         commands = {
                             "Next Song" = {
                                 icon = "juk";
-                                exec = "bash -c '${pkgs.mpc}/bin/mpc next'";
+                                exec = "${pkgs.mpc}/bin/mpc next";
                                 search_string = "next";
                             };
 
                             "Sound Volume 32" = {
                                 icon = "juk";
-                                exec = "bash -c '${pkgs.mpc}/bin/mpc volume 32'";
+                                exec = " ${pkgs.mpc}/bin/mpc volume 32";
                                 search_string = "32";
                             };
 
                             "Sound Volume 48" = {
                                 icon = "juk";
-                                exec = "bash -c '${pkgs.mpc}/bin/mpc volume 48'";
+                                exec = " ${pkgs.mpc}/bin/mpc volume 48";
                                 search_string = "48";
                             };
                         };
@@ -120,7 +120,7 @@ in
                         commands = {
                             SyncDrive = {
                                 icon = "google-drive";
-                                exec = "bash -c syncdrive.sh";
+                                exec = "syncdrive.sh";
                                 search_string = "syncdrive";
                             };
                         };
@@ -136,7 +136,7 @@ in
                         commands = {
                             DownMovie = {
                                 icon = "media-downloader";
-                                exec = "bash -c downmovie.sh";
+                                exec = "downmovie.sh";
                                 search_string = "downmovie";
                             };
                         };
@@ -152,31 +152,31 @@ in
                         commands = {
                             "Settings" = {
                                 icon = "gnome-settings";
-                                exec = "bash -c '${noctalia-ipc} settings open'";
+                                exec = "${noctalia-ipc} settings open";
                                 search_string = "setting";
                             };
 
                             "Notification Enable DND" = {
                                 icon = "notification-active";
-                                exec = "bash -c '${noctalia-ipc} notifications enableDND'";
+                                exec = "${noctalia-ipc} notifications enableDND";
                                 search_string = "dnd";
                             };
 
                             "Notification Disable DND" = {
                                 icon = "notification-disabled";
-                                exec = "bash -c '${noctalia-ipc} notifications disableDND'";
+                                exec = "${noctalia-ipc} notifications disableDND";
                                 search_string = "dnd";
                             };
 
                             "Notification Clear All" = {
                                 icon = "notifyconf";
-                                exec = "bash -c '${noctalia-ipc} notifications clear'";
+                                exec = "${noctalia-ipc} notifications clear";
                                 search_string = "notification";
                             };
 
                             "Clipboard Clear All" = {
                                 icon = "xclipboard";
-                                exec = "bash -c '${cliphist} wipe'";
+                                exec = "${cliphist} wipe";
                                 search_string = "clip";
                             };
                         };
