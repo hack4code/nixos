@@ -51,8 +51,13 @@
                 "zsh-abbr"
                 "rpcs3"
                 "broadcom-bt-firmware"
+                /* firefox */
                 "firefox-bin-unwrapped"
                 "firefox-bin"
+                /* lutris */
+                "steam"
+                "steam-unwrapped"
+                "lutris"
             ];
         };
     };
