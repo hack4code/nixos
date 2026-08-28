@@ -7,9 +7,11 @@ pkgs.stdenv.mkDerivation {
     dontBuild = true;
 
     src = pkgs.fetchurl {
-        url = "https://hyperos.mi.com/font-download/MiSans_Global_ALL.zip";
-        hash = "sha256-IyKgHjE4Zho9dpgM/YFn9wS76mBEXflKAMedPWroW1c=";
-        curlOpts = "-L --retry 24";
+        # url = "https://hyperos.mi.com/font-download/MiSans_Global_ALL.zip";
+        # hash = "sha256-IyKgHjE4Zho9dpgM/YFn9wS76mBEXflKAMedPWroW1c=";
+        url = "https://github.com/dsrkafuu/misans/archive/refs/tags/v4.1.0.zip";
+        hash = "sha256-Se4tmsfy5h4V5q9oAa/GORxnw+umZmJycA/3VAM6UaY=";
+        curlOpts = "-L --retry 8";
     };
 
     unpackPhase = ''
