@@ -415,7 +415,7 @@ in
             # wine
             wine64
             bottles
-            lutris-free
+            # lutris-free
         ];
     };
 }
