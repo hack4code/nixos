@@ -6,6 +6,15 @@ let
 in
 {
     home-manager.users.${userName} = {
+        home.file.".config/systemd/user/xdg-desktop-portal/50-patch.conf" = {
+            executable = false;
+            force = true;
+            text = ''
+                [Unit]
+                Requisite=multi-user.target
+            '';
+        };
+
         xdg = {
             enable = true;
 
