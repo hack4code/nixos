@@ -179,6 +179,18 @@ in
                                 exec = "${cliphist} wipe";
                                 search_string = "clip";
                             };
+
+                            "IdleInhibitor Disable" = {
+                                icon = "screensaver";
+                                exec = "${noctalia-ipc} idleInhibitor disable";
+                                search_string = "idle";
+                            };
+
+                            "IdleInhibitor Enable" = {
+                                icon = "screensaver";
+                                exec = "${noctalia-ipc} idleInhibitor enable";
+                                search_string = "idle";
+                            };
                         };
                     };
                     priority = 10;
