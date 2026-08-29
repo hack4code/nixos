@@ -1,11 +1,10 @@
-{ config, pkgs, lib, pkgs-stable, ... }:
+{ config, pkgs, lib, pkgs-unstable, ... }:
 
 let
     timeZone = config.timeZone;
 in
 {
     imports = [
-        # ./patch/sherlock.nix
         ./patch/bottles.nix
         ./patch/weechat.nix
         ./fonts/fontconfig.nix
@@ -152,7 +151,6 @@ in
 
         wireshark = {
             enable = true;
-            package = pkgs-stable.wireshark;
             dumpcap = {
                 enable = true;
             };
@@ -416,7 +414,9 @@ in
             wine64
             bottles
             # lutris-free
-        ];
+        ] ++ (with pkgs-unstable; [
+            netwatch
+        ]);
     };
 }
 
