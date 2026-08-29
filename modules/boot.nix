@@ -62,6 +62,7 @@ in
             "amdgpu"
             "i915"
             "ntsync" /* bottles */
+            "hid_betopff" /* joystick */
         ];
 
         extraModprobeConfig = ''
