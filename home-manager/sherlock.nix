@@ -224,6 +224,7 @@ in
                     "ctrl-n" = "item_down";
                     "ctrl-u" = "clear_bar";
                     "ctrl-o" = "exec";
+                    "return" = "exec";
                     "esc" = "exit";
                 };
 
