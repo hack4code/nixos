@@ -208,16 +208,17 @@ in
                     # end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
                 };
             };
+        };
 
-            # gamescope = {
-            #     enable = true;
-            #     enableWsi = true;
-            #     capSysNice = true;
-            #     args = [
-            #         "--rt"
-            #         "--prefer-vk-device 8086:9bc4"
-            #     ];
-            # };
+        gamescope = {
+            enable = true;
+
+            enableWsi = true;
+            capSysNice = true;
+            args = [
+                "--rt"
+                "--prefer-vk-device 1ed3:0e46"
+            ];
         };
     };
 
