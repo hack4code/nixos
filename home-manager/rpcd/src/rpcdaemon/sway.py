@@ -445,7 +445,7 @@ def set_ncmpcpp_after_boot() -> None:
         set_ncmpcpp_for_playing()
         time.sleep(0.8)
         play_mpd()
-    set_mpd_volume(48)
+    set_mpd_volume(32)
 
 
 def set_ncmpcpp_for_mpv() -> None:
