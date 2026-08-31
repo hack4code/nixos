@@ -32,6 +32,11 @@ in
                 Fcitx 5 Migration*
                 Neovim*
                 NixOS Manual
+                btop*
+                WeeChat
+                Htop
+                kitty
+                mpv*
             '';
 
             aliases = {
@@ -224,6 +229,7 @@ in
                     "ctrl-n" = "item_down";
                     "ctrl-u" = "clear_bar";
                     "ctrl-o" = "exec";
+                    "alt-<digit>" = "shortcut";
                     "return" = "exec";
                     "esc" = "exit";
                 };
