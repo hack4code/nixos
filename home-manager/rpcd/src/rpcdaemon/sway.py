@@ -47,6 +47,7 @@ monitor_full_name = {
     "thinkpad": "Chimei Innolux Corporation 0x1301 Unknown",
     "samsung": "Samsung Electric Company LS24A600U H4ZRB00248"
 }
+GpuID = 1 if Path("/dev/dri/card1").exists() else 0;
 
 
 kitty_config_top = (
@@ -131,7 +132,7 @@ command_ncmpcpp = (
 )
 
 command_yazi = (
-    "exec kitty "
+    f"exec DRI_PRIME={GpuID} kitty "
     "--class file-manager "
     "--name yazi "
     f"{kitty_config_yazi} "
@@ -140,8 +141,11 @@ command_yazi = (
 )
 
 
+command_firefox = f"exec firefox -P KISS"
+
+
 command_weechat = (
-    "exec kitty "
+    f"exec DRI_PRIME={GpuID} kitty "
     "--class weechat "
     "--name weechat "
     f"{kitty_config_weechat} "
@@ -151,7 +155,7 @@ command_weechat = (
 
 
 command_mutt = (
-    "exec kitty "
+    f"exec DRI_PRIME={GpuID} kitty "
     "--class gmail "
     "--name mutt "
     f"{kitty_config_mutt} "
@@ -161,15 +165,18 @@ command_mutt = (
 
 
 command_kitty = (
-    "exec kitty "
+    f"exec DRI_PRIME={GpuID} kitty "
     "--class kitty "
     "--name terminal "
     "--listen-on=unix:@kitty "
 )
 
 
+command_zathura = f"exec DRI_PRIME={GpuID} zathura"
+
+
 command_floating_kitty = (
-    "exec kitty "
+    f"exec DRI_PRIME={GpuID} kitty "
     "--class floatkitty "
     "zsh -i"
 )
@@ -474,7 +481,7 @@ def setup_workspace_0() -> None:
 
 
 def setup_workspace_1() -> None:
-    I3.command("workspace 1;exec firefox -P KISS")
+    I3.command(f"workspace 1;{command_firefox}")
 
 
 def setup_workspace_2() -> None:
@@ -501,11 +508,11 @@ def setup_workspaces_for_books() -> None:
         file_name = str(book.absolute())
         if "'" in file_name:
             I3.command(
-                f'workspace {workspace};exec zathura "{book.absolute()}"'
+                f'workspace {workspace};{command_zathura} "{book.absolute()}"'
             )
         else:
             I3.command(
-                f"workspace {workspace};exec zathura '{book.absolute()}'"
+                f"workspace {workspace};{command_zathura} '{book.absolute()}'"
             )
 
     def open_dir(p: Path):
