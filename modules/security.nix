@@ -22,14 +22,14 @@
                 profileName = "P_RSA2048SHA256";
             };
 
-            # abrmd = {
-            #     enable = true;
-            # };
+            abrmd = {
+                enable = true;
+            };
 
-            # tctiEnvironment = {
-            #     enable = true;
-            #     interface = "tabrmd";
-            # };
+            tctiEnvironment = {
+                enable = true;
+                # interface = "tabrmd";
+            };
         };
 
         pam = {
