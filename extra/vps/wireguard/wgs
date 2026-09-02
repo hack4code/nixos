@@ -4,12 +4,12 @@ PrivateKey = ${KEYPRIS}
 ListenPort = ${LPORTS}
 PostUP = ethtool -K ${IFS} rx-gro-list off
 PostUP = ethtool -K ${IFS} rx-udp-gro-forwarding on
-PostUP = tc qdisc add dev %i root fq_codel;
-PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ${IFS} -j MASQUERADE; ip6tables -A FORWARD -o %i -j ACCEPT; ip6tables -A FORWARD -i %i -j ACCEPT;
-PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ${IFS} -j MASQUERADE; ip6tables -D FORWARD -o %i -j ACCEPT; ip6tables -D FORWARD -i %i -j ACCEPT;
+PostUP = tc qdisc add dev %i root fq_codel
+PostUP = nft -f /etc/wireguard/wireguard.nft
+PostDown = nft delete table inet wireguard-forward; nft delete table ip wireguard-nat;
 # rtorrent
-PostUP = iptables -t nat -A PREROUTING -i ${IFS} -d ${ADDRS4} -p tcp --dport ${RTORRENTPORT} -j DNAT --to-destination ${IP4PA}:${RTORRENTPORT}; iptables -t nat -A PREROUTING -i ${IFS} -d ${ADDRS4} -p udp --dport ${PEXPORT} -j DNAT --to-destination ${IP4PA}:${PEXPORT};
-PostDown = iptables -t nat -D PREROUTING -i ${IFS} -d ${ADDRS4} -p tcp --dport ${RTORRENTPORT}; iptables -t nat -D PREROUTING -i ${IFS} -d ${ADDRS4} -p udp --dport ${PEXPORT};
+# PostUP = iptables -t nat -A PREROUTING -i ${IFS} -d ${ADDRS4} -p tcp --dport ${RTORRENTPORT} -j DNAT --to-destination ${IP4PA}:${RTORRENTPORT}; iptables -t nat -A PREROUTING -i ${IFS} -d ${ADDRS4} -p udp --dport ${PEXPORT} -j DNAT --to-destination ${IP4PA}:${PEXPORT};
+# PostDown = iptables -t nat -D PREROUTING -i ${IFS} -d ${ADDRS4} -p tcp --dport ${RTORRENTPORT}; iptables -t nat -D PREROUTING -i ${IFS} -d ${ADDRS4} -p udp --dport ${PEXPORT};
 
 [Peer]
 PresharedKey = ${PKEY}

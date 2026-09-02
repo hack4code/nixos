@@ -34,9 +34,9 @@
         wgServerIp6Address = "${WGIP6S}";
         wgServerPort = ${LPORTS};
         wgMTU = 1408;
-        # wgEndPoint = "${DOLLAR}{vpsIp4Address}:" + toString wgServerPort;
+        wgEndPoint = "${DOLLAR}{vpsIp4Address}:" + toString wgServerPort;
         # wgEndPoint = "[${DOLLAR}{vpsIp6Address}]:" + toString wgServerPort;
-        wgEndPoint = "[${DOLLAR}{wgServerIp6Address}]:" + toString wgServerPort;
+        # wgEndPoint = "[${DOLLAR}{wgServerIp6Address}]:" + toString wgServerPort;
 
         vpsV6Range = "${V6RANGE}";
         vpsIp4Address = "${ADDRS4}";

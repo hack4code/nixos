@@ -36,6 +36,11 @@ KEYPUBP=$(echo "$KEYPRIP" | wg pubkey)
 PKEY=$(wg genpsk)
 
 
+WGIF=$WGIF \
+SADDR="10.0.0.1" \
+IFS=$IFS \
+envsubst < wireguard.nft.template > wireguard.nft
+
 
 IP4S=$IP4S \
 IP6S=$IP6S \
