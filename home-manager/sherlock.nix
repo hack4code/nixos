@@ -49,7 +49,7 @@ in
                 };
 
                 Bottles = {
-                    exec = "sh -c ${pkgs.bottles}/bin/bottles";
+                    exec = "{pkgs.bottles}/bin/bottles";
                 };
             };
 
