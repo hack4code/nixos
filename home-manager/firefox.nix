@@ -198,8 +198,8 @@ in
                         /* disable onboarding junk */
                         user_pref("browser.onboarding.enabled", false);
                         /* translations */
-                        user_pref("browser.translations.enable", false);
-                        user_pref("browser.translations.automaticallyPopup", false);
+                        user_pref("browser.translations.enable", true);
+                        user_pref("browser.translations.automaticallyPopup", true);
 
                         /* concurrency */
                         user_pref("dom.maxHardwareConcurrency", 6);
@@ -261,6 +261,7 @@ in
                         user_pref("browser.cache.memory.capacity", -1);
 
                         /* media */
+                        user_pref("media.rdd-ffmpeg.enabled", true);
                         user_pref("media.ffmpeg.vaapi.enabled", true);
                         user_pref("media.hardwaremediakeys.enabled", true);
                         user_pref("media.hardware-video-decoding.force-enabled", true);
