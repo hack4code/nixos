@@ -1,4 +1,5 @@
 {
+  "firewall-backend": "nftables",
   "ipv6": true,
   "fixed-cidr-v6": ""
 }

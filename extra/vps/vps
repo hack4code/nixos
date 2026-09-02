@@ -151,6 +151,23 @@ function reboot_linode {
     sleep 32s
 }
 
+function setup_v6range {
+    local V6RANGE
+    local LINODE_ID
+
+    V6RANGE=$(linode-cli --suppress-warnings networking v6-ranges --json | jq -r '.[].range' | sed -E 's/:+$//' | head --lines 1)
+    if [[ -n "$V6RANGE" ]]; then
+        return
+    fi
+
+    LINODE_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
+    if [[ -z "$LINODE_ID" ]]; then
+        panic 'no linode ID found'
+    fi
+
+    linode-cli --suppress-warnings networking v6-range-create --prefix_length 64 --linode_id "$LINODE_ID"
+}
+
 
 function test_ssh {
     while ! sshcmd exit; do
@@ -195,24 +212,6 @@ function enable_firewall {
 }
 
 
-function setup_v6range {
-    local V6RANGE
-    local LINODE_ID
-
-    V6RANGE=$(linode-cli --suppress-warnings networking v6-ranges --json | jq -r '.[].range' | sed -E 's/:+$//' | head --lines 1)
-    if [[ -n "$V6RANGE" ]]; then
-        return
-    fi
-
-    LINODE_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
-    if [[ -z "$LINODE_ID" ]]; then
-        panic 'no linode ID found'
-    fi
-
-    linode-cli --suppress-warnings networking v6-range-create --prefix_length 64 --linode_id "$LINODE_ID"
-}
-
-
 function sync-portage {
     sshcmd "emerge --sync"
 }
@@ -223,6 +222,17 @@ function test_wireguard {
         echo 'waiting wireguard online...'
         sleep 16s
     done
+}
+
+
+function setup_nftables {
+    if ! sshcmd 'command -v nft'; then
+        sshcmd 'emerge net-firewall/nftables'
+    fi
+
+    # if ! sshcmd 'rc-update -C show' | grep -q 'nftables'; then
+    #     sshcmd 'rc-update add nftables default'
+    # fi
 }
 
 
@@ -252,8 +262,9 @@ function setup_wireguard {
     fi
 
     sshcmd "test -d $WIREGUARD || mkdir $WIREGUARD"
-    scpcmd -q wireguard/{genconf,wgs,wireguard.nix.template} "linode:$WIREGUARD/"
+    scpcmd -q wireguard/{genconf,wgs,wireguard.nft.template,wireguard.nix.template} "linode:$WIREGUARD/"
     sshcmd "cd $WIREGUARD; ./genconf $V6RANGE";
+    sshcmd "cd $WIREGUARD; cp wireguard.nft /etc/wireguard/wireguard.nft"
     sshcmd "cd $WIREGUARD; cp wg0.conf.s /etc/wireguard/wg0.conf"
 
     if ! sshcmd 'test -f /etc/init.d/wg-quick.wg0'; then
@@ -680,6 +691,8 @@ function create_node {
     destory_linode
     echo 'create linode'
     create_linode
+    echo 'setup_v6range'
+    setup_v6range
     echo 'setup ssh'
     setup_ssh
     echo 'setup_sshd'
@@ -690,8 +703,8 @@ function create_node {
     sync-portage
     echo 'setup portage-util'
     setup_portage_utils
-    echo 'setup v6range'
-    setup_v6range
+    echo 'setup nftables'
+    setup_nftables
     echo 'setup wireguard'
     setup_wireguard
     echo 'reboot linode'
