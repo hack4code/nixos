@@ -275,6 +275,7 @@ in
             mpc
             ncdu
             p7zip
+            parted
             perf
             procps
             pv
