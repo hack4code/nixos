@@ -58,6 +58,11 @@ in
                 ${pkgs.iproute2}/bin/ip rule add to 81.70.124.99/32 table main
                 # zhihu
                 ${pkgs.iproute2}/bin/ip rule add to 43.135.83.2/32 table main
+                # api.linode.com
+                ${pkgs.iproute2}/bin/ip rule add to 95.100.110.29/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 95.100.110.14/32 table main
+                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:70::215:ef0f/128 table main
+                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:70::215:ef10/128 table main
             '';
 
             preDown = ''
@@ -82,6 +87,11 @@ in
                 ${pkgs.iproute2}/bin/ip rule delete to 81.70.124.99/32
                 # zhihu
                 ${pkgs.iproute2}/bin/ip rule delete to 43.135.83.2/32
+                # api.linode.com
+                ${pkgs.iproute2}/bin/ip rule delete to 95.100.110.29/32
+                ${pkgs.iproute2}/bin/ip rule delete to 95.100.110.14/32
+                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:70::215:ef0f/128
+                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:70::215:ef10/128
             '';
 
             peers = [
