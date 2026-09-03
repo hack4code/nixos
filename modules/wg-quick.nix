@@ -112,12 +112,12 @@ in
 
     environment.etc."wireguard/wireguard.nft" = {
         text = ''
-            # table ip dnscrypt-proxy {
-            #     chain input {
-            #         type filter hook input priority filter; policy accept;
-            #         iifname "${wgInterface}" ip saddr ${wgServerIp4Address} udp sport ${dnsPort} ip saddr set ${vpsIp4Address}
-            #     }
-            # }
+            table ip dnscrypt-proxy {
+                chain input {
+                    type filter hook input priority filter; policy accept;
+                    iifname "${wgInterface}" ip saddr ${wgServerIp4Address} udp sport ${dnsPort} ip saddr set ${vpsIp4Address}
+                }
+            }
 
             table ip6 dnscrypt-proxy {
                 chain input {
