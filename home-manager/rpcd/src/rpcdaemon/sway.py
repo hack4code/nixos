@@ -117,7 +117,7 @@ command_linode = (
     f"{kitty_config_top} "
     "--override allow_remote_control=socket "
     "--listen-on=unix:@linode "
-    "zsh -c 'kitty +kitten ssh -t linode htop -M --readonly'"
+    "zsh -c 'kitty +kitten ssh -t linode TERM=xterm htop -M --readonly'"
 )
 
 
