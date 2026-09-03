@@ -5,15 +5,15 @@ flush ruleset
 
 table inet wireguard-forward {
 	chain filter {
-		type filter hook forward priority 0; policy accept;
-		iifname ${WGIF} oifname ${IFS} accept;
-		iifname ${IFS} oifname ${WGIF} accept;
+		type filter hook forward priority filter; policy accept;
+		iifname "${WGIF}" oifname "${IFS}" accept
+		iifname "${IFS}" oifname "${WGIF}" accept
 	}
 }
 
 table ip wireguard-nat {
 	chain postrouting {
-		type nat hook postrouting priority 100;
-		ip saddr ${SADDR}/24 oifname "${IFS}" masquerade;
+		type nat hook postrouting priority srcnat; policy accept;
+		ip saddr ${SADDR}/24 oifname "${IFS}" masquerade
 	}
 }
