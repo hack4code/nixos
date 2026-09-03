@@ -42,7 +42,7 @@ in
             enable = true;
             backend = "nftables";
             allowPing = false;
-            checkReversePath = true;
+            checkReversePath = "loose";
             extraPackages = [
                 pkgs.ipset
             ];
