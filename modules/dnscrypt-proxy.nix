@@ -44,11 +44,15 @@ in
                     "1.1.1.1:53"
                 ];
 
+                ipv6_servers = true;
+                dnscrypt_servers = true;
+                doh_servers = true;
+
                 http3 = true;
                 http3_probe = true;
 
                 netprobe_timeout = -1;
-                timeout = 80000;
+                timeout = 8000;
 
                 require_dnssec = true;
                 use_syslog = true;
@@ -66,8 +70,9 @@ in
                 sources = {
                     public-resolvers = {
                         urls = [
-                            "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+                            "https://cdn.jsdelivr.net/gh/DNSCrypt/dnscrypt-resolvers@master/v3/public-resolvers.md"
                             "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+                            "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
                         ];
                         cache_file = "/var/cache/dnscrypt-proxy/public-resolvers.md";
                         minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
