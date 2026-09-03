@@ -48,7 +48,7 @@ in
                 http3_probe = true;
 
                 netprobe_timeout = -1;
-                timeout = 8000;
+                timeout = 80000;
 
                 require_dnssec = true;
                 use_syslog = true;
