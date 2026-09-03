@@ -4,7 +4,7 @@
 NAME='dnscrypt'
 IMAGE='jedisct1/dnscrypt-server'
 PORT='6666'
-IF='eth0'
+IF='wg0'
 
 ZONE="$HOME/.config/dnscrypt/zones"
 IP6=$(ip -6 -oneline addr show dev $IF scope global | awk '{print $4; exit}' | cut -d/ -f1)
