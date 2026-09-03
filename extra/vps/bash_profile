@@ -4,5 +4,5 @@ function r {
   fastfetch
 }
 
-export TERM=xterm-24
+export TERM=xterm
 r
