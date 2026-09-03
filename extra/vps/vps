@@ -5,6 +5,7 @@ WGIP='10.0.0.1'
 NIX_CONFIG="$HOME/source/nixos/configuration.nix"
 NIXOS="$HOME/source/nixos"
 DNSCRYPT_CONFIG="$HOME/source/nixos/config/dnscrypt-proxy.nix"
+DNSCRYPT_MODULE="$HOME/source/nixos/modules/dnscrypt-proxy.nix"
 MOUNT_OPT='vers=4,rsize=1048576,wsize=1048576,hard,fsc,nolock,tcp,async,nocto'
 
 
@@ -41,6 +42,11 @@ function enable_wireguard_service {
 }
 
 
+function reset_dnscrypt_proxy {
+    sed -i -E '/server_names/s/^/#/' "$DNSCRYPT_MODULE"
+}
+
+
 function enable_dnscrypt_proxy {
     local SDNS
 
@@ -51,13 +57,14 @@ function enable_dnscrypt_proxy {
 
     sed -i -E '/dnsServerName/s,".*","linode",' "$DNSCRYPT_CONFIG"
     sed -i -E "/dnsStamp/s,\".*\",\"$SDNS\"," "$DNSCRYPT_CONFIG"
+    sed -i -E "/^#/s///" "$DNSCRYPT_MODULE"
 }
 
 
 function prepare {
-    echo 'reconnect wifi...'
-    nmcli device wifi rescan
-    nmcli device wifi connect TP-LINK_1225 --ask
+    # echo 'reconnect wifi...'
+    # nmcli device wifi rescan
+    # nmcli device wifi connect TP-LINK_1225 --ask
 
     local BW
     BW="$(command -v bw)"
@@ -65,11 +72,11 @@ function prepare {
         panic 'bw sync failed'
     fi
 
-    local RCLONE
-    RCLONE="$(command -v rclone)"
-    if ! $RCLONE ls drive:spider &>/dev/null; then
-        panic 'rclone failed'
-    fi
+    # local RCLONE
+    # RCLONE="$(command -v rclone)"
+    # if ! $RCLONE ls drive:spider &>/dev/null; then
+    #     panic 'rclone failed'
+    # fi
 
     if ! linode-cli --suppress-warnings users list &>/dev/null; then
         panic 'linode-cli not worked'
@@ -77,6 +84,9 @@ function prepare {
 
     echo 'disable wireguard'
     disable_wireguard_service
+
+    echo 'reset dnscrypt-proxy'
+    reset_dnscrypt_proxy
 
     echo 'rebuild nixos...'
     rebuild_nixos
@@ -229,10 +239,6 @@ function setup_nftables {
     if ! sshcmd 'command -v nft'; then
         sshcmd 'emerge net-firewall/nftables'
     fi
-
-    # if ! sshcmd 'rc-update -C show' | grep -q 'nftables'; then
-    #     sshcmd 'rc-update add nftables default'
-    # fi
 }
 
 
@@ -759,8 +765,6 @@ function create_node {
     setup_dnscrypt
     echo 'setup memos'
     setup_memos
-    echo 'setup shadowsocks'
-    setup_shadowsocks
     echo 'mount spider'
     mount_spider
     echo 'setup spider'
