@@ -39,6 +39,10 @@ PKEY=$(wg genpsk)
 WGIF=$WGIF \
 SADDR="10.0.0.1" \
 IFS=$IFS \
+ADDRS4=$ADDRS4 \
+IP4PA=$(echo "$IP4P" | cut -d / -f 1) \
+RTORRENTPORT=$RTORRENTPORT \
+PEXPORT=$PEXPORT \
 envsubst < wireguard.nft.template > wireguard.nft
 
 
@@ -51,10 +55,8 @@ KEYPUBP=$KEYPUBP \
 PKEY=$PKEY \
 IP4P=$IP4P \
 IP6P=$IP6P \
-IP4PA=$(echo "$IP4P" | cut -d / -f 1) \
 ADDRS4=$ADDRS4 \
 RTORRENTPORT=$RTORRENTPORT \
-PEXPORT=$PEXPORT \
 envsubst < wgs > "${WGIF}.conf.s"
 
 
