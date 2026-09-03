@@ -3,6 +3,7 @@
 let
     dnsServerName = config.dnsServerName;
     dnsStamp = config.dnsStamp;
+    dnsServerList = config.dnsServerList;
 in
 {
     systemd.services.dnscrypt-proxy = {
@@ -80,10 +81,7 @@ in
                     };
                 };
 
-                server_names = [
-                    "google"
-                    "cloudflare"
-                ];
+                server_names = dnsServerList;
             };
         };
     };
