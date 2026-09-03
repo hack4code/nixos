@@ -56,7 +56,6 @@ in
                 "${wgInterface}" = {
                     allowedTCPPorts = [
                         # NFS
-                        111
                         2049
                         # rpcd
                         8080
@@ -65,7 +64,6 @@ in
                     ];
                     allowedUDPPorts = [
                         # NFS
-                        111
                         2049
                         # rtorrent
                         50000
