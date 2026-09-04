@@ -67,11 +67,11 @@
             enable = false;
         };
 
-        etc = {
-            overlay = {
-                enable = true;
-            };
-        };
+        # etc = {
+        #     overlay = {
+        #         enable = true;
+        #     };
+        # };
 
         stateVersion = nixOSVersion;
     };
