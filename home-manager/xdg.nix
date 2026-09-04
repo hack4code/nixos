@@ -6,12 +6,21 @@ let
 in
 {
     home-manager.users.${userName} = {
-        home.file.".config/systemd/user/xdg-desktop-portal/50-patch.conf" = {
+        home.file.".config/systemd/user/xdg-desktop-portal.service" = {
             executable = false;
             force = true;
             text = ''
                 [Unit]
-                Requisite=multi-user.target
+                Description=Portal service
+                PartOf=
+                Requisite=
+                After=
+
+                [Service]
+                Type=dbus
+                BusName=org.freedesktop.portal.Desktop
+                ExecStart=${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal
+                Slice=session.slice
             '';
         };
 
