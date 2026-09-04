@@ -125,6 +125,16 @@ in
             tmpfsSize = "60%";
             cleanOnBoot = true;
         };
+
+        lanzaboote = {
+            autoEnrollKeys = {
+                enable = true;
+            };
+
+            autoGenerateKeys = {
+                enable = true;
+            };
+        };
     };
 }
 
