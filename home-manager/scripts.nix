@@ -43,9 +43,17 @@ in
                             exit 0
                         fi
 
+                        if ! nix registry list | grep -q -F 'flake:kernel'; then
+                            if [[ -d ~/source/nixshell/kernel ]]; then
+                                nix registry add kernel ~/source/nixshell/kernel/
+                            fi
+                        fi
+
                         if ! [[ -f .envrc ]]; then
-                            echo "use flake kernel#default" > .envrc
-                            direnv allow
+                            if nix registry list | grep -q -F 'flake:kernel'; then
+                                echo "use flake kernel#default" > .envrc
+                                direnv allow
+                            fi
                         fi
 
                         rm -rf linux*
