@@ -285,6 +285,11 @@ thread_key_remap(void *name) {
         sleep(G_T_FIND_DEV);
     }
 
+    sd_journal_print(
+            LOG_INFO,
+            "thread_key_remap: found keyboard[%s]\n",
+            name);
+
     struct libevdev_uinput *uidev = NULL;
     int err = libevdev_uinput_create_from_device(
             dev,
