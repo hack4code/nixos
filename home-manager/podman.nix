@@ -20,7 +20,7 @@ in
         };
 
         services.podman = {
-            enable = true;
+            enable = false;
 
             autoUpdate = {
                 enable = false;
