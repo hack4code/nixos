@@ -50,12 +50,12 @@
                 callPackage ./google-fonts.nix {}
             )
             /* MiSans */
-            # (
-            #     callPackage ./misans.nix {}
-            # )
             (
-                callPackage ./misans-github.nix {}
+                callPackage ./misans.nix {}
             )
+            # (
+            #     callPackage ./misans-github.nix {}
+            # )
             /* vivo sans */
             (
                 callPackage ./vivo-sans.nix {}
