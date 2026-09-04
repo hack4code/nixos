@@ -76,7 +76,7 @@
             };
 
             modules-base = [
-                # nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
+                nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
                 lanzaboote.nixosModules.lanzaboote
                 ({ lib, ... }: {
                     boot.loader.systemd-boot.enable = lib.mkForce false;
