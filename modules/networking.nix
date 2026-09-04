@@ -81,7 +81,7 @@ in
             ];
 
             wifi = {
-                # backend = "iwd";
+                backend = "iwd";
                 powersave = false;
                 macAddress = "random";
             };
