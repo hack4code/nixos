@@ -77,6 +77,10 @@ in
                     /set weechat.bar.title.separator on
                     /set logger.look.backlog 0
 
+                    /set irc.look.smart_filter on
+                    /filter add irc_smart * irc_smart_filter *
+                    /set irc.look.smart_filter_delay 5
+
                     /trigger addreplace msg_disconnect modifier weechat_print "\''${tg_message_nocolor} =~ ^irc: disconnected from server$" "/(.*)/\''${color:red}^-_-^\''${color:reset}" ""
 
                     /set irc.look.server_buffer independent
