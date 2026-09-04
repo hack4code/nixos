@@ -15,6 +15,7 @@ in
                     repo = "linux";
                     tag = "v${kernelVersion}";
                     hash = kernelHash;
+                    curlOpts = "-L --retry 8";
                 }
             else
                 pkgs.fetchurl {
@@ -75,9 +76,12 @@ in
             efi = {
                 canTouchEfiVariables = true;
             };
+
             systemd-boot = {
+                enable = true;
                 consoleMode = "max";
             };
+
             timeout = 3;
         };
 
