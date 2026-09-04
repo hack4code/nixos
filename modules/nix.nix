@@ -67,6 +67,7 @@
             enable = false;
         };
 
+        /* has bug when nixos-install */
         # etc = {
         #     overlay = {
         #         enable = true;
