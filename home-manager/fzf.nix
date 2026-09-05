@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixOSVersion, ... }:
 
 let
     userName = config.userName;
@@ -39,7 +39,8 @@ in
                 "--separator='─'"
                 "--scrollbar=''"
             ];
-
+        } // (if nixOSVersion == "26.11" then
+        {
             historyWidget = {
                 options = [
                     "--wrap=word"
@@ -47,7 +48,14 @@ in
                     "--bind 'ctrl-y:execute-silent(echo -n {2..} | ${pkgs.wl-clipboard}/bin/wl-copy)+abort'"
                 ];
             };
-        };
+        } else
+        {
+            historyWidgetOptions = [
+                "--wrap=word"
+                "--wrap-sign='\t↳ '"
+                "--bind 'ctrl-y:execute-silent(echo -n {2..} | ${pkgs.wl-clipboard}/bin/wl-copy)+abort'"
+            ];
+        });
     };
 }
 
