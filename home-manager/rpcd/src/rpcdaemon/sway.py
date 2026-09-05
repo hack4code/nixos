@@ -16,7 +16,8 @@ from .mpc import (
     play_mpd,
     toggle_mpd,
     get_mpd_state,
-    set_mpd_volume
+    set_mpd_volume,
+    reload_mpd
 )
 
 
@@ -448,6 +449,7 @@ def set_ncmpcpp_toggle_fullscreen() -> None:
 
 
 def set_ncmpcpp_after_boot() -> None:
+    reload_mpd()
     if get_mpd_state() == "playing":
         set_ncmpcpp_for_playing()
         time.sleep(0.8)
