@@ -34,11 +34,6 @@ in
                 XMODIFIERS = "@im=fcitx";
                 QT_IM_MODULE = "fcitx";
 
-                /* ibus */
-                # GTK_IM_MODULE = "ibus";
-                # XMODIFIERS = "@im=ibus";
-                # QT_IM_MODULE = "ibus";
-
                 /* sway */
                 WLR_RENDERER = "vulkan";
                 SDL_VIDEODRIVER = "wayland";
@@ -55,10 +50,8 @@ in
 
                 /* tpm2 */
                 TPM2_PKCS11_BACKEND = "esysdb";
+                TPM2_PKCS11_LOG_LEVEL = 0;
                 TSS2_LOG = "fapi+NONE";
-
-                /* vaapi */
-                # LIBVA_DRIVER_NAME = "iHD";
 
                 /* bottles */
                 PROTON_USE_NTSYNC = "1";
@@ -68,7 +61,7 @@ in
                 bitwarden-cli
                 linode-cli
                 (
-                    callPackage ./rpcd/rpcd.nix { }
+                    callPackage ./rpcd/rpcd.nix { inherit nixOSVersion; }
                 )
                 (
                     callPackage ./openurl/openurl.nix { }
