@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-unstable, ... }:
+{ config, pkgs, lib, pkgs-unstable, nixOSVersion, ... }:
 
 let
     timeZone = config.timeZone;
@@ -214,13 +214,18 @@ in
         gamescope = {
             enable = true;
 
-            enableWsi = true;
             capSysNice = true;
             args = [
                 "--rt"
                 "--prefer-vk-device 1ed3:0e46"
             ];
-        };
+        } // (if nixOSVersion == "26.11" then
+            {
+                enableWsi = true;
+            }
+            else
+            { }
+        );
     };
 
     environment = {
