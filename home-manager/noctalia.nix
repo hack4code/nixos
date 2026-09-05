@@ -36,8 +36,8 @@ in
                     contentPadding = 4;
                     fontScale = 1;
                     enableExclusionZoneInset = true;
-                    backgroundOpacity = 0.6;
-                    useSeparateOpacity = false;
+                    backgroundOpacity = 0.8;
+                    useSeparateOpacity = true;
                     floating = true;
                     marginVertical = 12;
                     marginHorizontal = 20;
@@ -124,10 +124,14 @@ in
                             }
                             {
                                 id = "Tray";
+                                drawerEnabled = true;
+                                detachedPanel = false;
                                 colorizeIcons = true;
-                                drawerEnabled = false;
                                 hidePassive = false;
-                                pinned = [ ];
+                                pinned = [
+                                    "Fcitx*"
+                                    "Keyboard*"
+                                ];
                                 blacklist = [ ];
                             }
                         ];
@@ -273,15 +277,15 @@ in
                 wallpaper = {
                     enabled = true;
                     overviewEnabled = true;
-                    directory = "${userHome}/.config/sway/wallpaper";
+                    directory = "~/.config/sway/wallpaper";
                     monitorDirectories = [
                         {
-                            directory = "${userHome}/.config/sway/wallpaper/dp-3";
+                            directory = "~/.config/sway/wallpaper/dp-3";
                             name = monitorSamsung;
                             wallpaper = "${bgSamsung}";
                         }
                         {
-                            directory = "${userHome}/.config/sway/wallpaper/edp-1";
+                            directory = "~/.config/sway/wallpaper/edp-1";
                             name = monitorThinkpad;
                             wallpaper = "${bgThinkpad}";
                         }
@@ -462,6 +466,24 @@ in
                     session = "";
                     colorGeneration = "";
                 };
+
+                brightness = {
+                    brightnessStep = 5;
+                    enableDdcutil = true;
+                    minimumBrightness = 0.1;
+                    syncAllMonitors = false;
+                    monitor = {
+                        monitorThinkpad = {
+                            brightness = 0.7;
+                            backend = "backlight";
+                            backlightDevice = "intel_backlight";
+                        };
+                        monitorSamsung = {
+                            backend = "ddcutil";
+                        };
+                    };
+                };
+
                 plugins = {
                     autoUpdate = true;
                     notifyUpdates = true;
