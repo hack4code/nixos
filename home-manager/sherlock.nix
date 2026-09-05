@@ -47,10 +47,6 @@ in
                 "Yazi File Manager" = {
                     icon = "file-manager";
                 };
-
-                Bottles = {
-                    exec = "{pkgs.bottles}/bin/bottles";
-                };
             };
 
             launchers =
@@ -229,13 +225,13 @@ in
                     "ctrl-n" = "item_down";
                     "ctrl-u" = "clear_bar";
                     "ctrl-o" = "exec";
-                    "alt-<digit>" = "shortcut";
                     "return" = "exec";
                     "esc" = "exit";
+                    "alt-<digit>" = "shortcut";
                 };
 
                 caching = {
-                    enable = false;
+                    enable = true;
                     cache = "~/.cache/sherlock/cache.json";
                 };
 
