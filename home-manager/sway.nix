@@ -305,10 +305,10 @@ in
 
                 exec --no-startup-id systemctl --user restart cliphist.service
 
-                exec_always --no-startup-id runshell
-                exec_always --no-startup-id rpcd
-                exec --no-startup-id fcitx5 -d --replace --disable Clipboard -s 4
                 exec --no-startup-id ${sherlock} --daemonize
+                exec_always --no-startup-id runshell
+                exec --no-startup-id fcitx5 -d --replace --disable Clipboard -s 4
+                exec_always --no-startup-id rpcd
                 exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
         };
