@@ -10,6 +10,7 @@
 // @match           https://torrentgalaxy.mx/*
 // @match           https://nyaa.si/*
 // @match           https://www.xl720.com/*
+// @match           https://rutracker.org/*
 // @icon            https://transmissionbt.com/favicon.ico
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // @require         https://code.jquery.com/jquery-4.0.0.min.js
@@ -30,6 +31,7 @@ const RE_ANYBT = /anybt.eth.limo/i;
 const RE_TORRENT_GALAXY = /torrentgalaxy.mx/i;
 const RE_NYAA = /nyaa.si/i;
 const RE_THUNDER = /xl720.com/i;
+const RE_RUTRACKER = /rutracker.org/i;
 
 const CSS_BUTTON_TRANSMISSION = {
     "margin": "1px 2px 1px 4px",
@@ -130,6 +132,9 @@ function add_buttons() {
     }
     else if (RE_THUNDER.test(SITE)) {
         elements = $('div.down_btn_cl');
+    }
+    else if (RE_RUTRACKER.test(SITE)) {
+        elements = $('li:has(> a.magnet-link)');
     }
 
     if (elements == null || elements.length === 0) {
