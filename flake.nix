@@ -106,7 +106,7 @@
                     inherit pkgs-stable;
                     inherit pkgs-unstable;
                     inherit inputs;
-                    nixOSVersion = "26.05";
+                    nixOSVersion = "26.11";
                 };
 
                 modules = modules-base ++ [
