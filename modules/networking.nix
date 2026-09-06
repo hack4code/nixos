@@ -9,6 +9,7 @@ let
     ntpServers = config.ntpServers;
     wgListenPort = config.wgListenPort;
     wgInterface = config.wgInterface;
+    rtorrentListenPort = config.rtorrentListenPort;
 in
 {
     systemd.services.NetworkManager-wait-online.environment = {
@@ -61,14 +62,14 @@ in
                         # rpcd
                         8080
                         # rtorrent
-                        50000
+                        rtorrentListenPort
                     ];
                     allowedUDPPorts = [
                         # NFS
                         111
                         2049
                         # rtorrent
-                        50000
+                        rtorrentListenPort
                     ];
                 };
             };
