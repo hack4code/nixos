@@ -3,10 +3,12 @@
 {
     options = with lib; with types; {
         rtorrentListenPort = mkOption { type = int; };
+        rtorrentPexPort = mkOption { type = int; };
     };
 
     config = {
         rtorrentListenPort = 0;
+        rtorrentPexPort = 0;
     };
 }
 

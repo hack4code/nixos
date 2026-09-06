@@ -5,6 +5,7 @@ let
     userHome = config.userHome;
     vpsIp4Address = config.vpsIp4Address;
     rtorrentListenPort = toString config.rtorrentListenPort;
+    rtorrentPexPort = toString config.rtorrentPexPort;
     rtorrentConfigDir = "${userHome}/.config/rtorrent";
     rtorrentDownloadDir = "${userHome}/download/.rtorrent";
     rtorrentDataDir = "${userHome}/.local/share/rtorrent";
@@ -20,7 +21,7 @@ in
                 network.listen.port.random.set = no
 
                 dht.mode.set = auto
-                dht.override_port.set = 6881
+                dht.override_port.set = ${rtorrentPexPort}
                 protocol.pex.set = yes
 
                 ratio.enable = true
