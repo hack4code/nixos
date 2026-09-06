@@ -10,6 +10,7 @@ let
     wgListenPort = config.wgListenPort;
     wgInterface = config.wgInterface;
     rtorrentListenPort = config.rtorrentListenPort;
+    rtorrentPexPort = config.rtorrentPexPort;
 in
 {
     systemd.services.NetworkManager-wait-online.environment = {
@@ -70,6 +71,7 @@ in
                         2049
                         # rtorrent
                         rtorrentListenPort
+                        rtorrentPexPort
                     ];
                 };
             };
