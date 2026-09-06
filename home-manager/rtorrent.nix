@@ -4,6 +4,7 @@ let
     userName = config.userName;
     userHome = config.userHome;
     vpsIp4Address = config.vpsIp4Address;
+    rtorrentListenPort = toString config.rtorrentListenPort;
     rtorrentConfigDir = "${userHome}/.config/rtorrent";
     rtorrentDownloadDir = "${userHome}/download/.rtorrent";
     rtorrentDataDir = "${userHome}/.local/share/rtorrent";
@@ -15,7 +16,7 @@ in
 
             extraConfig = ''
                 network.local_address.set = ${vpsIp4Address}
-                network.listen.port.range.set = 50000-50000
+                network.listen.port.range.set = ${rtorrentListenPort}-${rtorrentListenPort}
                 network.listen.port.random.set = no
 
                 dht.mode.set = auto
