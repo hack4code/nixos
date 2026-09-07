@@ -302,7 +302,11 @@ in
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec --no-startup-id hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
+                exec --no-startup-id swaymsg output ${monitorSamsung} power on
                 exec_always --no-startup-id runshell
+                exec_always --no-startup-id fcitx5 -d --replace --disable Clipboard -s 8
+                exec --no-startup-id sherlock --daemonize
+                exec_always --no-startup-id rpcd
                 exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
         };
