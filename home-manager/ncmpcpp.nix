@@ -1,4 +1,4 @@
-{ config, pkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -7,7 +7,7 @@ in
     home-manager.users.${userName} = {
         programs.ncmpcpp = {
             enable = true;
-            package = pkgs-stable.ncmpcpp.override { visualizerSupport = true; };
+            package = pkgs.ncmpcpp.override { visualizerSupport = true; };
 
             mpdMusicDir = "\"~/music/song\"";
 
