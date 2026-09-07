@@ -131,6 +131,7 @@ in
                                 pinned = [
                                     "Fcitx*"
                                     "Keyboard*"
+                                    "Input*"
                                 ];
                                 blacklist = [ ];
                             }
