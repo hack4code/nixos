@@ -95,6 +95,7 @@ in
                     test -d download || mkdir download download/.rsync download/.rtorrent/downloading .rtorrent/watch
                     test -d source || mkdir source
                     test -d game || mkdir game
+                    test -d .local/state/mpd || mkdir -p .local/state/mpd
                     test -d .local/share/zsh || mkdir -p .local/share/zsh
                     test -d .local/share/fetchmail || mkdir -p .local/share/fetchmail
                     test -d .local/share/tpm2-tss || (mkdir -p .local/share/tpm2-tss/user/keystore .local/share/tpm2-tss/system/keystore .local/share/tpm2-tss/log; tss2_provision;)
