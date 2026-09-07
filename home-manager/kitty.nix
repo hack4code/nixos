@@ -30,6 +30,8 @@ in
         programs.kitty = {
             enable = true;
 
+            enableGitIntegration = true;
+
             shellIntegration = {
                 enableBashIntegration = true;
                 enableZshIntegration = true;
@@ -63,6 +65,7 @@ in
                 undercurl_style = "thin-sparse";
                 disable_ligatures = "never";
                 cursor_shape = "underline";
+                cursor_trail = 3;
                 focus_follows_mouse = "no";
                 close_on_child_death = "yes";
                 open_url_with = "open_url_from_kitty.sh";
