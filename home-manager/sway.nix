@@ -254,7 +254,6 @@ in
             let
                 xbacklight = "${pkgs.acpilight}/bin/xbacklight";
                 wpctl = "${pkgs.wireplumber}/bin/wpctl";
-                sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
             in
             ''
                 workspace 0  output "${monitorThinkpad}"
@@ -303,12 +302,7 @@ in
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec --no-startup-id hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 
-                exec --no-startup-id systemctl --user restart cliphist.service
-
-                exec --no-startup-id ${sherlock} --daemonize
                 exec_always --no-startup-id runshell
-                exec --no-startup-id fcitx5 -d --replace --disable Clipboard -s 4
-                exec_always --no-startup-id rpcd
                 exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
         };
