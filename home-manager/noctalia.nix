@@ -99,9 +99,6 @@ in
                             #   id = "plugin:slowbongo";
                             # }
                             {
-                              id = "plugin:privacy-indicator";
-                            }
-                            {
                                 id = "Network";
                             }
                             {
@@ -112,6 +109,9 @@ in
                             }
                             {
                                 id = "NotificationHistory";
+                            }
+                            {
+                                id = "KeepAwake";
                             }
                             {
                                 id = "Clock";
