@@ -6,6 +6,16 @@ let
 in
 {
     home-manager.users.${userName} = {
+        home.file.".config/systemd/user/mpd.service.d/50-patch.conf" = {
+            executable = false;
+            force = true;
+            text = ''
+                [Service]
+                LimitRTPRIO=40
+                LimitRTTIME=infinity
+            '';
+        };
+
         services.mpd = {
             enable = true;
 
