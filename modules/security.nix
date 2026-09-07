@@ -23,15 +23,6 @@
                 ekCertLess = true;
                 profileName = "P_RSA2048SHA256";
             };
-
-            abrmd = {
-                enable = true;
-            };
-
-            tctiEnvironment = {
-                enable = true;
-                # interface = "tabrmd";
-            };
         };
 
         pam = {
