@@ -48,6 +48,7 @@ monitor_full_name = {
     "thinkpad": "Chimei Innolux Corporation 0x1301 Unknown",
     "samsung": "Samsung Electric Company LS24A600U H4ZRB00248"
 }
+OutputNameThinkpad = "eDP-1";
 GpuID = 1 if Path("/dev/dri/card1").exists() else 0;
 
 
@@ -453,7 +454,7 @@ def set_ncmpcpp_after_boot() -> None:
         set_ncmpcpp_for_playing()
         time.sleep(0.8)
         play_mpd()
-    set_mpd_volume(32)
+    set_mpd_volume(48)
 
 
 def set_ncmpcpp_for_mpv() -> None:
@@ -692,7 +693,17 @@ def toggle_btop() -> None:
         focus_workspace(workspace_focus)
 
 
+def wait_egpu_power_on():
+    if GpuID == 1:
+        while True:
+            for output in I3.get_outputs():
+                if output.name != OutputNameThinkpad:
+                    return
+            time.sleep(0.2)
+
+
 def setup_workspaces() -> None:
+    wait_egpu_power_on()
     move_cursor_to_workspace_0()
     setup_workspace_1()
     setup_workspace_2()
