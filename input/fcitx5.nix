@@ -12,11 +12,11 @@
 
                 addons = with pkgs; [
                     rime-data
-                        rime-cli
-                        fcitx5-rime
-                        fcitx5-gtk
-                        fcitx5-lua
-                        fcitx5-fluent
+                    rime-cli
+                    fcitx5-rime
+                    fcitx5-gtk
+                    fcitx5-lua
+                    fcitx5-fluent
                 ];
 
                 settings = {
