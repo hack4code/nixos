@@ -39,6 +39,12 @@
                     item = "nice";
                     value = "-20";
                 }
+                {
+                    domain = "*";
+                    type = "-";
+                    item = "rtprio";
+                    value = "unlimited";
+                }
             ];
 
             services = {
