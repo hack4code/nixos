@@ -86,10 +86,7 @@ set_thread_priority(pthread_t tid, int policy, int priority) {
     param.sched_priority = priority;
     err = pthread_setschedparam(tid, policy, &param);
     if (err != 0) {
-        sd_journal_print(
-                LOG_ERR,
-                "set_thread_priority: pthread_setschedparam error value %d\n",
-                err);
+        sd_journal_print(LOG_ERR, "set_thread_priority: pthread_setschedparam error value %d", err);
         return false;
     }
     return true;
@@ -132,37 +129,32 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
 
     while (true) {
         struct input_event ev = {0};
+        int rc = 0;
+        bool is_remap = false;
 
-        int err;
-        bool is_remap;
-        err = libevdev_next_event(
-                dev,
-                LIBEVDEV_READ_FLAG_NORMAL | LIBEVDEV_READ_FLAG_BLOCKING,
-                &ev);
-        is_remap = false;
-        if (err == 0 && ev.type == EV_KEY) {
+        rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
+        if (rc == LIBEVDEV_READ_STATUS_SYNC) {
+            while (rc == LIBEVDEV_READ_STATUS_SYNC) {
+                rc = libevdev_next_event(dev, LIBEVDEV_READ_STATUS_SYNC, &ev);
+            }
+        }
+
+        if (rc == -EAGAIN) {
+            usleep(10000);
+            continue;
+        }
+
+        if (rc == LIBEVDEV_READ_STATUS_SUCCESS && ev.type == EV_KEY) {
             switch (ev.code) {
                 case KEY_CAPSLOCK:
                     if (ev.value == 1)
                         is_ctrl_pressed = true;
                     else if (ev.value == 0)
                         is_ctrl_pressed = false;
-                    libevdev_uinput_write_event(
-                            uidev,
-                            EV_KEY,
-                            KEY_LEFTCTRL,
-                            ev.value);
+                    libevdev_uinput_write_event(uidev, EV_KEY, KEY_LEFTCTRL, ev.value);
                     if (ev.value == 0 && last_key == KEY_CAPSLOCK) {
-                        libevdev_uinput_write_event(
-                                uidev,
-                                EV_KEY,
-                                KEY_ESC,
-                                1);
-                        libevdev_uinput_write_event(
-                                uidev,
-                                EV_KEY,
-                                KEY_ESC,
-                                0);
+                        libevdev_uinput_write_event(uidev, EV_KEY, KEY_ESC, 1);
+                        libevdev_uinput_write_event(uidev, EV_KEY, KEY_ESC, 0);
                     }
                     is_remap = true;
                     break;
@@ -176,11 +168,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                     break;
 
                 case KEY_RIGHTCTRL:
-                    libevdev_uinput_write_event(
-                            uidev,
-                            EV_KEY,
-                            KEY_RIGHTMETA,
-                            ev.value);
+                    libevdev_uinput_write_event(uidev, EV_KEY, KEY_RIGHTMETA, ev.value);
                     is_remap = true;
                     break;
 
@@ -208,48 +196,24 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                            !is_shift_pressed && !is_alt_pressed) {
                     switch (ev.code) {
                         case KEY_J:
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_PAGEUP,
-                                    ev.value);
+                            libevdev_uinput_write_event(uidev, EV_KEY, KEY_PAGEUP, ev.value);
                             is_remap = true;
                             break;
 
                         case KEY_K:
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_PAGEDOWN,
-                                    ev.value);
+                            libevdev_uinput_write_event(uidev, EV_KEY, KEY_PAGEDOWN, ev.value);
                             is_remap = true;
                             break;
 
                         case KEY_H:
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_LEFTSHIFT,
-                                    ev.value);
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_PAGEUP,
-                                    ev.value);
+                            libevdev_uinput_write_event(uidev, EV_KEY, KEY_LEFTSHIFT, ev.value);
+                            libevdev_uinput_write_event(uidev, EV_KEY, KEY_PAGEUP, ev.value);
                             is_remap = true;
                             break;
 
                         case KEY_L:
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_LEFTSHIFT,
-                                    ev.value);
-                            libevdev_uinput_write_event(
-                                    uidev,
-                                    EV_KEY,
-                                    KEY_PAGEDOWN,
-                                    ev.value);
+                            libevdev_uinput_write_event(uidev, EV_KEY, KEY_LEFTSHIFT, ev.value);
+                            libevdev_uinput_write_event(uidev, EV_KEY, KEY_PAGEDOWN, ev.value);
                             is_remap = true;
                             break;
                     }
@@ -261,11 +225,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
         }
 
         if (!is_remap)
-            libevdev_uinput_write_event(
-                    uidev,
-                    ev.type,
-                    ev.code,
-                    ev.value);
+            libevdev_uinput_write_event(uidev, ev.type, ev.code, ev.value);
     }
 }
 
@@ -285,20 +245,12 @@ thread_key_remap(void *name) {
         sleep(G_T_FIND_DEV);
     }
 
-    sd_journal_print(
-            LOG_INFO,
-            "thread_key_remap: found keyboard[%s]\n",
-            name);
+    sd_journal_print(LOG_INFO, "thread_key_remap: found keyboard[%s]", (const char *)name);
 
     struct libevdev_uinput *uidev = NULL;
-    int err = libevdev_uinput_create_from_device(
-            dev,
-            LIBEVDEV_UINPUT_OPEN_MANAGED,
-            &uidev);
+    int err = libevdev_uinput_create_from_device(dev, LIBEVDEV_UINPUT_OPEN_MANAGED, &uidev);
     if (err != 0) {
-        sd_journal_print(
-                LOG_ERR,
-                "thread_key_remap: libevdev_uinput_create_from_device error\n");
+        sd_journal_print(LOG_ERR, "thread_key_remap: libevdev_uinput_create_from_device error");
         libevdev_free(dev);
         pthread_exit(NULL);
     }
@@ -313,13 +265,8 @@ thread_key_remap(void *name) {
 
 bool
 ipc_set_timeout(int fd, struct timeval tv) {
-    if (setsockopt(
-                fd,
-                SOL_SOCKET,
-                SO_RCVTIMEO,
-                &tv,
-                sizeof(tv)) == -1) {
-        sd_journal_print(LOG_ERR, "ipc_set_timeout: setsockopt error\n");
+    if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) == -1) {
+        sd_journal_print(LOG_ERR, "ipc_set_timeout: setsockopt error");
         return false;
     }
     return true;
@@ -353,7 +300,7 @@ char *
 get_sock_path() {
     DIR *path = opendir("/run/user/");
     if (path == NULL) {
-        sd_journal_print(LOG_ERR, "can't read /run/user/ directory\n");
+        sd_journal_print(LOG_ERR, "can't read /run/user/ directory");
         return NULL;
     }
 
@@ -383,11 +330,7 @@ get_sock_path() {
     if (sock == NULL)
         return NULL;
 
-    if (snprintf(name,
-                sizeof(name),
-                "/run/user/%s/%s",
-                e->d_name,
-                sock->d_name) < 0) {
+    if (snprintf(name, sizeof(name), "/run/user/%s/%s", e->d_name, sock->d_name) < 0) {
         sd_journal_print(LOG_ERR, "socket name is too long");
         exit(1);
     }
@@ -409,7 +352,7 @@ ipc_open() {
     struct sockaddr_un sk_un = {0};
     fd = socket(AF_UNIX, SOCK_STREAM, 0);
     if (fd == -1) {
-        sd_journal_print(LOG_ERR, "ipc_open: socket error\n");
+        sd_journal_print(LOG_ERR, "ipc_open: socket error");
         free(path);
         return -1;
     }
@@ -419,12 +362,9 @@ ipc_open() {
     free(path);
 
     int err;
-    err = connect(
-            fd,
-            (struct sockaddr *) &sk_un,
-            sizeof(struct sockaddr_un));
+    err = connect(fd, (struct sockaddr *) &sk_un, sizeof(struct sockaddr_un));
     if (err == -1) {
-        sd_journal_print(LOG_ERR, "ipc_open: connect error\n");
+        sd_journal_print(LOG_ERR, "ipc_open: connect error");
         close(fd);
         return -1;
     }
@@ -461,16 +401,9 @@ ipc_recv(int fd) {
 
     size_t total = 0;
     while (total < IPC_HEADER_SIZE) {
-        ssize_t size = recv(
-                fd,
-                data + total,
-                IPC_HEADER_SIZE - total,
-                0);
+        ssize_t size = recv(fd, data + total, IPC_HEADER_SIZE - total, 0);
         if (size <= 0) {
-            sd_journal_print(
-                    LOG_INFO,
-                    "ipc_recv: recv error(%d)\n",
-                    (int)size);
+            sd_journal_print(LOG_INFO, "ipc_recv: recv error(%d)", (int)size);
             return NULL;
         }
         total += size;
@@ -480,29 +413,21 @@ ipc_recv(int fd) {
     if (response == NULL)
         return NULL;
 
-    memcpy(&response->size,
-            data + sizeof(MAGIC),
-            sizeof(uint32_t));
-    memcpy(&response->type,
-            data + sizeof(MAGIC) + sizeof(uint32_t),
-            sizeof(uint32_t));
+    memcpy(&response->size, data + sizeof(MAGIC), sizeof(uint32_t));
+    memcpy(&response->type, data + sizeof(MAGIC) + sizeof(uint32_t), sizeof(uint32_t));
 
     char *payload = malloc(response->size + 1);
     if (!payload) {
-        sd_journal_print(LOG_ERR, "ipc_recv: malloc error\n");
+        sd_journal_print(LOG_ERR, "ipc_recv: malloc error");
         free(response);
         return NULL;
     }
 
     total = 0;
     while (total < response->size) {
-        ssize_t size = recv(
-                fd,
-                payload + total,
-                response->size - total,
-                0);
+        ssize_t size = recv(fd, payload + total, response->size - total, 0);
         if (size < 0) {
-            sd_journal_print(LOG_ERR, "ipc_recv: recv error\n");
+            sd_journal_print(LOG_ERR, "ipc_recv: recv error");
             free(response);
             return NULL;
         }
@@ -540,17 +465,13 @@ subscribe_window_event(int fd) {
 
     json_object *root = json_tokener_parse(reply->payload);
     if (root == NULL) {
-        sd_journal_print(
-                LOG_ERR,
-                "subscribe_window_event: json_tokener_parse error\n");
+        sd_journal_print(LOG_ERR, "subscribe_window_event: json_tokener_parse error");
         free_response(reply);
         return false;
     }
     json_object *success = json_object_object_get(root, "success");
     if (success == NULL) {
-        sd_journal_print(
-                LOG_ERR,
-                "subscribe_window_event: json_object_object_get error\n");
+        sd_journal_print(LOG_ERR, "subscribe_window_event: json_object_object_get error");
         json_object_put(root);
         free_response(reply);
         return false;
@@ -568,17 +489,13 @@ process_window_event(int fd) {
     while (true) {
         struct response *reply = ipc_recv(fd);
         if (reply == NULL) {
-            sd_journal_print(
-                    LOG_ERR,
-                    "process_window_event: ip_recv return NULL\n");
+            sd_journal_print(LOG_ERR, "process_window_event: ip_recv return NULL");
             return;
         }
 
         json_object *root = json_tokener_parse(reply->payload);
         if (root == NULL) {
-            sd_journal_print(
-                    LOG_ERR,
-                    "process_window_event: json_tokener_parse error\n");
+            sd_journal_print(LOG_ERR, "process_window_event: json_tokener_parse error");
             free_response(reply);
             return;
         }
@@ -638,14 +555,14 @@ thread_window_event(void *) {
         }
 
         if (subscribe_window_event(fd) == false) {
-            sd_journal_print(LOG_ERR, "subscribe_window_event error\n");
+            sd_journal_print(LOG_ERR, "subscribe_window_event error");
             close(fd);
             continue;
         }
 
-        sd_journal_print(LOG_INFO, "process_window_event begin\n");
+        sd_journal_print(LOG_INFO, "process_window_event begin");
         process_window_event(fd);
-        sd_journal_print(LOG_INFO, "process_window_event end\n");
+        sd_journal_print(LOG_INFO, "process_window_event end");
         pthread_mutex_lock(&g_mutex_app_id);
         memset(g_focus_app_id, 0, sizeof(g_focus_app_id));
         pthread_mutex_unlock(&g_mutex_app_id);
@@ -657,15 +574,9 @@ thread_window_event(void *) {
 void
 run_thread_remap() {
     int err;
-    err = pthread_create(
-            &g_thread_remap,
-            NULL,
-            thread_key_remap,
-            (void *)g_kbd_name);
+    err = pthread_create(&g_thread_remap, NULL, thread_key_remap, (void *)g_kbd_name);
     if (err != 0) {
-        sd_journal_print(
-                LOG_WARNING,
-                "pthread_create error: thread_key_remap\n");
+        sd_journal_print(LOG_WARNING, "pthread_create error: thread_key_remap");
         exit(1);
     }
 }
@@ -674,15 +585,9 @@ run_thread_remap() {
 void
 run_thread_event() {
     int err;
-    err = pthread_create(
-            &g_thread_event,
-            NULL,
-            thread_window_event,
-            NULL);
+    err = pthread_create(&g_thread_event, NULL, thread_window_event, NULL);
     if (err != 0) {
-        sd_journal_print(
-                LOG_ERR,
-                "pthread_create error: thread_window_event\n");
+        sd_journal_print(LOG_ERR, "pthread_create error: thread_window_event");
         exit(1);
     }
 }
@@ -716,6 +621,7 @@ main(int argc, char **argv) {
 
     pthread_mutex_destroy(&g_mutex_app_id);
     sd_journal_print(LOG_INFO, "kremap exited\n");
+
     exit(0);
 }
 
