@@ -3,7 +3,6 @@
 let
     userName = config.userName;
     vpsName = config.vpsName;
-    monitorSamsung = config.monitorSamsung;
 in
 {
     home-manager.users.${userName} = {
@@ -613,7 +612,6 @@ in
                         coreutils
                         gawk
                         gnugrep
-                        procps
                     ];
                     text = ''
                         function panic {
