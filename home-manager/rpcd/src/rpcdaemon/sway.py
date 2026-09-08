@@ -48,7 +48,6 @@ monitor_full_name = {
     "thinkpad": "Chimei Innolux Corporation 0x1301 Unknown",
     "samsung": "Samsung Electric Company LS24A600U H4ZRB00248"
 }
-OutputNameThinkpad = "eDP-1";
 GpuID = 1 if Path("/dev/dri/card1").exists() else 0;
 
 
@@ -143,6 +142,7 @@ command_yazi = (
 )
 
 
+# command_firefox = f"exec DRI_PRIME={GpuID} firefox -P KISS"
 command_firefox = f"exec firefox -P KISS"
 
 
@@ -694,12 +694,14 @@ def toggle_btop() -> None:
 
 
 def wait_egpu_power_on():
-    if GpuID == 1:
-        while True:
-            for output in I3.get_outputs():
-                if output.name != OutputNameThinkpad:
-                    return
-            time.sleep(0.2)
+    if GpuID != 1:
+        return
+    name = " ".join(monitor_full_name["samsung"].split(" ")[:3])
+    while True:
+        for output in I3.get_outputs():
+            if output.make == name:
+                return
+        time.sleep(0.2)
 
 
 def setup_workspaces() -> None:
