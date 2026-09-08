@@ -8,6 +8,12 @@ in
         programs.swayimg = {
             enable = true;
 
+            initLua = "
+                swayimg.viewer.on_key(\"q\", function()
+                    swayimg.exit()
+                end)
+            ";
+
             settings = {
                 general = {
                     size = "800,600";
