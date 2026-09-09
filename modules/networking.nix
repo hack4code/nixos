@@ -87,8 +87,8 @@ in
 
             wifi = {
                 backend = "iwd";
-                powersave = false;
-                macAddress = "random";
+                # powersave = false;
+                # macAddress = "random";
             };
 
             settings = {
