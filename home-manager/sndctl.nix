@@ -37,9 +37,9 @@ let
 
                 hour=$(date +'%k')
                 if ((hour >= 5)) && ((hour < 18)); then
-                    wpctl set-volume @DEFAULT_SINK@ 60%
+                    wpctl set-volume @DEFAULT_SINK@ 70%
                 else
-                    wpctl set-volume @DEFAULT_SINK@ 40%
+                    wpctl set-volume @DEFAULT_SINK@ 60%
                 fi
             }
 
