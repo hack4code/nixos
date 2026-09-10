@@ -439,15 +439,8 @@ in
                     suspendCommand = "";
                     resumeScreenOffCommand = "";
                     resumeLockCommand = "swayctl resume lock";
-                    resumeSuspendCommand = "";
-                    customCommands = [
-                        {
-                            name = "sleep";
-                            timeout = 3600;
-                            command = "systemctl sleep";
-                            resumeCommand = "swayctl resume suspend";
-                        }
-                    ];
+                    resumeSuspendCommand = "swayctl resume suspend";
+                    customCommands = [ ];
                 };
 
                 noctaliaPerformance = {
