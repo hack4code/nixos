@@ -368,6 +368,10 @@ function setup_jq {
 
 function setup_sshd {
     sshcmd "sed -i '/^PasswordAuthentication/s/yes/no/' /etc/ssh/sshd_config"
+    sshcmd "sed -i '/PubkeyAuthentication/s/^#//' /etc/ssh/sshd_config"
+    sshcmd "sed -i '/TCPKeepAlive/s/^#//' /etc/ssh/sshd_config"
+    sshcmd "sed -i '/PermitUserEnvironment/s/^#//' /etc/ssh/sshd_config"
+    sshcmd "sed -i '/PermitUserEnvironment/s/no/yes/' /etc/ssh/sshd_config"
 }
 
 
