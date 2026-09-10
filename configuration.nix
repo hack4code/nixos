@@ -427,6 +427,7 @@ in
             # lutris-free
         ] ++ (with pkgs-unstable; [
             netwatch
+            diskwatch
         ]);
     };
 }
