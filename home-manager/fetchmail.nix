@@ -69,7 +69,9 @@ in
 
                 if (/^List-ID:.*netdev\.vger\.kernel\.org/)
                 {
-                    to $NETDEV
+                    EXITCODE = 0
+                    exit
+                    # to $NETDEV
                 }
 
 
@@ -81,7 +83,9 @@ in
 
                 if (/^List-ID:.*netfilter-devel\.vger\.kernel\.org/)
                 {
-                    to $NETFILTERDEVEL
+                    EXITCODE = 0
+                    exit
+                    # to $NETFILTERDEVEL
                 }
 
 
@@ -117,13 +121,17 @@ in
 
                 if (/^List-Id:.*linux-kernel/)
                 {
-                    to $KERNEL
+                    EXITCODE = 0
+                    exit
+                    # to $KERNEL
                 }
 
 
                 if (/^List-Id:.*linux-perf/)
                 {
-                    to $PERFDEVEL
+                    EXITCODE = 0
+                    exit
+                    # to $PERFDEVEL
                 }
 
 
@@ -161,7 +169,9 @@ in
 
                 if (/^List-Id:.*linux-toolchains/)
                 {
-                    to $LINUXTOOL
+                    EXITCODE = 0
+                    exit
+                    # to $LINUXTOOL
                 }
 
 
@@ -185,7 +195,9 @@ in
 
                 if (/^List-Id:.*bpf\.vger\.kernel\.org/)
                 {
-                    to $EBPF
+                    EXITCODE = 0
+                    exit
+                    # to $EBPF
                 }
 
 
@@ -197,14 +209,13 @@ in
 
                 if (/^List-ID:.*linux-hardening.vger.kernel.org/)
                 {
-                    to $LINUXHARDENING
+                    EXITCODE = 0
+                    exit
+                    # to $LINUXHARDENING
                 }
 
 
                 to $INBOX
-
-
-/* vim: set tabstop=4 shiftwidth=4 filetype=nix expandtab: */
             '';
         };
 
