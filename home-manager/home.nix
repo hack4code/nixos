@@ -84,7 +84,7 @@ in
             in
             {
                 initHome = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
-                    test -d mail || mkdir mail mail/sent mail/trash mail/inbox mail/drafts ${mboxes}
+                    test -d mail || mkdir mail mail/sent mail/Trash mail/inbox mail/drafts ${mboxes}
                     test -d book || mkdir book book/.reading
                     test -d movie || mkdir movie movie/.rsync movie/.camer
                     test -d music || mkdir music music/lyrics music/playlist music/song music/youtube

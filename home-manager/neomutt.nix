@@ -47,7 +47,7 @@ in
                 folders = {
                     inbox = "inbox";
                     drafts = "drafts";
-                    trash = "trash";
+                    trash = "Trash";
                     sent = "sent";
                 };
 
