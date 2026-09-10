@@ -140,6 +140,9 @@ in
                 # man
                 less_termcap[md]="''${fg_bold[blue]}"
                 less_termcap[so]="''${fg_bold[red]}''${bg[dark grey]}"
+
+                # zsh
+                unsetopt HIST_VERIFY
             '';
 
             zsh-abbr = {
