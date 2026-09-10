@@ -338,6 +338,9 @@ in
                         user_pref("font.size.variable.zh-CN", 16);
                         user_pref("font.size.variable.zh-TW", 16);
                         user_pref("font.size.variable.zh-HK", 16);
+
+                        /* theme */
+                        user_pref("browser.nova.enabled", true);
                     '';
 
                     userChrome = ''
