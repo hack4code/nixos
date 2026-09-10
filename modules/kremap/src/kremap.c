@@ -192,8 +192,7 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
                             is_remap = true;
                             break;
                     }
-                } else if (is_ctrl_pressed &&
-                           !is_shift_pressed && !is_alt_pressed) {
+                } else if (is_ctrl_pressed && !is_shift_pressed && !is_alt_pressed) {
                     switch (ev.code) {
                         case KEY_J:
                             libevdev_uinput_write_event(uidev, EV_KEY, KEY_PAGEUP, ev.value);
@@ -382,12 +381,12 @@ ipc_send(int fd, uint32_t type, const char *payload, uint32_t *len) {
     memcpy(msg + sizeof(MAGIC) + sizeof(*len), &type, sizeof(type));
 
     if (write(fd, msg, IPC_HEADER_SIZE) == -1) {
-        sd_journal_print(LOG_ERR, "ipc_send: write error\n");
+        sd_journal_print(LOG_ERR, "ipc_send: write error");
         return false;
     }
 
     if (write(fd, payload, *len) == -1) {
-        sd_journal_print(LOG_ERR, "ipc_send: write error\n");
+        sd_journal_print(LOG_ERR, "ipc_send: write error");
         return false;
     }
 
@@ -612,7 +611,7 @@ main(int argc, char **argv) {
     pthread_mutex_init(&g_mutex_app_id, 0);
 
     while (g_running) {
-        sd_journal_print(LOG_INFO, "kremap running\n");
+        sd_journal_print(LOG_INFO, "kremap running");
         run_thread_remap();
         run_thread_event();
         pthread_join(g_thread_event, NULL);
@@ -620,7 +619,7 @@ main(int argc, char **argv) {
     }
 
     pthread_mutex_destroy(&g_mutex_app_id);
-    sd_journal_print(LOG_INFO, "kremap exited\n");
+    sd_journal_print(LOG_INFO, "kremap exited");
 
     exit(0);
 }
