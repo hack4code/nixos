@@ -7,6 +7,7 @@
         userPassWord = mkOption { type = str; };
         userHome = mkOption { type = str; };
         userLocation = mkOption { type = str; };
+        userAvatarImage = mkOption { type = str; };
     };
 
     config = rec {
@@ -15,6 +16,7 @@
         userPassWord = "123456";
         userHome = "/home/${userName}";
         userLocation = "Marseille, France";
+        userAvatarImage = "";
     };
 }
 
