@@ -163,7 +163,7 @@ in
                     sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
                     # wofi = "${pkgs.wofi}/bin/wofi";
                     zathura = "${pkgs.zathura}/bin/zathura";
-                    noctalia-ipc = "noctalia-shell ipc call";
+                    noctalia-ipc = "noctalia msg";
                     kitty = if builtins.stringLength eGPU == 0 then
                             "${pkgs.kitty}/bin/kitty}"
                         else
@@ -176,13 +176,12 @@ in
                     "${modifier}+down" = "focus down";
 
                     "${modifier}+return" = "exec ${kitty}";
-                    "${modifier}+semicolon" = "exec ${noctalia-ipc} launcher clipboard";
+                    "${modifier}+semicolon" = "exec ${noctalia-ipc} panel-toggle clipboard";
                     "${modifier}+apostrophe" = "workspace number 10";
                     "${modifier}+comma" = "workspace number 11";
                     "${modifier}+period" = "workspace number 12";
 
-                    "${modifier}+a" = "exec --no-startup-id ${noctalia-ipc} notifications toggleHistory";
-                    "${modifier}+s" = "exec --no-startup-id ${noctalia-ipc} plugin:translator toggle zh";
+                    "${modifier}+a" = "exec --no-startup-id ${noctalia-ipc} panel-toggle control-center notifications";
                     "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
@@ -193,7 +192,7 @@ in
                     "${modifier}+m" = "exec ${wl-kbptr} -o modes=floating','click -o mode_floating.source=detect";
                     "${modifier}+n" = "exec ${wl-kbptr} -o modes=tile','click";
 
-                    "${modifier}+o" = "exec --no-startup-id ${sherlock}";
+                    "${modifier}+o" = "exec ${sherlock}";
                     # "${modifier}+o" = "exec --no-startup-id ${wofi}";
                     "${modifier}+q" = "kill";
                     "${modifier}+r" = "exec --no-startup-id swayctl ncmpcpp togglefullscreen";
@@ -218,12 +217,10 @@ in
                     "${modifier}+alt+semicolon" = "exec swayctl kitty";
                     "${modifier}+alt+a" = "exec --no-startup-id swayctl camer toggle";
                     "${modifier}+alt+e" = "reload";
-                    "${modifier}+alt+f" = "exec ${noctalia-ipc} lockScreen lock";
-                    "${modifier}+alt+h" = "exec ${noctalia-ipc} idleInhibitor toggle";
                     "${modifier}+alt+q" = "exec sway exit";
                     "${modifier}+alt+r" = "exec --no-startup-id swayctl reboot";
                     "${modifier}+alt+s" = "exec --no-startup-id swayctl shutdown";
-                    "${modifier}+alt+c" = "exec --no-startup-id ${noctalia-ipc} notifications clear";
+                    "${modifier}+alt+c" = "exec --no-startup-id ${noctalia-ipc} notification-clear-history";
                     "${modifier}+alt+t" = "exec --no-startup-id ${grim} -o DP-3 ~/picture/screen/screenshot.png";
                     "${modifier}+alt+j" = "exec --no-startup-id swayctl ncmpcpp lyricsdown";
                     "${modifier}+alt+k" = "exec --no-startup-id swayctl ncmpcpp lyricsup";
@@ -304,8 +301,8 @@ in
 
                 exec --no-startup-id swaymsg output ${monitorSamsung} power on
                 exec_always --no-startup-id runshell
-                exec_always --no-startup-id fcitx5 -d --replace --disable Clipboard -s 8
-                exec --no-startup-id sherlock --daemonize
+                exec_always --no-startup-id fcitx5 -d --replace --disable Clipboard -s 12
+                # exec --no-startup-id sherlock --daemonize
                 exec_always --no-startup-id rpcd
                 exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
