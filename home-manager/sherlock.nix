@@ -51,8 +51,7 @@ in
 
             launchers =
             let
-                noctalia-ipc = "noctalia-shell ipc call";
-                cliphist = "${pkgs.cliphist}/bin/cliphist";
+                noctalia-ipc = "noctalia msg";
             in
             [
                 {
@@ -153,44 +152,32 @@ in
                         commands = {
                             "Settings" = {
                                 icon = "gnome-settings";
-                                exec = "${noctalia-ipc} settings open";
+                                exec = "${noctalia-ipc} settings-open";
                                 search_string = "setting";
                             };
 
                             "Notification Enable DND" = {
                                 icon = "notification-active";
-                                exec = "${noctalia-ipc} notifications enableDND";
+                                exec = "${noctalia-ipc} notification-dnd-set on";
                                 search_string = "dnd";
                             };
 
                             "Notification Disable DND" = {
                                 icon = "notification-disabled";
-                                exec = "${noctalia-ipc} notifications disableDND";
+                                exec = "${noctalia-ipc} notification-dnd-set off";
                                 search_string = "dnd";
                             };
 
                             "Notification Clear All" = {
                                 icon = "notifyconf";
-                                exec = "${noctalia-ipc} notifications clear";
+                                exec = "${noctalia-ipc} notification-clear-history";
                                 search_string = "notification";
                             };
 
                             "Clipboard Clear All" = {
                                 icon = "xclipboard";
-                                exec = "${cliphist} wipe";
+                                exec = "${noctalia-ipc} clipboard-clear";
                                 search_string = "clip";
-                            };
-
-                            "IdleInhibitor Disable" = {
-                                icon = "screensaver";
-                                exec = "${noctalia-ipc} idleInhibitor disable";
-                                search_string = "idle";
-                            };
-
-                            "IdleInhibitor Enable" = {
-                                icon = "screensaver";
-                                exec = "${noctalia-ipc} idleInhibitor enable";
-                                search_string = "idle";
                             };
                         };
                     };
