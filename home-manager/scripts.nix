@@ -612,6 +612,7 @@ in
                         coreutils
                         gawk
                         gnugrep
+                        procps
                     ];
                     text = ''
                         function panic {
@@ -620,25 +621,23 @@ in
                         }
 
 
-                        if ! command -v noctalia-shell &>/dev/null; then
-                            panic 'noctalia-shell not exist'
+                        if ! command -v noctalia &>/dev/null; then
+                            panic 'noctalia not exist'
                         fi
 
                         if [[ "$(systemctl --user show --no-pager cliphist.service | awk -F = '/ActiveState/ {print $2}' | tr -d '\s\n')" != "active" ]]; then
                             systemctl --user restart cliphist.service
                         fi
 
-                        while true; do
-                            pid=$(noctalia-shell list --any-display | awk -F : '/Process ID/{print $2}' | tr -d '\s\n')
-                            if [[ -z "$pid" ]]; then
-                                break
-                            fi
-                            noctalia-shell kill --any-display
-                            sleep 0.8s
-                        done
 
-                        sleep 0.2s
-                        noctalia-shell --no-duplicate --daemonize
+                        if pgrep noctalia; then
+                            noctalia msg config-reload
+                        else
+                            noctalia --daemon
+                        fi
+                        sleep 0.4
+                        noctalia msg bar-hide
+                        noctalia msg bar-show HDMI-A-4
                     '';
                 }
             )
