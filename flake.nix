@@ -3,14 +3,17 @@
 
     nixConfig = {
         substituters = [
+            "https://noctalia.cachix.org" /* noctalia shell */
             "https://mirror.sjtu.edu.cn/nix-channels/store"
             "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-            # "https://mirrors.ustc.edu.cn/nix-channels/store"
+            "https://mirrors.ustc.edu.cn/nix-channels/store"
             "https://cache.nixos.org"
             "https://nix-community.cachix.org"
         ];
-
+  extra-substituters = [];
+    extra-trusted-public-keys = [];
         trusted-public-keys = [
+            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" /* noctalia shell */
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
@@ -35,15 +38,9 @@
             inputs.nixpkgs.follows = "nixpkgs-stable";
         };
 
-        noctalia-qs = {
-            url = "github:noctalia-dev/noctalia-qs/v0.0.12";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         noctalia = {
-            url = "github:noctalia-dev/noctalia-shell/v4.7.7";
+            url = "github:noctalia-dev/noctalia";
             inputs.nixpkgs.follows = "nixpkgs";
-            inputs.noctalia-qs.follows = "noctalia-qs";
         };
 
         nixos-hardware = {
