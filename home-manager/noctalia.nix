@@ -8,6 +8,7 @@ let
     bgThinkpad = config.bgThinkpad;
     bgSamsung = config.bgSamsung;
     bgLock = config.bgLock;
+    userAvatarImage = config.userAvatarImage;
 in
 {
     home-manager.users.${userName} = {
@@ -21,27 +22,35 @@ in
             settings = {
                 bar = {
                     order = [ "main" ];
+
                     default = {
                         enabled = true;
+
                         position = "top";
                         layer = "top";
                         thickness = 36;
-                        background_opacity = 0.9;
+                        background_opacity = 0.99;
                         border = "outline";
                         border_width = 2;
                         shadow = true;
+                        capsule = false;
                         widget_spacing = 8;
+                        margin_ends = 20;
                         font_weight = 500;
                         font_family = "Fira Sans";
-                        capsule = false;
+
                         start = [
+                            "launcher"
                             "workspaces"
                         ];
-                        center = [ "active_window" ];
+                        center = [
+                            "active_window"
+                        ];
                         end = [
                             "network"
                             "bluetooth"
                             "volume"
+                            "caffeine"
                             "notifications"
                             "clock"
                             "tray"
@@ -89,8 +98,10 @@ in
                 lockscreen = {
                     enabled = true;
                     blurred_desktop = false;
-                    fingerprint = true;
+                    blur_intensity = 0.02;
+                    tint_intensity = 0.3;
                     lock_before_suspend = true;
+                    fingerprint = true;
                     wallpaper = bgLock;
                     monitors = [
                         monitorThinkpad
@@ -107,18 +118,6 @@ in
                     per_monitor_directories = true;
                     transition_duration = 100;
                     transition_on_startup = true;
-                    monitor = {
-                        "${monitorSamsung}" = {
-                            directory = "~/.config/sway/wallpaper/dp-3";
-                            fill_color = "primary";
-                        };
-
-                        "${monitorThinkpad}" = {
-                            directory = "~/.config/sway/wallpaper/edp-1";
-                            fill_color = "secondary";
-                        };
-                    };
-
                     monitors = {
                         "${monitorSamsung}" = {
                             path = bgSamsung;
@@ -135,7 +134,42 @@ in
                     position = "top_center";
                 };
 
+                shell = {
+                    font_family = "Adwaita Sans";
+                    avatar_path = userAvatarImage;
+
+                    animation = {
+                        enabled = true;
+                        speed = 0.5;
+                    };
+
+                    panel = {
+                        transparency_mode = "solid";
+                        launcher_placement = "attached";
+                        open_near_click_control_center = true;
+                        open_near_click_launcher = true;
+                    };
+
+                    keyboard_layout = {
+                        custom_labels = {
+                            "English (US)" = "EN";
+                        };
+                    };
+
+                    launcher = {
+                        app_grid = true;
+                        categories = true;
+                        compact = false;
+                        show_icons = true;
+                        show_app_origin_indicator = false;
+                    };
+                };
+
                 widget = {
+                    launcher = {
+                        glyph = "noctalia";
+                    };
+
                     workspaces = {
                         font_family = "Fira Mono";
                         font_weight = 500;
@@ -145,13 +179,54 @@ in
                         anchor = true;
                         capsule = true;
                         capsule_opacity = 0.9;
-                        font_family = "Adwaita Sans";
+                        font_family = "MiSans";
                         font_weight = 500;
-                        icon_size = 18;
-                        interactive = false;
-                        max_length = 300;
+                        icon_size = 20;
+                        max_length = 500;
                         title_scroll = "on_hover";
                     };
+
+                    tray = {
+                        font_family = "MiSans";
+                        font_weight = 600;
+                    };
+                };
+
+                keybinds = {
+                    delete = [
+                        "Delete"
+                        "Ctrl+d"
+                    ];
+
+                    down = [
+                        "Down"
+                        "Ctrl+n"
+                    ];
+
+                    up = [
+                        "Up"
+                        "Ctrl+p"
+                    ];
+
+                    left = [
+                        "Left"
+                        "Ctrl+h"
+                    ];
+
+                    right = [
+                        "Right"
+                        "Ctrl+l"
+                    ];
+
+                    tab_next = [
+                        "Tab"
+                        "Ctrl+j"
+                    ];
+
+                    tab_previous = [
+                        "Shift+ISO_Left_Tab"
+                        "Ctrl+k"
+                    ];
                 };
             };
         };
