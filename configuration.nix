@@ -236,17 +236,17 @@ in
             EDITOR = "vim";
 
             PAGER = "${pkgs.moor}/bin/moor";
+            MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap --render-unprintable=whitespace";
             /* man pager */
             MANPAGER = "${pkgs.moor}/bin/moor";
             /* systemd pager */
             SYSTEMD_PAGER = "${pkgs.moor}/bin/moor";
             SYSTEMD_PAGERSECURE = "true";
 
-            MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap";
-
             /* termfilechooser */
             GTK_USE_PORTAL = "1";
 
+            /* libvirt */
             LIBVIRT_DEFAULT_URI = "qemu:///system";
         };
 
