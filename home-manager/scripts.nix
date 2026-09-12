@@ -630,14 +630,11 @@ in
                         fi
 
 
-                        if pgrep noctalia; then
+                        if pgrep --quiet noctalia; then
                             noctalia msg config-reload
                         else
                             noctalia --daemon
                         fi
-                        sleep 0.4
-                        noctalia msg bar-hide
-                        noctalia msg bar-show HDMI-A-4
                     '';
                 }
             )
