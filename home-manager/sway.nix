@@ -182,11 +182,13 @@ in
                     "${modifier}+period" = "workspace number 12";
 
                     "${modifier}+a" = "exec --no-startup-id ${noctalia-ipc} panel-toggle control-center notifications";
+                    "${modifier}+s" = "exec --no-startup-id ${noctalia-ipc} caffeine-toggle";
                     "${modifier}+d" = "exec --no-startup-id swayctl linode togglefullscreen";
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
                     "${modifier}+g" = "exec --no-startup-id swayctl htop togglefullscreen";
                     "${modifier}+i" = "exec ${firefox} -P TOR";
+                    "${modifier}+h" = "exec --no-startup-id ${noctalia-ipc} notification-clear-history";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
                     "${modifier}+m" = "exec ${wl-kbptr} -o modes=floating','click -o mode_floating.source=detect";
@@ -282,18 +284,12 @@ in
                 for_window [app_id="org.fcitx."] floating enable, border pixel 1, move position center, resize set 50 ppt 80 ppt
                 for_window [app_id="org.fcitx." title="^Fcitx Configuration$"] floating enable, border pixel 1, move position center, resize set 60 ppt 96 ppt
                 for_window [app_id="floatkitty"] floating enable, border pixel 1, move position center, resize set 80 ppt 60 ppt, opacity 0.98
+                for_window [app_id="file_chooser" title="termfilechooser"] floating enable, border pixel 2, move position center, resize set 80 ppt 72 ppt, opacity 0.99
+
                 for_window [app_id="org.wireshark.Wireshark" title=".+Capture.Options$"] floating enable, move position center, resize set 80 ppt 96 ppt
+
                 for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
                 for_window [title="^PCSX2 v2"] floating disable
-                for_window [app_id="Cemu" title="Title Manager"] floating enable, border pixel 1, resize width 80 ppt, move position center
-                for_window [app_id="Cemu" title="Graphic packs"] floating enable, border pixel 1, resize set 75 ppt 90 ppt, move position center
-                for_window [class="Ryujinx" title=".+Settings$"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
-                for_window [class="Ryujinx" title="^Settings.+"] floating enable, border pixel 1, resize set 64 ppt 85 ppt, move position center
-                for_window [floating workspace="9" shell="xdg_shell" title="^Settings$"] border pixel 1, resize set 64 ppt 96 ppt, move position center
-                for_window [app_id="file_chooser" title="termfilechooser"] floating enable, border pixel 2, move position center, resize set 80 ppt 72 ppt, opacity 0.99
-                for_window [app_id="com.usebottles.bottles"] move workspace 9
-                for_window [app_id="net.lutris.Lutris"] move workspace 9
-                for_window [class="steam_proton"] move workspace 9
 
                 exec --no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -302,7 +298,7 @@ in
                 exec --no-startup-id swaymsg output ${monitorSamsung} power on
                 exec_always --no-startup-id runshell
                 exec_always --no-startup-id fcitx5 -d --replace --disable Clipboard -s 12
-                # exec --no-startup-id sherlock --daemonize
+                exec sherlock --daemonize
                 exec_always --no-startup-id rpcd
                 exec --no-startup-id bash -c "sleep 2s; sndctl setup"
             '';
