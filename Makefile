@@ -1,5 +1,5 @@
-update: enable_idleInhibitor flake switch disable_idleInhibitor
-update-stable: enable_idleInhibitor flake boot-stable disable_idleInhibitor
+update: flake switch
+update-stable: flake boot-stable
 
 
 enable_idleInhibitor:
