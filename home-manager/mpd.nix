@@ -16,6 +16,13 @@ in
             '';
         };
 
+        services.mpd-mpris = {
+            enable = true;
+            mpd = {
+                useLocal = true;
+            };
+        };
+
         services.mpd = {
             enable = true;
 
