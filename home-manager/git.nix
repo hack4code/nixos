@@ -8,10 +8,11 @@ in
 {
     home-manager.users.${userName} = {
         programs.diff-highlight = {
-            enable = false;
+            enable = true;
             enableGitIntegration = true;
             pagerOpts = [
-                "--tab-size=4"
+                "--tabs=4"
+                "-RFX"
             ];
         };
 
@@ -42,6 +43,16 @@ in
                 "credential \"https://gist.github.com\"" = {
                     helper = "!/run/current-system/sw/bin/gh auth git-credential";
                 };
+
+                # interactive = {
+                #     diffFilter = "${pkgs.git}/share/git/contrib/diff-highlight/diff-highlight";
+                # };
+
+                # pager = {
+                #     diff =  "${pkgs.git}/share/git/contrib/diff-highlight/diff-highlight | ${pkgs.moor}/bin/moor";
+                #     show =  "${pkgs.git}/share/git/contrib/diff-highlight/diff-highlight | ${pkgs.moor}/bin/moor";
+                #     log =  "${pkgs.git}/share/git/contrib/diff-highlight/diff-highlight | ${pkgs.moor}/bin/moor";
+                # };
             };
 
             ignores = [
