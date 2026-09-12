@@ -42,9 +42,6 @@ in
                 QT_FONT_DPI = "96";
                 # QT_SCALE_FACTOR = "1.0";
 
-                /* noctalia-shell */
-                QS_ICON_THEME = "candy-icons";
-
                 /* bitwarden */
                 BW_SESSION = "${bwSession}";
 
