@@ -28,15 +28,15 @@ in
                 qt*
                 userfeedback*
                 Keyboard*
-                Fcitx 5
-                Fcitx 5 Migration*
+                Fcitx 5*
                 Neovim*
-                NixOS Manual
+                NixOS*
                 btop*
                 WeeChat
                 Htop
                 kitty
                 mpv*
+                Yazi*
             '';
 
             aliases = {
@@ -44,9 +44,9 @@ in
                     icon = "pavucontrol";
                 };
 
-                "Yazi File Manager" = {
-                    icon = "file-manager";
-                };
+                # "Yazi File Manager" = {
+                #     icon = "file-manager";
+                # };
             };
 
             launchers =
@@ -64,20 +64,20 @@ in
                 }
 
                 {
-                    name = "Sound Volume";
+                    name = "Sound Volume Control";
                     type = "command";
                     args = {
                         commands = {
-                            s8 = {
+                            "Sound Volume 80%" = {
                                 icon = "audio-volume-high";
                                 exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%";
                                 search_string = "s8";
                             };
 
-                            s6 = {
+                            "Sound Volume 50%" = {
                                 icon = "audio-volume-low";
-                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 60%";
-                                search_string = "s6";
+                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 50%";
+                                search_string = "s5";
                             };
                         };
                     };
@@ -86,35 +86,7 @@ in
                 }
 
                 {
-                    name = "Mpd";
-                    type = "command";
-                    args = {
-                        commands = {
-                            "Next Song" = {
-                                icon = "juk";
-                                exec = "${pkgs.mpc}/bin/mpc next";
-                                search_string = "next";
-                            };
-
-                            "Sound Volume 32" = {
-                                icon = "juk";
-                                exec = " ${pkgs.mpc}/bin/mpc volume 32";
-                                search_string = "32";
-                            };
-
-                            "Sound Volume 48" = {
-                                icon = "juk";
-                                exec = " ${pkgs.mpc}/bin/mpc volume 48";
-                                search_string = "48";
-                            };
-                        };
-                    };
-                    priority = 3;
-                    home = "Home";
-                }
-
-                {
-                    name = "syncdrive";
+                    name = "SyncDrive";
                     type = "command";
                     args = {
                         commands = {
@@ -130,7 +102,7 @@ in
                 }
 
                 {
-                    name = "downmovie";
+                    name = "DownMovie";
                     type = "command";
                     args = {
                         commands = {
@@ -150,34 +122,10 @@ in
                     type = "command";
                     args = {
                         commands = {
-                            "Settings" = {
+                            "Noctalia Settings" = {
                                 icon = "gnome-settings";
                                 exec = "${noctalia-ipc} settings-open";
                                 search_string = "setting";
-                            };
-
-                            "Notification Enable DND" = {
-                                icon = "notification-active";
-                                exec = "${noctalia-ipc} notification-dnd-set on";
-                                search_string = "dnd";
-                            };
-
-                            "Notification Disable DND" = {
-                                icon = "notification-disabled";
-                                exec = "${noctalia-ipc} notification-dnd-set off";
-                                search_string = "dnd";
-                            };
-
-                            "Notification Clear All" = {
-                                icon = "notifyconf";
-                                exec = "${noctalia-ipc} notification-clear-history";
-                                search_string = "notification";
-                            };
-
-                            "Clipboard Clear All" = {
-                                icon = "xclipboard";
-                                exec = "${noctalia-ipc} clipboard-clear";
-                                search_string = "clip";
                             };
                         };
                     };
@@ -234,7 +182,7 @@ in
                     height = 600;
                     icon_size = 24;
                     use_base_css = true;
-                    gsk_renderer = "vulkan";
+                    gsk_renderer = "cairo"; /* vulkan would cause core dump */
                     opacity = 1.0;
                     icon_paths = [
                         "${pkgs.candy-icons}/share/icons/candy-icons"
