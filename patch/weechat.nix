@@ -78,7 +78,7 @@ in
                     /set logger.look.backlog 0
 
                     /set irc.look.smart_filter on
-                    /filter add irc_smart * irc_smart_filter *
+                    /filter addreplace irc_smart * irc_smart_filter *
                     /set irc.look.smart_filter_delay 5
 
                     /trigger addreplace msg_disconnect modifier weechat_print "\''${tg_message_nocolor} =~ ^irc: disconnected from server$" "/(.*)/\''${color:red}^-_-^\''${color:reset}" ""
@@ -111,7 +111,9 @@ in
                     /set buflist.format.buffer "\''${format_number}\''${indent}\''${format_nick_prefix}\''${if:\''${current_buffer}?\''${color:lightgreen}:\''${color_hotlist}}\''${name}"
                     /set buflist.format.buffer_current "\''${color:green,default}\''${format_buffer}"
                     /set buflist.format.indent "\''${color:237}\''${if:\''${buffer.nextbuffer.localvariables.type}=~^(channel|private)\$?├─:└─}"
+                    /script enable
                     /script install go.py
+                    /set plugins.var.python.go.buffer_number "off"
                     /set plugins.var.python.go.color_name "white,default"
                     /set plugins.var.python.go.color_name_highlight "green,default"
                     /set plugins.var.python.go.color_name_highlight_selected "red,default"
