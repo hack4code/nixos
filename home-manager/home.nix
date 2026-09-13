@@ -51,7 +51,7 @@ in
                 TSS2_LOG = "fapi+NONE";
 
                 /* bottles */
-                PROTON_USE_NTSYNC = "1";
+                # PROTON_USE_NTSYNC = "1";
             };
 
             packages = with pkgs; [
