@@ -391,6 +391,10 @@ in
             kdePackages.breeze
             kdePackages.breeze-icons
             /******************
+                weechat
+            *******************/
+            weechat-matrix-rs
+            /******************
                 graphics
             *******************/
             mesa
