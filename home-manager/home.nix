@@ -24,6 +24,11 @@ in
             ];
 
             sessionVariables = {
+                /* tpm2 */
+                TPM2_PKCS11_BACKEND = "esysdb";
+                TPM2_PKCS11_LOG_LEVEL = 0;
+                TSS2_LOG = "fapi+NONE";
+
                 # GNUPGHOME = "$HOME/.config/gpg";
                 # GOPATH = "$HOME/.local/share/go";
                 # GPG_TTY = "$(tty)";
@@ -45,13 +50,8 @@ in
                 /* bitwarden */
                 BW_SESSION = "${bwSession}";
 
-                /* tpm2 */
-                TPM2_PKCS11_BACKEND = "esysdb";
-                TPM2_PKCS11_LOG_LEVEL = 0;
-                TSS2_LOG = "fapi+NONE";
-
-                /* bottles */
-                # PROTON_USE_NTSYNC = "1";
+                /* weechat */
+                WEECHAT_EXTRA_LIBDIR = "/run/current-system/sw/lib/weechat/plugins";
             };
 
             packages = with pkgs; [
@@ -81,17 +81,17 @@ in
             in
             {
                 initHome = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
-                    test -d mail || mkdir mail mail/sent mail/Trash mail/inbox mail/drafts ${mboxes}
-                    test -d book || mkdir book book/.reading
-                    test -d movie || mkdir movie movie/.rsync movie/.camer
-                    test -d music || mkdir music music/lyrics music/playlist music/song music/youtube
-                    test -d picture || mkdir picture picture/icon picture/mpv picture/screen picture/wallpaper
-                    test -d temp || mkdir temp temp/drive temp/test temp/vps
-                    test -d code || mkdir code
-                    test -d document || mkdir document
-                    test -d download || mkdir download download/.rsync download/.rtorrent/downloading .rtorrent/watch
-                    test -d source || mkdir source
-                    test -d game || mkdir game
+                    test -d mail || mkdir mail mail/sent mail/Trash mail/inbox mail/drafts ${mboxes}; chmod 700 mail
+                    test -d book || mkdir book book/.reading; chmod 700 book
+                    test -d movie || mkdir movie movie/.rsync movie/.camer; chmod 700 movie
+                    test -d music || mkdir music music/lyrics music/playlist music/song music/youtube; chmod 700 music
+                    test -d picture || mkdir picture picture/icon picture/mpv picture/screen picture/wallpaper; chmod 700 picture
+                    test -d temp || mkdir temp temp/drive temp/test temp/vps; chmod 700 temp
+                    test -d code || mkdir code; chmod 700 code
+                    test -d document || mkdir document; chmod 700 document
+                    test -d download || mkdir download download/.rsync download/.rtorrent/downloading .rtorrent/watch; chmod 700 download
+                    test -d source || mkdir source; chmod 700 source
+                    test -d game || mkdir game; chmod 700 game
                     test -d .local/state/mpd || mkdir -p .local/state/mpd
                     test -d .local/share/zsh || mkdir -p .local/share/zsh
                     test -d .local/share/fetchmail || mkdir -p .local/share/fetchmail
