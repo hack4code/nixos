@@ -20,8 +20,8 @@ table ip wireguard-nat {
 
 table ip rtorrent-nat {
 	chain prerouting {
+		type nat hook prerouting priority dstnat; policy accept;
 		iifname "${IFS}" ip daddr ${ADDRS4} tcp dport ${RTORRENTPORT} dnat to ${IP4PA}
-		iifname "${IFS}" ip daddr ${ADDRS4} udp dport ${RTORRENTPORT} dnat to ${IP4PA}
 		iifname "${IFS}" ip daddr ${ADDRS4} udp dport ${PEXPORT} dnat to ${IP4PA}
 	}
 }
