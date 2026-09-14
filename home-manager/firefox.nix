@@ -14,6 +14,8 @@ in
             enable = true;
             # package = pkgs.firefox-bin;
 
+            configPath = ".config/mozilla/firefox";
+
             languagePacks = [
                 "en-US"
                 "zh-cn"
@@ -24,6 +26,7 @@ in
 
                 # DisableFirefoxStudies = true;
                 DontCheckDefaultBrowser = true;
+                HardwareAcceleration = true;
 
                 AutofillAddressEnabled = false;
                 AutofillCreditCardEnabled = false;
@@ -43,10 +46,11 @@ in
                     Cryptomining = true;
                     Fingerprinting = true;
                     EmailTracking = true;
+                    SuspectedFingerprinting = true;
                 };
 
                 DisablePocket = true;
-                NetworkPrediction = false;
+                NetworkPrediction = true;
 
                 SanitizeOnShutdown = {
                     Locked = true;
@@ -73,6 +77,24 @@ in
 
                 Cookies = {
                     Allow = ffCookiesAllow;
+                };
+
+                PopupBlocking = {
+                    Allow = [ ];
+                    Default = true;
+                    Locked = true;
+                };
+
+                SearchSuggestEnabled = false;
+
+                PictureInPicture = {
+                    Enabled = false;
+                    Locked = true;
+                };
+
+                PDFjs = {
+                    Enabled = true;
+                    EnablePermissions = false;
                 };
             };
 
@@ -128,7 +150,7 @@ in
                         user_pref("browser.aboutConfig.showWarning", false);
 
                         /* compact */
-                        user_pref("browser.compactmode.show", true);
+                        user_pref("browser.compactmode.show", false);
 
                         /* ctrl+q */
                         user_pref("browser.quitShortcut.disabled", true);
@@ -140,17 +162,11 @@ in
                         /* download popup menu */
                         user_pref("browser.download.alwaysOpenPanel", false);
 
-                        /* pocket */
-                        user_pref("extensions.pocket.enabled", false);
-
-                        /* pdf viewer */
-                        user_pref("pdfjs.disabled", true);
-
                         /* language */
                         user_pref("intl.accept_languages", "zh-CN, zh, en-US, en");
 
                         /* split view */
-                        user_pref("browser.tabs.splitView.enabled", true);
+                        user_pref("browser.tabs.splitView.enabled", false);
 
                         /* home page */
                         user_pref("browser.startup.homepage", "about:blank");
@@ -181,9 +197,6 @@ in
                         /* battery */
                         user_pref("dom.battery.enabled", false);
 
-                        /* default browser check */
-                        user_pref("browser.shell.checkDefaultBrowser", false);
-
                         /* profiles */
                         user_pref("browser.profiles.enabled", true);
 
@@ -202,7 +215,7 @@ in
                         user_pref("browser.translations.automaticallyPopup", true);
 
                         /* concurrency */
-                        user_pref("dom.maxHardwareConcurrency", 6);
+                        user_pref("dom.maxHardwareConcurrency", 4);
 
                         /* wayland */
                         user_pref("widget.wayland.fractional-scale.enabled", true);
