@@ -27,6 +27,7 @@ in
                 shfmt
                 nixd
                 ripgrep
+                powerline-symbols
             ];
 
             plugins = with pkgs.vimPlugins; [
