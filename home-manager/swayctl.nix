@@ -70,6 +70,7 @@ in
 
 
                         function resume_suspend {
+                            sleep 2s
                             resume_system
                         }
 
