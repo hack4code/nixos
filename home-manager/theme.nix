@@ -46,6 +46,32 @@ in
                 name = gtkFontName;
                 size = gtkFontSize;
             };
+
+            gtk4 = {
+                enable = true;
+
+                colorScheme = gtkColorScheme;
+
+                cursorTheme = {
+                    name = cursorName;
+                    size = cursorSize;
+                    package = pkgs.graphite-cursors;
+                };
+
+                iconTheme = {
+                    name = gtkIconTheme;
+                    package = pkgs.candy-icons;
+                };
+
+                font = {
+                    name = gtkFontName;
+                    size = gtkFontSize;
+                };
+
+                extraConfig = {
+                   gtk-interface-color-scheme = "light";
+                };
+            };
         };
     };
 }
