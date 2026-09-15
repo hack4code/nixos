@@ -43,10 +43,6 @@ in
                 "Volume Control" = {
                     icon = "pavucontrol";
                 };
-
-                # "Yazi File Manager" = {
-                #     icon = "file-manager";
-                # };
             };
 
             launchers =
@@ -74,10 +70,16 @@ in
                                 search_string = "s8";
                             };
 
-                            "Sound Volume 50%" = {
+                            "Sound Volume 60%" = {
+                                icon = "audio-volume-medium";
+                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 60%";
+                                search_string = "s6";
+                            };
+
+                            "Sound Volume 30%" = {
                                 icon = "audio-volume-low";
-                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 50%";
-                                search_string = "s5";
+                                exec = " ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 30%";
+                                search_string = "s3";
                             };
                         };
                     };
@@ -118,7 +120,7 @@ in
                 }
 
                 {
-                    name = "Noctalia Shell";
+                    name = "Noctalia";
                     type = "command";
                     args = {
                         commands = {
@@ -137,7 +139,7 @@ in
             settings = {
                 default_apps = {
                     terminal = "${pkgs.kitty}/bin/kitty";
-                    browser = "firefox --new-tab %u";
+                    browser = "${pkgs.firefox}/bin/firefox --new-tab %u";
                 };
 
                 search_bar_icon = {
@@ -400,7 +402,6 @@ in
                 .tile:selected #shortcut-holder {
                     box-shadow: 0px 0px 6px 0px rgba(22, 22, 22, 1);
                 }
-
             '';
         };
     };
