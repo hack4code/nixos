@@ -72,11 +72,11 @@ function prepare {
         panic 'bw sync failed'
     fi
 
-    # local RCLONE
-    # RCLONE="$(command -v rclone)"
-    # if ! $RCLONE ls drive:spider &>/dev/null; then
-    #     panic 'rclone failed'
-    # fi
+    local RCLONE
+    RCLONE="$(command -v rclone)"
+    if ! $RCLONE ls drive:spider &>/dev/null; then
+        panic 'rclone failed'
+    fi
 
     if ! linode-cli --suppress-warnings users list &>/dev/null; then
         panic 'linode-cli not worked'
@@ -236,7 +236,7 @@ function test_wireguard {
 
 
 function setup_nftables {
-    if ! sshcmd 'command -v nft'; then
+    if ! sshcmd 'qlist -I | grep -q net-firewall/nftables'; then
         sshcmd 'emerge net-firewall/nftables'
     fi
 }
@@ -410,11 +410,15 @@ function setup_docker {
     local CIDR
     CIDR="${V6RANGE}:aaaa::/80"
 
-    if ! sshcmd 'qlist -I' | grep -q 'app-containers/docker'; then
+    if ! sshcmd 'qlist -I' | grep -q -E 'app-containers/docker$'; then
         sshcmd 'emerge app-containers/docker'
         sshcmd 'emerge app-containers/docker-cli'
         sshcmd 'emerge app-containers/docker-buildx'
         sshcmd 'emerge app-containers/docker-compose'
+    fi
+
+    if ! sshcmd 'qlist -I' | grep -q -E 'app-containers/docker$'; then
+        panic "docker install failed"
     fi
 
     if ! sshcmd 'cat /etc/init.d/docker' | grep -q 'wg-quick.wg0'; then
@@ -561,7 +565,7 @@ function setup_spider {
     local CRAWL="$ROOT/crawl"
 
     rm -rf "$STATIC/script"
-    if ! podman container run --userns keep-id --volume "$SOURCE/www/src/static/:/home/node/build/" --workdir /home/node/build/app/ node ./build; then
+    if ! podman container run --userns keep-id --volume "$SOURCE/www/src/static/:/home/node/build/" --workdir /home/node/build/app/ docker.io/node ./build; then
         panic 'react build error'
     fi
 

@@ -1,16 +1,6 @@
 # syntax=docker/dockerfile:1.6-labs
 
 
-FROM ubuntu
-
-
-RUN <<EOF
-    apt-get update -y
-    apt-get install -y build-essential automake autoconf libtool pkg-config intltool libcurl4-openssl-dev libglib2.0-dev libevent-dev libminiupnpc-dev libappindicator3-dev libssl-dev
-    apt-get install -y cmake git
-EOF
-
-
 # FROM debian
 #
 #
@@ -21,8 +11,14 @@ EOF
 # EOF
 
 
+FROM ubuntu
+
+
 RUN <<EOF
     set -e
+    apt-get update -y
+    apt-get install -y build-essential automake autoconf libtool pkg-config intltool libcurl4-openssl-dev libglib2.0-dev libevent-dev libminiupnpc-dev libappindicator3-dev libssl-dev
+    apt-get install -y cmake git
     git clone --recurse-submodules https://github.com/transmission/transmission Transmission
     cd Transmission/
     git checkout `git tag | grep -v 'beta' | sort -V | tail -1`
@@ -32,9 +28,9 @@ RUN <<EOF
     cmake --install .
     cd /
     rm -rf Transmission
+    mkdir /transmission/
 EOF
 
-RUN mkdir /transmission/
 
 WORKDIR /transmission/
 CMD /usr/local/bin/transmission-daemon --foreground --log-level info --config-dir /transmission/ --watch-dir /download/watch/ --incomplete-dir /download/incomplete/ --download-dir /download/complete/
