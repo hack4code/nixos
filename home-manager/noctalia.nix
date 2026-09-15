@@ -81,11 +81,13 @@ in
                             enabled = true;
                             timeout = 600;
                         };
+
                         screen-off = {
                             action = "screen_off";
                             enabled = true;
                             timeout = 600;
                         };
+
                         lock-and-suspend = {
                             action = "lock_and_suspend";
                             enabled = true;
