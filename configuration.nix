@@ -423,10 +423,9 @@ in
             /* switch */
             nsz
             eden
-            # ryubing
             /* windows */
-            # wine
             wine64
+            umu-launcher
             bottles
             # lutris-free
         ] ++ (with pkgs-unstable; [
