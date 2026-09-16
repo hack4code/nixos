@@ -111,8 +111,10 @@ in
                 };
 
                 theme = {
-                    builtin = "Gruvbox";
                     mode = "dark";
+                    shell_mode = "follow";
+                    builtin = "Gruvbox";
+                    pure_black_dark = false;
                 };
 
                 wallpaper = {
