@@ -32,6 +32,8 @@ in
                 AutofillCreditCardEnabled = false;
                 PostQuantumKeyAgreementEnabled = true;
 
+                HttpsOnlyMode = "allowed";
+
                 FirefoxSuggest = {
                     WebSuggestions = false;
                     SponsoredSuggestions = false;
@@ -68,14 +70,68 @@ in
                 Permissions = {
                     Notifications = {
                         Allow = ffNoticationsAllow;
-                        BlockNewRequests = true;
+                        Block = [ ];
+                        BlockNewRequests = false;
                         Locked = false;
                     };
+
+                    Camera = {
+                        Allow = [ ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+
+                    Autoplay = {
+                        Allow = [ ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+
+                    Microphone = {
+                        Allow = [ ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+
+                    Location = {
+                        Allow = [ ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+
+                    VirtualReality = {
+                        Allow = [ ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+
+                    ScreenShare = {
+                        Allow = [ ];
+                        Block = [ ];
+                        BlockNewRequests = true;
+                        Locked = true;
+                    };
+                };
+
+                DNSOverHTTPS = {
+                    Enabled = false;
+                    Locked = true;
+                    Fallback = true;
+                    ProviderURL = "https://cloudflare-dns.com";
+                    ExcludedDomains = [ ];
                 };
 
                 HttpAllowlist = ffHttpAllow;
 
                 Cookies = {
+                    Locked = true;
+                    Behavior = "reject-foreign";
+                    BehaviorPrivateBrowsing = "reject-tracker-and-partition-foreign";
                     Allow = ffCookiesAllow;
                 };
 
@@ -96,16 +152,25 @@ in
                     Enabled = true;
                     EnablePermissions = false;
                 };
+
+                DisableFirefoxScreenshots = true;
+                DisableFormHistory = true;
+                DisableMasterPasswordCreation = true;
             };
 
             profiles = {
                 KISS = {
                     isDefault = true;
+
                     id = 0;
                     name = "KISS";
+
                     search = {
                         enable = true;
                         force = true;
+                        default = "google";
+                        privateDefault = "google";
+
                         engines = {
                             google = {
                                 metaData = {
@@ -113,14 +178,15 @@ in
                                 };
                             };
                         };
+
                         order = [
                             "google"
                         ];
-                        default = "google";
-                        privateDefault = "google";
                     };
 
-                    settings = { };
+                    settings = {
+                        # "alerts.useSystemBackend" = true;
+                    };
 
                     # containers = {
                     #     self = {
@@ -171,28 +237,11 @@ in
                         /* home page */
                         user_pref("browser.startup.homepage", "about:blank");
 
-                        /* geolocation */
-                        user_pref("geo.enabled", false);
-                        user_pref("geo.provider.use_gpsd", false);
-
                         /* file picker */
                         user_pref("widget.use-xdg-desktop-portal.file-picker", 0);
 
-                        /* form fill */
-                        user_pref("browser.formfill.enable", true);
-
                         /* sensor */
                         user_pref("device.sensors.enabled", false);
-
-                        /* vr */
-                        user_pref("dom.vr.enabled", false);
-
-                        /* camer */
-                        user_pref("permissions.default.camera", 2);
-                        user_pref("camera.control.face_detection.enabled", false);
-
-                        /* microphone */
-                        user_pref("permissions.default.microphone", 2);
 
                         /* battery */
                         user_pref("dom.battery.enabled", false);
@@ -210,12 +259,13 @@ in
 
                         /* disable onboarding junk */
                         user_pref("browser.onboarding.enabled", false);
+
                         /* translations */
                         user_pref("browser.translations.enable", true);
                         user_pref("browser.translations.automaticallyPopup", true);
 
                         /* concurrency */
-                        user_pref("dom.maxHardwareConcurrency", 4);
+                        user_pref("dom.maxHardwareConcurrency", 8);
 
                         /* wayland */
                         user_pref("widget.wayland.fractional-scale.enabled", true);
@@ -259,15 +309,6 @@ in
                         user_pref("browser.safebrowsing.downloads.remote.enabled", false);
                         user_pref("browser.safebrowsing.blockedURIs.enabled", true);
 
-                        /* privacy */
-                        user_pref("privacy.resistFingerprinting", false);
-                        user_pref("privacy.firstparty.isolate", true);
-                        user_pref("privacy.userContext.enabled", true);
-                        user_pref("privacy.trackingprotection.enabled", true);
-                        user_pref("privacy.trackingprotection.pbmode.enabled", true);
-                        user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
-                        user_pref("privacy.trackingprotection.cryptomining.enabled", true);
-
                         /* cache */
                         user_pref("browser.cache.disk.enable", false);
                         user_pref("browser.cache.memory.enable", true);
@@ -287,9 +328,8 @@ in
                         user_pref("layers.gpu-process.enabled", true);
                         user_pref("media.av1.enabled", true);
                         user_pref("media.mkv.enabled", true);
-                        user_pref("media.autoplay.enabled", false);
-                        user_pref("media.videocontrols.picture-in-picture.enabled", false);
-                        user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", false);
+
+                        /* webrtc */
                         user_pref("media.peerconnection.enabled", false);
                         user_pref("media.peerconnection.turn.disable", false);
                         user_pref("media.peerconnection.use_document_iceservers", false);
