@@ -232,6 +232,35 @@ in
                         "Ctrl+k"
                     ];
                 };
+
+                brightness = {
+                    enable_ddcutil = true;
+                    monitor = {
+                        "${monitorThinkpad}" = {
+                            backend = "backlight";
+                            backlight_device = "intel_backlight";
+                        };
+
+                        "${monitorSamsung}" = {
+                            backend = "ddcutil";
+                        };
+                    };
+                };
+
+                osd = {
+                    background_opacity = 0.98;
+                    border = true;
+                    enabled = true;
+                    monitors = [
+                        monitorSamsung
+                    ];
+                    orientation = "horizontal";
+                    position = "top_center";
+                    position_vertical = "top_center";
+                    kinds = {
+                        media = false;
+                    };
+                };
             };
         };
     };
