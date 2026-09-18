@@ -347,6 +347,8 @@ in
             sof-firmware
             /* tpm2 */
             tpm2-tools
+            /* brightness */
+            ddcutil
             /******************
                 develop
             *******************/
