@@ -5,6 +5,7 @@ let
 in
 {
     imports = [
+        ./patch/firefox.nix
         ./patch/bottles.nix
         ./patch/weechat.nix
         ./fonts/fontconfig.nix
