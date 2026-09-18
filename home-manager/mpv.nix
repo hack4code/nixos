@@ -22,6 +22,7 @@ in
                 wayland-internal-vsync = true;
                 cursor-autohide = 60;
                 video-sync = "display-resample";
+                interpolation = "yes";
                 ao = "pipewire";
                 volume-max = 200;
                 cache = true;
