@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
 
-if (($# != 1)); then
-    echo "need a number for ip address" 1>&2
+function panic {
+    echo "$*" 1>&2
     exit 1
+}
+
+
+if (($# != 1)); then
+    panic "need a number for ip address"
 fi
 
 
@@ -16,8 +21,7 @@ fi
 
 WGIF="$(wg show interfaces | head --lines 1)"
 if [[ -z "$WGIF" ]]; then
-    echo "no wg interface found" 1>&2
-    exit 1
+    panic "no wg interface found"
 fi
 
 
