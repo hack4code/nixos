@@ -9,8 +9,8 @@
         device = "/dev/disk/by-uuid/9084d34c-2ed7-4c52-919f-baca77d3d4f9";
         fsType = "ext4";
         options = [
-            "noatime"
-            "nodiratime"
+            # "noatime"
+            # "nodiratime"
             "discard"
         ];
     };
