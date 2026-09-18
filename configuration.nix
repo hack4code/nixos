@@ -286,6 +286,7 @@ in
             parted
             perf
             procps
+            psmisc
             pv
             qrencode
             sysstat
