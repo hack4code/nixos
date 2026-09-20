@@ -33,6 +33,14 @@ in
                     rebase = true;
                 };
 
+                merge = {
+                    conflictstyle  = "diff3";
+                };
+
+                rerere = {
+                    enabled = true;
+                };
+
                 "http \"https://github.com\"" = {
                     proxy = "socks5h://10.0.0.1:1080";
                 };
