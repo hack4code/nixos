@@ -45,6 +45,9 @@
             terminus_font
             /* twitter */
             twemoji-color-font
+            /* maple */
+            maple-mono.variable
+            maple-mono.CN
             /* google fonts */
             (
                 callPackage ./google-fonts.nix {}
