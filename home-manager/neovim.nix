@@ -215,53 +215,6 @@ in
                         vim.keymap.set('n', '<leader>a', builtin.diagnostics, { desc = 'Telescope diagnostics' })
                     '';
                 }
-                # {
-                #     plugin = telescope-file-browser-nvim;
-                #     type = "lua";
-                #     config = ''
-                #         local fb_actions = require "telescope".extensions.file_browser.actions
-                #         require("telescope").setup {
-                #             extensions = {
-                #                 file_browser = {
-                #                     theme = 'dropdown',
-                #                     previewer = false,
-                #                     hijack_netrw = true,
-                #                     quiet = true,
-                #                     hide_parent_dir = true,
-                #                     display_stat = { date = false, size = true, mode = true, },
-                #                     dir_icon = "",
-                #                     use_fd = true,
-                #                     git_status = true,
-                #                     -- initial_mode = "normal",
-                #                     mappings = {
-                #                         i = {
-                #                             ["<C-h>"] = fb_actions.goto_parent_dir,
-                #                             ["<C-l>"] = fb_actions.open_dir,
-                #                             ["<C-g>"] = fb_actions.toggle_hidden,
-                #                             ["<C-o>"] = false,
-                #                         },
-                #                         n = {
-                #                             ["h"] = fb_actions.goto_parent_dir,
-                #                             ["l"] = fb_actions.open_dir,
-                #                             ["g"] = fb_actions.toggle_hidden,
-                #                             ["o"] = false,
-                #                         },
-                #                     },
-                #                     layout_config = {
-                #                         flex = {
-                #                             height = 0.8,
-                #                             width = 0.5,
-                #                         }
-                #                     },
-                #                     wrap_results = true,
-                #                     scroll_strategy = "cycle",
-                #                 },
-                #             },
-                #         }
-                #         require("telescope").load_extension "file_browser"
-                #         vim.keymap.set("n", "<leader>e", "<Cmd>Telescope file_browser<CR>", { desc = 'Telescope file browser' })
-                #     '';
-                # }
                 {
                     plugin = telescope-fzf-native-nvim;
                     type = "lua";
@@ -322,7 +275,7 @@ in
                         }
                         vim.lsp.enable('luals')
 
-                        vim.lsp.config('pyright', {
+                        vim.lsp.config['pyright'] = {
                             settings = {
                                 pyright = {
                                     disableOrganizeImports = true,
@@ -331,6 +284,7 @@ in
 
                                 python = {
                                     analysis = {
+                                        ignore = { '*' },
                                         typeCheckingMode = 'basic',
                                         diagnosticSeverityOverrides = {
                                             reportMissingImports = false,
@@ -339,8 +293,32 @@ in
                                     },
                                 },
                             },
-                        })
+                        }
                         vim.lsp.enable('pyright')
+
+                        vim.lsp.config['ruff'] = {
+                            init_options = {
+                                settings = {
+                                    configuration = {
+                                        lint = {
+                                            unfixable = { 'F401' },
+                                            ['extend-select'] = { 'TID251' },
+                                            ['flake8-tidy-imports'] = {
+                                                ['banned-api'] = {
+                                                    ['typing.TypedDict'] = {
+                                                        msg = 'Use `typing_extensions.TypedDict` instead'
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        format = {
+                                            ['quote-style'] = 'single'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        vim.lsp.enable('ruff')
 
                         vim.lsp.config['bashls'] = {
                             cmd = { 'bash-language-server', 'start' },
