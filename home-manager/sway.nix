@@ -291,6 +291,8 @@ in
                 for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
                 for_window [title="^PCSX2 v2"] floating disable
 
+                for_window [app_id="gamescope"] move to workspace 9
+
                 exec --no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
                 exec --no-startup-id systemctl --user import-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
                 exec --no-startup-id hash dbus-update-activation-environment && dbus-update-activation-environment --systemd DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
