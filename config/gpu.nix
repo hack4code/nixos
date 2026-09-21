@@ -3,10 +3,12 @@
 {
     options = with lib; with types; {
         eGPU = mkOption { type = str; };
+        eGPUPciID = mkOption { type = str; };
     };
 
     config = {
         eGPU = "";
+        eGPUPciID = "";
     };
 }
 
