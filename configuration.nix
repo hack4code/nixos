@@ -179,6 +179,7 @@ in
             bat
             bc
             binutils
+            blktrace
             coreutils
             dosfstools
             duf
