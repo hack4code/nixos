@@ -217,16 +217,19 @@ in
             enable = true;
 
             capSysNice = true;
+
+            env = { };
             args = [
                 "--rt"
                 "--prefer-vk-device 1ed3:0e46"
             ];
         } // (if nixOSVersion == "26.11" then
             {
-                enableWsi = true;
+                enableWsi = false;
             }
             else
-            { }
+            {
+            }
         );
     };
 
