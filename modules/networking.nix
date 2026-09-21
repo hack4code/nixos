@@ -14,7 +14,7 @@ let
 in
 {
     systemd.services.NetworkManager-wait-online.environment = {
-        NM_ONLINE_TIMEOUT = "240";
+        NM_ONLINE_TIMEOUT = "300";
     };
 
     networking = {
