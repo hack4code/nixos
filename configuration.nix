@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-unstable, nixOSVersion, ... }:
+{ config, pkgs, lib, pkgs-unstable, ... }:
 
 let
     timeZone = config.timeZone;
@@ -50,6 +50,9 @@ in
         ./modules/wg-quick.nix
         ./modules/theme.nix
         ./modules/jremap.nix
+        ./modules/sway.nix
+        ./modules/env.nix
+        ./modules/game.nix
         ./home-manager/btop.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
@@ -159,100 +162,9 @@ in
                 enable = true;
             };
         };
-
-        sway = {
-            enable = true;
-
-            wrapperFeatures = {
-                gtk = true;
-            };
-
-            extraPackages = with pkgs; [
-                clipman
-                urlscan
-                w3m
-                weechat
-                # weechat-matrix-rs
-                wl-clipboard
-                kitty
-                neomutt
-                slurp
-                swayimg
-                urlscan
-                w3m
-                weechat
-                wl-clipboard
-                wl-kbptr
-                xdg-desktop-portal-termfilechooser
-                yazi
-                zathura
-            ];
-        };
-
-        gamemode = {
-            enable = true;
-
-            enableRenice = true;
-
-            settings = {
-                general = {
-                    renice = 10;
-                    inhibit_screensaver = 0;
-                };
-
-                gpu = {
-                    apply_gpu_optimisations = "accept-responsibility";
-                    gpu_device = 1;
-                    amd_performance_level = "high";
-                };
-
-                custom = {
-                    # start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-                    # end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-                };
-            };
-        };
-
-        gamescope = {
-            enable = true;
-
-            capSysNice = true;
-
-            env = { };
-            args = [
-                "--rt"
-                "--prefer-vk-device 1ed3:0e46"
-            ];
-        } // (if nixOSVersion == "26.11" then
-            {
-                enableWsi = false;
-            }
-            else
-            {
-            }
-        );
     };
 
     environment = {
-        sessionVariables = {
-            LANG = "en_US.UTF-8";
-            EDITOR = "vim";
-
-            PAGER = "${pkgs.moor}/bin/moor";
-            MOOR = "--colors=16M --no-statusbar --no-linenumbers --terminal-fg --wrap --render-unprintable=whitespace";
-            /* man pager */
-            MANPAGER = "${pkgs.moor}/bin/moor";
-            /* systemd pager */
-            SYSTEMD_PAGER = "${pkgs.moor}/bin/moor";
-            SYSTEMD_PAGERSECURE = "true";
-
-            /* termfilechooser */
-            GTK_USE_PORTAL = "1";
-
-            /* libvirt */
-            LIBVIRT_DEFAULT_URI = "qemu:///system";
-        };
-
         shells = with pkgs; [
             zsh
             bashInteractive
