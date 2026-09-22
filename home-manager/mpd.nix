@@ -11,8 +11,8 @@ in
             force = true;
             text = ''
                 [Service]
-                LimitRTPRIO=40
-                LimitRTTIME=infinity
+                    LimitRTPRIO=40
+                    LimitRTTIME=infinity
             '';
         };
 
