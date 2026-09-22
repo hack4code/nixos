@@ -30,6 +30,7 @@ in
         ./config/gpu.nix
         ./config/rtorrent.nix
         ./config/nfs.nix
+        ./config/sony.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
         ./modules/console.nix

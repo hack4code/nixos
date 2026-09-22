@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
+let
+    sonyID = config.sonyID;
+in
 {
     services.pipewire = {
         enable = true;
@@ -69,7 +72,7 @@
                     pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/disable-logind.conf" ''
                         wireplumber.profiles = {
                             main = {
-                                monitor.bluez.seat-monitoring = disabled
+                                monitor.bluez.seat-monitoring = enabled
                             }
                         }
                     ''
@@ -88,7 +91,7 @@
                         {
                             matches = [
                                 {
-                                    "device.name" = "bluez_output.20:64:DE:85:A4:E3";
+                                    "device.name" = sonyID;
                                 }
                             ];
 
