@@ -47,7 +47,7 @@
             twemoji-color-font
             /* maple */
             maple-mono.variable
-            maple-mono.CN
+            maple-mono.CN-unhinted
             /* google fonts */
             (
                 callPackage ./google-fonts.nix {}
