@@ -47,6 +47,13 @@ const SITE = window.location.href;
             const txt = $(this).text();
             if (txt.includes("NVIDIA")) {
                 $node.hide();
+                const $next = $node.next();
+                $next.find('a').each(function () {
+                    const txt = $(this).text();
+                    if (txt.includes("NVIDIA")) {
+                        $next.hide();
+                    };
+                });
                 return true;
             };
         });
