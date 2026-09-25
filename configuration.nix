@@ -5,37 +5,40 @@ let
 in
 {
     imports = [
-        ./patch/firefox.nix
         ./patch/bottles.nix
+        ./patch/firefox.nix
         ./patch/weechat.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
+        ./config/firefox.nix
         ./config/git.nix
         ./config/gmail.nix
+        ./config/gpu.nix
         ./config/gruvbox.nix
         ./config/input.nix
         ./config/kernel.nix
+        ./config/nfs.nix
         ./config/ntp.nix
         ./config/output.nix
         ./config/podman.nix
+        ./config/rtorrent.nix
+        ./config/sony.nix
         ./config/system.nix
         ./config/theme.nix
         ./config/user.nix
         ./config/vps.nix
+        ./config/weechat.nix
         ./config/wifi.nix
         ./config/wireguard.nix
-        ./config/weechat.nix
-        ./config/firefox.nix
-        ./config/gpu.nix
-        ./config/rtorrent.nix
-        ./config/nfs.nix
-        ./config/sony.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
         ./modules/console.nix
         ./modules/dnscrypt-proxy.nix
+        ./modules/env.nix
+        ./modules/game.nix
         ./modules/hardware.nix
+        ./modules/jremap.nix
         ./modules/kremap.nix
         ./modules/networking.nix
         ./modules/nfs.nix
@@ -46,34 +49,39 @@ in
         ./modules/security.nix
         ./modules/services.nix
         ./modules/sudo.nix
+        ./modules/sway.nix
         ./modules/sysctl.nix
+        ./modules/theme.nix
         ./modules/user.nix
         ./modules/wg-quick.nix
-        ./modules/theme.nix
-        ./modules/jremap.nix
-        ./modules/sway.nix
-        ./modules/env.nix
-        ./modules/game.nix
         ./home-manager/btop.nix
+        ./home-manager/cliphist.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
         ./home-manager/fcitx5.nix
+        ./home-manager/fd.nix
         ./home-manager/fetchmail.nix
         ./home-manager/firefox.nix
+        ./home-manager/fontconfig.nix
+        ./home-manager/fzf.nix
         ./home-manager/git.nix
         ./home-manager/home.nix
         ./home-manager/htop.nix
         ./home-manager/kitty.nix
         ./home-manager/lazygit.nix
+        ./home-manager/man.nix
         ./home-manager/mpd.nix
         ./home-manager/mpv.nix
         ./home-manager/ncmpcpp.nix
         ./home-manager/neomutt.nix
+        ./home-manager/neovim.nix
+        ./home-manager/noctalia.nix
         ./home-manager/podman.nix
-        ./home-manager/yazi.nix
         ./home-manager/rime.nix
+        ./home-manager/ripgrep.nix
         ./home-manager/rtorrent.nix
         ./home-manager/scripts.nix
+        ./home-manager/sherlock.nix
         ./home-manager/sndctl.nix
         ./home-manager/ssh.nix
         ./home-manager/swayctl.nix
@@ -82,18 +90,10 @@ in
         ./home-manager/syncdrive.nix
         ./home-manager/theme.nix
         ./home-manager/uv.nix
-        ./home-manager/neovim.nix
         ./home-manager/xdg.nix
+        ./home-manager/yazi.nix
         ./home-manager/zathura.nix
         ./home-manager/zsh.nix
-        ./home-manager/fzf.nix
-        ./home-manager/ripgrep.nix
-        ./home-manager/fd.nix
-        ./home-manager/man.nix
-        ./home-manager/fontconfig.nix
-        ./home-manager/noctalia.nix
-        ./home-manager/sherlock.nix
-        ./home-manager/cliphist.nix
     ];
 
     assertions = lib.mkForce [];
