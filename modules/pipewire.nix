@@ -68,15 +68,15 @@ in
                         }
                    ''
                 )
-                (
-                    pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/disable-logind.conf" ''
-                        wireplumber.profiles = {
-                            main = {
-                                monitor.bluez.seat-monitoring = enabled
-                            }
-                        }
-                    ''
-                )
+                # (
+                #     pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/disable-logind.conf" ''
+                #         wireplumber.profiles = {
+                #             main = {
+                #                 monitor.bluez.seat-monitoring = disabled
+                #             }
+                #         }
+                #     ''
+                # )
             ];
 
             extraConfig = {
@@ -97,7 +97,7 @@ in
 
                             actions = {
                                 update-props = {
-                                    "bluez5.auto-connect" = "[ hfp_hf hsp_hs a2dp_sink hfp_ag hsp_ag a2dp_source ]";
+                                    "bluez5.auto-connect" = "[ hfp_hf hsp_hs a2dp_sink hfp_ag hsp_ag ]";
                                     "bluez5.a2dp.ldac.quality" = "hq";
                                     "bluez5.a2dp.aac.bitratemode" = 0;
                                 };
