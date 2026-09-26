@@ -36,8 +36,8 @@ in
                         capsule = false;
                         widget_spacing = 8;
                         margin_ends = 20;
-                        font_weight = 500;
-                        font_family = "Fira Sans";
+                        font_weight = 600;
+                        font_family = "Iosevka";
 
                         start = [
                             "launcher"
@@ -100,7 +100,7 @@ in
                 lockscreen = {
                     enabled = true;
                     blurred_desktop = false;
-                    blur_intensity = 0.02;
+                    blur_intensity = 0.01;
                     tint_intensity = 0.3;
                     lock_before_suspend = true;
                     fingerprint = true;
@@ -134,7 +134,9 @@ in
                 };
 
                 notification = {
-                    monitors = [ monitorSamsung ];
+                    monitors = [
+                        monitorSamsung
+                    ];
                     position = "top_center";
                 };
 
@@ -162,7 +164,7 @@ in
 
                     launcher = {
                         app_grid = true;
-                        categories = true;
+                        categories = false;
                         compact = false;
                         show_icons = true;
                         show_app_origin_indicator = false;
