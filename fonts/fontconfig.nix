@@ -29,7 +29,7 @@
             /* gtk */
             adwaita-fonts
             /* iosevka */
-            nerd-fonts.iosevka-term
+            iosevka
             /* source han */
             source-han-serif
             source-han-serif-vf-otf
