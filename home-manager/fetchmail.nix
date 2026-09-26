@@ -20,6 +20,7 @@ in
                 chmod 0600 ~/.fetchmailrc
             '';
             text = ''
+                # gmail
                 poll "imap.gmail.com" with protocol IMAP service 993
                     user "${gmailAccount}"
                     password "${gmailPassword}"
@@ -39,6 +40,8 @@ in
                 chmod 0600 ~/.mailfilter
             '';
             text = ''
+                # mailfilter
+
                 MAILDIR="$HOME/mail"
                 INBOX="$HOME/mail/inbox"
 
