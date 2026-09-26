@@ -234,11 +234,12 @@ in
                     border-radius: 12px;
                     border: 1px solid var(--border);
                     background: var(--background);
+                    font-family: Roboto;
                 }
 
                 label {
-                    font-family: Roboto Flex;
                     color: var(--text);
+                    font-weight: 500;
                 }
 
                 #overlay spinner {
