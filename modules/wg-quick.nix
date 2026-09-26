@@ -63,6 +63,11 @@ in
                 ${pkgs.iproute2}/bin/ip rule add to 95.100.110.14/32 table main
                 ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:70::215:ef0f/128 table main
                 ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:70::215:ef10/128 table main
+                # misans
+                ${pkgs.iproute2}/bin/ip rule add to 2.20.245.184/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 2.16.168.46/32 table main
+                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:d01::214:f5b8/128 table main
+                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:d00::210:a82e/128 table main
             '';
 
             preDown = ''
@@ -92,6 +97,11 @@ in
                 ${pkgs.iproute2}/bin/ip rule delete to 95.100.110.14/32
                 ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:70::215:ef0f/128
                 ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:70::215:ef10/128
+                # misans
+                ${pkgs.iproute2}/bin/ip rule delete to 2.20.245.184/32
+                ${pkgs.iproute2}/bin/ip rule delete to 2.16.168.46/32
+                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:d01::214:f5b8/128
+                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:d00::210:a82e/128
             '';
 
             peers = [
