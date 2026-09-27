@@ -44,13 +44,6 @@
                 {
                     domain = "*";
                     type = "-";
-                    item = "priority";
-                    value = "-20";
-                }
-
-                {
-                    domain = "*";
-                    type = "-";
                     item = "rtprio";
                     value = "unlimited";
                 }
