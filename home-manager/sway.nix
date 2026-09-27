@@ -288,7 +288,7 @@ in
 
                 for_window [app_id="org.wireshark.Wireshark" title=".+Capture.Options$"] floating enable, move position center, resize set 80 ppt 96 ppt
 
-                for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 60 ppt 80 ppt
+                for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 64 ppt 84 ppt
                 for_window [title="^PCSX2 v2"] floating disable
 
                 for_window [app_id="gamescope"] move to workspace 9
