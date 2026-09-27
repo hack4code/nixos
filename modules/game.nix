@@ -1,8 +1,5 @@
-{ config, nixOSVersion, ... }:
+{  nixOSVersion, ... }:
 
-let
-    eGPUPciID = config.eGPUPciID;
-in
 {
     programs = {
         gamemode = {
@@ -32,7 +29,9 @@ in
             env = { };
             args = [
                 "--rt"
-                "--prefer-vk-device ${eGPUPciID}"
+                # "--hdr-enabled"
+                # "--force-windows-fullscreen"
+                # "--backend wayland"
             ];
         } // (if nixOSVersion == "26.11" then
         {
