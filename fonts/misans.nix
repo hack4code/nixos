@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation {
     src = pkgs.fetchurl {
         url = "https://hyperos.mi.com/font-download/MiSans_Global_ALL.zip";
         hash = "sha256-IyKgHjE4Zho9dpgM/YFn9wS76mBEXflKAMedPWroW1c=";
-        curlOpts = "-L --retry 8";
+        curlOpts = "-L --http1.1 --ignore-content-length --retry 8";
     };
 
     unpackPhase = ''
