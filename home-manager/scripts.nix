@@ -631,7 +631,16 @@ in
 
 
                         if pgrep --quiet noctalia; then
-                            noctalia msg config-reload
+                            if [[ $TERM == "xterm-kitty" ]]; then
+                                noctalia msg config-reload
+                            else
+                                pkill -9 noctalia
+                                while pgrep --quiet noctalia; do
+                                    sleep 0.4
+                                done
+                                sleep 0.2
+                                noctalia --daemon
+                            fi
                         else
                             noctalia --daemon
                         fi
