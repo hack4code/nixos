@@ -9,7 +9,7 @@
 
             settings = {
                 general = {
-                    renice = 10;
+                    renice = 4;
                     inhibit_screensaver = 0;
                 };
 
