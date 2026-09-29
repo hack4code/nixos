@@ -32,6 +32,14 @@ in
 
             plugins = with pkgs.vimPlugins; [
                 # vim-airline-themes
+                # {
+                #     plugin = vim-airline;
+                #     type = "viml";
+                #     config = ''
+                #         let g:airline_theme = 'base16_gruvbox_dark_hard'
+                #         let g:airline_powerline_fonts = 1
+                #     '';
+                # }
                 kitty-scrollback-nvim
                 plenary-nvim
                 {
@@ -64,14 +72,6 @@ in
                         vim.cmd('colorscheme gruvbox')
                     '';
                 }
-                # {
-                #     plugin = vim-airline;
-                #     type = "viml";
-                #     config = ''
-                #         let g:airline_theme = 'base16_gruvbox_dark_hard'
-                #         let g:airline_powerline_fonts = 1
-                #     '';
-                # }
                 {
                     plugin = lualine-nvim;
                     type = "lua";
