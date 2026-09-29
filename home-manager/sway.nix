@@ -223,7 +223,7 @@ in
                     "${modifier}+alt+r" = "exec --no-startup-id swayctl reboot";
                     "${modifier}+alt+s" = "exec --no-startup-id swayctl shutdown";
                     "${modifier}+alt+c" = "exec --no-startup-id ${noctalia-ipc} notification-clear-history";
-                    "${modifier}+alt+t" = "exec --no-startup-id ${grim} -o DP-3 ~/picture/screen/screenshot.png";
+                    "${modifier}+alt+t" = "exec --no-startup-id ${grim} -o ${monitorSamsung} ~/picture/screen/screenshot.png";
                     "${modifier}+alt+j" = "exec --no-startup-id swayctl ncmpcpp lyricsdown";
                     "${modifier}+alt+k" = "exec --no-startup-id swayctl ncmpcpp lyricsup";
                     "${modifier}+alt+m" = "mode Mouse";
