@@ -41,7 +41,8 @@
             source-han-code-jp
             /* nerd */
             nerd-fonts.symbols-only
-            /* console font */
+            # nerd-fonts.terminess-ttf
+            /* terminus */
             terminus_font
             /* twitter */
             twemoji-color-font
