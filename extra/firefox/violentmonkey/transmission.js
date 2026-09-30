@@ -11,6 +11,7 @@
 // @match           https://nyaa.si/*
 // @match           https://www.xl720.com/*
 // @match           https://rutracker.org/*
+// @match           https://uindex.org/*
 // @icon            https://transmissionbt.com/favicon.ico
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // @require         https://code.jquery.com/jquery-4.0.0.min.js
@@ -32,6 +33,7 @@ const RE_TORRENT_GALAXY = /torrentgalaxy.mx/i;
 const RE_NYAA = /nyaa.si/i;
 const RE_THUNDER = /xl720.com/i;
 const RE_RUTRACKER = /rutracker.org/i;
+const RE_UINDEX = /uindex.org/i;
 
 const CSS_BUTTON_TRANSMISSION = {
     "margin": "1px 2px 1px 4px",
@@ -136,6 +138,14 @@ function add_buttons() {
     else if (RE_RUTRACKER.test(SITE)) {
         elements = $('li:has(> a.magnet-link)');
     }
+    else if (RE_UINDEX.test(SITE)) {
+        if (SITE.endsWith('uindex.org') || SITE.endsWith('uindex.org/')) {
+            elements = $('td.hp-td-name');
+        }
+        else {
+            elements = $('td.sr-col-name');
+        }
+    }
 
     if (elements == null || elements.length === 0) {
         return;
@@ -165,6 +175,9 @@ function add_buttons() {
 (function () {
     if (RE_THUNDER.test(SITE)) {
         $('div.down_btn_xl').hide();
+        add_buttons();
+    }
+    else if (RE_UINDEX.test(SITE)) {
         add_buttons();
     }
     else {
