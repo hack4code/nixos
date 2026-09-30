@@ -157,7 +157,6 @@ in
                 keybindings =
                 let
                     modifier = "Mod4";
-                    firefox = "${pkgs.firefox}/bin/firefox";
                     grim = "${pkgs.grim}/bin/grim";
                     wl-kbptr = "${pkgs.wl-kbptr}/bin/wl-kbptr";
                     sherlock = "${pkgs.sherlock-launcher}/bin/sherlock";
@@ -187,7 +186,7 @@ in
                     "${modifier}+e" = "exec --no-startup-id swayctl ncmpcpp visualizer";
                     "${modifier}+f" = "exec --no-startup-id swayctl btop toggle";
                     "${modifier}+g" = "exec --no-startup-id swayctl htop togglefullscreen";
-                    "${modifier}+i" = "exec ${firefox} -P TOR";
+                    "${modifier}+i" = "exec firefox -P TOR";
                     "${modifier}+h" = "exec --no-startup-id ${noctalia-ipc} notification-clear-history";
                     "${modifier}+j" = "workspace prev_on_output";
                     "${modifier}+k" = "workspace next_on_output";
