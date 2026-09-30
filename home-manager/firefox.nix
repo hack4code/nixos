@@ -216,7 +216,7 @@ in
                         user_pref("browser.aboutConfig.showWarning", false);
 
                         /* compact */
-                        user_pref("browser.compactmode.show", false);
+                        user_pref("browser.compactmode.show", true);
 
                         /* ctrl+q */
                         user_pref("browser.quitShortcut.disabled", true);
