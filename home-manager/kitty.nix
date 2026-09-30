@@ -66,7 +66,6 @@ in
                 disable_ligatures = "never";
                 cursor_shape = "underline";
                 cursor_trail = 1;
-                custom_shaders = "cursor-trail-blaze";
                 focus_follows_mouse = "no";
                 close_on_child_death = "yes";
                 open_url_with = "open_url_from_kitty.sh";
@@ -95,6 +94,8 @@ in
                 tab_title_template "{index}"
 
                 window_padding_width 4 8
+
+                custom_shaders cursor-trail-blaze
 
                 # color
                 cursor                  ${colorGray}
