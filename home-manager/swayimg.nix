@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, nixOSVersion, ... }:
 
 let
     userName = config.userName;
@@ -7,12 +7,6 @@ in
     home-manager.users.${userName} = {
         programs.swayimg = {
             enable = true;
-
-            initLua = "
-                swayimg.viewer.on_key(\"q\", function()
-                    swayimg.exit()
-                end)
-            ";
 
             settings = {
                 general = {
@@ -34,7 +28,15 @@ in
                     size = 12;
                 };
             };
-        };
+        } // (if nixOSVersion == "26.11" then {
+            initLua = "
+                swayimg.viewer.on_key(\"q\", function()
+                    swayimg.exit()
+                end)
+            ";
+        }
+        else {
+        });
     };
 }
 
