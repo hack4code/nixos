@@ -69,6 +69,10 @@ in
                 focus_follows_mouse = "no";
                 close_on_child_death = "yes";
                 open_url_with = "open_url_from_kitty.sh";
+                custom_shaders = "cursor-trail-blaze";
+                allow_remote_control = "socket";
+                listen_on = "unix:@kitty";
+                kitty_mod = "ctrl+shift";
             };
 
             extraConfig = ''
@@ -80,11 +84,6 @@ in
                 symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font
                 symbol_map U+1F000-U+1F02F,U+1F0A0-U+1F0FF,U+1F100-U+1F64F,U+1F680-U+1F6FF,U+1F910-U+1F96B,U+1F980-U+1F9E0 Noto Color Emoji
 
-                allow_remote_control socket
-                listen_on unix:@kitty
-
-                kitty_mod ctrl+shift
-
                 tab_bar_edge bottom
                 tab_bar_margin_width 2.0
                 tab_bar_margin_height 0.0 0.0
@@ -94,8 +93,6 @@ in
                 tab_title_template "{index}"
 
                 window_padding_width 4 8
-
-                custom_shaders cursor-trail-blaze
 
                 # color
                 cursor                  ${colorGray}
