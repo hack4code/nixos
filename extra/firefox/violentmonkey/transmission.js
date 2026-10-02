@@ -142,8 +142,11 @@ function add_buttons() {
         if (SITE.endsWith('uindex.org') || SITE.endsWith('uindex.org/')) {
             elements = $('td.hp-td-name');
         }
-        else {
+        else if (SITE.includes("search=")) {
             elements = $('td.sr-col-name');
+        }
+        else if (SITE.includes("id=")) {
+            elements = $('div.dt-download-box');
         }
     }
 
