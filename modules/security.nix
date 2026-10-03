@@ -47,6 +47,20 @@
                     item = "rtprio";
                     value = "unlimited";
                 }
+
+                {
+                    domain = "*";
+                    type = "-";
+                    item = "nofile";
+                    value = "524288";
+                }
+
+                {
+                    domain = "*";
+                    type = "-";
+                    item = "nproc";
+                    value = "127461";
+                }
             ];
 
             services = {
