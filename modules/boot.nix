@@ -43,20 +43,21 @@ in
             "slab_nomerge"
             "pti=on"
             "hash_pointers=always"
-            # "iommu.passthrough=0"
-            # "iommu.strict=1"
             "proc_mem.force_override=never"
             "mitigations=auto"
-            # "kfence.sample_interval=100"
-            # "vdso32=0"
             /* wine */
             "ia32_emulation=on"
             /* linux security module */
             "lsm=capability,landlock,yama,loadpin,safesetid,integrity,selinux,bpf"
-            # "pcie_ports=native" /* touchpad mouse bug */
-            # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G" /* touchpad mouse bug */
-            /* video */
-            "video=eDP-1:2160x1350@60"
+            /* */
+            "transparent_hugepage=always"
+            "transparent_hugepage_tmpfs=always"
+            "split_lock_detect=off"
+            "split_lock_mitigate=0"
+            "preempt=full"
+            /* amd gpu */
+            "amdgpu.dcdebugmask=0x4"
+            # "video=eDP-1:2160x1350"
         ];
 
         kernelModules = [
