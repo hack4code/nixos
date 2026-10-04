@@ -234,7 +234,7 @@ in
                     border-radius: 12px;
                     border: 1px solid var(--border);
                     background: var(--background);
-                    font-family: Roboto;
+                    font-family: Roboto Flex;
                 }
 
                 label {
