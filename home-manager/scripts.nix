@@ -40,12 +40,13 @@ in
                         cd "$dest/" || panic "$dest not exist"
 
                         if [[ -d "$dest/linux-$1" ]]; then
+                            echo "linux-$1 existed"
                             exit 0
                         fi
 
                         if ! nix registry list | grep -q -F 'flake:kernel'; then
-                            if [[ -d ~/source/nixshell/kernel ]]; then
-                                nix registry add kernel ~/source/nixshell/kernel/
+                            if [[ -d $HOME/source/nixshell/kernel ]]; then
+                                nix registry add kernel "$HOME/source/nixshell/kernel/"
                             fi
                         fi
 
