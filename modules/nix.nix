@@ -58,6 +58,8 @@
                 "steam"
                 "steam-unwrapped"
                 "lutris"
+                /* nix */
+                "lsfg-vk"
             ];
         };
     };
