@@ -225,11 +225,16 @@ in
                         user_pref("ui.key.menuAccessKey", 0);
                         user_pref("ui.key.menuAccessKeyFocuses", false);
 
+                        /* quick find */
+                        user_pref("accessibility.typeaheadfind", false);
+                        user_pref("accessibility.typeaheadfind.manual", false);
+                        user_pref("accessibility.typeaheadfind.autostart", false);
+
                         /* download popup menu */
                         user_pref("browser.download.alwaysOpenPanel", false);
 
                         /* language */
-                        user_pref("intl.accept_languages", "zh-CN, zh, en-US, en");
+                        user_pref("intl.accept_languages", "zh-CN,zh,en-US,en");
 
                         /* split view */
                         user_pref("browser.tabs.splitView.enabled", false);
