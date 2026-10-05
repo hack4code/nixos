@@ -415,7 +415,7 @@ in
                 -- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
                 -- vim.keymap.set("n", "<leader>e", "<Cmd>32Lexplore<CR>", { silent = true, desc = "file explorer" })
 
-                vim.keymap.set("n", "<leader>s", "<Cmd>noh<CR>", { silent = true, desc = "nohlsearch" })
+                vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>", { silent = true, desc = "nohlsearch" })
                 vim.keymap.set("n", "<leader>d", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { silent = true, desc = "disable diagnostics" })
                 vim.keymap.set("n", "<leader>p", ':set paste<CR>"+p:set nopaste<CR>', { silent = true, desc = "paste from clipboard" })
 
