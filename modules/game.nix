@@ -29,9 +29,9 @@
             env = { };
             args = [
                 "--rt"
-                # "--hdr-enabled"
-                # "--force-windows-fullscreen"
-                # "--backend wayland"
+                "--hdr-enabled"
+                "--force-windows-fullscreen"
+                "--backend wayland"
             ];
         } // (if nixOSVersion == "26.11" then
         {
