@@ -11,10 +11,11 @@ let
     colorBlue = config.colorBlue;
     colorOrange = config.colorOrange;
     colorPurple = config.colorPurple;
-    colorForeground = config.colorForeground;
     colorLightWhite = config.colorLightWhite;
+    colorLightYellow = config.colorLightYellow;
     colorLightBlue = config.colorLightBlue;
     colorLightGreen = config.colorLightGreen;
+    colorLightAqua = config.colorLightAqua;
     colorLightOrange = config.colorLightOrange;
     colorLightRed = config.colorLightRed;
     colorLightPurple = config.colorLightPurple;
@@ -35,8 +36,8 @@ in
 
             plugins = {
                 full-border = pkgs.yaziPlugins.full-border;
-                no-status= pkgs.yaziPlugins.no-status;
                 sshfs = pkgs.yaziPlugins.sshfs;
+                # no-status= pkgs.yaziPlugins.no-status;
             };
 
             initLua = ''
@@ -46,7 +47,7 @@ in
                 }
 
                 --- no status
-                require("no-status"):setup()
+                --- require("no-status"):setup()
 
                 --- user name & host name
                 Header:children_add(function()
@@ -100,7 +101,7 @@ in
                 };
 
                 mgr = {
-                    linemode = "size";
+                    linemode = "none";
                     sort_by = "alphabetical";
                     show_hidden = false;
                     sort_sensitive = false;
@@ -174,6 +175,14 @@ in
                         }
                     ];
 
+                    nsz = [
+                        {
+                            run = "${pkgs.nsz}/bin/nsz -D %s";
+                            block = true;
+                            for = "linux";
+                        }
+                    ];
+
                     open = [
                         {
                             run = "xdg-open %s1";
@@ -193,6 +202,7 @@ in
                         { url = "*.zip"; use = "unzip"; }
                         { url = "*.7z"; use = "unzip"; }
                         { url = "*.srt"; use = "edit"; }
+                        { url = "*.nsz"; use = "nsz"; }
                     ];
                 };
             };
@@ -231,17 +241,14 @@ in
 
                     marker_selected = {
                         fg = "${colorLightGreen}";
-                        bg = "${colorLightGreen}";
                     };
 
                     marker_copied = {
                         fg = "${colorLightGreen}";
-                        bg = "${colorLightGreen}";
                     };
 
                     marker_cut = {
                         fg = "${colorLightRed}";
-                        bg = "${colorLightRed}";
                     };
 
                     tab_active = {
@@ -255,39 +262,61 @@ in
                     };
 
                     border_symbol = "│";
+
                     border_style  = {
                         fg = "${colorBlack}";
                     };
                 };
 
                 status = {
-                    separator_open = "";
-                    separator_close = "";
-                    separator_style = {
-                        fg = "${colorBackground1}";
+                    overall = {
+                        fg = "${colorOrange}";
                         bg = "${colorBackground1}";
                     };
 
+                    sep_left = {
+                        open = "";
+                        close = "";
+                    };
+
+                    sep_right = {
+                        open = "";
+                        close = "";
+                    };
+
                     progress_label = {
-                        fg = "${colorForeground}";
                         bold = true;
                     };
 
                     progress_normal = {
-                        fg = "${colorBackground2}";
-                        bg = "${colorBackground1}";
+                        fg = "${colorLightGreen}";
+                        bg = "${colorGray}";
                     };
 
                     progress_error = {
-                        fg = "${colorLightRed}";
-                        bg = "${colorBackground1}";
+                        fg = "${colorLightYellow}";
+                        bg = "${colorRed}";
                     };
 
-                    permissions_t = { fg = "${colorBackground2}"; };
-                    permissions_r = { fg = "${colorLightGreen}"; };
-                    permissions_w = { fg = "${colorLightRed}"; };
-                    permissions_x = { fg = "${colorLightGreen}"; };
-                    permissions_s = { fg = "${colorBlack}"; };
+                    perm_type = {
+                        fg = "${colorLightGreen}";
+                    };
+
+                    perm_read = {
+                        fg = "${colorLightYellow}";
+                    };
+
+                    perm_write = {
+                        fg = "${colorLightRed}";
+                    };
+
+                    perm_exec = {
+                        fg = "${colorLightAqua}";
+                    };
+
+                    perm_sep = {
+                        fg = "${colorGray}";
+                    };
                 };
 
                 mode = {
@@ -337,7 +366,8 @@ in
                         fg = "${colorLightOrange}";
                     };
 
-                    inactive = { };
+                    inactive = {
+                    };
                 };
 
                 tasks = {
@@ -345,7 +375,8 @@ in
                         fg = "${colorBackground2}";
                     };
 
-                    title   = { };
+                    title = {
+                    };
 
                     hovered = {
                         underline = true;
@@ -381,9 +412,11 @@ in
                         fg = "${colorLightWhite}";
                     };
 
-                    title = { };
+                    title = {
+                    };
 
-                    value = { };
+                    value = {
+                    };
 
                     selected = {
                         reversed = true;
@@ -399,7 +432,7 @@ in
                         fg = "${colorLightBlue}";
                     };
 
-                    desc    = {
+                    desc = {
                         fg = "${colorGray}";
                     };
 
@@ -408,7 +441,7 @@ in
                         bold = true;
                     };
 
-                    footer  = {
+                    footer = {
                         fg = "${colorBackground1}";
                         bg = "${colorGray}";
                     };
