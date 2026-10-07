@@ -68,6 +68,19 @@ in
                 ${pkgs.iproute2}/bin/ip rule add to 2.16.168.46/32 table main
                 ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:d01::214:f5b8/128 table main
                 ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:d00::210:a82e/128 table main
+                # bilibili
+                ${pkgs.iproute2}/bin/ip rule add to 148.153.34.154/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 148.153.35.66/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 103.151.151.133/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 103.151.151.134/32 table main
+                # douyin
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.181/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.182/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.183/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.184/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.185/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.186/32 table main
+                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.187/32 table main
             '';
 
             preDown = ''
@@ -102,6 +115,19 @@ in
                 ${pkgs.iproute2}/bin/ip rule delete to 2.16.168.46/32
                 ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:d01::214:f5b8/128
                 ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:d00::210:a82e/128
+                # bilibili
+                ${pkgs.iproute2}/bin/ip rule delete to 148.153.34.154/32
+                ${pkgs.iproute2}/bin/ip rule delete to 148.153.35.66/32
+                ${pkgs.iproute2}/bin/ip rule delete to 103.151.151.133/32
+                ${pkgs.iproute2}/bin/ip rule delete to 103.151.151.134/32
+                # douyin
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.181/32
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.182/32
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.183/32
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.184/32
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.185/32
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.186/32
+                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.187/32
             '';
 
             peers = [
