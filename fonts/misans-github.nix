@@ -1,14 +1,14 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation rec {
     pname = "misans";
-    version = "4.1.0";
+    version = "5.0.0";
     dontConfigure = true;
     dontBuild = true;
 
     src = pkgs.fetchurl {
-        url = "https://github.com/dsrkafuu/misans/archive/refs/tags/v4.1.0.zip";
-        hash = "sha256-Se4tmsfy5h4V5q9oAa/GORxnw+umZmJycA/3VAM6UaY=";
+        url = "https://github.com/dsrkafuu/misans/archive/refs/tags/v${version}.zip";
+        hash = "sha256-xa7rOpPzJKJ7UA/wwUKvkN7B2Mcyhk4WQpHLgjewdd8=";
         curlOpts = "-L --retry 8";
     };
 
