@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 
 let
-    interface = config.wifiInterface;
     wgInterface = config.wgInterface;
     wgListenPort = config.wgListenPort;
     wgIp4Address = config.wgIp4Address;
@@ -16,6 +15,8 @@ let
     vpsIp4Address = config.vpsIp4Address;
     vpsIp6Address = config.vpsIp6Address;
     dnsPort = toString config.dnsPort;
+    ip4AddressOfRule = config.ip4AddressOfRule;
+    ip6AddressOfRule = config.ip6AddressOfRule;
 in
 {
     systemd.services."wg-quick-${wgInterface}" = {
@@ -34,100 +35,26 @@ in
             listenPort = wgListenPort;
             mtu = wgMTU;
 
-            postUp = ''
-                # ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-gro-list off
-                # ${pkgs.ethtool}/bin/ethtool -K ${interface} rx-udp-gro-forwarding on
+            postUp = 
+            let
+                postUp4IPv4 = lib.strings.concatStrings (lib.strings.intersperse ";" (map (v: "${pkgs.iproute2}/bin/ip -4 rule add to ${v}/32 table main") ip4AddressOfRule));
+                postUp4IPv6 = lib.strings.concatStrings (lib.strings.intersperse ";" (map (v: "${pkgs.iproute2}/bin/ip -6 rule add to ${v}/128 table main") ip6AddressOfRule));
+            in
+            ''
                 ${pkgs.iproute2}/bin/tc qdisc add dev ${wgInterface} root fq_codel
-                ${pkgs.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
                 ${pkgs.procps}/bin/sysctl -q net.ipv4.conf.${wgInterface}.route_localnet=1
-                #
-                # tuna
-                ${pkgs.iproute2}/bin/ip rule add to 101.6.15.130/32 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2402:f000:1:400::2/128 table main
-                # ntp.tuna
-                ${pkgs.iproute2}/bin/ip rule add to 101.6.6.172/32 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2402:f000:1:416:101:6:6:172/128 table main
-                # sjtu
-                ${pkgs.iproute2}/bin/ip rule add to 111.186.58.212/32 table main
-                # ustc
-                ${pkgs.iproute2}/bin/ip rule add to 202.38.95.110/32 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2001:da8:d800:95::110/128 table main
-                # douban
-                ${pkgs.iproute2}/bin/ip rule add to 120.53.130.158/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 140.143.177.206/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 81.70.124.99/32 table main
-                # zhihu
-                ${pkgs.iproute2}/bin/ip rule add to 43.135.83.2/32 table main
-                # api.linode.com
-                ${pkgs.iproute2}/bin/ip rule add to 95.100.110.29/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 95.100.110.14/32 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:70::215:ef0f/128 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:70::215:ef10/128 table main
-                # misans
-                ${pkgs.iproute2}/bin/ip rule add to 2.20.245.184/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 2.16.168.46/32 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:d01::214:f5b8/128 table main
-                ${pkgs.iproute2}/bin/ip -6 rule add to 2a02:26f0:2780:d00::210:a82e/128 table main
-                # bilibili
-                ${pkgs.iproute2}/bin/ip rule add to 148.153.34.154/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 148.153.35.66/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 103.151.151.133/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 103.151.151.134/32 table main
-                # douyin
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.181/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.182/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.183/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.184/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.185/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.186/32 table main
-                ${pkgs.iproute2}/bin/ip rule add to 163.181.254.187/32 table main
+                ${pkgs.nftables}/bin/nft -f /etc/wireguard/wireguard.nft
+                ${postUp4IPv4};${postUp4IPv6};
             '';
 
-            preDown = ''
-                ${pkgs.nftables}/bin/nft delete table ip dnscrypt-proxy
-                ${pkgs.nftables}/bin/nft delete table ip6 dnscrypt-proxy
+            preDown =
+            let
+                preDownIPv4 = lib.strings.concatStrings (lib.strings.intersperse ";" (map (v: "${pkgs.iproute2}/bin/ip -4 rule delete to ${v}/32") ip4AddressOfRule));
+                preDown4IPv6 = lib.strings.concatStrings (lib.strings.intersperse ";" (map (v: "${pkgs.iproute2}/bin/ip -6 rule delete to ${v}/128") ip6AddressOfRule));
+            in
+            ''
                 ${pkgs.nftables}/bin/nft delete table ip rpcdaemon
-                #
-                # tuna
-                ${pkgs.iproute2}/bin/ip rule delete to 101.6.15.130/32
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2402:f000:1:400::2/128
-                # ntp tuna
-                ${pkgs.iproute2}/bin/ip rule delete to 101.6.6.172/32
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2402:f000:1:416:101:6:6:172/128
-                # sjtu
-                ${pkgs.iproute2}/bin/ip rule delete to 111.186.58.212/32
-                # ustc
-                ${pkgs.iproute2}/bin/ip rule delete to 202.38.95.110
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2001:da8:d800:95::110/128
-                # douban
-                ${pkgs.iproute2}/bin/ip rule delete to 120.53.130.158/32
-                ${pkgs.iproute2}/bin/ip rule delete to 140.143.177.206/32
-                ${pkgs.iproute2}/bin/ip rule delete to 81.70.124.99/32
-                # zhihu
-                ${pkgs.iproute2}/bin/ip rule delete to 43.135.83.2/32
-                # api.linode.com
-                ${pkgs.iproute2}/bin/ip rule delete to 95.100.110.29/32
-                ${pkgs.iproute2}/bin/ip rule delete to 95.100.110.14/32
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:70::215:ef0f/128
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:70::215:ef10/128
-                # misans
-                ${pkgs.iproute2}/bin/ip rule delete to 2.20.245.184/32
-                ${pkgs.iproute2}/bin/ip rule delete to 2.16.168.46/32
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:d01::214:f5b8/128
-                ${pkgs.iproute2}/bin/ip -6 rule delete to 2a02:26f0:2780:d00::210:a82e/128
-                # bilibili
-                ${pkgs.iproute2}/bin/ip rule delete to 148.153.34.154/32
-                ${pkgs.iproute2}/bin/ip rule delete to 148.153.35.66/32
-                ${pkgs.iproute2}/bin/ip rule delete to 103.151.151.133/32
-                ${pkgs.iproute2}/bin/ip rule delete to 103.151.151.134/32
-                # douyin
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.181/32
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.182/32
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.183/32
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.184/32
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.185/32
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.186/32
-                ${pkgs.iproute2}/bin/ip rule delete to 163.181.254.187/32
+                ${preDownIPv4};${preDown4IPv6};
             '';
 
             peers = [

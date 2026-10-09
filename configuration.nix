@@ -30,6 +30,7 @@ in
         ./config/vps.nix
         ./config/weechat.nix
         ./config/wifi.nix
+        ./config/wg-quick.nix
         ./config/wireguard.nix
         ./input/fcitx5.nix
         ./modules/boot.nix
