@@ -2,18 +2,19 @@
 
 pkgs.stdenv.mkDerivation {
     pname = "misans";
-    version = "1.2";
+    version = "1.3";
     dontConfigure = true;
     dontBuild = true;
 
     src = pkgs.fetchurl {
         url = "https://hyperos.mi.com/font-download/MiSans_Global_ALL.zip";
-        hash = "sha256-RJJhNcWBzaQD4t4JeYKkgdYjulgH5I/COKadN97LD/g=";
+        hash = "";
         curlOpts = "-L --http1.1 --ignore-content-length --retry 8";
     };
 
     unpackPhase = ''
-        ${pkgs.unzip}/bin/unzip $src
+        ${pkgs.zip}/bin/zip -FF "$src" --out misans.zip
+        ${pkgs.unzip}/bin/unzip misans.zip
         ${pkgs.findutils}/bin/find "MiSans Global _ALL/" -iname '*.zip' -exec ${pkgs.unzip}/bin/unzip {} \;
     '';
 
