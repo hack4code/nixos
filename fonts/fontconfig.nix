@@ -48,7 +48,7 @@
             twemoji-color-font
             /* maple */
             maple-mono.variable
-            maple-mono.CN-unhinted
+            maple-mono.CN
             /* google fonts */
             (
                 callPackage ./google-fonts.nix {}
@@ -57,17 +57,10 @@
             (
                 callPackage ./misans.nix {}
             )
-            # (
-            #     callPackage ./misans-github.nix {}
-            # )
             /* vivo sans */
             (
                 callPackage ./vivo-sans.nix {}
             )
-            /* swei-gothic */
-            # (
-            #     callPackage ./swei-gothic.nix {}
-            # )
         ];
 
 
