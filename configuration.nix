@@ -5,7 +5,7 @@ let
 in
 {
     imports = [
-        ./patch/bottles.nix
+        # ./patch/bottles.nix
         ./patch/firefox.nix
         ./patch/weechat.nix
         ./fonts/fontconfig.nix
@@ -97,7 +97,7 @@ in
         ./home-manager/zsh.nix
     ];
 
-    assertions = lib.mkForce [];
+    assertions = lib.mkForce [ ];
 
     time = {
         timeZone = timeZone;
@@ -172,7 +172,8 @@ in
             bashInteractive
         ];
 
-        defaultPackages = [];
+        defaultPackages = [
+        ];
 
         systemPackages = with pkgs; [
             /******************
@@ -329,26 +330,6 @@ in
             *******************/
             # uefitool
             # flashrom
-            /******************
-                game
-            *******************/
-            tetris
-            /* ps2 */
-            pcsx2
-            /* ps3 */
-            # rpcs3
-            /* ps4 */
-            shadps4
-            /* Wii U */
-            # cemu
-            /* switch */
-            nsz
-            eden
-            /* windows */
-            wine64
-            umu-launcher
-            bottles
-            # lutris-free
         ] ++ (with pkgs-unstable; [
             netwatch
             diskwatch
