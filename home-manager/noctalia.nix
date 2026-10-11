@@ -144,6 +144,8 @@ in
                     font_family = "Adwaita Sans";
                     avatar_path = userAvatarImage;
 
+                    clipboard_history_max_entries = 1024;
+
                     animation = {
                         enabled = true;
                         speed = 0.5;
