@@ -1,14 +1,18 @@
 { pkgs ? import <nixpkgs> {} }:
 
+let
+    tag = "0.4.9";
+in
 pkgs.stdenv.mkDerivation {
     pname = "google-fonts";
-    version = "1.0";
+    version = tag;
     dontConfigure = true;
-    dontBuild = true;
 
-    src = pkgs.fetchzip {
-        url = "https://github.com/google/fonts/archive/main.zip";
-        hash = "sha256-XvFlnyXCM69WscpY20EhKAaKYj1fs0eqmODZWx0NIPg=";
+    src = pkgs.fetchFromGitHub {
+        owner = "google";
+        repo = "fonts";
+        tag = tag;
+        hash = "";
         curlOpts = "-L --retry 8";
     };
 
