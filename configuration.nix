@@ -56,7 +56,7 @@ in
         ./modules/user.nix
         ./modules/wg-quick.nix
         ./home-manager/btop.nix
-        ./home-manager/cliphist.nix
+        # ./home-manager/cliphist.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
         ./home-manager/fcitx5.nix
