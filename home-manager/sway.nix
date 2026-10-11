@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 let
     userName = config.userName;
@@ -15,8 +15,6 @@ let
     cursorName = config.cursorName;
 in
 {
-    systemd.user.services.cliphist.wantedBy = lib.mkForce [];
-
     home-manager.users.${userName} = {
         services = {
             gnome-keyring = {
