@@ -84,7 +84,7 @@ const SITE = window.location.href;
         $node = $('.p_mainnew,.ct_tittle');
         if ($node.length) {
             $node.css({
-                "font-family": "Roboto Flex, MiSans",
+                "font-family": "MiSans",
                 "font-style": "normal"
             });
             return true;
