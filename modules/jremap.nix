@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-    jremap = pkgs.callPackage ./jremap/jremap.nix { };
+    jremap = pkgs.callPackage ./jremap/jremap.nix { inherit pkgs; };
 in
 {
     environment.systemPackages = [ jremap ];

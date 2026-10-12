@@ -58,10 +58,10 @@ in
                 bitwarden-cli
                 linode-cli
                 (
-                    callPackage ./rpcd/rpcd.nix { inherit nixOSVersion; }
+                    callPackage ./rpcd/rpcd.nix { inherit pkgs; inherit nixOSVersion; }
                 )
                 (
-                    callPackage ./openurl/openurl.nix { }
+                    callPackage ./openurl/openurl.nix { inherit pkgs; }
                 )
             ];
 

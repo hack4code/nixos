@@ -51,15 +51,15 @@
             maple-mono.CN
             /* google fonts */
             (
-                callPackage ./google-fonts.nix {}
+                callPackage ./google-fonts.nix { inherit pkgs; }
             )
             /* MiSans */
             (
-                callPackage ./misans.nix {}
+                callPackage ./misans.nix { inherit pkgs; }
             )
             /* vivo sans */
             (
-                callPackage ./vivo-sans.nix {}
+                callPackage ./vivo-sans.nix { inherit pkgs; }
             )
         ];
 

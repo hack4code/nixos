@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-    kremap = pkgs.callPackage ./kremap/kremap.nix {};
+    kremap = pkgs.callPackage ./kremap/kremap.nix { inherit pkgs; };
 in
 {
     environment.systemPackages = [ kremap ];
