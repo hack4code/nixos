@@ -113,13 +113,13 @@ in
             macros = [
                 {
                     key = "\\Ca";
-                    action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>";
+                    action = "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<Enter>";
                     map = [ "index" ];
                 }
 
                 {
                     key = "\\Cb";
-                    action = "<pipe-message>${pkgs.urlscan}/bin/urlscan --nohelp --run 'open_url_from_kitty.py {}'<enter>";
+                    action = "<pipe-message> ${pkgs.urlscan}/bin/urlscan --nohelp --run 'open_url_from_kitty.py {}'<Enter>";
                     map = [ "index" "pager" ];
                 }
             ];
@@ -341,7 +341,7 @@ in
                         "R": "reverse",
                         "S": "all_shorten",
                         "s": "shorten",
-                        "u": "all_escape"
+                        "u": "all_escape",
                         "ctrl l": "clear_screen",
                         "ctrl d": "page_down",
                         "ctrl u": "page_up"
