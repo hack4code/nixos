@@ -12,6 +12,7 @@ in
     home-manager.users.${userName} = {
         programs.firefox = {
             enable = true;
+
             package = pkgs.firefox-bin;
 
             configPath = ".config/mozilla/firefox";
@@ -60,7 +61,7 @@ in
                     Cookies = true;
                     Sessions = true;
                     FormData = true;
-                    SiteSettings = true;
+                    SiteSettings = false;
                     History = false;
                     Downloads = false;
                 };
@@ -184,10 +185,6 @@ in
                         ];
                     };
 
-                    settings = {
-                        # "alerts.useSystemBackend" = true;
-                    };
-
                     # containers = {
                     #     self = {
                     #         color = "purple";
@@ -270,7 +267,7 @@ in
                         user_pref("browser.translations.automaticallyPopup", true);
 
                         /* concurrency */
-                        user_pref("dom.maxHardwareConcurrency", 8);
+                        user_pref("dom.maxHardwareConcurrency", 4);
 
                         /* wayland */
                         user_pref("widget.wayland.fractional-scale.enabled", true);
@@ -291,22 +288,10 @@ in
                         /* tab */
                         user_pref("accessibility.tabfocus", 1);
                         user_pref("ui.prefersReducedMotion", 0);
-                        user_pref("browser.newtabpage.enabled", false);
                         user_pref("browser.tabs.insertAfterCurrent", false);
                         user_pref("browser.tabs.insertRelatedAfterCurrent", false);
                         user_pref("browser.newtab.url", "about:blank");
-                        user_pref("browser.link.open_newwindow", 3);
-                        user_pref("browser.link.open_newwindow.restriction", 0);
-                        user_pref("dom.disable_open_during_load", false);
                         user_pref("browser.tabs.closeTabByDblclick", true);
-                        user_pref("browser.tabs.loadDivertedInBackground", true);
-                        user_pref("browser.urlbar.openintab", true);
-                        user_pref("browser.sessionstore.restore_on_demand", true);
-                        user_pref("browser.sessionstore.restore_tabs_lazily", false);
-
-                        /* blocklist update */
-                        user_pref("extensions.blocklist.enabled", true);
-                        user_pref("services.blocklist.update_enabled", true);
 
                         /* safe browsing */
                         user_pref("browser.safebrowsing.phishing.enabled", true);
@@ -320,16 +305,11 @@ in
                         user_pref("browser.cache.memory.capacity", -1);
 
                         /* media */
-                        user_pref("media.rdd-ffmpeg.enabled", true);
                         user_pref("media.ffmpeg.vaapi.enabled", true);
-                        user_pref("media.hardwaremediakeys.enabled", true);
                         user_pref("media.hardware-video-decoding.force-enabled", true);
                         user_pref("gfx.wayland.hdr", true);
                         user_pref("gfx.webrender.enabled", true);
                         user_pref("gfx.webrender.all", true);
-                        user_pref("gfx.webrender.compositor", true);
-                        user_pref("gfx.webrender.compositor.force-enabled", true);
-                        user_pref("gfx.webrender.layer-compositor", true);
                         user_pref("layers.gpu-process.enabled", true);
                         user_pref("media.av1.enabled", true);
                         user_pref("media.mkv.enabled", true);
@@ -353,8 +333,6 @@ in
                         user_pref("security.ssl.enable_ocsp_must_staple", true);
 
                         /* notification */
-                        user_pref("content.notify.interval", 100000);
-                        user_pref("dom.webnotifications.enabled", true);
                         user_pref("alerts.useSystemBackend", true);
 
                         /* ai */
@@ -374,16 +352,16 @@ in
                         user_pref("font.default.zh-HK", "Sans Serif");
                         user_pref("font.name.sans-serif.x-western", "Noto Sans");
                         user_pref("font.name.sans-serif.zh-CN", "MiSans");
-                        user_pref("font.name.sans-serif.zh-TW", "Source Han Sans TC");
-                        user_pref("font.name.sans-serif.zh-HK", "Source Han Sans HC");
+                        user_pref("font.name.sans-serif.zh-TW", "MiSans");
+                        user_pref("font.name.sans-serif.zh-HK", "MiSans");
                         user_pref("font.name.serif.x-western", "Noto Serif");
                         user_pref("font.name.serif.zh-CN", "Noto Serif SC");
                         user_pref("font.name.serif.zh-TW", "Source Han Serif TC");
                         user_pref("font.name.serif.zh-HK", "Source Han Serif HC");
                         user_pref("font.name.monospace.x-western", "JetBrains Mono");
                         user_pref("font.name.monospace.zh-CN", "MiSans");
-                        user_pref("font.name.monospace.zh-TW", "Source Han Mono TC");
-                        user_pref("font.name.monospace.zh-HK", "Source Han Mono HC");
+                        user_pref("font.name.monospace.zh-TW", "MiSans");
+                        user_pref("font.name.monospace.zh-HK", "MiSans");
                         user_pref("font.minimum-size.x-western", 12);
                         user_pref("font.minimum-size.zh-CN", 12);
                         user_pref("font.minimum-size.zh-TW", 12);

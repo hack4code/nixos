@@ -6,7 +6,6 @@ in
 {
     imports = [
         ./patch/bottles.nix
-        ./patch/firefox.nix
         ./patch/weechat.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
