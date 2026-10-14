@@ -9,21 +9,21 @@
         };
 
         packages = with pkgs; [
-            # /* noto */
+            /* noto */
             # noto-fonts
             # noto-fonts-cjk-sans
             # noto-fonts-emoji
-            # /* roboto */
+            /* roboto */
             # roboto-serif
             # roboto-mono
             # roboto-flex
-            # /* jetbrains */
+            /* jetbrains */
             # jetbrains-mono
-            # /* source code */
+            /* source code */
             # source-code-pro
-            # /* intel one */
+            /* intel one */
             # intel-one-mono
-            # /* fira */
+            /* fira */
             # fira
             # fira-code
             /* gtk */
