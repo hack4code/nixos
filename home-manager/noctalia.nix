@@ -138,6 +138,14 @@ in
                         monitorSamsung
                     ];
                     position = "top_center";
+                    filter = {
+                        firefox = {
+                            enabled = true;
+                            match = "firefox";
+                            allow_permanent = false;
+                            override_duration = 5000;
+                        };
+                    };
                 };
 
                 shell = {
