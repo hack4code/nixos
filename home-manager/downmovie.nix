@@ -106,6 +106,10 @@ in
             Service = {
                 Type = "simple";
                 StandardOutput = "journal";
+                Environment = [
+                    "TPM2_PKCS11_LOG_LEVEL=0"
+                    "TSS2_LOG=\"fapi+NONE\""
+                ];
                 ExecStart = "${downmovie}/bin/${appName}";
             };
         };
