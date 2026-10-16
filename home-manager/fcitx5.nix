@@ -2,6 +2,8 @@
 
 let
     userName = config.userName;
+    colorForeground = config.colorForeground;
+    colorBackground0 = config.colorBackground0;
 in
 {
     systemd.user.services.fcitx5-daemon.wantedBy = lib.mkForce [];
@@ -24,14 +26,25 @@ in
 
                 settings = {
                     inputMethod = {
-                        GroupOrder."0" = "Default";
+                        GroupOrder = {
+                            "0" = "Default";
+                        };
+
                         "Groups/0" = {
                             Name = "Default";
                             "Default Layout" = "us";
                             DefaultIM = "rime";
                         };
-                        "Groups/0/Items/0".Name = "keyboard-us";
-                        "Groups/0/Items/1".Name = "rime";
+
+                        "Groups/0/Items/0" = {
+                            Name = "keyboard-us";
+                            Layout = "";
+                        };
+
+                        "Groups/0/Items/1" = {
+                            Name = "rime";
+                            Layout = "";
+                        };
                     };
 
                     globalOptions = {
@@ -61,8 +74,8 @@ in
                             Font = "\"MiSans Medium 10\"";
                             MenuFont = "\"MiSans Semibold 10\"";
                             TrayFont = "\"MiSans Medium 12\"";
-                            TrayOutlineColor = "#282828";
-                            TrayTextColor = "#ebdbb2";
+                            TrayOutlineColor = "${colorBackground0}";
+                            TrayTextColor = "${colorForeground}";
                             PreferTextIcon = "True";
                             ShowLayoutNameInIcon = "True";
                             UseInputMethodLanguageToDisplayText = "True";
@@ -75,12 +88,6 @@ in
                             InputState = "\"Follow Global Configuration\"";
                             PreeditCursorPositionAtBeginning = "True";
                             SwitchInputMethodBehavior = "Clear";
-                        };
-
-                        clipboard.globalSection = {
-                            TriggerKey = "";
-                            PastePrimaryKey = "";
-                            "Number of entries" = 5;
                         };
                     };
                 };
