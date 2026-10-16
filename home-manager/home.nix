@@ -35,9 +35,9 @@ in
 
                 /* fcitx5 */
                 GTK_IM_MODULE = "wayland";
-                SDL_IM_MODULE = "fcitx";
-                XMODIFIERS = "@im=fcitx";
                 QT_IM_MODULE = "fcitx";
+                XMODIFIERS = "@im=fcitx";
+                SDL_IM_MODULE = "fcitx";
 
                 /* sway */
                 WLR_RENDERER = "vulkan";
