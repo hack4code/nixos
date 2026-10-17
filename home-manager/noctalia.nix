@@ -21,7 +21,9 @@ in
 
             settings = {
                 bar = {
-                    order = [ "main" ];
+                    order = [
+                        "main"
+                    ];
 
                     default = {
                         enabled = true;
@@ -36,16 +38,18 @@ in
                         capsule = false;
                         widget_spacing = 8;
                         margin_ends = 20;
-                        font_weight = 600;
+                        font_weight = 800;
                         font_family = "Iosevka";
 
                         start = [
                             "launcher"
                             "workspaces"
                         ];
+
                         center = [
                             "active_window"
                         ];
+
                         end = [
                             "network"
                             "bluetooth"
@@ -173,11 +177,14 @@ in
                     };
 
                     launcher = {
+                        default_view = "all";
+                        search_position = "top";
+                        sort_by_usage = false;
+                        width = 600;
                         app_grid = true;
-                        categories = false;
-                        compact = false;
-                        show_icons = true;
-                        show_app_origin_indicator = false;
+                        show_session_button = false;
+                        show_settings_button = false;
+                        track_usage = false;
                     };
                 };
 
@@ -188,7 +195,7 @@ in
 
                     workspaces = {
                         font_family = "Fira Mono";
-                        font_weight = 500;
+                        font_weight = 800;
                     };
 
                     active_window = {
