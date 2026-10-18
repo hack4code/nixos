@@ -62,7 +62,6 @@
             system = "x86_64-linux";
 
             overlays = [
-                (import overlays/bottles.nix)
                 (import overlays/firefox.nix)
             ];
 

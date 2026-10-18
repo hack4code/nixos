@@ -2,6 +2,7 @@
 
 let
     eGPUPciID = config.eGPUPciID;
+    bottles = pkgs-stable.bottles.override { removeWarningPopup = true; };
 in
 {
     environment.systemPackages = with pkgs; [
@@ -17,10 +18,10 @@ in
         /* switch */
         nsz
         eden
-    ] ++ (with pkgs-stable; [
+    ] ++ [
         /* windows */
         bottles
-    ]);
+    ];
 
     programs = {
         gamemode = {
