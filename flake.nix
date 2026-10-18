@@ -62,22 +62,8 @@
             system = "x86_64-linux";
 
             overlays = [
-                (self: super: {
-                    bottles = super.bottles.override {
-                        removeWarningPopup = true;
-                    };
-                })
-
-                (self: super: {
-                    firefox-bin-unwrapped = super.firefox-bin-unwrapped.overrideAttrs (oldAttrs: rec {
-                        version = "158.0";
-                        src = super.fetchurl {
-                            url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.xz";
-                            hash = "sha256-lUmwVOxM+F9Q9qGdjG+3lYAxLnHrxOwsshfsmvCdwSo=";
-                            curlOpts = "-L --retry 8";
-                        };
-                    });
-                })
+                (import overlays/bottles.nix)
+                (import overlays/firefox.nix)
             ];
 
             pkgs-unstable = import nixpkgs {
