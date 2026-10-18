@@ -72,8 +72,8 @@ in
                     Notifications = {
                         Allow = ffNoticationsAllow;
                         Block = [ ];
-                        BlockNewRequests = false;
-                        Locked = false;
+                        BlockNewRequests = true;
+                        Locked = true;
                     };
 
                     Camera = {
@@ -333,7 +333,10 @@ in
                         user_pref("security.ssl.enable_ocsp_must_staple", true);
 
                         /* notification */
+                        user_pref("dom.webnotifications.enabled", true);
                         user_pref("alerts.useSystemBackend", true);
+                        user_pref("permissions.default.desktop-notification", 1);
+                        user_pref("dom.webnotifications.requireinteraction.enabled", false);
 
                         /* ai */
                         user_pref("browser.ai.control.default", "blocked");
@@ -350,17 +353,17 @@ in
                         user_pref("font.default.zh-CN", "Sans Serif");
                         user_pref("font.default.zh-TW", "Sans Serif");
                         user_pref("font.default.zh-HK", "Sans Serif");
-                        user_pref("font.name.sans-serif.x-western", "Noto Sans");
+                        user_pref("font.name.sans-serif.x-western", "Roboto");
                         user_pref("font.name.sans-serif.zh-CN", "MiSans");
-                        user_pref("font.name.sans-serif.zh-TW", "MiSans");
+                        user_pref("font.name.sans-serif.zh-TW", "MiSans TC");
                         user_pref("font.name.sans-serif.zh-HK", "MiSans");
-                        user_pref("font.name.serif.x-western", "Noto Serif");
-                        user_pref("font.name.serif.zh-CN", "Noto Serif SC");
+                        user_pref("font.name.serif.x-western", "Roboto Serif");
+                        user_pref("font.name.serif.zh-CN", "Source Han Serif SC");
                         user_pref("font.name.serif.zh-TW", "Source Han Serif TC");
                         user_pref("font.name.serif.zh-HK", "Source Han Serif HC");
                         user_pref("font.name.monospace.x-western", "JetBrains Mono");
                         user_pref("font.name.monospace.zh-CN", "MiSans");
-                        user_pref("font.name.monospace.zh-TW", "MiSans");
+                        user_pref("font.name.monospace.zh-TW", "MiSans TC");
                         user_pref("font.name.monospace.zh-HK", "MiSans");
                         user_pref("font.minimum-size.x-western", 12);
                         user_pref("font.minimum-size.zh-CN", 12);
