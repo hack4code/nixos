@@ -1,4 +1,4 @@
-{config, lib, ...}:
+{ config, ... }:
 
 let
     weechatUserName = config.weechatUserName;
@@ -23,9 +23,9 @@ in
 
                 init =
                 let
-                    libera_channels =  lib.strings.concatStringsSep "," liberaChannels;
-                    oftc_channels = lib.strings.concatStringsSep "," oftcChannels;
-                    nick_names = lib.strings.concatStringsSep "," weechatNickNames;
+                    libera_channels =  pkgs.lib.strings.concatStringsSep "," liberaChannels;
+                    oftc_channels = pkgs.lib.strings.concatStringsSep "," oftcChannels;
+                    nick_names = pkgs.lib.strings.concatStringsSep "," weechatNickNames;
                 in
                 ''
                     /set irc.server_default.username "${weechatUserName}"
