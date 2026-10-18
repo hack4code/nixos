@@ -128,7 +128,7 @@ in
                 enable = true;
             };
             cache = {
-                enable = false;
+                enable = true;
                 generateAtRuntime = true;
             };
         };
