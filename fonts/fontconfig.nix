@@ -10,22 +10,22 @@
 
         packages = with pkgs; [
             /* noto */
-            # noto-fonts
-            # noto-fonts-cjk-sans
-            # noto-fonts-emoji
+            noto-fonts
+            noto-fonts-cjk-sans
+            noto-fonts-color-emoji
             /* roboto */
-            # roboto-serif
-            # roboto-mono
-            # roboto-flex
+            roboto-serif
+            roboto-mono
+            roboto-flex
             /* jetbrains */
-            # jetbrains-mono
+            jetbrains-mono
             /* source code */
-            # source-code-pro
+            source-code-pro
             /* intel one */
-            # intel-one-mono
+            intel-one-mono
             /* fira */
-            # fira
-            # fira-code
+            fira
+            fira-code
             /* gtk */
             adwaita-fonts
             /* iosevka */
@@ -39,6 +39,10 @@
             source-han-sans-vf-ttf
             source-han-mono
             source-han-code-jp
+            /* ubuntu */
+            ubuntu-classic
+            ubuntu-sans
+            ubuntu-sans-mono
             /* nerd */
             nerd-fonts.symbols-only
             # nerd-fonts.terminess-ttf
@@ -49,10 +53,8 @@
             /* maple */
             maple-mono.variable
             maple-mono.CN
-            /* google fonts */
-            (
-                callPackage ./google-fonts.nix { inherit pkgs; }
-            )
+            /* google */
+            googlesans-code
             /* MiSans */
             (
                 callPackage ./misans.nix { inherit pkgs; }
