@@ -1,4 +1,5 @@
 {config, lib, ...}:
+
 let
     weechatUserName = config.weechatUserName;
     weechatNickNames = config.weechatNickNames;
