@@ -61,8 +61,17 @@
         nixosConfigurations = rec {
             system = "x86_64-linux";
 
+            overlays = [
+                (self: super: {
+                    bottles = super.bottles.override {
+                        removeWarningPopup = true;
+                    };
+                })
+            ];
+
             pkgs-unstable = import nixpkgs {
                 inherit system;
+                inherit overlays;
                 config = {
                     allowUnfree = true;
                 };
@@ -70,6 +79,7 @@
 
             pkgs-stable = import nixpkgs-stable {
                 inherit system;
+                inherit overlays;
                 config = {
                     allowUnfree = true;
                 };
