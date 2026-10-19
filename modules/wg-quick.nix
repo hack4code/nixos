@@ -35,7 +35,7 @@ in
             listenPort = wgListenPort;
             mtu = wgMTU;
 
-            postUp = 
+            postUp =
             let
                 postUp4IPv4 = lib.strings.concatStrings (lib.strings.intersperse ";" (map (v: "${pkgs.iproute2}/bin/ip -4 rule add to ${v}/32 table main") ip4AddressOfRule));
                 postUp4IPv6 = lib.strings.concatStrings (lib.strings.intersperse ";" (map (v: "${pkgs.iproute2}/bin/ip -6 rule add to ${v}/128 table main") ip6AddressOfRule));
