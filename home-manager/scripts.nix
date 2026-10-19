@@ -19,6 +19,8 @@ in
                         nix-direnv
                     ];
                     text = ''
+                        trap "" PIPE
+
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -36,7 +38,7 @@ in
                         kernel_nix_file="$HOME/source/nixos/config/kernel.nix"
                         kernel_config_file="$HOME/source/nixos/modules/kernel/config"
 
-                        dest="$HOME/code/kernel/"
+                        dest="$HOME/code/kernel"
                         cd "$dest/" || panic "$dest not exist"
 
                         if [[ -d "$dest/linux-$1" ]]; then
@@ -81,6 +83,16 @@ in
                                 panic 'no sha256 signature found'
                             fi
                             kernel_url="$kernel_url_tuna"
+                        elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
+                            $CURL -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
+                            if ! [[ -f $kernel_github ]]; then
+                                panic "$kernel_github not exist"
+                            fi
+
+                            tar xzf "$kernel_github" && rm -f "$kernel_github"
+
+                            kernel_url="$kernel_url_github"
+                            kernel_hash=$(nix hash path "linux-$1")
                         elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
                             $CURL -O -L --silent --retry 8 "$kernel_url_cdn"
                             if ! [[ -f $kernel_cdn ]]; then
@@ -94,19 +106,11 @@ in
                                 panic 'no sha256 signature found'
                             fi
                             kernel_url="$kernel_url_cdn"
-                        elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
-                            $CURL -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
-                            if ! [[ -f $kernel_github ]]; then
-                                panic "$kernel_github not exist"
-                            fi
-
-                            tar xzf "$kernel_github" && rm -f "$kernel_github"
-
-                            kernel_url="$kernel_url_github"
-                            kernel_hash=$(nix hash path "linux-$1")
                         else
                             panic "kernel $1 not found"
                         fi
+
+                        trap - PIPE
 
                         sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$kernel_nix_file"
                         sed -i -E "/kernelHash/s/\".+\"/\"$kernel_hash\"/" "$kernel_nix_file"
