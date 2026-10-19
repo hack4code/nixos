@@ -3,7 +3,6 @@
 let
     userName = config.userName;
     userHome = config.userHome;
-    vpsName = config.vpsName;
     wgServerIp4Address = config.wgServerIp4Address;
 in
 {
@@ -187,8 +186,8 @@ in
                         fi
 
                         local T=$(date +'%F-%H-%M')
-                        # exec "$SWAY" &> /var/log/sway/$T.log
-                        exec "$SWAY"
+                        export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+                        kmscon-launch-gui "$SWAY"
                     }
                 '';
             };
