@@ -50,17 +50,12 @@ in
                 path = "$HOME/.local/share/zsh/history";
 
                 ignorePatterns = (map (x: x + " *") (builtins.attrNames shellAliases)) ++ [
-                    "rm *"
-                    "pkill *"
-                    "kill *"
                     "mkdir *"
                     "mkcd *"
                     "ls *"
                     "la *"
                     "ll *"
-                    "vi *"
                     "vim *"
-                    "nvim *"
                 ];
             };
 
@@ -69,10 +64,6 @@ in
                     mkdir --parents "$1" && cd "$1"
                 '';
            };
-
-            sessionVariables = { };
-
-            setOptions = [ ];
 
             shellAliases = {
                 /* git */
@@ -93,14 +84,8 @@ in
                 lg = "lazygit";
                 /* kitty */
                 icat = "kitten icat";
-                /* iproute */
-                ip6 = "ip -color -6";
-                ip = "ip -color";
                 /* systemd */
-                jbi = "journalctl --boot --identifier";
                 jb = "journalctl --boot";
-                jb1 = "journalctl --boot -1";
-                jfi = "journalctl --follow --identifier";
                 jf = "journalctl --follow";
                 rt = "systemctl reboot";
                 st = "systemctl poweroff";
@@ -108,26 +93,16 @@ in
                 mn = "make nconfig";
                 mo = "make oldconfig";
                 ms = "make switch";
-                mss = "make switch-stable";
                 mu = "make update";
-                mus = "make update-stable";
                 /* glow */
                 mp = "glow --pager";
                 mm = "glow --pager README.md";
-                /* openssh */
-                vc = "kssh -T ${vpsName}";
-                vd = "kssh -T ${vpsName} docker container";
-                vg = "kssh -T ${vpsName} docker container logs";
-                vl = "kssh -T ${vpsName} docker container list";
                 /* lsof */
                 lp = "lsof -iTCP -sTCP:listen -P -n";
                 /* transmission */
                 tl = "stig set connect.host ${wgServerIp4Address} \\; ls -c id,name,size,status,%downloaded";
                 /* */
-                t = "date '+%F %H:%M %A'";
-                tp = "cd \"$(mktemp -d)\"";
                 wp = "wl-copy";
-                li = "linode";
             };
 
             initContent = lib.mkOrder 1500 ''
@@ -198,7 +173,7 @@ in
                         zstyle ':omz:plugins:eza' 'icons' no
                     fi
                     zstyle ':omz:plugins:eza' 'time-style' '+%Y-%m-%d %H:%M'
-                    zstyle ':omz:plugins:eza' 'color-scale-mode' fixed
+                    # zstyle ':omz:plugins:eza' 'color-scale-mode' fixed
 
                     SWAY=$(command -v sway)
                     function sway {
