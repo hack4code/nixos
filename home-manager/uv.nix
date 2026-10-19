@@ -7,16 +7,21 @@ in
     home-manager.users.${userName} = {
         programs.uv = {
             enable = true;
+
             settings = {
-                python-preference = "only-managed";
+                concurrent-builds = 4;
                 concurrent-downloads = 4;
+                concurrent-installs = 4;
+
+                extra-index-url = [
+                    "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+                    "https://mirrors.ustc.edu.cn/pypi/simple/"
+                ];
+
                 pip = {
-                    python-platform = "x86_64-unknown-linux-gnu";
-                    index-url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple";
                     extra-index-url = [
-                        "http://mirrors.aliyun.com/pypi/simple/"
+                        "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
                         "https://mirrors.ustc.edu.cn/pypi/simple/"
-                        "https://mirrors.cloud.tencent.com/pypi/simple/"
                     ];
                 };
             };
