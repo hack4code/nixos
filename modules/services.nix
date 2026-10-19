@@ -45,6 +45,7 @@
 
         udev = {
             enable = true;
+
             extraRules = ''
                 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", GROUP="video", MODE="0664"
                 KERNEL=="ntsync", MODE="0666", TAG+="uaccess"
@@ -66,7 +67,9 @@
         };
 
         xserver = {
-            videoDrivers = [ "modesetting" ];
+            videoDrivers = [
+                "modesetting"
+            ];
         };
     };
 }
