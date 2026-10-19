@@ -49,9 +49,6 @@ in
 
                 /* bitwarden */
                 BW_SESSION = "${bwSession}";
-
-                /* weechat */
-                WEECHAT_EXTRA_LIBDIR = "/run/current-system/sw/lib/weechat/plugins";
             };
 
             packages = with pkgs; [
