@@ -93,6 +93,8 @@ in
                 mo = "make oldconfig";
                 ms = "make switch";
                 mu = "make update";
+                msu = "make update-stable";
+                mss = "make switch-stable";
                 /* glow */
                 mp = "glow --pager";
                 mm = "glow --pager README.md";
@@ -187,7 +189,8 @@ in
 
                         local T=$(date +'%F-%H-%M')
                         export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-                        kmscon-launch-gui "$SWAY"
+                        # kmscon-launch-gui "$SWAY"
+                        exec $SWAY
                     }
                 '';
             };
