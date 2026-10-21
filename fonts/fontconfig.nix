@@ -14,9 +14,11 @@
             noto-fonts-cjk-sans
             noto-fonts-color-emoji
             /* roboto */
-            roboto-serif
+            roboto
+            roboto-slab
             roboto-mono
             roboto-flex
+            roboto-serif
             /* jetbrains */
             jetbrains-mono
             /* source code */
