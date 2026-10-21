@@ -364,7 +364,7 @@ in
                         user_pref("font.name.monospace.x-western", "JetBrains Mono");
                         user_pref("font.name.monospace.zh-CN", "MiSans");
                         user_pref("font.name.monospace.zh-TW", "MiSans TC");
-                        user_pref("font.name.monospace.zh-HK", "MiSans");
+                        user_pref("font.name.monospace.zh-HK", "MiSans TC");
                         user_pref("font.minimum-size.x-western", 12);
                         user_pref("font.minimum-size.zh-CN", 12);
                         user_pref("font.minimum-size.zh-TW", 12);
