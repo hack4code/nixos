@@ -24,15 +24,6 @@ in
             ];
 
             sessionVariables = {
-                /* tpm2 */
-                TPM2_PKCS11_BACKEND = "esysdb";
-                TPM2_PKCS11_LOG_LEVEL = 0;
-                TSS2_LOG = "fapi+NONE";
-
-                # GNUPGHOME = "$HOME/.config/gpg";
-                # GOPATH = "$HOME/.local/share/go";
-                # GPG_TTY = "$(tty)";
-
                 /* fcitx5 */
                 GTK_IM_MODULE = "wayland";
                 QT_IM_MODULE = "fcitx";
@@ -49,6 +40,10 @@ in
 
                 /* bitwarden */
                 BW_SESSION = "${bwSession}";
+
+                # GNUPGHOME = "$HOME/.config/gpg";
+                # GOPATH = "$HOME/.local/share/go";
+                # GPG_TTY = "$(tty)";
             };
 
             packages = with pkgs; [
