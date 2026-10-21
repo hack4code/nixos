@@ -1,9 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, nixOSVersion, ... }:
 
 {
     services.fwupd = {
         enable = true;
 
+        uefiCapsuleSettings = {
+            DisableShimForSecureBoot = true;
+        };
+    } // (if nixOSVersion == "26.05" then {
         package = pkgs.fwupd.overrideAttrs (old: {
             postPatch = (old.postPatch or "") + ''
               substituteInPlace meson.build \
@@ -12,11 +16,9 @@
                   "efi_app_location = '/run/fwupd-efi'"
             '';
         });
-
-        uefiCapsuleSettings = {
-            DisableShimForSecureBoot = true;
-        };
-    };
+    }
+    else {
+    });
 }
 
 
