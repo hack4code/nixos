@@ -11,6 +11,7 @@
         packages = with pkgs; [
             /* noto */
             noto-fonts
+            noto-fonts-cjk-serif
             noto-fonts-cjk-sans
             noto-fonts-color-emoji
             /* roboto */
@@ -28,6 +29,7 @@
             /* fira */
             fira
             fira-code
+            fira-code-symbols
             /* gtk */
             adwaita-fonts
             /* iosevka */
