@@ -44,6 +44,7 @@
 
     nixpkgs = {
         hostPlatform = "x86_64-linux";
+
         config = {
             allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
                 "unrar"
@@ -62,6 +63,10 @@
                 "lsfg-vk"
             ];
         };
+
+        overlays = [
+            (import ./overlays/firefox.nix)
+        ];
     };
 
     system = {
