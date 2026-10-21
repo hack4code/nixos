@@ -28,13 +28,6 @@
             };
         };
 
-        fwupd = {
-            enable = true;
-            # uefiCapsuleSettings = {
-            #     DisableShimForSecureBoot = true;
-            # };
-        };
-
         acpid = {
             enable = true;
         };
