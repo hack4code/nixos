@@ -35,7 +35,7 @@ in
                     "127.0.0.1:53"
                 ];
 
-                max_clients = 32;
+                max_clients = 256;
 
                 netprobe_address = "8.8.8.8:53";
 
