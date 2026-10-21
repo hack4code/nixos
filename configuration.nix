@@ -53,6 +53,7 @@ in
         ./modules/theme.nix
         ./modules/user.nix
         ./modules/wg-quick.nix
+        ./modules/fwupd.nix
         ./home-manager/btop.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
