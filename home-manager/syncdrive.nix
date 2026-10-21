@@ -46,6 +46,13 @@ let
             }
 
 
+            function panic {
+                echo "$*" 1>&2
+                notify "$*"
+                exit 1
+            }
+
+
             declare -A SYNCDIR=(
                 ["$MEMOS_PATH"]="drive:memos"
                 ["$BOOK_PATH"]="drive:book"
@@ -62,9 +69,8 @@ let
                 fi
             done
 
-            if ! $SSH -T -o ConnectTimeout=64 $VPS exit 2>/dev/null; then
-                notify "connecting $VPS failed"
-                exit 1
+            if ! $SSH -T -o ConnectTimeout=64 $VPS exit; then
+                panic "connecting $VPS failed"
             fi
 
             if ! [[ -d "$MEMOS_PATH" ]]; then
@@ -75,25 +81,22 @@ let
                 mkdir -p "$SPIDER_PATH"
             fi
 
-            if ! $SSH -T $VPS "mount -t nfs4 -l" 2>/dev/null | grep -q "$ROOT/spider"; then
-                if ! $SSH -T $VPS "mount -t nfs -o '$MOUNT_OPT' '$NFS_SPIDER' $ROOT/spider" 2>/dev/null; then
-                    notify "spider mount failed"
-                    exit 1
+            if ! $SSH -T $VPS "mount -t nfs4 -l" | grep -q "$ROOT/spider"; then
+                if ! $SSH -T $VPS "mount -t nfs -o '$MOUNT_OPT' '$NFS_SPIDER' $ROOT/spider"; then
+                    panic "spider mount failed"
                 fi
             fi
-            $SSH -T $VPS "cd $ROOT/spider; docker compose exec mongodb mongodump --quiet --gzip --username scrapy --password scrapy --db scrapy --collection spider --archive='/dump/spider.gz'" 2>/dev/null
-            $SCP -q "$VPS:$R_MEMOS_DB" "$MEMOS_PATH/" 2>/dev/null
-            $SCP -q "$VPS:$R_SPIDER_DB" "$SPIDER_PATH/" 2>/dev/null
+            $SSH -T $VPS "cd $ROOT/spider; docker compose exec mongodb mongodump --quiet --gzip --username scrapy --password scrapy --db scrapy --collection spider --archive='/dump/spider.gz'"
+            $SCP -q "$VPS:$R_MEMOS_DB" "$MEMOS_PATH/"
+            $SCP -q "$VPS:$R_SPIDER_DB" "$SPIDER_PATH/"
 
             for KEY in "''${!SYNCDIR[@]}"; do
-                if [[ -z "$(ls -A "$KEY" 2>/dev/null)" ]]; then
-                    notify "$KEY is empty"
-                    exit 1
+                if [[ -z "$(ls -A "$KEY")" ]]; then
+                    panic "$KEY is empty"
                 fi
 
                 if ! $RCLONE sync "$KEY" "''${SYNCDIR[$KEY]}"; then
-                    notify "rclone failed for syncing $KEY"
-                    exit 1
+                    panic "rclone failed for syncing $KEY"
                 fi
             done
 
