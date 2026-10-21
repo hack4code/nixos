@@ -72,8 +72,8 @@ in
                     Notifications = {
                         Allow = ffNoticationsAllow;
                         Block = [ ];
-                        BlockNewRequests = true;
-                        Locked = true;
+                        BlockNewRequests = false;
+                        Locked = false;
                     };
 
                     Camera = {
@@ -335,8 +335,6 @@ in
                         /* notification */
                         user_pref("dom.webnotifications.enabled", true);
                         user_pref("alerts.useSystemBackend", true);
-                        user_pref("permissions.default.desktop-notification", 1);
-                        user_pref("dom.webnotifications.requireinteraction.enabled", false);
 
                         /* ai */
                         user_pref("browser.ai.control.default", "blocked");
