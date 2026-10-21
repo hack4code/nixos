@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, nixOSVersion, ... }:
+{ config, pkgs, pkgs-stable, pkgs-unstable, nixOSVersion, ... }:
 
 let
     eGPUPciID = config.eGPUPciID;
@@ -17,8 +17,10 @@ in
         # cemu
         /* switch */
         nsz
+    ] ++ (with pkgs-unstable; [
+        /* switch */
         eden
-    ] ++ [
+    ]) ++ [
         /* windows */
         bottles
     ];
