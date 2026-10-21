@@ -313,7 +313,7 @@ in
             /******************
                 weechat
             *******************/
-            weechat-matrix-rs
+            # weechat-matrix-rs
             /******************
                 graphics
             *******************/

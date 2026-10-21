@@ -125,9 +125,8 @@ in
 
                     /set plugins.var.python.url_hint.update_title "off"
                     /set weechat.look.window_title "\''${name}"
-
-                    /plugin load /run/current-system/sw/lib/weechat/plugins/matrix.so
                 '';
+                #/plugin load /run/current-system/sw/lib/weechat/plugins/matrix.so
             };
         };
     };
