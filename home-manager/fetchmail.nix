@@ -118,7 +118,9 @@ in
 
                 if (/^List-Id:.*FFmpeg/)
                 {
-                    to $FFMPEG
+                    EXITCODE = 0
+                    exit
+                    # to $FFMPEG
                 }
 
 
