@@ -61,10 +61,6 @@
         nixosConfigurations = rec {
             system = "x86_64-linux";
 
-            # overlays = [
-            #     (import overlays/firefox.nix)
-            # ];
-
             pkgs-unstable = import nixpkgs {
                 inherit system;
                 config = {
