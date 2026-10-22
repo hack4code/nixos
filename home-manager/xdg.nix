@@ -53,7 +53,7 @@ in
                 config = {
                     sway = {
                         default = [
-                            "gtk"
+                            "wlr"
                         ];
 
                         "org.freedesktop.impl.portal.Inhibit" = [
@@ -64,23 +64,23 @@ in
                             "termfilechooser"
                         ];
 
-                        "org.freedesktop.impl.portal.Secret" = [
-                            "gnome-keyring"
-                        ];
+                        # "org.freedesktop.impl.portal.Secret" = [
+                        #     "gnome-keyring"
+                        # ];
 
-                        "org.freedesktop.impl.portal.Screencast" = [
-                            "wlr"
-                        ];
+                        # "org.freedesktop.impl.portal.Screencast" = [
+                        #     "wlr"
+                        # ];
 
-                        "org.freedesktop.impl.portal.Screenshot" = [
-                            "wlr"
-                        ];
+                        # "org.freedesktop.impl.portal.Screenshot" = [
+                        #     "wlr"
+                        # ];
                     };
                 };
 
                 extraPortals = with pkgs; [
                     xdg-desktop-portal-wlr
-                    xdg-desktop-portal-gtk
+                    # xdg-desktop-portal-gtk
                     xdg-desktop-portal-termfilechooser
                 ];
             };
