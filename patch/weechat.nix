@@ -9,6 +9,9 @@ let
     oftcChannels = config.oftcChannels;
     oftcPassword = config.oftcPassword;
     oftcUserName = config.oftcUserName;
+    afternetChannels = config.afternetChannels;
+    afternetUserName = config.afternetUserName;
+    afternetPassword = config.afternetPassword;
 in
 {
     nixpkgs.config.packageOverrides = pkgs: {
@@ -25,23 +28,29 @@ in
                 let
                     libera_channels =  pkgs.lib.strings.concatStringsSep "," liberaChannels;
                     oftc_channels = pkgs.lib.strings.concatStringsSep "," oftcChannels;
+                    afternet_channels = pkgs.lib.strings.concatStringsSep "," afternetChannels;
                     nick_names = pkgs.lib.strings.concatStringsSep "," weechatNickNames;
                 in
                 ''
                     /set irc.server_default.username "${weechatUserName}"
                     /server addreplace oftc irc.oftc.net/6697 -autoconnect
                     /server addreplace libera irc.libera.chat/6697 -autoconnect
+                    /server addreplace afternet irc.afternet.org/6697 -autoconnect
 
                     /set irc.server.libera.command "/msg NickServ IDENTIFY ${liberaUserName} ${liberaPassword}"
                     /set irc.server.libera.autojoin_delay 8
-                    /set irc.server.libera.command_delay 0
                     /set irc.server.libera.autojoin "${libera_channels}"
                     /set irc.server.libera.nicks "${nick_names}"
 
                     /set irc.server.oftc.command "/msg NickServ IDENTIFY ${oftcPassword} ${oftcUserName}"
-                    /set irc.server.oftc.autojoin_delay 4
+                    /set irc.server.oftc.autojoin_delay 8
                     /set irc.server.oftc.autojoin "${oftc_channels}"
                     /set irc.server.oftc.nicks "${nick_names}"
+
+                    /set irc.server.afternet.command "/msg authserv auth ${afternetUserName} ${afternetPassword}"
+                    /set irc.server.afternet.autojoin_delay 4
+                    /set irc.server.afternet.autojoin "${afternet_channels}"
+                    /set irc.server.afternet.nicks "${nick_names}"
 
                     /bar hide nicklist
 

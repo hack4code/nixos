@@ -10,6 +10,9 @@
         oftcChannels = mkOption { type = listOf str; };
         oftcUserName = mkOption { type = str; };
         oftcPassword = mkOption { type = str; };
+        afternetChannels = mkOption { type = listOf str; };
+        afternetUserName = mkOption { type = str; };
+        afternetPassword = mkOption { type = str; };
     };
 
     config = {
@@ -21,6 +24,9 @@
         oftcChannels = [ ];
         oftcUserName = "";
         oftcPassword = "";
+        afternetUserName = "";
+        afternetPassword = "";
+        afternetChannels = [ ];
     };
 }
 
