@@ -51,8 +51,8 @@ in
             mappings = {
                 "u" = "scroll half-up";
                 "d" = "scroll half-down";
-                "b" = "scroll full-up";
-                "f" = "scroll full-down";
+                # "b" = "scroll full-up";
+                # "f" = "scroll full-down";
                 "=" = "zoom in";
                 ";" = "nohlsearch";
                 "<C-o>" = "file_chooser";
