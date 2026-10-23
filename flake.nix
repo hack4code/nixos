@@ -56,8 +56,7 @@
         };
     };
 
-    outputs = inputs@{ nixpkgs-stable, home-manager-stable, nixpkgs, home-manager, nixos-hardware, lanzaboote, ...}:
-    {
+    outputs = inputs@{ nixpkgs-stable,  nixpkgs,  nixos-hardware, home-manager, home-manager-stable, lanzaboote, ... }: {
         nixosConfigurations = rec {
             system = "x86_64-linux";
 
@@ -82,6 +81,7 @@
                     boot.loader.systemd-boot.enable = lib.mkForce false;
                     boot.lanzaboote = {
                         enable = true;
+
                         pkiBundle = "/var/lib/sbctl";
                     };
                 })
