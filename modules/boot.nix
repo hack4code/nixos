@@ -25,9 +25,9 @@ in
             configfile = ./kernel/config;
         };
 
+        consoleLogLevel = 5;
+
         kernelParams = lib.mkForce [
-            /* log */
-            "loglevel=5"
             /* root */
             "root=fstab"
             "rootfstype=ext4"
@@ -88,13 +88,25 @@ in
 
         initrd = {
             enable = true;
+
+            verbose = true;
+
             systemd = {
                 enable = true;
+
                 tpm2 = {
                     enable = false;
                 };
+
+                network = {
+                    wait-online = {
+                        enable = false;
+                    };
+                };
             };
+
             includeDefaultModules = false;
+
             kernelModules = [
                 "autofs4"
                 /* nvme */
