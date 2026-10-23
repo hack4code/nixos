@@ -125,11 +125,14 @@ in
 
         man = {
             enable = true;
+
             man-db = {
                 enable = true;
             };
+
             cache = {
-                enable = true;
+                enable = false;
+
                 generateAtRuntime = true;
             };
         };
@@ -138,6 +141,7 @@ in
     programs = {
         appimage = {
             enable = true;
+
             binfmt = true;
         };
 
@@ -147,6 +151,7 @@ in
 
         neovim = {
             enable = true;
+
             defaultEditor = true;
         };
 
@@ -157,7 +162,9 @@ in
 
         wireshark = {
             enable = true;
+
             package = pkgs.wireshark;
+
             dumpcap = {
                 enable = true;
             };
@@ -168,9 +175,6 @@ in
         shells = with pkgs; [
             zsh
             bashInteractive
-        ];
-
-        defaultPackages = [
         ];
 
         systemPackages = with pkgs; [
