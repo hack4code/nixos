@@ -56,8 +56,10 @@
         };
     };
 
-    outputs = inputs@{ nixpkgs-stable,  nixpkgs,  nixos-hardware, home-manager, home-manager-stable, lanzaboote, ... }: {
-        nixosConfigurations = rec {
+    outputs = inputs@{ nixpkgs-stable,  nixpkgs,  nixos-hardware, home-manager, home-manager-stable, lanzaboote, ...}:
+    {
+        nixosConfigurations =
+        let
             system = "x86_64-linux";
 
             pkgs-unstable = import nixpkgs {
@@ -87,7 +89,8 @@
                 })
                 ./configuration.nix
             ];
-
+        in
+        {
             KISS-STABLE = nixpkgs-stable.lib.nixosSystem {
                 specialArgs = {
                     inherit pkgs-stable;
