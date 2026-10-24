@@ -73,12 +73,6 @@
                             PreeditCursorPositionAtBeginning = "True";
                             SwitchInputMethodBehavior = "Clear";
                         };
-
-                        clipboard.globalSection = {
-                            TriggerKey = "Control+;";
-                            PastePrimaryKey = "Super+V";
-                            "Number of entries" = 5;
-                        };
                     };
                 };
             };
