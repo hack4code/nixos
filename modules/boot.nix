@@ -100,7 +100,7 @@ in
 
                 network = {
                     wait-online = {
-                        enable = false;
+                        enable = true;
                     };
                 };
             };
