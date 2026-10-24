@@ -56,7 +56,7 @@
         };
     };
 
-    outputs = inputs@{ nixpkgs-stable,  nixpkgs,  nixos-hardware, home-manager, home-manager-stable, lanzaboote, ...}:
+    outputs = inputs@{ nixpkgs-stable, nixpkgs, nixos-hardware, home-manager, home-manager-stable, lanzaboote, ...}:
     {
         nixosConfigurations =
         let
