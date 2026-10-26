@@ -19,7 +19,7 @@ in
                         nix-direnv
                     ];
                     text = ''
-                        trap "" PIPE
+                        trap ''' PIPE
 
                         function panic {
                             echo "$*" 1>&2
@@ -44,19 +44,6 @@ in
                         if [[ -d "$dest/linux-$1" ]]; then
                             echo "linux-$1 existed"
                             exit 0
-                        fi
-
-                        if ! nix registry list | grep -q -F 'flake:kernel'; then
-                            if [[ -d $HOME/source/nixshell/kernel ]]; then
-                                nix registry add kernel "$HOME/source/nixshell/kernel/"
-                            fi
-                        fi
-
-                        if ! [[ -f .envrc ]]; then
-                            if nix registry list | grep -q -F 'flake:kernel'; then
-                                echo "use flake kernel#default" > .envrc
-                                direnv allow
-                            fi
                         fi
 
                         rm -rf linux*
@@ -110,14 +97,25 @@ in
                             panic "kernel $1 not found"
                         fi
 
-                        trap - PIPE
-
                         sed -i -E "/kernelVersion/s/\".+\"/\"$1\"/" "$kernel_nix_file"
                         sed -i -E "/kernelHash/s/\".+\"/\"$kernel_hash\"/" "$kernel_nix_file"
                         sed -i -E "/kernelUrl/s;\".+\";\"$kernel_url\";" "$kernel_nix_file"
 
                         cd "linux-$1/" || panic "linux-$1/ not exist"
                         cp "$kernel_config_file" .config
+
+                        if ! nix registry list | grep -q -F 'flake:kernel'; then
+                            if [[ -d $HOME/source/nixshell/kernel ]]; then
+                                nix registry add kernel "$HOME/source/nixshell/kernel/"
+                            fi
+                        fi
+
+                        if ! [[ -f .envrc ]]; then
+                            if nix registry list | grep -q -F 'flake:kernel'; then
+                                echo "use flake kernel#default" > .envrc
+                                direnv allow
+                            fi
+                        fi
                     '';
                 }
             )
