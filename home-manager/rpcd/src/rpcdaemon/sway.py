@@ -82,7 +82,7 @@ kitty_config_yazi = (
 
 
 kitty_config_weechat = (
-    "--override font_family='JebBrains Mono NL' "
+    "--override font_family='Maple Mono CN' "
     "--override symbol_map='U+4E00-U+9FFF Maple Mono CN' "
     "--override symbol_map='U+3400-U+4DBF Maple Mono CN' "
     "--override modify_font='cell_height +12px'"
