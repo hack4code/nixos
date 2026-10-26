@@ -73,7 +73,7 @@ in
             in
             {
                 initHome = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
-                    test -d mail || mkdir mail mail/sent mail/Trash mail/inbox mail/drafts ${mboxes}; chmod 700 mail
+                    test -d mail || mkdir mail mail/sent mail/trash mail/inbox mail/drafts ${mboxes}; chmod 700 mail
                     test -d book || mkdir book book/.reading; chmod 700 book
                     test -d movie || mkdir movie movie/.rsync movie/.camer; chmod 700 movie
                     test -d music || mkdir music music/lyrics music/playlist music/song music/youtube; chmod 700 music

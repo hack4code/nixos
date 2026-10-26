@@ -47,7 +47,7 @@ in
                 folders = {
                     inbox = "inbox";
                     drafts = "drafts";
-                    trash = "Trash";
+                    trash = "trash";
                     sent = "sent";
                 };
 
@@ -156,6 +156,8 @@ in
                 mailcap_path = "~/.config/neomutt/mailcap";
                 beep = "yes";
                 collapse_unread = "yes";
+                pgp_verify_command = "";
+                pgp_verify_sig = "no";
             };
 
             extraConfig = ''
