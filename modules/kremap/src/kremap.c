@@ -133,10 +133,8 @@ process_key_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
         bool is_remap = false;
 
         rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
-        if (rc == LIBEVDEV_READ_STATUS_SYNC) {
-            while (rc == LIBEVDEV_READ_STATUS_SYNC) {
-                rc = libevdev_next_event(dev, LIBEVDEV_READ_STATUS_SYNC, &ev);
-            }
+        while (rc == LIBEVDEV_READ_STATUS_SYNC) {
+            rc = libevdev_next_event(dev, LIBEVDEV_READ_STATUS_SYNC, &ev);
         }
 
         if (rc == -EAGAIN) {
