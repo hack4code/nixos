@@ -4,13 +4,16 @@ let
     jremap = pkgs.callPackage ./jremap/jremap.nix { inherit pkgs; };
 in
 {
-    environment.systemPackages = [ jremap ];
+    environment.systemPackages = [
+        jremap
+    ];
 
     systemd.services = {
         jremap = {
             enable = true;
 
-            wantedBy = lib.mkForce [];
+            wantedBy = lib.mkForce [ ];
+
             description = "Joystick Remap";
 
             serviceConfig = {
