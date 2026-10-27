@@ -9,8 +9,11 @@ in
     systemd.services = {
         kremap = {
             wantedBy = [ "multi-user.target" ];
+
             after = [ "systemd-udevd.service" ];
+
             description = "Keyboard Remap";
+
             serviceConfig = {
                 Type = "exec";
                 KillMode = "mixed";
