@@ -95,7 +95,6 @@ in
         ./home-manager/zsh.nix
     ];
 
-    assertions = lib.mkForce [ ];
 
     time = {
         timeZone = timeZone;
