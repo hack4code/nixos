@@ -5,7 +5,6 @@ let
 in
 {
     imports = [
-        ./patch/weechat.nix
         ./fonts/fontconfig.nix
         ./config/bitwarden.nix
         ./config/dnscrypt-proxy.nix
@@ -54,6 +53,7 @@ in
         ./modules/user.nix
         ./modules/wg-quick.nix
         ./modules/fwupd.nix
+        ./modules/overlays/weechat.nix
         ./home-manager/btop.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
