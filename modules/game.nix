@@ -12,7 +12,7 @@ in
         /* ps3 */
         # rpcs3
         /* ps4 */
-        shadps4
+        # shadps4
         /* Wii U */
         # cemu
         /* switch */
