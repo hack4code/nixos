@@ -66,14 +66,20 @@ process_event(struct libevdev *dev, struct libevdev_uinput *uidev) {
         struct input_event ev = {0};
 
         rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
-        if (rc == LIBEVDEV_READ_STATUS_SYNC) {
-            while (rc == LIBEVDEV_READ_STATUS_SYNC) {
-                rc = libevdev_next_event(dev, LIBEVDEV_READ_STATUS_SYNC, &ev);
-            }
-        } else if (rc == -EAGAIN) {
+
+        while (rc == LIBEVDEV_READ_STATUS_SYNC) {
+            rc = libevdev_next_event(dev, LIBEVDEV_READ_STATUS_SYNC, &ev);
+        }
+
+        if (rc == -EAGAIN) {
             usleep(10000);
             continue;
         } else if (rc == LIBEVDEV_READ_STATUS_SUCCESS) {
+            /*
+            printf("ev.type: %hi\n", ev.type);
+            printf("ev.code: %hi\n", ev.code);
+            printf("ev.value: %hi\n", ev.value);
+            */
             if (ev.type == EV_ABS) {
                 if (ev.code == 1)
                     continue;

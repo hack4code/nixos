@@ -2,7 +2,7 @@
 
 pkgs.stdenv.mkDerivation {
     name = "jremap";
-    version = "1.0";
+    version = "1.1";
     src = ./src;
 
     buildInputs = with pkgs; [
