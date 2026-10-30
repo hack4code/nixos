@@ -7,7 +7,14 @@ in
     home-manager.users.${userName} = {
         programs.swayimg = {
             enable = true;
-
+        } // (if nixOSVersion == "26.11" then {
+            initLua = "
+                swayimg.viewer.on_key(\"q\", function()
+                    swayimg.exit()
+                end)
+            ";
+        }
+        else {
             settings = {
                 general = {
                     size = "800,600";
@@ -28,14 +35,6 @@ in
                     size = 12;
                 };
             };
-        } // (if nixOSVersion == "26.11" then {
-            initLua = "
-                swayimg.viewer.on_key(\"q\", function()
-                    swayimg.exit()
-                end)
-            ";
-        }
-        else {
         });
     };
 }
