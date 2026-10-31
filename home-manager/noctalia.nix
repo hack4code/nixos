@@ -32,7 +32,7 @@ in
                         layer = "top";
                         thickness = 36;
                         background_opacity = 0.99;
-                        border = "outline";
+                        border = "outline_variant";
                         border_width = 2;
                         shadow = true;
                         capsule = false;
