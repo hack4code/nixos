@@ -15,12 +15,10 @@ in
                         curl
                         gnused
                         gnutar
-                        gnugrep
                         nix-direnv
+                        ripgrep
                     ];
                     text = ''
-                        trap ''' PIPE
-
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -32,8 +30,6 @@ in
                         fi
 
                         v_major=$(echo "$1" | cut -d '.' -f 1)
-
-                        CURL="${pkgs.curl}/bin/curl"
 
                         kernel_nix_file="$HOME/source/nixos/config/kernel.nix"
                         kernel_config_file="$HOME/source/nixos/modules/kernel/config"
@@ -57,21 +53,23 @@ in
                         kernel_cdn="linux-$1.tar.xz"
                         kernel_url_cdn="https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/$kernel_cdn"
 
-                        if (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_tuna") == 200 )); then
-                            $CURL -O -L --silent --retry 8 "$kernel_url_tuna"
+                        if (( $(curl -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_tuna") == 200 )); then
+                            echo "downloading kernel from tuna mirror"
+                            curl -O -L --silent --retry 8 "$kernel_url_tuna"
                             if ! [[ -f $kernel_tuna ]]; then
                                 panic "$kernel_tuna not exist"
                             fi
 
                             tar xzf "$kernel_tuna" && rm -f "$kernel_tuna"
 
-                            kernel_hash=$($CURL -L --silent "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            kernel_hash=$(curl -L --silent "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | rg "linux-$1.tar.gz" | cut -d ' ' -f 1 | tr -d '\s\n')
                             if [[ -z "$kernel_hash" ]]; then
                                 panic 'no sha256 signature found'
                             fi
                             kernel_url="$kernel_url_tuna"
-                        elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
-                            $CURL -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
+                        elif (( $(curl -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
+                            echo "downloading kernel from github"
+                            curl -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
                             if ! [[ -f $kernel_github ]]; then
                                 panic "$kernel_github not exist"
                             fi
@@ -80,15 +78,16 @@ in
 
                             kernel_url="$kernel_url_github"
                             kernel_hash=$(nix hash path "linux-$1")
-                        elif (( $($CURL -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
-                            $CURL -O -L --silent --retry 8 "$kernel_url_cdn"
+                        elif (( $(curl -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
+                            echo "downloading kernel from cdn"
+                            curl -O -L --silent --retry 8 "$kernel_url_cdn"
                             if ! [[ -f $kernel_cdn ]]; then
                                 panic "$kernel_cdn not exist"
                             fi
 
                             tar xJf "$kernel_cdn" && rm -f "$kernel_cdn"
 
-                            kernel_hash=$($CURL -L --silent "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | grep -F "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
+                            kernel_hash=$(curl -L --silent "https://cdn.kernel.org/pub/linux/kernel/v''${v_major}.x/sha256sums.asc" | rg "linux-$1.tar.xz" | cut -d ' ' -f 1 | tr -d '\s\n')
                             if [[ -z "$kernel_hash" ]]; then
                                 panic 'no sha256 signature found'
                             fi
@@ -104,15 +103,15 @@ in
                         cd "linux-$1/" || panic "linux-$1/ not exist"
                         cp "$kernel_config_file" .config
 
-                        if ! nix registry list | grep -q -F 'flake:kernel'; then
+                        if ! nix registry list | rg --quiet 'flake:kernel'; then
                             if [[ -d $HOME/source/nixshell/kernel ]]; then
                                 nix registry add kernel "$HOME/source/nixshell/kernel/"
                             fi
                         fi
 
                         if ! [[ -f .envrc ]]; then
-                            if nix registry list | grep -q -F 'flake:kernel'; then
-                                echo "use flake kernel#default" > .envrc
+                            if nix registry list | rg --quiet 'flake:kernel'; then
+                                echo 'use flake kernel#default' > .envrc
                                 direnv allow
                             fi
                         fi
