@@ -86,8 +86,7 @@ in
                         { on = [ "g" "s" ]; run = "cd ~/source/"; }
                         { on = [ "g" "g" ]; run = "cd ~/game/"; }
                         { on = [ "g" "p" ]; run = "cd ~/picture/"; }
-                        { on = [ "g" "c" ]; run = "cd ~/movie/Camera/"; }
-                        { on = [ "g" "v" ]; run = "cd ~/temp/vps/linode/"; }
+                        { on = [ "g" "t" ]; run = "cd ~/temp/"; }
                         { on = ["M" "m"]; run = "plugin sshfs -- mount"; }
                         { on = ["M" "u"]; run = "plugin sshfs -- unmount"; }
                         { on = ["M" "h"]; run = "plugin sshfs -- home"; }
