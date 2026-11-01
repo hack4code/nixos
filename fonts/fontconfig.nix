@@ -102,7 +102,7 @@
             hinting = {
                 enable = true;
                 autohint = false;
-                style = "full";
+                style = "medium";
             };
 
             subpixel = {
