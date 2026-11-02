@@ -43,7 +43,7 @@ in
             initLua = ''
                 --- full border
                 require("full-border"):setup {
-                    type = ui.Border.ROUNDED,
+                    set = "rounded",
                 }
 
                 --- no status
