@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixOSVersion, ... }:
 
 {
     # environment.etc."thunderbolt/thunderbolt-rescan.sh" = {
@@ -22,11 +22,19 @@
             enable = true;
             nssmdns4 = true;
             nssmdns6 = true;
+        } // (if nixOSVersion == "26.11" then {
+            settings = {
+                publish = {
+                    disable-publishing = false;
+                    publish-address = true;
+                };
+            };
+        } else {
             publish = {
                 enable = true;
                 userServices = true;
             };
-        };
+        });
 
         acpid = {
             enable = true;
