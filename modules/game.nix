@@ -1,8 +1,7 @@
-{ config, pkgs, pkgs-stable, pkgs-unstable, nixOSVersion, ... }:
+{ config, pkgs, pkgs-unstable, nixOSVersion, ... }:
 
 let
     eGPUPciID = config.eGPUPciID;
-    bottles = pkgs-stable.bottles.override { removeWarningPopup = true; };
 in
 {
     environment.systemPackages = with pkgs; [
@@ -17,13 +16,12 @@ in
         # cemu
         /* switch */
         nsz
+        /* windows */
+        (bottles.override { removeWarningPopup = true; })
     ] ++ (with pkgs-unstable; [
         /* switch */
         eden
-    ]) ++ [
-        /* windows */
-        bottles
-    ];
+    ]);
 
     programs = {
         gamemode = {
@@ -58,7 +56,7 @@ in
                 "--prefer-vk-device ${eGPUPciID}"
             ];
         } // (if nixOSVersion == "26.11" then {
-            enableWsi = false;
+            enableWsi = true;
         }
         else {
         });
