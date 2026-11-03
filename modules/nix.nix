@@ -62,6 +62,10 @@
                 /* nix */
                 "lsfg-vk"
             ];
+
+            problems.handlers = {
+                "gtk+".broken = "warn"; # or "ignore"
+            };
         };
 
         overlays = [
