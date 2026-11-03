@@ -95,16 +95,18 @@ in
                 };
 
                 network = {
+                    enable = false;
                     wait-online = {
-                        enable = true;
+                        enable = false;
                     };
                 };
             };
 
+            compressor = "zstd";
+
             includeDefaultModules = false;
 
             kernelModules = [
-                "autofs4"
                 /* nvme */
                 "hwmon"
                 "nvme_core"
