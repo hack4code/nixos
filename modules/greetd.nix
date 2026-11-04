@@ -4,27 +4,19 @@
     services.greetd =
     let
       tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
-      session = "${pkgs.zsh}/bin/zsh";
+      kmscon = "${pkgs.kmscon}/bin/kmscon";
     in
     {
         enable = true;
 
+        useTextGreeter = true;
+
         settings = {
             default_session = {
-                command = "${tuigreet} --time --cmd ${session}";
+                command = "${kmscon} --no-reset-env --login -- ${tuigreet} --time --cmd zsh -i";
                 user = "greeter";
             };
         };
-   };
-
-   systemd.services.greetd.serviceConfig = {
-       Type = "idle";
-       StandardInput = "tty";
-       StandardOutput = "tty";
-       StandardError = "journal";
-       TTYReset = true;
-       TTYVHangup = true;
-       TTYVTDisallocate = true;
    };
 }
 
