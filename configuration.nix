@@ -38,6 +38,7 @@ in
         ./modules/hardware.nix
         ./modules/jremap.nix
         ./modules/kremap.nix
+        ./modules/kmscon.nix
         ./modules/networking.nix
         ./modules/nfs.nix
         ./modules/nix.nix

@@ -4,10 +4,17 @@
     services.kmscon = {
         enable = true;
 
-        hwaccel = true;
-        useXkbConfig = true;
-        term = "xterm-256color";
-        font-name = "Google Sans Code, Noto Sans CJK SC";
+        useXkbConfig = false;
+
+        config = {
+            hwaccel = true;
+            gpus = "all";
+            libseat = false;
+            multi-monitor = "clone";
+            font-name = "Google Sans Code, Noto Sans CJK SC";
+            term = "xterm-256color";
+            session-max = 3;
+        };
     };
 }
 
