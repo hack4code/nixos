@@ -189,8 +189,8 @@ in
 
                         local T=$(date +'%F-%H-%M')
                         export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-                        # kmscon-launch-gui "$SWAY"
-                        exec $SWAY
+                        #exec $SWAY
+                        kmscon-launch-gui "$SWAY"
                     }
                 '';
             };
