@@ -58,6 +58,8 @@ in
             /* amd gpu */
             "amdgpu.dcdebugmask=0x4"
             # "video=eDP-1:2160x1350"
+            /* systemd */
+            "systemd.tpm2_measured_os=0"
         ];
 
         kernelModules = [
