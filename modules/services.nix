@@ -26,7 +26,7 @@
             settings = {
                 publish = {
                     disable-publishing = false;
-                    publish-address = true;
+                    publish-addresses = true;
                 };
             };
         } else {
