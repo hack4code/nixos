@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-    systemd.services.systemd-tpm2-setup.enable = false;
-
     security = {
         rtkit = {
             enable = true;
