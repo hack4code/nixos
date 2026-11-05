@@ -32,6 +32,8 @@ in
             "root=fstab"
             "rootfstype=ext4"
             "rw"
+            /* module */
+            "module.sig_enforce=1"
             /* efi */
             "efi=runtime"
             /* kernel harden */
