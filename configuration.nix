@@ -29,11 +29,12 @@ in
         ./config/wifi.nix
         ./config/wg-quick.nix
         ./config/wireguard.nix
-        ./modules/fcitx5.nix
         ./modules/boot.nix
         ./modules/console.nix
         ./modules/dnscrypt-proxy.nix
         ./modules/env.nix
+        ./modules/fcitx5.nix
+        ./modules/fwupd.nix
         ./modules/game.nix
         ./modules/hardware.nix
         ./modules/jremap.nix
@@ -41,6 +42,7 @@ in
         ./modules/networking.nix
         ./modules/nfs.nix
         ./modules/nix.nix
+        ./modules/oomd.nix
         ./modules/pipewire.nix
         ./modules/podman.nix
         ./modules/power.nix
@@ -51,9 +53,8 @@ in
         ./modules/sysctl.nix
         ./modules/theme.nix
         ./modules/user.nix
-        ./modules/wg-quick.nix
-        ./modules/fwupd.nix
         ./modules/weechat.nix
+        ./modules/wg-quick.nix
         ./home-manager/btop.nix
         ./home-manager/direnv.nix
         ./home-manager/downmovie.nix
@@ -98,8 +99,6 @@ in
         ./modules/kmscon.nix
     ] else [
     ]);
-
-
 
     time = {
         timeZone = timeZone;
