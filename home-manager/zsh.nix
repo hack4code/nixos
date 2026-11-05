@@ -182,15 +182,17 @@ in
                             return
                         fi
 
-                        # eGPU
                         if (($# == 1)) && [[ "$1" == "-g" ]] && [[ -e /dev/dri/card1 ]]; then
                             export WLR_DRM_DEVICES="/dev/dri/card1"
                         fi
 
                         local T=$(date +'%F-%H-%M')
                         export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-                        #exec $SWAY
-                        kmscon-launch-gui "$SWAY"
+                        if command -v kmscon-launch-gui &>/dev/null; then
+                            kmscon-launch-gui "$SWAY"
+                        else
+                            exec $SWAY
+                        fi
                     }
                 '';
             };
