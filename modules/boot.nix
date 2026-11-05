@@ -43,6 +43,7 @@ in
             "randomize_kstack_offset=on"
             "page_alloc.shuffle=1"
             "slab_nomerge"
+            "psi=1"
             "pti=on"
             "hash_pointers=always"
             "proc_mem.force_override=never"
@@ -59,9 +60,10 @@ in
             "preempt=full"
             /* amd gpu */
             "amdgpu.dcdebugmask=0x4"
-            # "video=eDP-1:2160x1350"
             /* systemd */
             "systemd.tpm2_measured_os=0"
+            /* thinkpad screen */
+            "video=eDP-1:2160x1350"
         ];
 
         kernelModules = [
