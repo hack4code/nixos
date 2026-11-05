@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, pkgs-unstable, nixOSVersion, ... }:
+{ config, pkgs, pkgs-unstable, nixOSVersion, ... }:
 
 let
     eGPUPciID = config.eGPUPciID;
@@ -17,12 +17,12 @@ in
         /* switch */
         nsz
         /* windows */
-    ] ++ (with pkgs-unstable; [
+    ] ++ [
         /* switch */
-        eden
-    ]) ++ (with pkgs-stable; [
-        (bottles.override { removeWarningPopup = true; })
-    ]);
+        pkgs-unstable.eden
+        /* windows */
+        (pkgs-unstable.bottles.override { removeWarningPopup = true; })
+    ];
 
     programs = {
         gamemode = {
