@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, nixOSVersion, ... }:
 
 let
     timeZone = config.timeZone;
@@ -38,7 +38,6 @@ in
         ./modules/hardware.nix
         ./modules/jremap.nix
         ./modules/kremap.nix
-        ./modules/kmscon.nix
         ./modules/networking.nix
         ./modules/nfs.nix
         ./modules/nix.nix
@@ -94,7 +93,12 @@ in
         ./home-manager/yazi.nix
         ./home-manager/zathura.nix
         ./home-manager/zsh.nix
-    ];
+    ] ++ (if nixOSVersion == "26.11" then
+    [
+        ./modules/kmscon.nix
+    ] else [
+    ]);
+
 
 
     time = {
