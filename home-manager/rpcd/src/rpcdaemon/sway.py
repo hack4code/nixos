@@ -74,18 +74,18 @@ kitty_config_mutt = (
 
 
 kitty_config_yazi = (
-    "--override font_family='Maple Mono CN' "
-    "--override symbol_map='U+4E00-U+9FFF Maple Mono CN' "
-    "--override symbol_map='U+3400-U+4DBF Maple Mono CN' "
+    "--override font_family='JetBrains Mono' "
+    "--override symbol_map='U+4E00-U+9FFF Noto Sans CJK SC' "
+    "--override symbol_map='U+3400-U+4DBF Noto Sans CJK TC' "
     "--override modify_font='cell_height +16px'"
 )
 
 
 kitty_config_weechat = (
-    "--override font_family='Maple Mono CN' "
-    "--override symbol_map='U+4E00-U+9FFF Maple Mono CN' "
-    "--override symbol_map='U+3400-U+4DBF Maple Mono CN' "
-    "--override modify_font='cell_height +12px'"
+    "--override font_family='JetBrains Mono' "
+    "--override symbol_map='U+4E00-U+9FFF Noto Sans CJK SC' "
+    "--override symbol_map='U+3400-U+4DBF Noto Sans CJK TC' "
+    "--override modify_font='cell_height +14px'"
 )
 
 
