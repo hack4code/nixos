@@ -153,6 +153,11 @@ in
                         ZSH_THEME="gentoo"
                     fi
 
+                    # cursor
+                    if [[ $TERM != "xterm-kitty" ]]; then
+                        echo -ne '\e[5 q'
+                    fi
+
                     HIST_STAMPS="yyyy-mm-dd"
 
                     umask 077
