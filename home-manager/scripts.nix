@@ -3,6 +3,7 @@
 let
     userName = config.userName;
     vpsName = config.vpsName;
+    socks5Proxy = config.socks5Proxy;
 in
 {
     home-manager.users.${userName} = {
@@ -55,7 +56,7 @@ in
 
                         if (( $(curl -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_tuna") == 200 )); then
                             echo "downloading kernel from tuna mirror"
-                            curl -O -L --silent --retry 8 "$kernel_url_tuna"
+                            curl -O -L --progress-bar --parallel --retry 8 "$kernel_url_tuna"
                             if ! [[ -f $kernel_tuna ]]; then
                                 panic "$kernel_tuna not exist"
                             fi
@@ -69,7 +70,7 @@ in
                             kernel_url="$kernel_url_tuna"
                         elif (( $(curl -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_github") == 200 )); then
                             echo "downloading kernel from github"
-                            curl -O -L --retry 8 --proxy socks5h://10.0.0.1:1080 "$kernel_url_github"
+                            curl -O -L --progress-bar --parallel --retry 8 --proxy ${socks5Proxy} "$kernel_url_github"
                             if ! [[ -f $kernel_github ]]; then
                                 panic "$kernel_github not exist"
                             fi
@@ -80,7 +81,7 @@ in
                             kernel_hash=$(nix hash path "linux-$1")
                         elif (( $(curl -L -o /dev/null --silent -Iw '%{http_code}' "$kernel_url_cdn") == 200 )); then
                             echo "downloading kernel from cdn"
-                            curl -O -L --silent --retry 8 "$kernel_url_cdn"
+                            curl -O -L --progress-bar --parallel --retry 8 "$kernel_url_cdn"
                             if ! [[ -f $kernel_cdn ]]; then
                                 panic "$kernel_cdn not exist"
                             fi
