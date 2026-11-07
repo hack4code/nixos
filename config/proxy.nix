@@ -3,10 +3,12 @@
 {
     options = with lib; with types; {
         socks5Proxy = mkOption { type = str; };
+        torProxy = mkOption { type = str; };
     };
 
     config = {
         socks5Proxy = "";
+        torProxy = "";
     };
 }
 
