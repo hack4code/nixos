@@ -4,6 +4,7 @@ let
     kernelVersion = config.kernelVersion;
     kernelUrl = config.kernelUrl;
     kernelHash = config.kernelHash;
+    socks5Proxy = config.socks5Proxy;
 in
 {
     boot = {
@@ -15,7 +16,7 @@ in
                     repo = "linux";
                     tag = "v${kernelVersion}";
                     hash = kernelHash;
-                    curlOpts = "-L --retry 8";
+                    curlOpts = "-L --retry 8 --proxy ${socks5Proxy}";
                 }
             else
                 pkgs.fetchurl {
