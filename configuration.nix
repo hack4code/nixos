@@ -29,6 +29,7 @@ in
         ./config/wifi.nix
         ./config/wg-quick.nix
         ./config/wireguard.nix
+        ./config/proxy.nix
         ./modules/boot.nix
         ./modules/console.nix
         ./modules/dnscrypt-proxy.nix
