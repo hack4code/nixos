@@ -8,6 +8,10 @@ let
 in
 {
     boot = {
+        kernelPatches = [
+            pkgs.kernelPatches.request_key_helper
+        ];
+
         kernelPackages = pkgs.linuxPackages_custom {
             version = kernelVersion;
             src = if (lib.strings.hasInfix "github" kernelUrl) then
