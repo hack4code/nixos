@@ -4,6 +4,7 @@ let
     userName = config.userName;
     gitUser = config.gitUser;
     gitEmail = config.gitEmail;
+    socks5Proxy = config.socks5Proxy;
 in
 {
     home-manager.users.${userName} = {
@@ -42,7 +43,7 @@ in
                 };
 
                 "http \"https://github.com\"" = {
-                    proxy = "socks5h://10.0.0.1:1080";
+                    proxy = socks5Proxy;
                 };
 
                 "credential \"https://github.com\"" = {
