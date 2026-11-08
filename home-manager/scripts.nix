@@ -335,7 +335,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "testmsg";
+                    name = "testmsg.sh";
                     runtimeInputs = [
                         curl
                     ];
@@ -345,40 +345,6 @@ in
                     in
                     ''
                         ${curl} -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
-                    '';
-                }
-            )
-            (
-                writeShellApplication {
-                    name = "nu";
-                    runtimeInputs = [
-                        gnumake
-                    ];
-                    text =
-                    let
-                        make = "${pkgs.gnumake}/bin/make";
-                    in
-                    ''
-                        cd "$HOME/source/nixos/"
-                        ${make} update
-                        cd -
-                    '';
-                }
-            )
-            (
-                writeShellApplication {
-                    name = "ns";
-                    runtimeInputs = [
-                        gnumake
-                    ];
-                    text =
-                    let
-                        make = "${pkgs.gnumake}/bin/make";
-                    in
-                    ''
-                        cd "$HOME/source/nixos/"
-                        ${make} switch
-                        cd -
                     '';
                 }
             )
@@ -495,28 +461,6 @@ in
                         fi
 
                         nix search --quiet --offline nixpkgs "$1" 2>/dev/null
-                    '';
-                }
-            )
-            (
-                writeShellApplication {
-                    name = "bp";
-                    text = ''
-                        function panic {
-                            echo "$*" 1>&2
-                            exit 1
-                        }
-
-
-                        if (($# != 1)); then
-                            panic 'need bin name'
-                        fi
-
-                        if ! [[ -h "$(command -v "$1")" ]]; then
-                            panic 'not a link'
-                        fi
-
-                        readlink "$(command -v "$1")" | cut -d / -f 4 | cut -d - -f 2
                     '';
                 }
             )
@@ -642,6 +586,17 @@ in
                         else
                             noctalia --daemon
                         fi
+                    '';
+                }
+            )
+            (
+                writeShellApplication {
+                    name = "kconfig";
+                    runtimeInputs = [
+                        bat
+                    ];
+                    text = ''
+                        bat "$(nix build --print-out-paths --no-link nixpkgs#linuxPackages_latest.kernel.configfile)"
                     '';
                 }
             )
