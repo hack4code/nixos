@@ -24,10 +24,6 @@ in
             enable = true;
         };
 
-        jack = {
-            enable = true;
-        };
-
         socketActivation = true;
 
         extraConfig = {
