@@ -9,10 +9,10 @@
     };
 
     config = {
-        wifiSSID = "TP-LINK_1225";
-        wifiUUID = "b4447384-06e8-4ef3-8689-f68589f1537c";
-        wifiPassWord = "123456";
-        wifiInterface = "wlan0";
+        wifiSSID = "";
+        wifiUUID = "";
+        wifiPassWord = "";
+        wifiInterface = "";
     };
 }
 

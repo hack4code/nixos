@@ -10,14 +10,7 @@
     config = {
         dnsServerName = "";
         dnsStamp = "";
-        dnsServerList = [
-            "cloudflare"
-            "cloudflare-ipv6"
-            "a-and-a"
-            "a-and-a-ipv6"
-            "google"
-            "google-ipv6"
-        ];
+        dnsServerList = [ ];
     };
 }
 

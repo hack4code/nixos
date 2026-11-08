@@ -7,8 +7,8 @@
     };
 
     config = {
-        hostName = "KISS";
-        timeZone = "Asia/Shanghai";
+        hostName = "";
+        timeZone = "";
     };
 }
 

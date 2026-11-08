@@ -6,7 +6,7 @@
     };
 
     config = {
-        vpsName = "NULL";
+        vpsName = "";
     };
 }
 

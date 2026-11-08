@@ -10,12 +10,12 @@
         userAvatarImage = mkOption { type = str; };
     };
 
-    config = rec {
-        userName = "x";
+    config = {
+        userName = "";
         uid = 1000;
-        userPassWord = "123456";
-        userHome = "/home/${userName}";
-        userLocation = "Marseille, France";
+        userPassWord = "";
+        userHome = "";
+        userLocation = "";
         userAvatarImage = "";
     };
 }

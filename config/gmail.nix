@@ -10,8 +10,7 @@
     config = {
         gmailAccount = "";
         gmailPassword = "";
-        gmailMailBoxes = [
-        ];
+        gmailMailBoxes = [ ];
     };
 }
 

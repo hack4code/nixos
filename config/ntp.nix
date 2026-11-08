@@ -7,8 +7,6 @@
 
     config = {
         ntpServers = [
-            "ntp.tuna.tsinghua.edu.cn"
-            "3.de.pool.ntp.org"
         ];
     };
 }
