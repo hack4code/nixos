@@ -336,10 +336,7 @@ in
             *******************/
             # uefitool
             # flashrom
-        ] ++ (with pkgs-unstable; [
-            netwatch
-            diskwatch
-        ]);
+        ];
     };
 }
 
