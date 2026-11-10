@@ -556,6 +556,7 @@ def restart_container_linode() -> None:
         time.sleep(0.2)
         if find_container_by_app_id("linode", "0") is None:
             break
+    time.sleep(2)
     container_ncmpcpp.command(f"focus;splitv;{command_linode}")
     if (container_linode :=
             find_container_after_start("linode", "0")) is None:
