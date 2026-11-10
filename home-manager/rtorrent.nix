@@ -80,7 +80,6 @@ in
 
                 print = (cat, "Logging to ", (cfg.logfile))
                 log.open_file = "log", (cfg.logfile)
-                log.add_output = "info", "log"
 
                 # notify
                 method.insert = d.notify_message, simple, "cat=$d.name=, \": finished downloading\""
