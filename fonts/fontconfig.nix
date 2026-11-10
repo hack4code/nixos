@@ -55,14 +55,10 @@
             /* twitter */
             twemoji-color-font
             /* maple */
-            maple-mono.variable
-            maple-mono.CN
+            # maple-mono.variable
+            # maple-mono.CN
             /* google */
             googlesans-code
-            /* MiSans */
-            (
-                callPackage ./misans.nix { inherit pkgs; }
-            )
             /* vivo sans */
             (
                 callPackage ./vivo-sans.nix { inherit pkgs; }
