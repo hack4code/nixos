@@ -577,10 +577,15 @@ in
                     };
 
                     settings = {
+                        /* proxy */
                         "network.proxy.socks" = wgServerIp4Address;
                         "network.proxy.socks_port" = ffProxyPort;
                         "network.proxy.socks_version" = 5;
                         "network.proxy.socks5_remote_dns" = true;
+                        /* history */
+                        "privacy.clearOnShutdown.history" = true;
+                        "privacy.clearOnShutdown.cache" = true;
+                        "privacy.clearOnShutdown.cookies" = true;
                     };
                 };
             };
