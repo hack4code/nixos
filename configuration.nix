@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, nixOSVersion, ... }:
+{ config, pkgs, nixOSVersion, ... }:
 
 let
     timeZone = config.timeZone;
@@ -97,7 +97,7 @@ in
         ./home-manager/zsh.nix
     ] ++ (if nixOSVersion == "26.11" then
     [
-        ./modules/kmscon.nix
+        ./modules/greetd.nix
     ] else [
     ]);
 
