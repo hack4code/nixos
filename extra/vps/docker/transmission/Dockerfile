@@ -1,16 +1,6 @@
 # syntax=docker/dockerfile:1.6-labs
 
 
-# FROM debian
-#
-#
-# RUN <<EOF
-#     apt-get update -y
-#     apt-get install -y build-essential cmake git libcurl4-openssl-dev libssl-dev
-#     apt-get install -y libb64-dev libdeflate-dev libevent-dev libminiupnpc-dev libnatpmp-dev libpsl-dev libsystemd-dev
-# EOF
-
-
 FROM ubuntu
 
 
