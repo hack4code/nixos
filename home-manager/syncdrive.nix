@@ -23,6 +23,7 @@ let
             SSH="${pkgs.openssh}/bin/ssh"
             SCP="${pkgs.openssh}/bin/scp"
             RCLONE="${pkgs.rclone}/bin/rclone"
+            NOTIFY="${pkgs.libnotify}/bin/notify-send";
 
             VPS="${vpsName}"
 
@@ -42,7 +43,7 @@ let
 
 
             function notify {
-                ${pkgs.libnotify}/bin/notify-send --icon="google-drive" "syncdrive" "$1"
+                $NOTIFY --icon="google-drive" "syncdrive" "$1"
             }
 
 
