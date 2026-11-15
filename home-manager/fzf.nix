@@ -19,15 +19,15 @@ in
             enableZshIntegration = true;
 
             colors = {
-                hl = "${colorRed}";
-                "hl+" = "${colorLightRed}";
-                pointer = "${colorLightGreen}";
-                query = "${colorGreen}";
-                info = "${colorPurple}";
-                border = "${colorWhite}";
-                prompt = "${colorBlue}";
-                separator = "${colorAqua}";
-                spinner = "${colorLightGreen}";
+                hl = colorRed;
+                "hl+" = colorLightRed;
+                pointer = colorLightGreen;
+                query = colorGreen;
+                info = colorPurple;
+                border = colorWhite;
+                prompt = colorBlue;
+                separator = colorAqua;
+                spinner = colorLightGreen;
             };
 
             defaultCommand = "fd --type f --hidden --follow --exclude .git";
