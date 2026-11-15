@@ -293,11 +293,7 @@ in
                     runtimeInputs = [
                         curl
                     ];
-                    text =
-                    let
-                        curl = "${pkgs.curl}/bin/curl";
-                    in
-                    ''
+                    text = ''
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -308,7 +304,7 @@ in
                             panic 'no file found'
                         fi
 
-                        ${curl} -F "\"file=@$1\"" https://0x0.st
+                        curl -F "\"file=@$1\"" https://0x0.st
                     '';
                 }
             )
@@ -319,17 +315,12 @@ in
                         cmatrix
                         curl
                     ];
-                    text =
-                    let
-                        curl = "${pkgs.curl}/bin/curl";
-                        cmatrix = "${pkgs.cmatrix}/bin/cmatrix";
-                    in
-                    ''
+                    text = ''
                         COLORS=(green red blue yellow cyan magenta)
                         N=$((RANDOM % ''${#COLORS[@]}))
 
-                        ${cmatrix} -a -C "''${COLORS[$N]}"
-                        # ${curl} -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
+                        cmatrix -a -C "''${COLORS[$N]}"
+                        # curl -s -o /dev/null -X GET 'http://127.0.0.1:8080/system/idle'
                     '';
                 }
             )
@@ -339,12 +330,8 @@ in
                     runtimeInputs = [
                         curl
                     ];
-                    text =
-                    let
-                        curl = "${pkgs.curl}/bin/curl";
-                    in
-                    ''
-                        ${curl} -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
+                    text = ''
+                        curl -X POST --header "Content-Type: application/json" --data '{"message": "test", "icon": "notification-active"}' http://127.0.0.1:8080/notify
                     '';
                 }
             )
@@ -471,11 +458,10 @@ in
                         coreutils
                         ncurses
                     ];
-                    text =
-                    let
-                        tput = "${pkgs.ncurses}/bin/tput";
-                    in
-                    ''
+                    text = ''
+                        TPUT="${pkgs.ncurses}/bin/tput";
+
+
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -486,7 +472,7 @@ in
                             panic "please give the color value!"
                         fi
 
-                        ${tput} setaf "$1"
+                        $TPUT setaf "$1"
                         echo "Hello World!"
                     '';
                 }
@@ -502,15 +488,7 @@ in
                         gnugrep
                         swayimg
                     ];
-                    text =
-                    let
-                        awk = "${pkgs.gawk}/bin/awk";
-                        curl = "${pkgs.curl}/bin/curl";
-                        grep = "${pkgs.gnugrep}/bin/grep";
-                        swayimg = "${pkgs.swayimg}/bin/swayimg";
-                        firefox = "${pkgs.firefox}/bin/firefox";
-                    in
-                    ''
+                    text = ''
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -528,11 +506,11 @@ in
                             local image_ext=("jpg" "bmp" "png" "jpeg" "gif" "webp")
 
                             ext="$(get_extention "$1")"
-                            if echo "''${image_ext[@]}" | ${grep} -q -F -w "$ext"; then
+                            if echo "''${image_ext[@]}" | grep -q -F -w "$ext"; then
                                 return 0
                             fi
 
-                            if ${curl} -Ils "$1" | ${awk} 'BEGIN{IGNORECASE=1}/content-type/ {print $2}' | ${grep} -q -i -F image; then
+                            if curl -Ils "$1" | awk 'BEGIN{IGNORECASE=1}/content-type/ {print $2}' | grep -q -i -F image; then
                                 return 0
                             fi
 
@@ -545,9 +523,9 @@ in
                         fi
 
                         if is_image "$1"; then
-                            ${swayimg} "exec://${curl} -s -o - \"$1\""
+                            swayimg "exec://curl -s -o - \"$1\""
                         else
-                            ${firefox} --new-tab "$1"
+                            firefox --new-tab "$1"
                         fi
                     '';
                 }
@@ -591,7 +569,7 @@ in
             )
             (
                 writeShellApplication {
-                    name = "kconfig";
+                    name = "kc";
                     runtimeInputs = [
                         bat
                     ];
