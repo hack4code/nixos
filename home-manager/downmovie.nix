@@ -20,6 +20,7 @@ let
         text = ''
             SSH="${pkgs.openssh}/bin/ssh"
             RSYNC="${pkgs.rsync}/bin/rsync"
+            NOTIFY="${pkgs.libnotify}/bin/notify-send";
 
             VPS="${vpsName}"
             SOURCE="${wgServerIp4Address}::movie"
@@ -27,7 +28,7 @@ let
 
 
             function notify {
-                ${pkgs.libnotify}/bin/notify-send --icon="media-downloader" "downmovie" "$1"
+                $NOTIFY --icon="media-downloader" "downmovie" "$1"
             }
 
 
