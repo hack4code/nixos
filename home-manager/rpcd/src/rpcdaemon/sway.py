@@ -58,9 +58,9 @@ kitty_config_top = (
 
 
 kitty_config_ncmpcpp = (
-    "--override font_family='MiSans VF' "
-    "--override symbol_map='U+4E00-U+9FFF MiSans VF' "
-    "--override symbol_map='U+3400-U+4DBF Misans TC VF' "
+    "--override font_family='WenYuan Rounded SC' "
+    "--override symbol_map='U+4E00-U+9FFF WenYuan Rounded SC' "
+    "--override symbol_map='U+3400-U+4DBF WenYuan Rounded SC' "
     "--override modify_font='cell_height +8px'"
 )
 
@@ -74,17 +74,17 @@ kitty_config_mutt = (
 
 
 kitty_config_yazi = (
-    "--override font_family='JetBrains Mono' "
-    "--override symbol_map='U+4E00-U+9FFF Noto Sans CJK SC' "
-    "--override symbol_map='U+3400-U+4DBF Noto Sans CJK TC' "
+    "--override font_family='WenYuan Rounded SC' "
+    "--override symbol_map='U+4E00-U+9FFF WenYuan Rounded SC' "
+    "--override symbol_map='U+3400-U+4DBF WenYuan Rounded SC' "
     "--override modify_font='cell_height +16px'"
 )
 
 
 kitty_config_weechat = (
     "--override font_family='JetBrains Mono' "
-    "--override symbol_map='U+4E00-U+9FFF Noto Sans CJK SC' "
-    "--override symbol_map='U+3400-U+4DBF Noto Sans CJK TC' "
+    "--override symbol_map='U+4E00-U+9FFF WenYuan Rounded SC' "
+    "--override symbol_map='U+3400-U+4DBF WenYuan Rounded SC' "
     "--override modify_font='cell_height +14px'"
 )
 
