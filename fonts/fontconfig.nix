@@ -67,6 +67,12 @@
                     inherit pkgs;
                 }
             )
+            (
+                callPackage ./wenyuanfonts.nix {
+                    inherit config;
+                    inherit pkgs;
+                }
+            )
         ];
 
 
