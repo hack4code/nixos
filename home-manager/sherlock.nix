@@ -158,9 +158,12 @@ in
                 };
 
                 keybinds = {
+                    "ctrl-j" = "item_down";
+                    "ctrl-k" = "item_up";
                     "ctrl-p" = "item_up";
                     "ctrl-n" = "item_down";
                     "ctrl-u" = "clear_bar";
+                    "ctrl-c" = "clear_bar";
                     "ctrl-o" = "exec";
                     "return" = "exec";
                     "esc" = "exit";
