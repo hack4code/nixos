@@ -499,6 +499,10 @@ process_window_event(int fd) {
             return;
         }
 
+        /*
+        printf("message:\n---\n%s\n---\n", json_object_to_json_string_ext(root, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
+        */
+
         json_object *o_change = json_object_object_get(root, "change");
         if (o_change == NULL)
             goto free_reply;
