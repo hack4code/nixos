@@ -71,6 +71,12 @@
                     inherit pkgs;
                 }
             )
+            # (
+            #     callPackage ./sarasa-gothic.nix {
+            #         inherit config;
+            #         inherit pkgs;
+            #     }
+            # )
         ];
 
 
