@@ -164,6 +164,10 @@ in
             enable = true;
         };
 
+        xwayland = {
+            enable = true;
+        };
+
         wireshark = {
             enable = true;
 
