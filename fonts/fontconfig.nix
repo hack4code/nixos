@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
     fonts = {
@@ -61,7 +61,15 @@
             googlesans-code
             /* vivo sans */
             (
-                callPackage ./vivo-sans.nix { inherit pkgs; }
+                callPackage ./vivo-sans.nix {
+                    inherit pkgs;
+                }
+            )
+            (
+                callPackage ./lxgwwenkai.nix {
+                    inherit config;
+                    inherit pkgs;
+                }
             )
         ];
 
