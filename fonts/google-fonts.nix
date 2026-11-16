@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
     src = pkgs.fetchFromGitHub {
         owner = "google";
         repo = "fonts";
-        tag = tag;
+        tag = "v${tag}";
         hash = "";
         curlOpts = "-L --retry 8";
     };
