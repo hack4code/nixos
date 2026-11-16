@@ -49,14 +49,10 @@
             ubuntu-sans-mono
             /* nerd */
             nerd-fonts.symbols-only
-            # nerd-fonts.terminess-ttf
             /* terminus */
             terminus_font
             /* twitter */
             twemoji-color-font
-            /* maple */
-            # maple-mono.variable
-            # maple-mono.CN
             /* google */
             googlesans-code
             /* vivo sans */
@@ -71,12 +67,6 @@
                     inherit pkgs;
                 }
             )
-            # (
-            #     callPackage ./sarasa-gothic.nix {
-            #         inherit config;
-            #         inherit pkgs;
-            #     }
-            # )
         ];
 
 
@@ -112,7 +102,7 @@
             hinting = {
                 enable = true;
                 autohint = false;
-                style = "medium";
+                style = "slight";
             };
 
             subpixel = {
