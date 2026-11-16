@@ -138,8 +138,8 @@ in
 
             settings = {
                 default_apps = {
-                    terminal = "${pkgs.kitty}/bin/kitty";
-                    browser = "${pkgs.firefox}/bin/firefox --new-tab %u";
+                    terminal = "kitty";
+                    browser = "firefox --new-tab %u";
                 };
 
                 search_bar_icon = {
@@ -159,7 +159,9 @@ in
 
                 keybinds = {
                     "ctrl-j" = "item_down";
+                    "ctrl-page_up" = "item_down";
                     "ctrl-k" = "item_up";
+                    "ctrl-page_down" = "item_up";
                     "ctrl-p" = "item_up";
                     "ctrl-n" = "item_down";
                     "ctrl-u" = "clear_bar";
