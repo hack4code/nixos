@@ -28,7 +28,6 @@ in
                 qt*
                 userfeedback*
                 Keyboard*
-                Fcitx 5*
                 Neovim*
                 NixOS*
                 btop*
