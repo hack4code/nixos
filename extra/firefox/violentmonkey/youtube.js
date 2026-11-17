@@ -97,7 +97,7 @@ const SITE = window.location.href;
         const $node = $("#title h1");
         if ($node.length) {
             $node.css({
-                "font-family": "MiSans",
+                "font-family": "WenYuan Rounded SC",
                 "font-size": "22px",
                 "font-weight": "400",
                 "text-align": "center",
