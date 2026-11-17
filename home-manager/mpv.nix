@@ -30,7 +30,7 @@ in
                 demuxer-max-back-bytes = "128M";
                 cache-pause = false;
                 sub-auto = "all";
-                sub-font = "MiSans";
+                sub-font = "WenYuan Rounded SC";
                 sub-font-size = 36;
                 sub-border-size = 1;
                 sub-border-color = "0/0/0/0.5";
