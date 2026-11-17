@@ -339,7 +339,7 @@ in
                 writeShellApplication {
                     name = "nr";
                     text = ''
-                        nix-store --verify --check-contents --repair
+                        sudo nix-store --verify --check-contents --repair
                     '';
                 }
             )
@@ -348,14 +348,6 @@ in
                     name = "nl";
                     text = ''
                         nixos-rebuild list-generations
-                    '';
-                }
-            )
-            (
-                writeShellApplication {
-                    name = "ng";
-                    text = ''
-                        nix-collect-garbage -d
                     '';
                 }
             )
@@ -377,12 +369,14 @@ in
 
                         if (($# == 1)); then
                             sudo nix-env --delete-generations "$1" --profile /nix/var/nix/profiles/system
+                            nix-collect-garbage -d
                             exit
                         fi
 
                         if (($# == 2)); then
                             # shellcheck disable=SC2046
                             sudo nix-env --delete-generations $(seq "$1" "$2" | tr '\n' ' ' | sed -E 's/\s+$//') --profile /nix/var/nix/profiles/system
+                            nix-collect-garbage -d
                             exit
                         fi
 
@@ -412,6 +406,7 @@ in
                                 sudo nix-env --delete-generations "$generation" --profile /nix/var/nix/profiles/system
                             fi
                         done
+                        nix-collect-garbage -d
                     '';
                 }
             )
