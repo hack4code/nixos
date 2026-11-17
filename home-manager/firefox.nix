@@ -351,7 +351,7 @@ in
                         user_pref("font.default.zh-CN", "Sans Serif");
                         user_pref("font.default.zh-TW", "Sans Serif");
                         user_pref("font.default.zh-HK", "Sans Serif");
-                        user_pref("font.name.sans-serif.x-western", "Roboto");
+                        user_pref("font.name.sans-serif.x-western", "Roboto Flex");
                         user_pref("font.name.sans-serif.zh-CN", "MiSans");
                         user_pref("font.name.sans-serif.zh-TW", "MiSans TC");
                         user_pref("font.name.sans-serif.zh-HK", "MiSans");
@@ -362,7 +362,7 @@ in
                         user_pref("font.name.monospace.x-western", "JetBrains Mono");
                         user_pref("font.name.monospace.zh-CN", "MiSans");
                         user_pref("font.name.monospace.zh-TW", "MiSans TC");
-                        user_pref("font.name.monospace.zh-HK", "MiSans TC");
+                        user_pref("font.name.monospace.zh-HK", "MiSans");
                         user_pref("font.minimum-size.x-western", 12);
                         user_pref("font.minimum-size.zh-CN", 12);
                         user_pref("font.minimum-size.zh-TW", 12);
@@ -443,8 +443,9 @@ in
                             }
 
                             .tabbrowser-tab .tab-label {
-                                font-family: MiSans !important;
-                                font-size: 12px;
+                                font-family: WenYuan Rounded SC !important;
+                                font-weight: 600 !important;
+                                font-size: 11px;
                             }
                         }
 
@@ -472,12 +473,12 @@ in
                         }
 
                         #mainPopupSet menupopup, #appMenu-popup {
-                            font-family: Roboto Flex, MiSans !important;
+                            font-family: Roboto !important;
                             font-size: 12px;
                         }
 
                         .urlbar-input-box {
-                            font-family: Roboto Flex, MiSans !important;
+                            font-family: Roboto !important;
                         }
 
                         .titlebar-buttonbox-container {
