@@ -42,7 +42,7 @@ in
                               <string>Microsoft YaHei</string>
                             </test>
                             <edit name="family" mode="assign" binding="same">
-                              <string>MiSans</string>
+                              <string>WenYuan Rounded SC</string>
                             </edit>
                           </match>
                         </fontconfig>
