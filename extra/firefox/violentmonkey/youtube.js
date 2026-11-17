@@ -98,8 +98,8 @@ const SITE = window.location.href;
         if ($node.length) {
             $node.css({
                 "font-family": "WenYuan Rounded SC",
-                "font-size": "22px",
-                "font-weight": "400",
+                "font-size": "18px",
+                "font-weight": "600",
                 "text-align": "center",
                 "margin": "24px 0 32px 0"
             });
