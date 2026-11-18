@@ -11,7 +11,7 @@
 // @grant           GM_xmlhttpRequest
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1
-// @require         https://code.jquery.com/jquery-4.0.0.min.js
+// @require         https://code.jquery.com/jquery-4.1.0.min.js
 // ==/UserScript==
 
 
