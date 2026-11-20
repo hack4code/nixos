@@ -288,6 +288,9 @@ in
                 for_window [title="^PCSX2"] floating enable, border pixel 2, move position center, resize set 64 ppt 84 ppt
                 for_window [title="^PCSX2 v2"] floating disable
 
+                # for_window [app_id="dev.eden_emu.eden" title="Eden Configuration"] floating enable, move position center, resize set 70 ppt 80 ppt
+                for_window [app_id="dev.eden_emu.eden" title="Properties"] floating enable, move position center, resize set 70 ppt 80 ppt
+
                 for_window [app_id="gamescope"] move to workspace 9
 
                 exec --no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway SDL_VIDEODRIVER=wayland QT_QPA_PLATFORM=wayland
