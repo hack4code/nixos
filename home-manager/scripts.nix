@@ -203,10 +203,12 @@ in
                     text = ''
                         VPS="${vpsName}"
                         SSH="${pkgs.openssh}/bin/ssh"
+                        LINODE="${pkgs.linode-cli}/bin/linode-cli"
+                        JQ="${pkgs.jq}/bin/jq"
 
 
                         function vps_id {
-                            linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1
+                            $LINODE --suppress-warnings linodes list --json | $JQ -r '.[].id' | head --lines 1
                         }
 
                         function vps_df {
@@ -218,16 +220,24 @@ in
                         }
 
                         function vps_transfer {
-                            linode-cli --suppress-warnings account transfer --json | jq -r '.[] | (.used | tostring) + "G/" + (.quota | tostring) + "G"'
+                            $LINODE --suppress-warnings account transfer --json | $JQ -r '.[] | (.used | tostring) + "G/" + (.quota | tostring) + "G"'
                         }
 
                         function vps_reboot {
                             local VPS_ID
 
-                            VPS_ID=$(linode-cli --suppress-warnings linodes list --json | jq -r '.[].id' | head --lines 1)
+                            VPS_ID=$($LINODE --suppress-warnings linodes list --json | $JQ -r '.[].id' | head --lines 1)
                             if [[ -n "$VPS_ID" ]]; then
-                                linode-cli --suppress-warnings linodes reboot "$VPS_ID"
+                                $LINODE --suppress-warnings linodes reboot "$VPS_ID"
                             fi
+                        }
+
+                        function vps_docker_list {
+                            $SSH -T "$VPS" "docker container list"
+                        }
+
+                        function vps_docker_log {
+                            $SSH -T "$VPS" "docker container logs '$1'"
                         }
 
 
@@ -250,6 +260,14 @@ in
 
                             transfer|tr)
                                 vps_transfer
+                                ;;
+
+                            kl)
+                                vps_docker_list
+                                ;;
+
+                            kg)
+                                vps_docker_log "$2"
                                 ;;
 
                             *)
@@ -361,6 +379,9 @@ in
                         jq
                     ];
                     text = ''
+                        JQ="${pkgs.jq}/bin/jq"
+
+
                         function panic {
                             echo "$*" 1>&2
                             exit 1
@@ -384,24 +405,24 @@ in
                             panic "argument error"
                         fi
 
-                        N=$(nixos-rebuild list-generations --json | jq 'length')
+                        N=$(nixos-rebuild list-generations --json | $JQ 'length')
                         if ((N < 3)); then
                             exit
                         fi
 
-                        VERSIONS=$(sudo nixos-rebuild list-generations --json | jq -r '.[] | .nixosVersion' | awk -F . '{print $1 "." $2}' | sort -V | uniq)
+                        VERSIONS=$(sudo nixos-rebuild list-generations --json | $JQ -r '.[] | .nixosVersion' | awk -F . '{print $1 "." $2}' | sort -V | uniq)
                         if (( $(echo "$VERSIONS" | wc -l) != 2 )); then
                             panic "version error"
                         fi
 
                         OLD=$(echo "$VERSIONS" | head -1 | tr -d '\s\n')
                         NEW=$(echo "$VERSIONS" | tail -1 | tr -d '\s\n')
-                        OLDGEN=$(sudo nixos-rebuild list-generations --json | jq -r '.[] | [.nixosVersion, .generation|tostring] | join(" ")' | grep -F "$OLD" | sort -V -k 1 | tail -1 | cut -d ' ' -f 2 | tr -d '\s\n')
-                        NEWGEN=$(sudo nixos-rebuild list-generations --json | jq -r '.[] | [.nixosVersion, .generation|tostring] | join(" ")' | grep -F "$NEW" | sort -V -k 1 | tail -1 | cut -d ' ' -f 2 | tr -d '\s\n')
+                        OLDGEN=$(sudo nixos-rebuild list-generations --json | $JQ -r '.[] | [.nixosVersion, .generation|tostring] | join(" ")' | grep -F "$OLD" | sort -V -k 1 | tail -1 | cut -d ' ' -f 2 | tr -d '\s\n')
+                        NEWGEN=$(sudo nixos-rebuild list-generations --json | $JQ -r '.[] | [.nixosVersion, .generation|tostring] | join(" ")' | grep -F "$NEW" | sort -V -k 1 | tail -1 | cut -d ' ' -f 2 | tr -d '\s\n')
                         if [[ -z "$OLDGEN" ]] || [[ -z "$NEWGEN" ]]; then
                             panic "generation error"
                         fi
-                        for generation in $(sudo nixos-rebuild list-generations --json | jq -r '.[].generation'); do
+                        for generation in $(sudo nixos-rebuild list-generations --json | $JQ -r '.[].generation'); do
                             if [[ "$generation" != "$OLDGEN" ]] && [[ "$generation" != "$NEWGEN" ]]; then
                                 sudo nix-env --delete-generations "$generation" --profile /nix/var/nix/profiles/system
                             fi
