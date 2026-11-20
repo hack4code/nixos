@@ -12,6 +12,7 @@
 // @match           https://www.xl720.com/*
 // @match           https://rutracker.org/*
 // @match           https://uindex.org/*
+// @match           https://fitgirl-repacks.site/*
 // @icon            https://transmissionbt.com/favicon.ico
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // @require         https://code.jquery.com/jquery-4.1.0.min.js
@@ -29,11 +30,11 @@ const SITE = window.location.href;
 
 const RE_PIRA = /thepiratebay.org|piratebay.*\.onion/i;
 const RE_ANYBT = /anybt.eth.limo/i;
-const RE_TORRENT_GALAXY = /torrentgalaxy.mx/i;
 const RE_NYAA = /nyaa.si/i;
 const RE_THUNDER = /xl720.com/i;
 const RE_RUTRACKER = /rutracker.org/i;
 const RE_UINDEX = /uindex.org/i;
+const RE_FITGIRL = /fitgirl-repacks.site/i;
 
 const CSS_BUTTON_TRANSMISSION = {
     "margin": "1px 2px 1px 4px",
@@ -121,9 +122,6 @@ function add_buttons() {
             elements = $('div.links');
         }
     }
-    else if (RE_TORRENT_GALAXY.test(SITE)) {
-        elements = $('div.tgxtablerow');
-    }
     else if (RE_NYAA.test(SITE)) {
         if (SITE.endsWith("nyaa.si/") || SITE.includes("?")) {
             elements = $('tr.default').add('tr.success').add('tr.danger');
@@ -148,6 +146,9 @@ function add_buttons() {
         else if (SITE.includes("id=")) {
             elements = $('div.dt-download-box');
         }
+    }
+    else if (RE_FITGIRL.test(SITE)) {
+        elements = $('li:has(> a)');
     }
 
     if (elements == null || elements.length === 0) {
@@ -176,11 +177,7 @@ function add_buttons() {
 
 
 (function () {
-    if (RE_THUNDER.test(SITE)) {
-        $('div.down_btn_xl').hide();
-        add_buttons();
-    }
-    else if (RE_UINDEX.test(SITE)) {
+    if (RE_THUNDER.test(SITE) || RE_UINDEX.test(SITE) || RE_FITGIRL.test(SITE)) {
         add_buttons();
     }
     else {
