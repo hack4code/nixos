@@ -84,15 +84,13 @@ function send_torrent(button, app, magnet) {
 }
 
 
-function add_app_button(app, e, ind, magnet) {
+function add_app_button(app, e, ind, magnet, button_text, css) {
     const id = app + "_" + ind;
-    const text = app === "transmission" ? "🕷️" : "🐝";
-    const css = app === "transmission" ? CSS_BUTTON_TRANSMISSION : CSS_BUTTON_RTORRENT;
     const selector = 'a[id^="' + app + '_"]';
 
     const button = $("<a>", {
         "id": id,
-        "text": text,
+        "text": button_text,
         "data-magnet": magnet
     });
     button.css(css);
@@ -110,6 +108,7 @@ function add_app_button(app, e, ind, magnet) {
 function add_buttons() {
     var is_anybt = false;
     var elements = null;
+
     if (RE_ANYBT.test(SITE)) {
         is_anybt = true;
         elements = $('div.search-result-item');
@@ -123,7 +122,7 @@ function add_buttons() {
         }
     }
     else if (RE_NYAA.test(SITE)) {
-        if (SITE.endsWith("nyaa.si/") || SITE.includes("?")) {
+        if (SITE.endsWith("nyaa.si/") || SITE.endsWith("nyaa.si") || SITE.includes("?")) {
             elements = $('tr.default').add('tr.success').add('tr.danger');
         }
         else if (SITE.includes("/view/")) {
@@ -170,8 +169,8 @@ function add_buttons() {
             return;
         }
 
-        add_app_button("transmission", e, ind, magnet);
-        add_app_button("rtorrent", e, ind, magnet);
+        add_app_button("transmission", e, ind, magnet, "🕷️", CSS_BUTTON_TRANSMISSION);
+        add_app_button("rtorrent", e, ind, magnet, "🐝", CSS_BUTTON_RTORRENT);
     });
 }
 
