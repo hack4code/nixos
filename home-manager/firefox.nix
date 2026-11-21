@@ -154,6 +154,18 @@ in
                     EnablePermissions = false;
                 };
 
+                SearchEngines = {
+                    PreventInstalls = true;
+                    Remove = [
+                        "Bing"
+                        "DuckDuckGo"
+                        "Ecosia"
+                        "Perplexity"
+                        "Startpage"
+                        "Wikipedia (en)"
+                    ];
+                };
+
                 DisableFirefoxScreenshots = true;
                 DisableFormHistory = true;
                 DisableMasterPasswordCreation = true;
