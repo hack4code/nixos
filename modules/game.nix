@@ -5,6 +5,9 @@ let
 in
 {
     environment.systemPackages = with pkgs; [
+        /* wine */
+        wine-wayland
+        /* */
         tetris
         /* ps2 */
         pcsx2
