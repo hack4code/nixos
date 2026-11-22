@@ -54,6 +54,7 @@ in
         ./modules/sysctl.nix
         ./modules/theme.nix
         ./modules/user.nix
+        ./modules/udev.nix
         ./modules/weechat.nix
         ./modules/wg-quick.nix
         ./home-manager/btop.nix

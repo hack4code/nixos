@@ -1,16 +1,6 @@
 { pkgs, nixOSVersion, ... }:
 
 {
-    # environment.etc."thunderbolt/thunderbolt-rescan.sh" = {
-    #     text = ''
-    #     #!/usr/bin/env bash
-
-    #     echo 1 > /sys/bus/pci/rescan
-    #     '';
-
-    #     mode = "0700";
-    # };
-
     services = {
         hardware = {
             bolt = {
@@ -42,16 +32,6 @@
 
         upower = {
             enable = true;
-        };
-
-        udev = {
-            enable = true;
-
-            extraRules = ''
-                ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", GROUP="video", MODE="0664"
-                KERNEL=="ntsync", MODE="0666", TAG+="uaccess"
-            '';
-            # ACTION=="change", SUBSYSTEM=="thunderbolt", RUN+="/etc/thunderbolt/thunderbolt-rescan.sh"
         };
 
         usbmuxd = {
