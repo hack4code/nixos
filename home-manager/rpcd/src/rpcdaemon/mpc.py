@@ -1,10 +1,9 @@
+import logging
 import time
 from pathlib import Path
 from typing import Literal
 
 from mpd import MPDClient
-
-from .logger import logger
 
 
 __all__ = [
@@ -19,6 +18,7 @@ __all__ = [
 ]
 
 
+logger = logging.getLogger(__name__)
 mpd_state_pre = None
 
 

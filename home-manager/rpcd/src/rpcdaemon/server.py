@@ -1,4 +1,5 @@
 import os
+import logging
 import time
 import signal
 from multiprocessing import Process
@@ -10,7 +11,6 @@ from .daemon import Daemon
 from .app import app
 from .firefox import catch_firefox_signal
 from .logger import (
-    logger,
     init_systemd_logger
 )
 from .sway import (
@@ -22,6 +22,9 @@ from .sway import (
 __all__ = [
     'Server'
 ]
+
+
+logger = logging.getLogger(__name__)
 
 
 def server(*args, **kwargs) -> None:

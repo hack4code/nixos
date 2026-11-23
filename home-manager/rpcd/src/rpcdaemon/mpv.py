@@ -1,3 +1,4 @@
+import logging
 import shlex
 import subprocess
 
@@ -11,7 +12,6 @@ from .sway import (
     set_ncmpcpp_for_playing,
     move_mpv_to_workspace
 )
-from .logger import logger
 
 
 __all__ = [
@@ -23,6 +23,9 @@ __all__ = [
     "play_youtube_video_with_mpv"
 ]
 
+
+
+logger = logging.getLogger(__name__)
 
 
 def setup_for_mpv_open(file_name: str, *, focus: bool = True) -> None:

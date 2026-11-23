@@ -1,3 +1,4 @@
+import logging
 from subprocess import CalledProcessError
 
 from pydantic import (
@@ -56,12 +57,14 @@ from .mpv import (
     setup_for_mpv_play,
     setup_for_mpv_pause,
 )
-from .logger import logger
 
 
 __all__ = [
     "app"
 ]
+
+
+logger = logging.getLogger(__name__)
 
 
 class Message(BaseModel):
