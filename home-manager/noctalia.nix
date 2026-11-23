@@ -89,13 +89,13 @@ in
                         screen-off = {
                             action = "screen_off";
                             enabled = true;
-                            timeout = 600;
+                            timeout = 300;
                         };
 
                         lock-and-suspend = {
                             action = "lock_and_suspend";
                             enabled = true;
-                            timeout = 3600;
+                            timeout = 5400;
                             resume_command = "swayctl resume suspend";
                         };
                     };
