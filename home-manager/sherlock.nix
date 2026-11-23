@@ -158,13 +158,10 @@ in
 
                 keybinds = {
                     "ctrl-j" = "item_down";
-                    "ctrl-page_up" = "item_down";
                     "ctrl-k" = "item_up";
+                    "ctrl-page_up" = "item_down";
                     "ctrl-page_down" = "item_up";
-                    "ctrl-p" = "item_up";
-                    "ctrl-n" = "item_down";
                     "ctrl-u" = "clear_bar";
-                    "ctrl-c" = "clear_bar";
                     "ctrl-o" = "exec";
                     "return" = "exec";
                     "esc" = "exit";
@@ -184,7 +181,7 @@ in
                 };
 
                 appearance = {
-                    width = 400;
+                    width = 360;
                     height = 600;
                     icon_size = 24;
                     use_base_css = true;
