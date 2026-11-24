@@ -1,6 +1,7 @@
 import logging
 from subprocess import CalledProcessError
 
+from systemd.journal import JournalHandler
 from pydantic import (
     BaseModel,
     HttpUrl
@@ -57,6 +58,7 @@ from .mpv import (
     setup_for_mpv_play,
     setup_for_mpv_pause,
 )
+from .logger import add_systemd_handler
 
 
 __all__ = [
@@ -64,7 +66,8 @@ __all__ = [
 ]
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("app")
+add_systemd_handler(logger)
 
 
 class Message(BaseModel):

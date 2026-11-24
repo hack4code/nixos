@@ -17,8 +17,8 @@ setup(
         'uvicorn',
         'yt-dlp',
         'i3ipc'
-        'mpd2'
-        'systemd'
+        'python-mpd2'
+        'systemd-python'
     ]
 )
 

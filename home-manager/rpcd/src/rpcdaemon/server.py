@@ -2,21 +2,21 @@ import os
 import logging
 import time
 import signal
+import multiprocessing
 from multiprocessing import Process
 from subprocess import CalledProcessError
 
 import uvicorn
+from systemd.journal import JournalHandler
 
 from .daemon import Daemon
 from .app import app
 from .firefox import catch_firefox_signal
-from .logger import (
-    init_systemd_logger
-)
 from .sway import (
     SwayIpcError,
     init_workspaces
 )
+from .logger import add_systemd_handler
 
 
 __all__ = [
@@ -24,7 +24,8 @@ __all__ = [
 ]
 
 
-logger = logging.getLogger(__name__)
+logger = multiprocessing.get_logger()
+add_systemd_handler(logger)
 
 
 def server(*args, **kwargs) -> None:
@@ -41,6 +42,7 @@ def server(*args, **kwargs) -> None:
 
 
 def monitor(*args, **kwargs) -> None:
+    logger = multiprocessing.get_logger()
     try:
         catch_firefox_signal()
     except Exception:
@@ -55,7 +57,6 @@ class Server(Daemon):
         super().__init__(pidfile)
 
     def prepare(self) -> None:
-        init_systemd_logger()
         try:
             init_workspaces()
         except SwayIpcError as err:

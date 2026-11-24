@@ -4,16 +4,15 @@ from systemd.journal import JournalHandler
 
 
 __all__ = [
-    'init_systemd_logger'
+    'add_systemd_handler'
 ]
 
 
-def init_systemd_logger() -> None:
+def add_systemd_handler(logger):
     handler = JournalHandler(SYSLOG_IDENTIFIER="rpcd")
     handler.setFormatter(logging.Formatter(fmt="%(message)s"))
-    logger = logging.getLogger(__name__)
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
 
 
-# vim: ts=4 sw=4 sts=4 ft=python et:
+# vim: ts=4 sw=4 sts=4 ft=python et :

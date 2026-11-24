@@ -6,7 +6,9 @@ __all__ = [
 ]
 
 
-def send_notify(message: str, icon: str = "preferences-desktop-notification-bell", title: str = "rpcd") -> None:
+def send_notify(message: str,
+                icon: str = "preferences-desktop-notification-bell",
+                title: str = "rpcd") -> None:
     proxy = SessionMessageBus().get_proxy(
         "org.freedesktop.Notifications",
         "/org/freedesktop/Notifications"

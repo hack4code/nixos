@@ -24,8 +24,7 @@ __all__ = [
 ]
 
 
-
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("app")
 
 
 def setup_for_mpv_open(file_name: str, *, focus: bool = True) -> None:

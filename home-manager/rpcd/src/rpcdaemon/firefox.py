@@ -1,3 +1,4 @@
+import logging
 import signal
 
 from dasbus.loop import EventLoop
@@ -107,6 +108,8 @@ def catch_firefox_signal(*args, **kwargs) -> None:
 
 
 def open_url_remote(url: str) -> None:
+    logger = logging.getLogger("app")
+    logger.info(f"firefox: {url}")
     if (name := find_dubs_name("org.mozilla.firefox")) is None:
         return
     proxy = SessionMessageBus().get_proxy(name, "/org/mozilla/firefox/Remote")
