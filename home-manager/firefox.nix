@@ -422,6 +422,7 @@ in
                             }
 
                             :root {
+                                --tab-border-radius: 10px !important;
                                 --tab-min-height: 32px !important;
                             }
 
@@ -431,15 +432,16 @@ in
                             }
 
                             #tabbrowser-tabs .tab-context-line:not([selected]) {
-                                display: none;
+                                display: none !important;
                             }
 
                             .tab-background:not([selected]) {
-                                border: 1px solid #a89984;
+                                border: 1px solid #a89984 !important;
                             }
 
                             .tab-background[selected] {
-                                background: #282828;
+                                outline-color: #19A519 !important;
+                                background: #282828 !important;
                             }
 
                             #tabbrowser-tabs .tab-background:not([selected]) {
