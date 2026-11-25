@@ -1,9 +1,9 @@
 (self: super: {
     firefox-bin-unwrapped = super.firefox-bin-unwrapped.overrideAttrs (oldAttrs: rec {
-        version = "160.0.1";
+        version = "161.0";
         src = super.fetchurl {
             url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.xz";
-            hash = "sha256-hE2Kd6pGcqCN7ZSbYgb4TZG7gvZjfAkP1YwxJunUQRk=";
+            hash = "sha256-PpseUTLXtTsa2WjHMAKB6Q5qDvV9BlaxUWIC1obSVzM=";
             curlOpts = "-L --retry 8";
         };
     });
