@@ -83,13 +83,13 @@ in
                         lock = {
                             action = "lock";
                             enabled = true;
-                            timeout = 600;
+                            timeout = 300;
                         };
 
                         screen-off = {
                             action = "screen_off";
                             enabled = true;
-                            timeout = 300;
+                            timeout = 3600;
                         };
 
                         lock-and-suspend = {
